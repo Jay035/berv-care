@@ -24,10 +24,10 @@ export default function HeroSection({}: Props) {
           Start your journey to exceptional care today.
         </p>
         {/* CTAs */}
-        <div className="mt-12 flex flex-col place-items-center md:flex-row gap-4 text-lg">
+        <div className="mt-12 text-lg">
           <Link
             href="/hospitals"
-            className="py-4 w-[11.25rem] md:w-full bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            className="py-4 w-fit px-6 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
           >
             Get Started
           </Link>
@@ -40,10 +40,11 @@ export default function HeroSection({}: Props) {
         </div>
       </div>
       <div className="">
-        <Image
+        <img
           src="/doctor-1.png"
-          width={500}
-          height={500}
+        //   sizes='100vw'
+          
+          className="w-full"
           alt="doctor treating patient"
         />
       </div>

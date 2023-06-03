@@ -15,7 +15,43 @@ export default function page({}: Props) {
         <CustomInput />
         {/* search result for "" */}
         {/* Results */}
-        <div className="mt-12 grid gap-4">
+        <div className="my-12 grid gap-4">
+          <section className="flex justify-between items-center border border-[#2B7669] rounded-lg px-3 py-2">
+            <div className="flex flex-col gap-2">
+              <h2 className="font-bold text-[#14532d]">Hospital-1</h2>
+              <p className="text-[#6B7280]">10-14 Safuratu Sekoni Street</p>
+            </div>
+            <Link
+              href=""
+              className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            >
+              View
+            </Link>
+          </section>
+          <section className="flex justify-between items-center border border-[#2B7669] rounded-lg px-3 py-2">
+            <div className="flex flex-col gap-2">
+              <h2 className="font-bold text-[#14532d]">Hospital-1</h2>
+              <p className="text-[#6B7280]">10-14 Safuratu Sekoni Street</p>
+            </div>
+            <Link
+              href=""
+              className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            >
+              View
+            </Link>
+          </section>
+          <section className="flex justify-between items-center border border-[#2B7669] rounded-lg px-3 py-2">
+            <div className="flex flex-col gap-2">
+              <h2 className="font-bold text-[#14532d]">Hospital-1</h2>
+              <p className="text-[#6B7280]">10-14 Safuratu Sekoni Street</p>
+            </div>
+            <Link
+              href=""
+              className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            >
+              View
+            </Link>
+          </section>
           <section className="flex justify-between items-center border border-[#2B7669] rounded-lg px-3 py-2">
             <div className="flex flex-col gap-2">
               <h2 className="font-bold text-[#14532d]">Hospital-1</h2>
