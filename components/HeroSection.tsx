@@ -5,7 +5,7 @@ type Props = {};
 
 export default function HeroSection({}: Props) {
   return (
-    <section className="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 mb-[3.375rem] px-8 sm:px-[9.5vw]">
+    <section className="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]">
       <div className="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left xl:w-[32.3rem]">
         <p className="font-semibold text-base text-[#6B7280] mb-1">
           Find the Care You Deserve, With Ease
@@ -27,7 +27,7 @@ export default function HeroSection({}: Props) {
         <div className="mt-12 text-lg">
           <Link
             href="/hospitals"
-            className="py-4 w-fit px-6 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            className="py-4 w-fit px-6 md:px-12 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
           >
             Get Started
           </Link>
@@ -42,8 +42,8 @@ export default function HeroSection({}: Props) {
       <div className="">
         <img
           src="/doctor-1.png"
-        //   sizes='100vw'
-          
+          //   sizes='100vw'
+
           className="w-full"
           alt="doctor treating patient"
         />
