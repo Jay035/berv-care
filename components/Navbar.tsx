@@ -54,7 +54,7 @@ export const Navbar = () => {
           e.preventDefault();
           setMenuShown((prevState: boolean) => !prevState);
         }}
-        className="hidden lg:flex rounded-[50px] w-fit mx-auto lg:mx-0 px-6 py-2 text-white transition bg-[#14532D] border hover:bg-white hover:border-black hover:text-black"
+        className="hidden sm:text-lg lg:flex rounded-[50px] w-fit mx-auto lg:mx-0 px-6 py-2 text-white transition bg-[#14532D] border hover:bg-white hover:border-black hover:text-black"
       >
         <Link href="/hospitals">Get Started</Link>
       </button>

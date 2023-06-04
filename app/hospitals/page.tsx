@@ -7,7 +7,7 @@ type Props = {};
 export default function page({}: Props) {
   return (
     <main className="px-8 sm:px-[9.5vw] mt-6">
-      <h1 className="mb-8 text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl">
+      <h1 className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl">
         Find Hospitals Around You, With Ease
       </h1>
 
