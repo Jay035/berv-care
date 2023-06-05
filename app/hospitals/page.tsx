@@ -15,6 +15,10 @@ export default function page({}: Props) {
         <CustomInput />
         {/* search result for "" */}
         {/* Results */}
+        {/* api
+        https://api.reliancehmo.com/v3/providers */}
+
+        
         <div className="my-12 grid gap-4">
           <section className="flex justify-between items-center border border-[#2B7669] rounded-lg px-3 py-2">
             <div className="flex flex-col gap-2">
