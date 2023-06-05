@@ -16,9 +16,11 @@ export default function HeroSection({}: Props) {
         </h1>
         <p className="mt-4 text-lg text-[#374151]">
           With <span className="font-bold text-[#14532D]">Berv-Care</span>,
-          finding the nearest care has never been easier. You can also access
+          finding the nearest care has never been easier.
+           {/* You can also access
           the best body tests and doctors without leaving home. Need help with
-          booking your test? Our quiz is here to guide you. Start your journey
+          booking your test? Our quiz is here to guide you.  */}
+          Start your journey
           to exceptional care today.
           {/* Embrace peace of mind
           knowing that your loved ones are in the hands of dedicated caregivers
