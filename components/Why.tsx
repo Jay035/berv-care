@@ -14,24 +14,24 @@ export default function Why({}: Props) {
       </p>
 
       <div className="mt-[32.5px] ">
-        <div className="grid w-full md:grid-cols-[40%_auto]">
-          <section className="bg-[#DCFCE7] py-11 px-6 ">
+        <div className="md:flex w-full ">
+          <section className="bg-[#DCFCE7] py-11 px-6 md:basis-[40%]">
             <p className="text-3xl">
               Find the health care facility within your region easily
             </p>
           </section>
           <section>
-            <img className="object-fit lg:max-w-[727px] md:max-h-[285px] w-full" src="/img-2.jpg" />
+            <img className="w-full md:max-h-[285px]" src="/img-1.jpg" />
           </section>
         </div>
-        <div className="grid w-full md:grid-cols-[auto_40%]">
-          <section>
-            <img className="w-full md:max-h-[285px]" src="/img-4.jpg" />
-          </section>
-          <section className="bg-[#FEF3C7] py-11 px-6 ">
+        <div className="flex flex-col md:flex-row-reverse w-full">
+          <section className="bg-[#FEF3C7] py-11 px-6 md:basis-[40%]">
             <p className="text-3xl">
               Talk to the best doctors. Discover the best way to stay healthy
             </p>
+          </section>
+          <section>
+            <img className="w-full md:max-h-[285px]" src="/img-4.jpg" />
           </section>
         </div>
       </div>
