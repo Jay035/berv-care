@@ -1,6 +1,3 @@
-"use client";
-
-import CustomInput from "@/components/CustomInput";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
 import { Suspense, lazy } from "react";
