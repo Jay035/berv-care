@@ -1,7 +1,8 @@
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
+import Testimonials from "@/components/Testimonials";
 import Why from "@/components/Why";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <HowItWorks />
       <Why />
+      <Testimonials />
     </main>
   );
 }

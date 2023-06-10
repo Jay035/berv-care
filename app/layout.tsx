@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,9 +41,12 @@ const TomatoGrotesk = localFont({
   ],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Berv-Care",
-  description: "Your Pathway to Trusted Care Providers",
+  openGraph: {
+    title: "Berv-Care",
+    description: "Your Pathway to Trusted Care Providers",
+  },
 };
 
 export default function RootLayout({

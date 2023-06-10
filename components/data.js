@@ -9,10 +9,15 @@ export const HowItWorksData = [
       "Search for hospitals within your location. You can input your location or select from a list of nearby cities to find hospitals in your area.",
   },
   {
-    title: "Export",
+    title: "Select",
     description:
-      "Berv-Care allows you to export the list of hospitals to a CSV file, making it easy to save and share the information.",
+      "Click on the 'View' button to select the hospital you want.",
   },
+  // {
+  //   title: "Export",
+  //   description:
+  //     "Berv-Care allows you to export the list of hospitals to a CSV file, making it easy to save and share the information.",
+  // },
   {
     title: "Share",
     description:
