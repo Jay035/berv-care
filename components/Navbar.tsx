@@ -7,6 +7,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import CustomInput from "./CustomInput";
+import GetStartedBtn from "./GetStartedBtn";
 
 export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
@@ -44,19 +45,13 @@ export const Navbar = () => {
             e.preventDefault();
             setMenuShown((prevState: boolean) => !prevState);
           }}
-          className="lg:hidden rounded-[50px] max-w-xs w-fit mx-auto px-6 py-2 text-white transition bg-[#14532D] border hover:bg-white hover:border-black hover:text-black"
+          className="lg:hidden"
         >
-          <Link href="/hospitals">Get Started</Link>
+          <GetStartedBtn />
         </button>
       </ul>
-      <button
-        onClick={(e: any) => {
-          e.preventDefault();
-          setMenuShown((prevState: boolean) => !prevState);
-        }}
-        className="hidden sm:text-lg lg:flex rounded-[50px] w-fit mx-auto lg:mx-0 px-6 py-2 text-white transition bg-[#14532D] border hover:bg-white hover:border-black hover:text-black"
-      >
-        <Link href="/hospitals">Get Started</Link>
+      <button className="hidden lg:flex ">
+        <GetStartedBtn />
       </button>
       {/* hamburger */}
       <div

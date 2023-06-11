@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import GetStartedBtn from "./GetStartedBtn";
 
 type Props = {};
 
@@ -14,23 +15,20 @@ export default function HeroSection({}: Props) {
           Your Pathway to Trusted Care Providers
         </h1>
         <p className="mt-4 text-lg text-[#374151]">
-          With <span className="font-bold text-[#14532D]">Berv-care</span>,
+          With <span className="font-bold text-[#14532D]">Berv-Care</span>,
           finding the nearest care has never been easier.
+           {/* You can also access
+          the best body tests and doctors without leaving home. Need help with
+          booking your test? Our quiz is here to guide you.  */}
+          Start your journey
+          to exceptional care today.
           {/* Embrace peace of mind
           knowing that your loved ones are in the hands of dedicated caregivers
           who genuinely care.  */}
-          You can also access the best body tests and doctors without leaving
-          home. Need help with booking your test? Our quiz is here to guide you.
-          Start your journey to exceptional care today.
         </p>
         {/* CTAs */}
         <div className="mt-12 text-lg">
-          <Link
-            href="/hospitals"
-            className="py-4 w-fit px-6 md:px-12 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-          >
-            Get Started
-          </Link>
+          <GetStartedBtn />
           {/* <button className="capitalize py-4 w-[11.25rem] md:w-full bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black">
             Get Started
           </button>
