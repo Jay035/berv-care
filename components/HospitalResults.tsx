@@ -39,7 +39,7 @@ export default function HospitalResults({ hospitals }: any) {
         {query && (
           <p className="mt-2">
             Search result for{" "}
-            <span className="text-[#14532d]"> '{query}' </span>
+            <span className="text-[#14532d]">&apos;{query}&apos;</span>
           </p>
         )}
         {searchError && <p className="text-red-500">{searchError}</p>}
