@@ -21,7 +21,7 @@ export default function Why({}: Props) {
             </p>
           </section>
           <section className="w-full">
-            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-1.jpg" />
+            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-1.jpg" alt="health care facility" />
           </section>
         </div>
         <div className="flex flex-col md:flex-row-reverse w-full">
@@ -31,7 +31,7 @@ export default function Why({}: Props) {
             </p>
           </section>
           <section className="w-full">
-            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-4.jpg" />
+            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-4.jpg" alt="health care" />
           </section>
         </div>
       </div>
