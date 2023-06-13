@@ -1,3 +1,4 @@
+import Blog from "@/components/Blog";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import Testimonials from "@/components/Testimonials";
@@ -12,6 +13,7 @@ export default function Home() {
       <HowItWorks />
       <Why />
       <Testimonials />
+      <Blog />
     </main>
   );
 }

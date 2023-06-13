@@ -1,12 +1,7 @@
 "use client";
-// import logoIcon from "/logo.svg";
-// import locationIcon from "/location.png";
-// import searchIcon from "/search-icon.png";
-// import cart from "/cart.png";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CustomInput from "./CustomInput";
 import GetStartedBtn from "./GetStartedBtn";
 
 export const Navbar = () => {
@@ -35,9 +30,9 @@ export const Navbar = () => {
             : `-left-full lg:left-0`
         } absolute items-center sm:text-lg text-[#6B7280] lg:relative flex flex-col lg:flex-row lg:justify-between gap-8 md:gap-10 overflow-hidden`}
       >
-        <li className="cursor-pointer transition">About us</li>
-        <li className="cursor-pointer transition">How It Works</li>
-        <li className="cursor-pointer transition">Health Center</li>
+        <Link href="/" className="cursor-pointer transition">About us</Link>
+        <Link href="#howItWorks" className="cursor-pointer transition">How It Works</Link>
+        <Link href="#healthCenter" className="cursor-pointer transition">Health Center</Link>
 
         {/* CTA */}
         <button

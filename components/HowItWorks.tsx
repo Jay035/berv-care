@@ -9,7 +9,7 @@ type DataProps = {
 
 export default function HowItWorks({}) {
   return (
-    <section className="px-[9.5vw] my-28 py-20 bg-[#FDE68A]">
+    <section id="howItWorks" className="px-[9.5vw] my-28 py-20 bg-[#FDE68A]">
       <h1 className="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold">
         How it works?
       </h1>
