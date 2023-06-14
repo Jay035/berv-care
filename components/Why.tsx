@@ -14,24 +14,32 @@ export default function Why({}: Props) {
       </p>
 
       <div className="mt-[32.5px] ">
-        <div className="md:flex w-full ">
-          <section className="bg-[#DCFCE7] lg:flex lg:justify-center lg:items-center py-11 px-6 md:basis-[40%] lg:basis-[70%]">
+        <div className="md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]">
+          <section className="bg-[#DCFCE7] md:flex lg:justify-center lg:items-center py-11 px-6 ">
             <p className="text-3xl lg:text-4xl">
               Find the health care facilities within your region without hassle.
             </p>
           </section>
           <section className="w-full">
-            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-1.jpg" alt="health care facility" />
+            <img
+              className="w-full h-full lg:object-cover"
+              src="/img-1.jpg"
+              alt="health care facility"
+            />
           </section>
         </div>
-        <div className="flex flex-col md:flex-row-reverse w-full">
-          <section className="bg-[#FEF3C7] lg:flex lg:justify-center lg:items-center py-11 px-6 md:basis-[40%] lg:basis-[70%]">
+        <div className="flex flex-col-reverse md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]">
+          <section className="w-full ">
+            <img
+              className="w-full h-full lg:object-cover"
+              src="/img-4.jpg"
+              alt="health care"
+            />
+          </section>
+          <section className="bg-[#FEF3C7] lg:flex lg:justify-center lg:items-center py-11 px-6">
             <p className="text-3xl lg:text-4xl">
               Talk to the best doctors. Discover the best way to stay healthy.
             </p>
-          </section>
-          <section className="w-full">
-            <img className="w-full md:max-h-[285px] lg:object-cover" src="/img-4.jpg" alt="health care" />
           </section>
         </div>
       </div>
