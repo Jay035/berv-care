@@ -12,7 +12,7 @@ export default function Testimonials({}: Props) {
         We have thousands of our happy customers leaving reviews on their
         experiences. Hear what they have to say{" "}
       </p>
-      <div className="grid">
+      <div className="grid lg:grid-cols-3">
         <section className="bg-[#FFFBEB] px-8 border-2 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
           <p className="mt-[61.4px]">
@@ -23,7 +23,7 @@ export default function Testimonials({}: Props) {
           <hr className="my-6 border-[#111827]" />
           <h3>Ikechukwu Ogujiaba</h3>
         </section>
-        <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 border-black pt-[65.36px] pb-[45px]">
+        <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
           <p className="mt-[61.4px]">
             Everything went well and Smoothly. Technician was right on time to
@@ -33,7 +33,7 @@ export default function Testimonials({}: Props) {
           <hr className="my-6 border-[#111827]" />
           <h3>Ikechukwu Ogujiaba</h3>
         </section>
-        <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 border-black pt-[65.36px] pb-[45px]">
+        <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
           <p className="mt-[61.4px]">
             Everything went well and Smoothly. Technician was right on time to

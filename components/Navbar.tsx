@@ -28,11 +28,52 @@ export const Navbar = () => {
           menuShown
             ? ` top-0 left-0 w-full h-screen bg-white lg:h-fit lg:w-fit transition-all pt-44 lg:pt-0`
             : `-left-full lg:left-0`
-        } absolute items-center sm:text-lg text-[#6B7280] lg:relative flex flex-col lg:flex-row lg:justify-between gap-8 md:gap-10 overflow-hidden`}
+        } absolute items-center z-30 sm:text-lg text-[#6B7280] lg:relative flex flex-col lg:flex-row lg:justify-between gap-8 md:gap-10 overflow-hidden`}
       >
-        <Link href="/" className="cursor-pointer transition">About us</Link>
-        <Link href="#howItWorks" className="cursor-pointer transition">How It Works</Link>
-        <Link href="#healthCenter" className="cursor-pointer transition">Health Center</Link>
+        <li
+          onClick={(e: any) => {
+            e.preventDefault();
+            setMenuShown((prevState: boolean) => !prevState);
+          }}
+        >
+          <Link href="/" className="cursor-pointer transition">
+            About us
+          </Link>
+        </li>
+        <li
+          onClick={(e: any) => {
+            e.preventDefault();
+            setMenuShown((prevState: boolean) => !prevState);
+          }}
+        >
+          <Link href="/#howItWorks" className="cursor-pointer transition">
+            How It Works
+          </Link>
+        </li>
+        <li
+          onClick={(e: any) => {
+            e.preventDefault();
+            setMenuShown((prevState: boolean) => !prevState);
+          }}
+        >
+          <Link href="/#healthCenter" className="cursor-pointer transition">
+            Health Center
+          </Link>
+        </li>
+        <li
+         className="lg:hidden"
+          onClick={(e: any) => {
+            e.preventDefault();
+            setMenuShown((prevState: boolean) => !prevState);
+          }}
+        >
+          <Link href="/login" className="cursor-pointer transition">
+            Login
+          </Link>
+        </li>
+        {/* <Link href="/signup" className="cursor-pointer transition">
+          Sign up
+        </Link> */}
 
         {/* CTA */}
         <button
@@ -40,14 +81,28 @@ export const Navbar = () => {
             e.preventDefault();
             setMenuShown((prevState: boolean) => !prevState);
           }}
-          className="lg:hidden"
+          className="lg:hidden mt-10"
         >
-          <GetStartedBtn />
+          {/* <GetStartedBtn /> */}
+          <Link
+            href="/signup"
+            className="cursor-pointer py-3 sm:py-4 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+          >
+            Sign up
+          </Link>
         </button>
       </ul>
-      <button className="hidden lg:flex ">
+      {/* <button className="hidden lg:flex ">
         <GetStartedBtn />
-      </button>
+      </button> */}
+      <div className="hidden lg:flex gap-4">
+        <Link href="/login" className="cursor-pointer py-3 w-fit px-8 text-lg bg-transparent text-[#14532D] rounded-[50px] transition hover:text-black border border-black">
+          Login
+        </Link>
+        <Link href="/signup" className="cursor-pointer py-3 w-fit px-8 text-lg bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black">
+          Sign up
+        </Link>
+      </div>
       {/* hamburger */}
       <div
         onClick={toggleMenu}
