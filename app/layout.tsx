@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import { ContextProvider } from "@/context/Context";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
@@ -57,8 +58,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={TomatoGrotesk.className}>
-        <Navbar />
-        {children}
+        <ContextProvider>
+          <Navbar />
+          {children}
+        </ContextProvider>
       </body>
     </html>
   );
