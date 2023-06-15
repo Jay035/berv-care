@@ -1,30 +1,35 @@
 import Image from "next/image";
+import { useState } from "react";
 
 type Props = {
-  query: string;
-  search: (x: any) => void;
+  value?: string;
+  id?: string;
+  onchange: (x: any) => void;
   placeholder: string;
   type: string;
   className: string;
+  name: string;
 };
 
 export default function CustomInput({
   type,
-  query,
-  search,
+  value,
+  name,
+  onchange,
   placeholder,
   className,
+  id,
 }: Props) {
   return (
-    <div className="flex justify-start max-w-4xl lg:mx-auto items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
-      <Image src="/search-icon.png" alt="search icon" width={18} height={18} />
-      <input
-        type={type}
-        value={query}
-        onChange={search}
-        placeholder={placeholder}
-        className={className}
-      />
-    </div>
+    <input
+      id={id}
+      type={type}
+      value={value}
+      onChange={onchange}
+      placeholder={placeholder}
+      className={className}
+      name={name}
+      required
+    />
   );
 }

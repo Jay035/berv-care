@@ -13,7 +13,7 @@ export default function Why({}: Props) {
         care closest to you effortless.{" "}
       </p>
 
-      <div className="mt-[32.5px] ">
+      <div className="mt-[32.5px]">
         <div className="md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]">
           <section className="bg-[#DCFCE7] md:flex lg:justify-center lg:items-center py-11 px-6 ">
             <p className="text-3xl lg:text-4xl">

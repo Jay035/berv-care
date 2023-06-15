@@ -2,6 +2,7 @@
 import Link from "next/link";
 import CustomInput from "./CustomInput";
 import { Suspense, useState } from "react";
+import Image from "next/image";
 
 export default function HospitalResults({ hospitals }: any) {
   const [data, setData] = useState(hospitals?.data);
@@ -29,13 +30,22 @@ export default function HospitalResults({ hospitals }: any) {
   return (
     <section className="">
       <form onSubmit={handleSubmit}>
-        <CustomInput
-          type="text"
-          className="w-full outline-none text-black"
-          query={query}
-          search={handleSearch}
-          placeholder="Enter your Location"
-        />
+        <div className="flex justify-start max-w-4xl lg:mx-auto items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
+          <Image
+            src="/search-icon.png"
+            alt="search icon"
+            width={18}
+            height={18}
+          />
+          <CustomInput
+            type="text"
+            className="w-full outline-none text-black"
+            value={query}
+            name="search"
+            onchange={handleSearch}
+            placeholder="Enter your Location"
+          />
+        </div>
         {query && (
           <p className="mt-2">
             Search result for{" "}
