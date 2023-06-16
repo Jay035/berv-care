@@ -1,17 +1,18 @@
 "use client";
 import CustomInput from "@/components/CustomInput";
+import { GlobalAuth } from "@/context/Context";
 import { useState } from "react";
 
-type Props = {};
-
-export default function Form({}: Props) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const register = async (e: any) => {
-    e.preventDefault();
-  };
+export default function Form() {
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    register,
+  }: FormProps = GlobalAuth();
 
   return (
     <form className="flex flex-col gap-5" onSubmit={register}>
@@ -29,7 +30,7 @@ export default function Form({}: Props) {
           placeholder=""
           onchange={(e: any) => {
             e.preventDefault();
-            setName(e.target.value);
+            setName?.(e.target.value);
             console.log(name);
           }}
         />
@@ -48,7 +49,7 @@ export default function Form({}: Props) {
           placeholder=""
           onchange={(e: any) => {
             e.preventDefault();
-            setEmail(e.target.value);
+            setEmail?.(e.target.value);
             console.log(email);
           }}
         />
@@ -68,7 +69,7 @@ export default function Form({}: Props) {
           placeholder=""
           onchange={(e: any) => {
             e.preventDefault();
-            setPassword(e.target.value);
+            setPassword?.(e.target.value);
             console.log(password);
           }}
         />

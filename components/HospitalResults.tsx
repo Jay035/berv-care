@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import CustomInput from "./CustomInput";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 
 export default function HospitalResults({ hospitals }: any) {
@@ -11,6 +11,7 @@ export default function HospitalResults({ hospitals }: any) {
   const filteredHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(query.toLowerCase())
   );
+
   const handleSearch = (e: any) => {
     e.preventDefault();
     console.log(filteredHospitals);

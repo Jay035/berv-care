@@ -25,8 +25,7 @@ export default function SignUp({}: Props) {
         Sign Up With Google
       </button>
       <p className="text-center mt-10">
-        Already have an account?
-        <Link href="/login" className="underline font-bold">
+        Already have an account? <Link href="/login" className="underline font-bold">
           Log in
         </Link>
       </p>

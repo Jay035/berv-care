@@ -64,6 +64,9 @@ export function ContextProvider({ children }) {
         email,
         password,
         error,
+        setName,
+        setEmail,
+        setPassword,
         logIn,
         Register,
         signInWithGoogle,
@@ -74,6 +77,6 @@ export function ContextProvider({ children }) {
   );
 }
 
-export function FormAuth() {
+export function GlobalAuth() {
   return useContext(FormContext);
 }
