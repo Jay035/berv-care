@@ -22,5 +22,6 @@ type FormProps = {
   setEmail?: (x: string) => void;
   setPassword?: (x: string) => void;
   register?: (x: any) => void;
+  signInWithGoogle ?: (x: any) => void;
   login?: (x: any) => void;
 }

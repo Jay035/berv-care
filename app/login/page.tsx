@@ -1,12 +1,12 @@
-import CustomInput from "@/components/CustomInput";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import Form from "./Form";
+import { GlobalAuth } from "@/context/Context";
+import { signInWithGoogle } from "@/config/Config";
 
-type Props = {};
+export default function Login() {
+  // const { signInWithGoogle }: FormProps = GlobalAuth();
 
-export default function Login({}: Props) {
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
       <div className="">
@@ -15,11 +15,9 @@ export default function Login({}: Props) {
       </div>
 
       <div className="">
-        {/* {error && <div className="text-red-500 font-medium">{error}</div>} */}
-
         <Form />
         <button
-          // onClick={signInWithGoogle}
+          onClick={signInWithGoogle}
           className="w-full flex justify-center items-center mt-4 gap-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
         >
           <Image
@@ -33,7 +31,8 @@ export default function Login({}: Props) {
         </button>
 
         <p className="text-center mt-10">
-          Don&apos;t have an account? <Link href="/signup" className="underline font-bold">
+          Don&apos;t have an account?{" "}
+          <Link href="/signup" className="underline font-bold">
             Sign up
           </Link>
         </p>

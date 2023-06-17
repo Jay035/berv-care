@@ -1,6 +1,14 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { auth, provider, db } from "@/config/Config";
 
 const FormContext = createContext();
 
@@ -10,8 +18,8 @@ export function ContextProvider({ children }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
-  const Register = async () => {
+  const register = async (e) => {
+    e.preventDefault()
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("successfully registered");
@@ -68,7 +76,7 @@ export function ContextProvider({ children }) {
         setEmail,
         setPassword,
         logIn,
-        Register,
+        register,
         signInWithGoogle,
       }}
     >

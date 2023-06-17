@@ -29,6 +29,7 @@ export default function CustomInput({
       placeholder={placeholder}
       className={className}
       name={name}
+      // autoComplete="off"
       required
     />
   );
