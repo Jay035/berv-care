@@ -2,10 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import Form from "./Form";
 import { GlobalAuth } from "@/context/Context";
-import { signInWithGoogle } from "@/config/Config";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "@/config/Config";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const router = useRouter();
   // const { signInWithGoogle }: FormProps = GlobalAuth();
+  const signInWithGoogle = async () => {
+    try {
+      const res = await signInWithPopup(auth, provider);
+      console.log(res);
+      router.push("/");
+    } catch (err : any) {
+      console.log(err.message);
+    }
+  };
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
       <h1 className="text-2xl font-semibold">Create an account</h1>

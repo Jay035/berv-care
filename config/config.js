@@ -24,18 +24,9 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 // const analytics = getAnalytics(app);
 const db = getFirestore(app)
-const router = useRouter();
-
-const signInWithGoogle = async () => {
-  try {
-    const res = await signInWithPopup(auth, provider);
-    console.log(res);
-    router.push("/");
-  } catch (err) {
-    console.log(err.message);
-  }
-};
 
 
 
-export { app, auth, provider, db, signInWithGoogle }
+
+
+export { app, auth, provider, db }
