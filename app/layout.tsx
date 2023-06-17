@@ -1,11 +1,10 @@
 import { Navbar } from "@/components/Navbar";
-import { ContextProvider } from "@/context/Context";
 import "./globals.css";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 const TomatoGrotesk = localFont({
   src: [
@@ -58,10 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={TomatoGrotesk.className}>
-        <ContextProvider>
-          <Navbar />
-          {children}
-        </ContextProvider>
+        {/* <ContextProvider> */}
+        <Navbar />
+        {children}
+        {/* </ContextProvider> */}
       </body>
     </html>
   );

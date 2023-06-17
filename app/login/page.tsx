@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Form from "./Form";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "@/config/Config";
+import { auth, provider } from "@/components/config/Config";
 import { useRouter } from "next/navigation";
 
 export default function Login() {

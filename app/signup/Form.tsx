@@ -1,6 +1,6 @@
 "use client";
 import CustomInput from "@/components/CustomInput";
-import { auth } from "@/config/Config";
+import { auth } from "@/components/config/Config";
 import { GlobalAuth } from "@/context/Context";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
