@@ -1,29 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import Form from "./Form";
-import { GlobalAuth } from "@/context/Context";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "@/components/config/Config";
 import { useRouter } from "next/navigation";
+import FormValidation from "@/components/FormValidation";
 
 export default function SignUp() {
-  const router = useRouter();
-  // const { signInWithGoogle }: FormProps = GlobalAuth();
-  const signInWithGoogle = async () => {
-    try {
-      const res = await signInWithPopup(auth, provider);
-      console.log(res);
-      router.push("/");
-    } catch (err : any) {
-      console.log(err.message);
-    }
-  };
+
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
       <h1 className="text-2xl font-semibold">Create an account</h1>
 
       <Form />
-      <button
+      {/* <button
         onClick={signInWithGoogle}
         className="flex justify-center items-center gap-4 mt-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
       >
@@ -41,7 +31,7 @@ export default function SignUp() {
         <Link href="/login" className="underline font-bold">
           Log in
         </Link>
-      </p>
+      </p> */}
     </main>
   );
 }

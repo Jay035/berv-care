@@ -57,10 +57,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={TomatoGrotesk.className}>
-        {/* <ContextProvider> */}
         <Navbar />
         {children}
-        {/* </ContextProvider> */}
       </body>
     </html>
   );

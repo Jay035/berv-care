@@ -6,17 +6,6 @@ import { auth, provider } from "@/components/config/Config";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const router = useRouter();
-
-  const signInWithGoogle = async () => {
-    try {
-      const res = await signInWithPopup(auth, provider);
-      console.log(res);
-      router.push("/");
-    } catch (err: any) {
-      console.log(err.message);
-    }
-  };
 
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
@@ -27,7 +16,7 @@ export default function Login() {
 
       <div className="">
         <Form />
-        <button
+        {/* <button
           onClick={signInWithGoogle}
           className="w-full flex justify-center items-center mt-4 gap-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
         >
@@ -46,7 +35,7 @@ export default function Login() {
           <Link href="/signup" className="underline font-bold">
             Sign up
           </Link>
-        </p>
+        </p> */}
       </div>
     </main>
   );
