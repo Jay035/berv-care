@@ -1,6 +1,6 @@
 "use client";
 import CustomInput from "@/components/CustomInput";
-import { auth, provider } from "@/components/config/Config";
+import { auth, provider } from "@/config/Config";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";

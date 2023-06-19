@@ -1,6 +1,6 @@
 "use client";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "./config/Config";
+import { auth, provider } from "../config/Config";
 import { useRouter } from "next/navigation";
 
 export default function FormValidation() {

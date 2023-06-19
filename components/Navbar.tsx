@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import GetStartedBtn from "./GetStartedBtn";
-import { auth } from "@/components/config/Config";
+import { auth } from "@/config/Config";
 
 export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
