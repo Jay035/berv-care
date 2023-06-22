@@ -3,6 +3,7 @@ import Link from "next/link";
 import CustomInput from "./CustomInput";
 import { useState } from "react";
 import Image from "next/image";
+import useGeoLocation from "@/hooks/useGeoLocationHook";
 
 export default function HospitalResults({ hospitals }: any) {
   const [data, setData] = useState(hospitals?.data);
@@ -11,6 +12,12 @@ export default function HospitalResults({ hospitals }: any) {
   const filteredHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(query.toLowerCase())
   );
+
+  const {
+    locationCoord: { loaded, coordinates },
+  } = useGeoLocation();
+  const { longitude, latitude } = coordinates
+  console.log(coordinates)
 
   const handleSearch = (e: any) => {
     e.preventDefault();

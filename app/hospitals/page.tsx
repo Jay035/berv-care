@@ -50,6 +50,7 @@ export default async function HospitalsPage({}: Props) {
           ))}
         </div>
       </section> */}
+       <div id="map"></div>
     </main>
   );
 }
