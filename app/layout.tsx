@@ -1,10 +1,10 @@
 import { Navbar } from "@/components/Navbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 const TomatoGrotesk = localFont({
   src: [

@@ -2,9 +2,9 @@ type Props = {};
 
 export default function BlogPost({}: Props) {
   return (
-    <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+    <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full">
       <div className="text-left">
-        <img src="/blog-1.png" alt="blog pics" />
+        <img className="w-full" src="/blog-1.png" alt="blog pics" />
         <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
           Brev: Your mobile healthcare
         </h1>
@@ -14,7 +14,7 @@ export default function BlogPost({}: Props) {
         </p>
       </div>
       <div className="text-left">
-        <img src="/blog-2.png" alt="blog pics" />
+        <img className="w-full" src="/blog-2.png" alt="blog pics" />
         <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
           Brev: Your mobile healthcare
         </h1>
@@ -24,7 +24,7 @@ export default function BlogPost({}: Props) {
         </p>
       </div>
       <div className="text-left">
-        <img src="/blog-3.png" alt="blog pics" />
+        <img className="w-full" src="/blog-3.png" alt="blog pics" />
         <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
           Brev: Your mobile healthcare
         </h1>

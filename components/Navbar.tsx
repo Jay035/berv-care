@@ -3,13 +3,22 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import GetStartedBtn from "./GetStartedBtn";
+import { auth } from "@/config/Config";
+import { signOut } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
-
+  const router = useRouter();
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
+  const logOut = async () => {
+    await signOut(auth);
+    router.push("/");
+  };
+
+  // console.log(auth?.currentUser);
 
   return (
     <header className="flex justify-between items-center w-full py-7 font-Sora px-8 sm:px-[9.5vw]">
@@ -60,48 +69,113 @@ export const Navbar = () => {
             Health Center
           </Link>
         </li>
-        <li
-         className="lg:hidden"
-          onClick={(e: any) => {
-            e.preventDefault();
-            setMenuShown((prevState: boolean) => !prevState);
-          }}
-        >
-          <Link href="/login" className="cursor-pointer transition">
-            Login
-          </Link>
-        </li>
-        {/* <Link href="/signup" className="cursor-pointer transition">
-          Sign up
-        </Link> */}
+        <div className="lg:hidden mt-5 ">
+          {!auth.currentUser && (
+            <div className="flex flex-col items-center gap-7">
+              <button
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  setMenuShown((prevState: boolean) => !prevState);
+                }}
+                className=""
+              >
+                <Link
+                  href="/login"
+                  className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
+                >
+                  Login
+                </Link>
+              </button>
+              <button
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  setMenuShown((prevState: boolean) => !prevState);
+                }}
+                className=""
+              >
+                {/* <GetStartedBtn /> */}
+                <Link
+                  href="/signup"
+                  className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+                >
+                  Sign up
+                </Link>
+              </button>
+            </div>
+          )}
 
-        {/* CTA */}
-        <button
-          onClick={(e: any) => {
-            e.preventDefault();
-            setMenuShown((prevState: boolean) => !prevState);
-          }}
-          className="lg:hidden mt-10"
-        >
-          {/* <GetStartedBtn /> */}
-          <Link
-            href="/signup"
-            className="cursor-pointer py-3 sm:py-4 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-          >
-            Sign up
-          </Link>
-        </button>
+          {auth.currentUser && (
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex items-center gap-4 px-[18px] py-[10px] border border-[#EAECF0] rounded-[50px]">
+                <img
+                  width={28}
+                  height={28}
+                  className="rounded-full"
+                  src="{auth?.currentUser?.photoURL}"
+                  alt="profile pic"
+                />
+                <p className="">
+                  {auth?.currentUser?.displayName || auth?.currentUser?.email}
+                </p>
+              </div>
+              <p
+                onClick={(e) => {
+                  logOut();
+                  setMenuShown((prevState: boolean) => !prevState);
+                }}
+                className="bg-[#14532D] text-center text-white px-[39.5px] py-[10px] rounded-[50px] cursor-pointer"
+              >
+                SIGN OUT
+              </p>
+            </div>
+          )}
+        </div>
       </ul>
       {/* <button className="hidden lg:flex ">
         <GetStartedBtn />
       </button> */}
       <div className="hidden lg:flex gap-4">
-        <Link href="/login" className="cursor-pointer py-3 w-fit px-8 text-lg bg-transparent text-[#14532D] rounded-[50px] transition hover:text-black border border-black">
-          Login
-        </Link>
-        <Link href="/signup" className="cursor-pointer py-3 w-fit px-8 text-lg bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black">
-          Sign up
-        </Link>
+        {!auth.currentUser && (
+          <div className="">
+            <Link
+              href="/login"
+              className="cursor-pointer py-3 w-fit px-8 text-lg bg-transparent text-[#14532D] rounded-[50px] transition hover:text-black border border-black"
+            >
+              Login
+            </Link>
+            <Link
+              href="/signup"
+              className="cursor-pointer py-3 w-fit px-8 text-lg bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+            >
+              Sign up
+            </Link>
+          </div>
+        )}
+        {auth.currentUser && (
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 px-[18px] py-[10px] border border-[#EAECF0] rounded-[50px]">
+              <Image
+                width={28}
+                height={28}
+                className="rounded-full"
+                src={`/${auth?.currentUser?.photoURL}`}
+                alt="profile pic"
+              />
+              <p className="">
+                {auth?.currentUser?.displayName || auth?.currentUser?.email}
+              </p>
+            </div>
+            <p
+              onClick={(e) => {
+                logOut();
+                setMenuShown((prevState: boolean) => !prevState);
+              }}
+              className="bg-[#14532D] text-center text-white px-[39.5px] py-[10px] rounded-[50px] cursor-pointer"
+            >
+              SIGN OUT
+            </p>
+          </div>
+        )}
       </div>
       {/* hamburger */}
       <div
