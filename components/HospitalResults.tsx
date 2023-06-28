@@ -8,10 +8,12 @@ import useGeoLocation from "@/hooks/useGeoLocationHook";
 export default function HospitalResults({ hospitals }: any) {
   const [usersRegion, setUsersRegion] = useState("");
   const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
-    el?.state?.name.toLowerCase().includes(usersRegion.toLowerCase())
+    el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
   );
   console.log(nearbyHospitals);
-  const [data, setData] = useState(nearbyHospitals);
+  const [data, setData] = useState(
+    usersRegion !== "" ? nearbyHospitals : hospitals?.data
+  );
   // const [data, setData] = useState(hospitals?.data);
   const [query, setQuery] = useState("");
   const [searchError, setSearchError] = useState("");
@@ -31,7 +33,7 @@ export default function HospitalResults({ hospitals }: any) {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "ee5c526905msh02438072c669a06p1aa2bfjsndf913359a642",
+        "X-RapidAPI-Key": process?.env?.rapidApiKey,
         "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
       },
     };
@@ -39,8 +41,8 @@ export default function HospitalResults({ hospitals }: any) {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log(result);
-      console.log(result?.address?.city);
+      console.log("result", result);
+      console.log("user's city", result?.address?.city);
       setUsersRegion(result?.address?.city);
       setData(nearbyHospitals);
     } catch (error) {

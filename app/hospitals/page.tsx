@@ -1,3 +1,4 @@
+import Loader from "@/components/Loader";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -25,17 +26,7 @@ export default async function HospitalsPage({}: Props) {
         Find Hospitals Around You, With Ease
       </h1>
 
-      <Suspense
-        fallback={
-          <Image
-            className="w-7 animate-pulse"
-            src="/logo.svg"
-            width={28}
-            height={28}
-            alt="logo"
-          />
-        }
-      >
+      <Suspense fallback={<Loader />}>
         <HospitalResults hospitals={hospitals} />
       </Suspense>
       {/* <section className="">
