@@ -1,12 +1,18 @@
 "use client";
 import Link from "next/link";
 import CustomInput from "./CustomInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 
 export default function HospitalResults({ hospitals }: any) {
-  const [data, setData] = useState(hospitals?.data);
+  const [usersRegion, setUsersRegion] = useState("");
+  const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
+    el?.state?.name.toLowerCase().includes(usersRegion.toLowerCase())
+  );
+  console.log(nearbyHospitals);
+  const [data, setData] = useState(nearbyHospitals);
+  // const [data, setData] = useState(hospitals?.data);
   const [query, setQuery] = useState("");
   const [searchError, setSearchError] = useState("");
   const filteredHospitals = hospitals?.data?.filter((el: HospitalProps) =>
@@ -17,11 +23,30 @@ export default function HospitalResults({ hospitals }: any) {
     locationCoord: { loaded, coordinates },
   } = useGeoLocation();
   const { longitude, latitude } = coordinates;
-  console.log(coordinates);
+  console.log(coordinates, loaded);
 
-  const getResukt = async () => {
-    const res = await fetch(`https://api.distancematrix.ai/maps/api/geocode/json?latlng=${latitude},${longitude}&key=<your_access_token>`)
-  }
+  const getResult = async () => {
+    // const res = await fetch(`https://api.distancematrix.ai/maps/api/geocode/json?latlng=${latitude},${longitude}&key=<your_access_token>`)
+    const url = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${latitude}&lon=${longitude}&accept-language=en&polygon_threshold=0.0`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "ee5c526905msh02438072c669a06p1aa2bfjsndf913359a642",
+        "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log(result);
+      console.log(result?.address?.city);
+      setUsersRegion(result?.address?.city);
+      setData(nearbyHospitals);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -38,6 +63,10 @@ export default function HospitalResults({ hospitals }: any) {
       setSearchError("Please submit a value");
     }
   };
+
+  useEffect(() => {
+    getResult();
+  }, []);
 
   return (
     <section className="">

@@ -20,6 +20,7 @@
     "eslint-config-next": "^13.4.4",
     "firebase": "^9.18.0",
     "gsap": "^3.11.5",
+    "leaflet": "^1.9.4",
     "next": "^13.4.4",
     "postcss": "8.4.24",
     "react": "^18.2.0",
