@@ -33,7 +33,7 @@ export default function HospitalResults({ hospitals }: any) {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": process?.env?.rapidApiKey,
+        // "X-RapidAPI-Key": process?.env?.rapidApiKey,
         "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
       },
     };
