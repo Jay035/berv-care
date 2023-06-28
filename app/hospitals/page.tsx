@@ -1,12 +1,13 @@
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
+import Image from "next/image";
 import { Suspense, lazy } from "react";
 
 const HospitalResults = lazy(() => import("@/components/HospitalResults"));
 
 type Props = {};
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: "Berv-Care | Hospitals",
   openGraph: {
     title: "Berv-Care | Hospitals",
@@ -24,7 +25,17 @@ export default async function HospitalsPage({}: Props) {
         Find Hospitals Around You, With Ease
       </h1>
 
-      <Suspense fallback={<h2>Loading....</h2>}>
+      <Suspense
+        fallback={
+          <Image
+            className="w-7 animate-pulse"
+            src="/logo.svg"
+            width={28}
+            height={28}
+            alt="logo"
+          />
+        }
+      >
         <HospitalResults hospitals={hospitals} />
       </Suspense>
       {/* <section className="">
@@ -50,7 +61,7 @@ export default async function HospitalsPage({}: Props) {
           ))}
         </div>
       </section> */}
-       <div id="map"></div>
+      <div id="map"></div>
     </main>
   );
 }

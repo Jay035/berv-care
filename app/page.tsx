@@ -1,6 +1,7 @@
-import Blog from "@/components/Blog";
+import Blog from "@/components/Blog/Blog";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
+import NewsLetter from "@/components/NewsLetter";
 import Testimonials from "@/components/Testimonials";
 import Why from "@/components/Why";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <Why />
       <Testimonials />
       <Blog />
+      <NewsLetter />
     </main>
   );
 }

@@ -16,8 +16,12 @@ export default function HospitalResults({ hospitals }: any) {
   const {
     locationCoord: { loaded, coordinates },
   } = useGeoLocation();
-  const { longitude, latitude } = coordinates
-  console.log(coordinates)
+  const { longitude, latitude } = coordinates;
+  console.log(coordinates);
+
+  const getResukt = async () => {
+    const res = await fetch(`https://api.distancematrix.ai/maps/api/geocode/json?latlng=${latitude},${longitude}&key=<your_access_token>`)
+  }
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -47,6 +51,7 @@ export default function HospitalResults({ hospitals }: any) {
           />
           <CustomInput
             type="text"
+            dataTestId="searchbar"
             className="w-full outline-none text-black"
             value={query}
             name="search"
@@ -67,7 +72,7 @@ export default function HospitalResults({ hospitals }: any) {
       {/* <Suspense fallback={<p>Loading feed...</p>}>
         </Suspense> */}
 
-      <div className="my-12 grid gap-4 w-full">
+      <div className="my-12 grid gap-4 w-full lg:grid-cols-2">
         {data?.map((hospital: HospitalProps) => (
           <section
             key={hospital?.id}
@@ -77,12 +82,12 @@ export default function HospitalResults({ hospitals }: any) {
               <h2 className="font-bold text-[#14532d]">{hospital?.name}</h2>
               <p className="text-[#6B7280]  truncate">{hospital?.address}</p>
             </div>
-            <Link
+            {/* <Link
               href={`/hospitals/${hospital?.id}`}
               className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
             >
               View
-            </Link>
+            </Link> */}
           </section>
         ))}
       </div>
