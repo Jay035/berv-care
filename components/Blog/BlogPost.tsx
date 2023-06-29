@@ -1,38 +1,28 @@
-type Props = {};
+type Props = {
+  slug: string;
+  frontmatter: {
+    title: string;
+    description: string;
+    date: string;
+    excerpt: string;
+  };
+};
 
-export default function BlogPost({}: Props) {
+export default function BlogPost({ post }: any) {
+  console.log(post);
   return (
-    <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full">
-      <div className="text-left">
-        <img className="w-full" src="/blog-1.png" alt="blog pics" />
-        <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
-          Brev: Your mobile healthcare
-        </h1>
-        <p className="text-[#6B7280]">
-          Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar
-          risus. Cursus in odio aenean.
-        </p>
-      </div>
-      <div className="text-left">
-        <img className="w-full" src="/blog-2.png" alt="blog pics" />
-        <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
-          Brev: Your mobile healthcare
-        </h1>
-        <p className="text-[#6B7280]">
-          Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar
-          risus. Cursus in odio aenean.
-        </p>
-      </div>
-      <div className="text-left">
-        <img className="w-full" src="/blog-3.png" alt="blog pics" />
-        <h1 className="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight">
-          Brev: Your mobile healthcare
-        </h1>
-        <p className="text-[#6B7280]">
-          Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar
-          risus. Cursus in odio aenean.
-        </p>
-      </div>
-    </section>
+
+    <div className="text-left">
+      <img
+        className="w-full"
+        src={post.frontmatter?.cover_image}
+        alt="blog pics"
+        />
+        <p className="mt-4 text-sm text-[#6B7280]">Posted on {post?.frontmatter.date} </p>
+      <h1 className=" mb-3 text-xl font-bold text-[#111827] tracking-tight">
+        {post?.frontmatter?.title}
+      </h1>
+      <p className="text-[#6B7280]">{post?.frontmatter?.description}</p>
+    </div>
   );
 }

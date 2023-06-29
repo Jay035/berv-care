@@ -116,7 +116,7 @@ export default function Form() {
       </form>
       <button
         onClick={signInWithGoogle}
-        className="flex justify-center items-center gap-4 mt-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
+        className="w-full flex justify-center items-center gap-4 mt-4 border border-gray-500 py-2 font-medium rounded-lg hover:border-2"
       >
         <Image
           width={24}

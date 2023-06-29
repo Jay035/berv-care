@@ -1,0 +1,23 @@
+type Props = {};
+
+export default function MeetOurDoctors({}: Props) {
+  return (
+    <section className="px-[9.5vw] mb-28 flex flex-col justify-center items-center">
+      <h1 className="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold">
+        Meet our Doctors
+      </h1>
+
+      {/* <p className="mt-4 text-center md:text-lg text-[#6B7280] max-w-[867px] mx-auto">
+      Skip the long queues. We’ll bring the doctor to you!
+      </p> */}
+      <img
+        className="my-8 w-full h-[40vh] object-cover md:h-fit"
+        src="/doctors.png"
+        alt=""
+      />
+      <button className="rounded-[50px] w-fit mx-auto text-white bg-[#14532D] py-3 md:py-4 sm:py-[18px] px-6 md:px-14">
+        See all doctors
+      </button>
+    </section>
+  );
+}
