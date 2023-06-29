@@ -1,7 +1,7 @@
 
 type Props = {}
 
-export default function page({}: Props) {
+export default function PostPage({}: Props) {
   return (
     <div>page</div>
   )
