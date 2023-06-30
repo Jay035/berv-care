@@ -12,11 +12,10 @@ export default function HospitalResults({ hospitals }: any) {
   );
   console.log(nearbyHospitals);
   const [data, setData] = useState(hospitals?.data);
+  // const [data, setData] = useState(usersRegion !== "" ? nearbyHospitals :hospitals?.data);
   const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
   const [currentSliceEnd, setCurrentSliceEnd] = useState<number>(12);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
-  // const [data, setData] = useState(hospitals?.data);
   const [query, setQuery] = useState("");
   const [searchError, setSearchError] = useState("");
   const filteredHospitals = hospitals?.data?.filter((el: HospitalProps) =>
@@ -43,11 +42,12 @@ export default function HospitalResults({ hospitals }: any) {
 
   const getResult = async () => {
     // const res = await fetch(`https://api.distancematrix.ai/maps/api/geocode/json?latlng=${latitude},${longitude}&key=<your_access_token>`)
+    const apiKey = `${process?.env?.rapidApiKey}`;
     const url = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${latitude}&lon=${longitude}&accept-language=en&polygon_threshold=0.0`;
     const options = {
       method: "GET",
       headers: {
-        // "X-RapidAPI-Key": process?.env?.rapidApiKey,
+        "X-RapidAPI-Key": apiKey,
         "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
       },
     };
@@ -80,9 +80,9 @@ export default function HospitalResults({ hospitals }: any) {
     }
   };
 
-  // useEffect(() => {
-  //   getResult();
-  // }, [usersRegion]);
+  useEffect(() => {
+    getResult();
+  }, [usersRegion]);
 
   return (
     <section className="">

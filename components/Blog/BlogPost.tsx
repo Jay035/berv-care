@@ -26,9 +26,9 @@ export default function BlogPost({ post }: any) {
         {post?.frontmatter?.title}
       </h1>
       <p className="text-[#6B7280]">{post?.frontmatter?.description}</p>
-      <Link href={`/blog/${post?.slug}`}>
-       Read more
-      </Link>
+      <button className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3">
+        <Link href={`/blog/${post?.slug}`}>Read more</Link>
+      </button>
     </div>
   );
 }
