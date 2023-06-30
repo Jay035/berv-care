@@ -1,17 +1,17 @@
 export const HowItWorksData = [
   {
     title: "Get Started",
-    description: "Click the 'Get started' button",
+    description:
+      "Click the 'Get started' button to view health centres around you",
   },
   {
     title: "Search",
     description:
-      "Search for hospitals within your location. You can input your location or select from a list of nearby cities to find hospitals in your area.",
+      "Search for hospitals within your location. You can input your location or select from a list of nearby hospitals",
   },
   {
     title: "Select",
-    description:
-      "Click on the 'View' button to select the hospital you want.",
+    description: "Click on the 'View' button to select the hospital you want.",
   },
   // {
   //   title: "Export",
@@ -26,7 +26,7 @@ export const HowItWorksData = [
   {
     title: "Sign Up",
     description:
-      "Berv-Care requires admin users to create an account to access the platform's admin features.",
+      "Berv-Care requires users to create an account to access the platform's admin features.",
   },
   {
     title: "Markdown Support",

@@ -134,9 +134,9 @@ export const Navbar = () => {
       {/* <button className="hidden lg:flex ">
         <GetStartedBtn />
       </button> */}
-      <div className="hidden lg:flex gap-4">
+      <div className="hidden lg:flex">
         {!auth.currentUser && (
-          <div className="">
+          <div className="flex gap-4 items-center">
             <Link
               href="/login"
               className="cursor-pointer py-3 w-fit px-8 text-lg bg-transparent text-[#14532D] rounded-[50px] transition hover:text-black border border-black"

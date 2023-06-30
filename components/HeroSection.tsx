@@ -7,14 +7,14 @@ type Props = {};
 export default function HeroSection({}: Props) {
   return (
     <section className="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]">
-      <div className="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left xl:w-[32.3rem]">
-        <p className="font-semibold text-base text-[#6B7280] mb-1">
+      <div className="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left">
+        <p className="font-semibold text-base xl:text-lg text-[#6B7280] mb-1">
           Find the Care You Deserve, With Ease
         </p>
-        <h1 className="font-extrabold text-[#14532D] text-3xl xl:text-5xl">
+        <h1 className="font-extrabold text-[#14532D] text-3xl md:text-4xl xl:text-6xl">
           Your Pathway to Trusted Care Providers
         </h1>
-        <p className="mt-4 text-lg text-[#374151]">
+        <p className="mt-4 text-lg xl:text-xl text-[#374151]">
           With <span className="font-bold text-[#14532D]">Berv-Care</span>,
           finding the nearest care has never been easier. Start your journey to
           exceptional care today.

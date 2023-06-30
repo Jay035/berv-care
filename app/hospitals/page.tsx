@@ -1,12 +1,14 @@
+import CustomLoader from "@/components/CustomLoader";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
+import Image from "next/image";
 import { Suspense, lazy } from "react";
 
 const HospitalResults = lazy(() => import("@/components/HospitalResults"));
 
 type Props = {};
 
-export const metadata : Metadata = {
+export const metadata: Metadata = {
   title: "Berv-Care | Hospitals",
   openGraph: {
     title: "Berv-Care | Hospitals",
@@ -19,12 +21,13 @@ export default async function HospitalsPage({}: Props) {
   const hospitals = await hospitalData;
 
   return (
-    <main className="px-8 sm:px-[9.5vw] mt-6">
+    <main className="px-8 sm:px-[9.5vw] mt-6 py-12">
       <h1 className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl">
         Find Hospitals Around You, With Ease
       </h1>
+      <div id="map"></div>
 
-      <Suspense fallback={<h2>Loading....</h2>}>
+      <Suspense fallback={<CustomLoader />}>
         <HospitalResults hospitals={hospitals} />
       </Suspense>
       {/* <section className="">
@@ -50,7 +53,7 @@ export default async function HospitalsPage({}: Props) {
           ))}
         </div>
       </section> */}
-       <div id="map"></div>
+      
     </main>
   );
 }

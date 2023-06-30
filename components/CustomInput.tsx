@@ -4,7 +4,8 @@ import { useState } from "react";
 type Props = {
   value?: string;
   id?: string;
-  onchange: (x: any) => void;
+  dataTestId?: string;
+  onchange?: (x: any) => void;
   placeholder: string;
   type: string;
   className: string;
@@ -15,6 +16,7 @@ export default function CustomInput({
   type,
   value,
   name,
+  dataTestId,
   onchange,
   placeholder,
   className,
@@ -25,11 +27,11 @@ export default function CustomInput({
       id={id}
       type={type}
       value={value}
+      data-testid={dataTestId}
       onChange={onchange}
       placeholder={placeholder}
       className={className}
       name={name}
-      // autoComplete="off"
       required
     />
   );
