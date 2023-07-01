@@ -1,9 +1,6 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
 import BlogPost from "@/components/Blog/BlogPost";
-import Link from "next/link";
-type Props = {};
+import getBlogs from "@/components/getBlogs";
+import { sortByDate } from "@/utils/index";
 
 export default function Blog() {
   const blogs = getBlogs();
@@ -17,31 +14,10 @@ export default function Blog() {
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        {blogs.map((post, index) => (
+        {blogs.sort(sortByDate).map((post, index) => (
           <BlogPost post={post} key={index} />
         ))}
       </section>
     </div>
   );
 }
-
-export const getBlogs = () => {
-  //get files from blogs dir
-  const files = fs.readdirSync(path.join("posts"));
-  // get slug and frontmatter from blogs
-  const blogs = files?.map((filename) => {
-    // create slug
-    const slug = filename.replace(".md", "");
-    // get frontmatter
-    const markdownWithMeta = fs.readFileSync(
-      path.join("posts", filename),
-      "utf-8"
-    );
-    const { data: frontmatter } = matter(markdownWithMeta);
-    return {
-      slug,
-      frontmatter,
-    };
-  });
-  return blogs;
-};

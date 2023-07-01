@@ -1,6 +1,6 @@
 import Link from "next/link";
 import BlogPost from "./BlogPost";
-import { getBlogs } from "@/app/blog/page";
+import getBlogs from "../getBlogs";
 
 type Props = {};
 
