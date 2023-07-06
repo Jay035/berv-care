@@ -30,7 +30,7 @@ const storageRef = ref(storage);
 const auth = getAuth();
 
 const provider = new GoogleAuthProvider();
-const analytics = getAnalytics(app);
+// const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 export { app, auth, provider, db, storage, storageRef };
