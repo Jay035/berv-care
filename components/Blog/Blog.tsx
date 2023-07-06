@@ -1,13 +1,15 @@
-// "use client";
+"use client";
 
 import Link from "next/link";
-import BlogPost from "./BlogPost";
+// import BlogPost from "./BlogPost";
+import { Suspense } from "react";
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "@firebase/firestore";
 import { db } from "@/config/Config";
 import { sortByDate } from "@/utils";
-import getBlogs from "../getBlogs";
-// import getBlogs from "../getBlogs";
+import dynamic from "next/dynamic";
+
+const BlogPost = dynamic(() => import("./BlogPost"));
 
 // type Props = {
 //   id: string,
@@ -19,18 +21,23 @@ import getBlogs from "../getBlogs";
 // };
 
 export default function Blog() {
-  const blogs = getBlogs();
-  // const [blogs, setBlogs]: any[] = useState([]);
-  // const blogsCollectionRef = collection(db, "blogs");
+  // const blogs = getBlogs();
+  const [blogs, setBlogs]: any[] = useState([]);
+  const blogsCollectionRef = collection(db, "blogs");
 
-  // useEffect(() => {
-  //   const getBlogs = async () => {
-  //     const data = await getDocs(blogsCollectionRef);
-  //     const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
-  //     setBlogs(res);
-  //   };
-  //   getBlogs();
-  // }, []);
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const data = await getDocs(blogsCollectionRef);
+        const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setBlogs(res);
+      } catch (err: any) {
+        console.log(err.message);
+      }
+    };
+
+    getBlogs();
+  }, []);
   return (
     <section
       id="healthCenter"
@@ -41,9 +48,11 @@ export default function Blog() {
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        {blogs.sort(sortByDate)?.map((post: any, index: number) => (
-          <BlogPost post={post} key={index} />
-        ))}
+        <Suspense fallback={<p>Loading....</p>}>
+          {blogs?.map((post: any, index: number) => (
+            <BlogPost post={post} key={index} />
+          ))}
+        </Suspense>
       </section>
       <Link
         href="/blog"

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const router = useRouter();
+  const dp = auth?.currentUser?.photoURL;
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
@@ -106,6 +107,17 @@ export const Navbar = () => {
 
           {auth.currentUser && (
             <div className="flex flex-col items-center gap-4">
+              <div
+                className="px-[18px] py-[10px] border border-[#14532D] rounded-[50px]"
+                onClick={(e: any) => {
+                  e.preventDefault();
+                  setMenuShown((prevState: boolean) => !prevState);
+                }}
+              >
+                <Link href="/postBlog" className="text-[#14532D] font-semibold">
+                  Post a Blog
+                </Link>
+              </div>
               <div className="flex items-center gap-4 px-[18px] py-[10px] border border-[#EAECF0] rounded-[50px]">
                 <img
                   width={28}
@@ -114,9 +126,9 @@ export const Navbar = () => {
                   src="{auth?.currentUser?.photoURL}"
                   alt="profile pic"
                 />
-                <p className="">
+                {/* <p className="">
                   {auth?.currentUser?.displayName || auth?.currentUser?.email}
-                </p>
+                </p> */}
               </div>
               <p
                 onClick={(e) => {
@@ -153,6 +165,17 @@ export const Navbar = () => {
         )}
         {auth.currentUser && (
           <div className="flex items-center gap-4">
+            <div
+              className="px-[18px] py-[10px] border border-[#14532D] rounded-[50px]"
+              onClick={(e: any) => {
+                e.preventDefault();
+                setMenuShown((prevState: boolean) => !prevState);
+              }}
+            >
+              <Link href="/postBlog" className="text-[#14532D] font-semibold">
+                Post a Blog
+              </Link>
+            </div>
             <div className="flex items-center gap-4 px-[18px] py-[10px] border border-[#EAECF0] rounded-[50px]">
               <Image
                 width={28}
@@ -161,9 +184,9 @@ export const Navbar = () => {
                 src={`/${auth?.currentUser?.photoURL}`}
                 alt="profile pic"
               />
-              <p className="">
+              {/* <p className="">
                 {auth?.currentUser?.displayName || auth?.currentUser?.email}
-              </p>
+              </p> */}
             </div>
             <p
               onClick={(e) => {

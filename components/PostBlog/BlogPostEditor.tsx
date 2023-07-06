@@ -9,6 +9,7 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import EditorJS, { OutputData, ToolSettings } from "@editorjs/editorjs";
 import { ref } from "firebase/storage";
 import { storage, storageRef } from "@/config/Config";
+import { addDoc } from "@firebase/firestore";
 
 type Props = {
   data?: OutputData;
@@ -18,13 +19,56 @@ type Props = {
 
 function EditorBlock({ data, onChange, holder }: Props) {
   const ref = useRef<EditorJS>();
-  const [imageUpload, setImageUpload] = useState();
+  // const [imageUpload, setImageUpload] = useState();
 
   // const uploadFile = async (file) => {
   //   const imageRef = storageRef.child(`images/${file.name}`);
   //   await imageRef.put(file);
   //   const imageUrl = await imageRef.getDownloadURL();
   //   return { success: 1, file: { url: imageUrl } };
+  // };
+
+  const post = async () => {
+    // try{
+    //   const res = await addDoc(commentsRef, {
+    //     comment: data.comment,
+    //     username: user?.displayName,
+    //     userId: user?.uid,
+    //     parentId: "null",
+    //     score: 0,
+    //     createdAt: new Date().toISOString()
+    //   });
+    //   console.log(res?.docs);
+    //   console.log(comment)
+    //   setComment("");
+    // } catch(err){
+    //   console.log(err.message)
+    //   error();
+    // }
+  };
+  // const handleUpload = async (file: any) => {
+  //   try {
+  //     // const storageRef = storage.ref();
+  //     const fileRef = storageRef.child(`images/${file.name}`);
+  //     await fileRef.put(file);
+
+  //     const downloadURL = await fileRef.getDownloadURL();
+  //     console.log(downloadURL);
+  //     return {
+  //       success: 1,
+  //       file: {
+  //         url: downloadURL,
+  //       },
+  //     };
+  //   } catch (error) {
+  //     console.error("Error uploading image:", error);
+  //     return {
+  //       success: 0,
+  //       file: {
+  //         url: "",
+  //       },
+  //     };
+  //   }
   // };
 
   //initialize editorjs
@@ -51,14 +95,11 @@ function EditorBlock({ data, onChange, holder }: Props) {
           quote: Quote,
           image: {
             class: ImageTool,
-            inlineToolbar: true,
-            // config: {
-            // uploader: {
-            //   uploadByFile(file: File): Promise<ImageToolData> {
-            //     return uploadImageToFirebaseStorage(file);
-            //   },
-            // },
-            // } as ToolSettings<ImageToolConfig>,
+            config: {
+              // uploader: {
+              //   uploadByFile: handleUpload,
+              // },
+            },
           },
           // raw: RawTool,
           table: Table,
