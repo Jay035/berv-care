@@ -65,7 +65,7 @@ export const Navbar = () => {
             setMenuShown((prevState: boolean) => !prevState);
           }}
         >
-          <Link href="/#healthCenter" className="cursor-pointer transition">
+          <Link href="/blog" className="cursor-pointer transition">
             Health Center
           </Link>
         </li>

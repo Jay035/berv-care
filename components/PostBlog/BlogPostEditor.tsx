@@ -5,8 +5,10 @@ import Quote from "@editorjs/quote";
 import LinkTool from "@editorjs/link";
 import RawTool from "@editorjs/raw";
 import Table from "@editorjs/table";
-import React, { memo, useEffect, useRef } from "react";
-import EditorJS, { OutputData } from "@editorjs/editorjs";
+import React, { memo, useEffect, useRef, useState } from "react";
+import EditorJS, { OutputData, ToolSettings } from "@editorjs/editorjs";
+import { ref } from "firebase/storage";
+import { storage, storageRef } from "@/config/Config";
 
 type Props = {
   data?: OutputData;
@@ -16,6 +18,15 @@ type Props = {
 
 function EditorBlock({ data, onChange, holder }: Props) {
   const ref = useRef<EditorJS>();
+  const [imageUpload, setImageUpload] = useState();
+
+  // const uploadFile = async (file) => {
+  //   const imageRef = storageRef.child(`images/${file.name}`);
+  //   await imageRef.put(file);
+  //   const imageUrl = await imageRef.getDownloadURL();
+  //   return { success: 1, file: { url: imageUrl } };
+  // };
+
   //initialize editorjs
   useEffect(() => {
     //initialize editor if we don't have a reference
@@ -41,8 +52,15 @@ function EditorBlock({ data, onChange, holder }: Props) {
           image: {
             class: ImageTool,
             inlineToolbar: true,
+            // config: {
+            // uploader: {
+            //   uploadByFile(file: File): Promise<ImageToolData> {
+            //     return uploadImageToFirebaseStorage(file);
+            //   },
+            // },
+            // } as ToolSettings<ImageToolConfig>,
           },
-          raw: RawTool,
+          // raw: RawTool,
           table: Table,
         },
         data,
@@ -62,7 +80,21 @@ function EditorBlock({ data, onChange, holder }: Props) {
     };
   }, []);
 
-  return <div id={holder} className="prose max-w-full px-2 py-2" />;
+  return <div id={holder} className="prose max-w-full p-4" />;
 }
 
 export default memo(EditorBlock);
+
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
+
+// type EditorProps = {
+//   value: string;
+//   onChange: (value: string) => void;
+// };
+
+// const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
+//   return <ReactQuill value={value} onChange={onChange} />;
+// };
+
+// export default Editor;

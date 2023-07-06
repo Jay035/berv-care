@@ -7,10 +7,10 @@ export default function Blog() {
   return (
     <div
       id="healthCenter"
-      className="px-[9.5vw] pt-4 mb-[97px] text-center lg:text-left flex flex-col items-center lg:items-start"
+      className="px-[9.5vw] mt-10 mb-[97px] text-center flex flex-col items-center"
     >
-      <h3 className="text-[#14532D] font-semibold">OUR HEALTH CENTER</h3>
-      <h1 className="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight">
+      <h3 className="text-[#14532D] font-semibold lg:text-lg">OUR HEALTH CENTER</h3>
+      <h1 className="text-[28px] md:text-[32px] w-full lg:text-5xl max-w-screen-md leading-10 mt-3 mb-[47px] font-bold tracking-tight">
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
