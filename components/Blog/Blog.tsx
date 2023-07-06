@@ -1,11 +1,36 @@
+// "use client";
+
 import Link from "next/link";
 import BlogPost from "./BlogPost";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "@firebase/firestore";
+import { db } from "@/config/Config";
+import { sortByDate } from "@/utils";
 import getBlogs from "../getBlogs";
+// import getBlogs from "../getBlogs";
 
-type Props = {};
+// type Props = {
+//   id: string,
+//   data: {
+//     title: string,
+//     description: string,
+//     date: string,
+//   }
+// };
 
-export default function Blog({}: Props) {
+export default function Blog() {
   const blogs = getBlogs();
+  // const [blogs, setBlogs]: any[] = useState([]);
+  // const blogsCollectionRef = collection(db, "blogs");
+
+  // useEffect(() => {
+  //   const getBlogs = async () => {
+  //     const data = await getDocs(blogsCollectionRef);
+  //     const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //     setBlogs(res);
+  //   };
+  //   getBlogs();
+  // }, []);
   return (
     <section
       id="healthCenter"
@@ -16,7 +41,7 @@ export default function Blog({}: Props) {
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        {blogs.map((post, index) => (
+        {blogs.sort(sortByDate)?.map((post: any, index: number) => (
           <BlogPost post={post} key={index} />
         ))}
       </section>

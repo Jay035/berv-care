@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Loader() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="absolute top-0 left-0 flex items-center justify-center min-h-screen">
       <svg
         width="39"
         height="59"
