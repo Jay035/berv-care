@@ -70,6 +70,16 @@ export const Navbar = () => {
             Health Center
           </Link>
         </li>
+        <li
+          onClick={(e: any) => {
+            e.preventDefault();
+            setMenuShown((prevState: boolean) => !prevState);
+          }}
+        >
+          <Link href="/hospitals" className="cursor-pointer transition">
+            Find Hospitals
+          </Link>
+        </li>
         <div className="lg:hidden mt-5 ">
           {!auth.currentUser && (
             <div className="flex flex-col items-center gap-7">

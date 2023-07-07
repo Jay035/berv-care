@@ -10,7 +10,7 @@ export default function HospitalResults({ hospitals }: any) {
   const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
   );
-  console.log(nearbyHospitals);
+  // console.log(nearbyHospitals);
   const [data, setData] = useState(hospitals?.data);
   // const [data, setData] = useState(usersRegion !== "" ? nearbyHospitals :hospitals?.data);
   const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
@@ -67,7 +67,11 @@ export default function HospitalResults({ hospitals }: any) {
   const handleSearch = (e: any) => {
     e.preventDefault();
     console.log(filteredHospitals);
-    setData(filteredHospitals);
+    if (filteredHospitals.length === 0) {
+      setData(hospitals?.data);
+    } else {
+      setData(filteredHospitals);
+    }
     setQuery(e.target.value);
     setSearchError("");
   };
@@ -79,15 +83,18 @@ export default function HospitalResults({ hospitals }: any) {
       setSearchError("Please submit a value");
     }
   };
+  console.log(data)
 
-  useEffect(() => {
-    getResult();
-  }, [usersRegion]);
+  // useEffect(() => {
+  //   getResult();
+  // }, [usersRegion]);
 
   return (
     <section className="">
       {data?.length > 0 && (
-        <form onSubmit={handleSubmit}>
+        <form
+        //  onSubmit={handleSubmit}
+        >
           <div className="flex justify-start max-w-4xl lg:mx-auto items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
             <Image
               src="/search-icon.png"
@@ -102,7 +109,7 @@ export default function HospitalResults({ hospitals }: any) {
               value={query}
               name="search"
               onchange={handleSearch}
-              placeholder="Enter your Location"
+              placeholder="Enter your Location (State)"
             />
           </div>
           {query && (
@@ -127,12 +134,12 @@ export default function HospitalResults({ hospitals }: any) {
                 <h2 className="font-bold text-[#14532d]">{hospital?.name}</h2>
                 <p className="text-[#6B7280]  truncate">{hospital?.address}</p>
               </div>
-              {/* <Link
-              href={`/hospitals/${hospital?.id}`}
-              className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-            >
-              View
-            </Link> */}
+              <Link
+                href={`/hospitals/${hospital?.id}`}
+                className="bg-[#14532D] py-2 px-4 text-white rounded-[30px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+              >
+                View
+              </Link>
             </section>
           ))}
       </div>

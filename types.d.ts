@@ -19,6 +19,13 @@ type HospitalProps = {
   products: {
     0: string;
   };
+  delivery_option: string;
+  email_address: string;
+  latitude: number;
+  longitude: number;
+  telephone: number;
+  scope_of_services: string;
+  website_address: string;
 };
 
 type FormProps = {

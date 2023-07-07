@@ -5,7 +5,7 @@ type Props = {};
 
 export default function Footer({}: Props) {
   return (
-    <section className="px-[9.5vw] mb-12 mt-20">
+    <section className="px-[5vw] mb-12 mt-20">
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-6 mb-4">
         <div className="">
           <Link href="/" className="flex gap-2 items-center mb-3">
