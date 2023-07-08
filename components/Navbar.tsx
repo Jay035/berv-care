@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@/config/Config";
@@ -14,7 +14,9 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
-  console.log(auth.currentUser);
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   return (
     <header className="flex justify-between items-center w-full py-7 font-Sora px-8 sm:px-[9.5vw]">
@@ -245,7 +247,7 @@ export const Navbar = () => {
           </div>
         )} */}
         {user && (
-          <div className="flex flex-col xl:flex-row items-left xl:items-center gap-4">
+          <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
             <div
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
@@ -258,7 +260,7 @@ export const Navbar = () => {
               </Link>
             </div>
             <section className="absolute bottom-4 left-8 xl:relative xl:left-0 xl:bottom-0">
-              <div className="relative w-full">
+              <div className="relative w-full xl:static">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                   <div
                     className="flex items-center gap-4"
@@ -292,7 +294,7 @@ export const Navbar = () => {
                   </div>
                 </div>
                 {profileOptionsShown && (
-                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute">
+                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full">
                     <a href="" className="flex items-center gap-2 px-4">
                       <i className="ri-user-line"></i>
                       <span className="font-semibold text-black">Profile</span>

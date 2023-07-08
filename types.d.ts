@@ -28,16 +28,22 @@ type HospitalProps = {
   website_address: string;
 };
 
-type FormProps = {
+interface FormProps {
+  user: string;
   name?: string;
   email: string;
+  error: string;
   password: string;
+  isUserLoggedIn: boolean;
+  loading: boolean;
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
+  setUser?: (x: string) => void;
   setPassword?: (x: string) => void;
   register?: (x: any) => void;
   signInWithGoogle?: (x: any) => void;
   login?: (x: any) => void;
+  logOut?: (x: any) => void;
 };
 
 interface BlogMetadata {

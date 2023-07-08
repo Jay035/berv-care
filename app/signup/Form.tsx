@@ -14,7 +14,7 @@ export default function Form() {
     setPassword,
     loading,
     setName, name
-  }: any = useAuth();
+  }  = useAuth();
 
   return (
     <div className="">

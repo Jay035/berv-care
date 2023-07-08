@@ -47,10 +47,11 @@ const TomatoGrotesk = localFont({
 
 export const metadata: Metadata = {
   title: "Berv-Care",
-  openGraph: {
-    title: "Berv-Care",
-    description: "Your Pathway to Trusted Care Providers",
-  },
+  description: "Your Pathway to Trusted Care Providers",
+  // openGraph: {
+  //   title: "Berv-Care",
+  //   description: "Your Pathway to Trusted Care Providers",
+  // },
   icons: {
     icon: "/logo.svg",
     // shortcut: '/shortcut-icon.png',
@@ -80,9 +81,9 @@ export default function RootLayout({
         ></link>
       </head>
       <body className={TomatoGrotesk.className}>
+        <ScrollToTop />
+        <Transition />
         <AuthProvider>
-          <ScrollToTop />
-          <Transition />
           <Navbar />
           {children}
         </AuthProvider>

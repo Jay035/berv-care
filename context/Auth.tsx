@@ -8,26 +8,35 @@ import {
   signOut,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState, useContext, useEffect } from "react";
+import { ReactNode, useState, useContext, useEffect, createContext } from "react";
 
-const { createContext } = require("react");
-type authContextType = {
-  login: () => void;
-  logout: () => void;
-};
+interface AuthContextType {
+  children: FormProps[]
+}
 
-const authContextDefaultValues: authContextType = {
-  login: () => {},
-  logout: () => {},
-};
-
-const AuthContext = createContext(authContextDefaultValues);
+export const AuthContext = createContext<FormProps>({
+  user: "",
+  name: "",
+  email: "",
+  error: "",
+  password: "",
+  isUserLoggedIn: false,
+  loading: false
+  // setName?: () => 
+  // setEmail?: (x: string) => void,
+  // setUser?: (x: string) => void;
+  // setPassword?: (x: string) => void;
+  // register?: (x: any) => void;
+  // signInWithGoogle?: (x: any) => void;
+  // login?: (x: any) => void;
+  // logOut?: (x: any) => void;
+});
 
 type Props = {
   children: ReactNode;
 };
 
-export function AuthProvider({ children }: any) {
+export function AuthProvider({ children }: Props) {
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
   const [user, setUser]: any = useState();
@@ -125,7 +134,7 @@ export function AuthProvider({ children }: any) {
     console.log(isUserLoggedIn);
   }, []);
 
-  const value = {
+  const value= {
     user,
     isUserLoggedIn,
     register,
@@ -149,6 +158,4 @@ export function AuthProvider({ children }: any) {
   );
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export const useAuth =() => useContext(AuthContext)

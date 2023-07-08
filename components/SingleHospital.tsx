@@ -40,7 +40,7 @@ export default function SingleHospital({ hospital }: Props) {
             src="/img-1.jpg"
             alt="hospital image"
           />
-          <h1 className="font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl mt-4">
+          <h1 className="capitalize font-extrabold text-[#14532D] text-3xl tracking-tight md:text-4xl xl:text-5xl mt-4">
             {hospital?.name}
           </h1>
         </section>
@@ -72,11 +72,17 @@ export default function SingleHospital({ hospital }: Props) {
             <span> (+234) {hospital?.telephone}</span>
           </p>
           <div className="mt-4">
-            <button className="bg-[#14532D] rounded-lg text-white px-4 py-2">
-              <a href={hospital?.website_address} target="_blank" className="">
-                Visit website
-              </a>
-            </button>
+            {hospital?.website_address && (
+              <button className="bg-[#14532D] rounded-lg text-white px-4 py-2">
+                <a
+                  href={hospital?.website_address}
+                  target="_blank"
+                  className=""
+                >
+                  Visit website
+                </a>
+              </button>
+            )}
           </div>
         </section>
       </div>
