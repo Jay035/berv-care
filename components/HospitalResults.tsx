@@ -83,7 +83,7 @@ export default function HospitalResults({ hospitals }: any) {
       setSearchError("Please submit a value");
     }
   };
-  console.log(data)
+  console.log(data);
 
   // useEffect(() => {
   //   getResult();
@@ -130,7 +130,10 @@ export default function HospitalResults({ hospitals }: any) {
               key={hospital?.id}
               className="flex justify-between gap-3 w-full items-center border border-[#2B7669] rounded-lg px-3 py-2"
             >
-              <div className="flex flex-col gap-2 w-fit max-w-[240px]">
+              <div
+                id="max-w-sm"
+                className="flex flex-col gap-2 w-fit max-w-[240px] lg:max-w-sm"
+              >
                 <h2 className="font-bold text-[#14532d]">{hospital?.name}</h2>
                 <p className="text-[#6B7280]  truncate">{hospital?.address}</p>
               </div>

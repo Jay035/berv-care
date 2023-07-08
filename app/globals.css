@@ -1,19 +1,46 @@
 /* FONT CDN  */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+} */
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+  height: 2px;
 }
 
-html{
+/* Track */
+::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #14532D;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #14532d8e;
+}
+
+
+html {
   scroll-behavior: smooth;
+}
+
+@media screen and (max-width: 400px) {
+  #max-w-sm {
+    max-width: 210px;
+  }
 }
 
 /* @media (prefers-color-scheme: dark) {

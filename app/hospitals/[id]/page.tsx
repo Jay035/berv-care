@@ -1,6 +1,7 @@
 import SingleHospital from "@/components/SingleHospital";
 import getHospital from "@/lib/getHospital";
 import { Metadata } from "next";
+import Link from "next/link";
 
 type IndividualHospitalParams = {
   params: {
@@ -27,9 +28,9 @@ export default async function HospitalPage({
   const hospital = await hospitalData;
   console.log(hospital);
   return (
-    <main className="px-8 sm:px-[9.5vw]">
-        <SingleHospital hospital={hospital} />
-      
+    <main className="px-8 sm:px-[9.5vw] mt-4 mb-8">
+      <Link href="/hospitals" className="w-fit flex items-center gap-1 text-lg lg:text-2xl mb-2 font-semibold text-[#14532D]"><i className="ri-arrow-drop-left-line text-[#14532D] text-3xl lg:text-4xl"></i> Go back</Link>
+      <SingleHospital hospital={hospital} />
     </main>
   );
 }

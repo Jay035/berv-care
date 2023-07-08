@@ -1,63 +1,17 @@
 "use client";
 import CustomInput from "@/components/CustomInput";
 import { auth, provider } from "@/config/Config";
+import { useAuth } from "@/context/Auth";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Form() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const login = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setLoading((prevState) => !prevState);
-      console.log("successfully signed in");
-      console.log(auth.currentUser);
-      router.push("/");
-    } catch (err: any) {
-      setLoading((prevState) => !prevState);
-      console.log(err.code);
-      switch (err.code) {
-        case "auth/invalid-email":
-          setError("Invalid email");
-          break;
-        case "auth/user-not-found":
-          setError("No account with that email was found");
-          break;
-        case "auth/wrong-password":
-          setError("Incorrect password");
-          break;
-        case "auth/network-request-failed":
-          setError("Network request failed, check your network connection");
-          break;
-        default:
-          setError("Incorrect email or password");
-          break;
-      }
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    console.log("signing in with google....")
-    try {
-      const res = await signInWithPopup(auth, provider);
-      console.log(res);
-      router.push("/");
-    } catch (err: any) {
-      console.log(err.message);
-      setError(err.message);
-    }
-  };
+  const {login, signInWithGoogle, error, email, password, setEmail, setPassword, loading} : any = useAuth();
+  console.log(email)
+  
 
   return (
     <div className="">
