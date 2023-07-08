@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { AuthProvider } from "@/context/Auth";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
+import LayoutContainer from "./LayoutContainer";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -83,10 +84,7 @@ export default function RootLayout({
       <body className={TomatoGrotesk.className}>
         <ScrollToTop />
         <Transition />
-        <AuthProvider>
-          <Navbar />
-          {children}
-        </AuthProvider>
+        <LayoutContainer children={children} />
       </body>
     </html>
   );
