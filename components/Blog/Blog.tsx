@@ -1,11 +1,43 @@
+"use client";
+
 import Link from "next/link";
-import BlogPost from "./BlogPost";
-import { getBlogs } from "@/app/blog/page";
+// import BlogPost from "./BlogPost";
+import { Suspense } from "react";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "@firebase/firestore";
+import { db } from "@/config/Config";
+import { sortByDate } from "@/utils";
+import dynamic from "next/dynamic";
 
-type Props = {};
+const BlogPost = dynamic(() => import("./BlogPost"));
 
-export default function Blog({}: Props) {
-  const blogs = getBlogs();
+// type Props = {
+//   id: string,
+//   data: {
+//     title: string,
+//     description: string,
+//     date: string,
+//   }
+// };
+
+export default function Blog() {
+  // const blogs = getBlogs();
+  const [blogs, setBlogs]: any[] = useState([]);
+  const blogsCollectionRef = collection(db, "blogs");
+
+  useEffect(() => {
+    const getBlogs = async () => {
+      try {
+        const data = await getDocs(blogsCollectionRef);
+        const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
+        setBlogs(res);
+      } catch (err: any) {
+        console.log(err.message);
+      }
+    };
+
+    getBlogs();
+  }, []);
   return (
     <section
       id="healthCenter"
@@ -16,9 +48,11 @@ export default function Blog({}: Props) {
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        {blogs.map((post, index) => (
-          <BlogPost post={post} key={index} />
-        ))}
+        <Suspense fallback={<p>Loading....</p>}>
+          {blogs?.map((post: any, index: number) => (
+            <BlogPost post={post} key={index} />
+          ))}
+        </Suspense>
       </section>
       <Link
         href="/blog"

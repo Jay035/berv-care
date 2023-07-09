@@ -1,8 +1,11 @@
 import { initializeApp } from "firebase/app";
+import { getStorage, ref } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 import { useRouter } from "next/navigation";
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_apiKey,
@@ -18,15 +21,16 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-//initialize firebase auth
+// Initialize Cloud Storage and get a reference to the service
+// const storage = firebase.storage()
+const storage = getStorage(app);
+const storageRef = ref(storage);
+
+// initialize firebase auth
 const auth = getAuth();
 
 const provider = new GoogleAuthProvider();
 // const analytics = getAnalytics(app);
-const db = getFirestore(app)
+const db = getFirestore(app);
 
-
-
-
-
-export { app, auth, provider, db }
+export { app, auth, provider, db, storage, storageRef };

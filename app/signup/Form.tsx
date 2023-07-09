@@ -1,46 +1,21 @@
-"use client";
+"use client"
 import CustomInput from "@/components/CustomInput";
-import { auth, provider } from "@/config/Config";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function Form() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
-
-  const register = async (e: any) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setLoading((prevState) => !prevState);
-      console.log("successfully registered");
-      console.log(auth.currentUser);
-      router.push("/");
-    } catch (err: any) {
-      setError(err.message);
-      setLoading((prevState) => !prevState);
-    }
-  };
-
-  const signInWithGoogle = async () => {
-    console.log("signing in with google....");
-    try {
-      const res = await signInWithPopup(auth, provider);
-      console.log(res);
-      router.push("/");
-    } catch (err: any) {
-      console.log(err.message);
-      setError(err.message);
-    }
-  };
+  const {
+    register,
+    signInWithGoogle,
+    error,
+    email,
+    password,
+    setEmail,
+    setPassword,
+    loading,
+    setName, name
+  }  = useAuth();
 
   return (
     <div className="">

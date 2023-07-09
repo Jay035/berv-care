@@ -9,10 +9,8 @@ const HospitalResults = lazy(() => import("@/components/HospitalResults"));
 type Props = {};
 
 export const metadata: Metadata = {
-  title: "Berv-Care | Hospitals",
-  openGraph: {
-    title: "Berv-Care | Hospitals",
-  },
+  title: `Berv-Care | Hospitals`,
+  description: `Your Pathway to Trusted Care Providers`,
 };
 
 export default async function HospitalsPage({}: Props) {
@@ -53,7 +51,6 @@ export default async function HospitalsPage({}: Props) {
           ))}
         </div>
       </section> */}
-      
     </main>
   );
 }
