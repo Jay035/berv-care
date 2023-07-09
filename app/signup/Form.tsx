@@ -1,3 +1,4 @@
+"use client"
 import CustomInput from "@/components/CustomInput";
 import { useAuth } from "@/context/Auth";
 import Image from "next/image";
