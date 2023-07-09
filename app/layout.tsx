@@ -4,10 +4,11 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 import Footer from "@/components/Footer";
-import { AuthProvider } from "@/context/Auth";
+// import { AuthProvider } from "@/context/Auth";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
-import LayoutContainer from "./LayoutContainer";
+import { AuthProvider } from "@/context/Auth";
+// import LayoutContainer from "./LayoutContainer";
 
 // const inter = Inter({ subsets: ["latin"] });
 
