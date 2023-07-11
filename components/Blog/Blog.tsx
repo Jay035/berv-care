@@ -8,6 +8,7 @@ import { collection, getDocs } from "@firebase/firestore";
 import { db } from "@/config/Config";
 import { sortByDate } from "@/utils";
 import dynamic from "next/dynamic";
+import { useBlogContext } from "@/context/BlogContext";
 
 const BlogPost = dynamic(() => import("./BlogPost"));
 
@@ -21,23 +22,24 @@ const BlogPost = dynamic(() => import("./BlogPost"));
 // };
 
 export default function Blog() {
+  const { blogs } = useBlogContext();
   // const blogs = getBlogs();
-  const [blogs, setBlogs]: any[] = useState([]);
-  const blogsCollectionRef = collection(db, "blogs");
+  // const [blogs, setBlogs]: any[] = useState([]);
+  // const blogsCollectionRef = collection(db, "blogs");
 
-  useEffect(() => {
-    const getBlogs = async () => {
-      try {
-        const data = await getDocs(blogsCollectionRef);
-        const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
-        setBlogs(res);
-      } catch (err: any) {
-        console.log(err.message);
-      }
-    };
+  // useEffect(() => {
+  //   const getBlogs = async () => {
+  //     try {
+  //       const data = await getDocs(blogsCollectionRef);
+  //       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //       setBlogs(res);
+  //     } catch (err: any) {
+  //       console.log(err.message);
+  //     }
+  //   };
 
-    getBlogs();
-  }, []);
+  //   getBlogs();
+  // }, []);
   return (
     <section
       id="healthCenter"

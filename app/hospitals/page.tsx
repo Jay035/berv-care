@@ -1,7 +1,6 @@
 import CustomLoader from "@/components/CustomLoader";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
-import Image from "next/image";
 import { Suspense, lazy } from "react";
 
 const HospitalResults = lazy(() => import("@/components/HospitalResults"));
@@ -15,7 +14,6 @@ export const metadata: Metadata = {
 
 export default async function HospitalsPage({}: Props) {
   const hospitalData = getAllHospitals();
-  // const hospitalData : Promise<Hospital[]> = getAllHospitals();
   const hospitals = await hospitalData;
 
   return (

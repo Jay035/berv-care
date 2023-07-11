@@ -259,8 +259,8 @@ export const Navbar = () => {
                 Post a Blog
               </Link>
             </div>
-            <section className="absolute bottom-4 left-8 xl:relative xl:left-0 xl:bottom-0">
-              <div className="relative w-full xl:static">
+            <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50">
+              <div className="relative w-full" id="profileInfoContainer">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                   <div
                     className="flex items-center gap-4"
@@ -294,7 +294,7 @@ export const Navbar = () => {
                   </div>
                 </div>
                 {profileOptionsShown && (
-                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full">
+                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-24">
                     <a href="" className="flex items-center gap-2 px-4">
                       <i className="ri-user-line"></i>
                       <span className="font-semibold text-black">Profile</span>

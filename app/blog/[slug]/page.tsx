@@ -24,7 +24,7 @@ type Props = {};
 //   }));
 // };
 
-export default function PostPage({ params }: { params: { slug: string } }) {
+export default function BlogPreview({ params }: { params: { slug: string } }) {
   // const slug = props?.params?.slug;
   // const post = fetchBlogContent(slug);
   console.log(params)
