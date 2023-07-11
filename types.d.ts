@@ -29,6 +29,7 @@ type HospitalProps = {
 };
 
 interface FormProps {
+  router: any;
   user: string;
   name?: string;
   email: string;

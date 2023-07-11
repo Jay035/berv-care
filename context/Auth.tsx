@@ -21,7 +21,8 @@ export const AuthContext = createContext<FormProps>({
   error: "",
   password: "",
   isUserLoggedIn: false,
-  loading: false
+  loading: false,
+  router: "",
   // setName?: () => 
   // setEmail?: (x: string) => void,
   // setUser?: (x: string) => void;
@@ -135,6 +136,7 @@ export function AuthProvider({ children }: Props) {
   }, []);
 
   const value= {
+    router,
     user,
     isUserLoggedIn,
     register,

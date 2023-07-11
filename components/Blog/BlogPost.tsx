@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/Auth";
 import Link from "next/link";
 
 type Props = {
@@ -11,8 +12,12 @@ type Props = {
 };
 
 export default function BlogPost({ post }: any) {
+  const { router } = useAuth();
   console.log(post);
-  if(!post) console.log('no post')
+  if (!post) console.log("no post");
+  const navigateToPreview = (params: string) => {
+    router.push(params)
+  };
   return (
     <section>
       <div className="text-left">
@@ -27,8 +32,13 @@ export default function BlogPost({ post }: any) {
           {post?.title}
         </h1>
         <p className="text-[#6B7280]">{post?.description}</p>
-        <button className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3">
-          <Link href={`/blog/${post?.slug}`}>Read more</Link>
+        <button
+          className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3"
+          onClick={() => navigateToPreview(`/blog/${post?.id}`)}
+        >
+          {/* <Link href={`/blog/${post?.id}`} className=""> */}
+          Read more
+          {/* </Link> */}
         </button>
       </div>
     </section>

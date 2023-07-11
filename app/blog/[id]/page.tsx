@@ -6,7 +6,11 @@ import matter from "gray-matter";
 import getBlogs from "@/components/getBlogs";
 import getHospital from "@/lib/getHospital";
 
-type Props = {};
+type SingleBlogParams = {
+  params: {
+    id: string;
+  };
+};
 
 // const fetchBlogContent = (slug: string) => {
 //   const folder = "posts/";
@@ -24,17 +28,19 @@ type Props = {};
 //   }));
 // };
 
-export default function BlogPreview({ params }: { params: { slug: string } }) {
+export default function BlogPreview({
+  params: { id },
+}: SingleBlogParams) {
   // const slug = props?.params?.slug;
   // const post = fetchBlogContent(slug);
-  console.log(params)
+  console.log(id);
 
   return (
     <main className="px-[9.5vw]">
       <Link href="/blog">Go back</Link>
-      {params.slug}
-      {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" />
-      <h1>{post?.data?.title}</h1>
+      {id}
+      {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}
+      {/* <h1>{post?.data?.title}</h1>
       <p className="mt-4 text-sm text-[#6B7280]">
         Posted on {post?.data.date}{" "}
       </p>

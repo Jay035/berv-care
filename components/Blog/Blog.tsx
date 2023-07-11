@@ -1,25 +1,10 @@
 "use client";
 
 import Link from "next/link";
-// import BlogPost from "./BlogPost";
-import { Suspense } from "react";
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "@firebase/firestore";
-import { db } from "@/config/Config";
-import { sortByDate } from "@/utils";
-import dynamic from "next/dynamic";
+import { Suspense, lazy } from "react";
 import { useBlogContext } from "@/context/BlogContext";
 
-const BlogPost = dynamic(() => import("./BlogPost"));
-
-// type Props = {
-//   id: string,
-//   data: {
-//     title: string,
-//     description: string,
-//     date: string,
-//   }
-// };
+const BlogPost = lazy(() => import("./BlogPost"));
 
 export default function Blog() {
   const { blogs } = useBlogContext();
@@ -50,7 +35,7 @@ export default function Blog() {
         Read our latest medical and lifestyle articles
       </h1>
       <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        <Suspense fallback={<p>Loading....</p>}>
+        <Suspense fallback={<p className="font-bold text-2xl text-center">Loading....</p>}>
           {blogs?.map((post: any, index: number) => (
             <BlogPost post={post} key={index} />
           ))}
