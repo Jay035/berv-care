@@ -33,11 +33,11 @@ export const Navbar = () => {
       <div
         className={`${
           menuShown
-            ? ` top-0 left-0 w-full h-screen bg-[#6B7280]/40 backdrop-blur-sm xl:h-fit xl:w-fit transition-all `
+            ? ` top-0 left-0 w-full h-screen bg-[#6B7280]/40 xl:bg-transparent backdrop-blur-sm xl:h-fit xl:w-fit transition-all `
             : `-left-full xl:left-0`
         } absolute items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
       >
-        <ul className="relative w-[80%] bg-white h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
+        <ul className="relative w-[80%] bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
           <li
             onClick={(e: any) => {
               e.preventDefault();
