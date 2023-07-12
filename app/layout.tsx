@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
+import { BlogContextProvider } from "@/context/BlogContext";
 // import LayoutContainer from "./LayoutContainer";
 
 // const inter = Inter({ subsets: ["latin"] });
@@ -83,7 +84,8 @@ export default function RootLayout({
         <Transition />
         <AuthProvider>
           <Navbar />
-          {children}
+          <BlogContextProvider>{children}</BlogContextProvider>
+          <Footer />
         </AuthProvider>
       </body>
     </html>

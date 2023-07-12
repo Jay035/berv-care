@@ -1,33 +1,13 @@
-"use client";
-
-// import BlogPost from "@/components/Blog/BlogPost";
-import { Suspense } from "react";
+"use client"
+import { Suspense, lazy } from "react";
 import { sortByDate } from "@/utils/index";
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "@firebase/firestore";
-import { db } from "@/config/Config";
-import getBlogs from "@/components/getBlogs";
-import dynamic from "next/dynamic";
+import { useBlogContext } from "@/context/BlogContext";
 
-const BlogPost = dynamic(() => import("@/components/Blog/BlogPost"));
+const BlogPost = lazy(() => import("@/components/Blog/BlogPost"));
 
 export default function Blog() {
-  // const blogs = getBlogs();
-  const [blogs, setBlogs]: any[] = useState([]);
-  const blogsCollectionRef = collection(db, "blogs");
-
-  useEffect(() => {
-    const getBlogs = async () => {
-      try {
-        const data = await getDocs(blogsCollectionRef);
-        const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
-        setBlogs(res);
-      } catch (err: any) {
-        console.log(err.message);
-      }
-    };
-    getBlogs();
-  }, []);
+  const {blogs} = useBlogContext()
+  
   return (
     <div
       id="healthCenter"

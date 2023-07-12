@@ -21,7 +21,7 @@ type Props = {
   children: ReactNode;
 };
 
-export function BlogAuthProvider({ children }: Props) {
+export function BlogContextProvider({ children }: Props) {
   const [blogs, setBlogs]: any[] = useState([]);
   const blogsCollectionRef = collection(db, "blogs");
 
