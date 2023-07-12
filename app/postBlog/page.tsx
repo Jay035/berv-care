@@ -52,14 +52,14 @@ export default function PostBlog() {
             <div className="p-4">
               {markdown && (
                 <ReactMarkdown
-                  children={markdown}
+                  // children={markdown}
                   remarkPlugins={[remarkGfm]}
                   transformImageUri={(uri) =>
                     uri.startsWith("http")
                       ? uri
                       : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
                   }
-                />
+                >{markdown}</ReactMarkdown>
               )}
             </div>
           </div>
