@@ -24,14 +24,13 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #14532D;
+  background: #14532d;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #14532d8e;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -40,6 +39,11 @@ html {
 @media screen and (max-width: 400px) {
   #max-w-sm {
     max-width: 210px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #profileInfoContainer {
+    position: unset;
   }
 }
 

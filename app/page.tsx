@@ -1,5 +1,4 @@
 import Blog from "@/components/Blog/Blog";
-import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import MeetOurDoctors from "@/components/MeetOurDoctors";
@@ -18,7 +17,6 @@ export default function Home() {
       <Testimonials />
       <Blog />
       <NewsLetter />
-      <Footer />
     </main>
   );
 }
