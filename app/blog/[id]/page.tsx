@@ -2,9 +2,6 @@ import fs from "fs";
 import Markdown from "markdown-to-jsx";
 import Link from "next/link";
 import path from "path";
-import matter from "gray-matter";
-import getBlogs from "@/components/getBlogs";
-import getHospital from "@/lib/getHospital";
 
 type SingleBlogParams = {
   params: {

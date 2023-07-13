@@ -2,6 +2,7 @@ import { useAuth } from "@/context/Auth";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
+import Markdown from "markdown-to-jsx";
 
 // type Props = {
 //   slug: string;
@@ -35,16 +36,16 @@ export default function BlogPost({ post }: any) {
           {post?.title}
         </h1>
         <p className="text-[#6B7280]">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            transformImageUri={(uri) =>
-              uri.startsWith("http")
-                ? uri
-                : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-            }
+          <Markdown
+            // remarkPlugins={[remarkGfm]}
+            // transformImageUri={(uri) =>
+            //   uri.startsWith("http")
+            //     ? uri
+            //     : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
+            // }
           >
             {post?.content}
-          </ReactMarkdown>
+          </Markdown>
         </p>
         <button
           className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3"
