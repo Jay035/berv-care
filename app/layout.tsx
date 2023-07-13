@@ -1,15 +1,14 @@
 import { Navbar } from "@/components/Navbar";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
-// import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 import Footer from "@/components/Footer";
-// import { AuthProvider } from "@/context/Auth";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
-// import LayoutContainer from "./LayoutContainer";
+import 'react-toastify/dist/ReactToastify.css';
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -82,6 +81,7 @@ export default function RootLayout({
       <body className={TomatoGrotesk.className}>
         <ScrollToTop />
         <Transition />
+        <ToastContainer />
         <AuthProvider>
           <Navbar />
           <BlogContextProvider>{children}</BlogContextProvider>

@@ -29,13 +29,13 @@ type HospitalProps = {
 };
 
 interface FormProps {
-  router: any;
-  user: string;
+  router?: any;
+  user?: string;
   name?: string;
   email: string;
   error: string;
   password: string;
-  isUserLoggedIn: boolean;
+  isUserLoggedIn?: boolean;
   loading: boolean;
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
