@@ -85,6 +85,7 @@ export function AuthProvider({ children }: Props) {
   const logOut = async () => {
     await signOut(auth);
     setIsUserLoggedIn(false);
+    setUser(null)
     router.push("/");
   };
 

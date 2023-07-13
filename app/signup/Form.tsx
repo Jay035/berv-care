@@ -1,27 +1,24 @@
-"use client"
+// "use client"
 import CustomInput from "@/components/CustomInput";
-import { useAuth } from "@/context/Auth";
+// import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Form() {
-  const {
-    register,
-    signInWithGoogle,
-    error,
-    email,
-    password,
-    setEmail,
-    setPassword,
-    loading,
-    setName, name
-  }  = useAuth();
-
+export default function Form({
+  register,
+  signInWithGoogle,
+  error,
+  email,
+  password,
+  setEmail,
+  setPassword,
+  loading,
+}: FormProps) {
   return (
     <div className="">
       <form className="flex flex-col gap-5" onSubmit={register}>
         {error && <p className="text-red-500 font-bold">{error}</p>}
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <label htmlFor="name" className="">
             Name
           </label>
@@ -39,7 +36,7 @@ export default function Form() {
               console.log(name);
             }}
           />
-        </div>
+        </div> */}
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="">
             Email
@@ -80,7 +77,7 @@ export default function Form() {
           />
         </div>
         <button
-          disabled={name === "" || email === "" || password === ""}
+          disabled={email === "" || password === ""}
           type="submit"
           className={` w-full mt-6 bg-[#14532D] disabled:bg-[#14532D]/50 hover:bg-[#14532D]/90 text-white px-4 py-2 rounded-lg`}
         >
