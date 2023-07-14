@@ -46,7 +46,11 @@ export default function Form({
             value={password}
             name="password"
             placeholder=""
-            onchange={setPassword}
+            onchange={(e: any) => {
+              // e.preventDefault();
+              setPassword?.(e.target.value);
+              console.log(password);
+            }}
           />
         </div>
 

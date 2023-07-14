@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { auth } from "@/config/Config";
 import { useAuth } from "@/context/Auth";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const { user, logOut }: any = useAuth();
+  const router = useRouter();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
@@ -83,25 +85,27 @@ export const Navbar = () => {
               <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/login");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-3 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
                 >
-                  <Link href="/login" className="">
-                    Login
-                  </Link>
+                  {/* <Link href="/login" className=""> */}
+                  Login
+                  {/* </Link> */}
                 </button>
                 <button
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
                 >
-                  <Link href="/signup" className="">
-                    Sign up
-                  </Link>
+                  {/* <Link href="/signup" className=""> */}
+                  Sign up
+                  {/* </Link> */}
                 </button>
               </div>
             )}

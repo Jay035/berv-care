@@ -28,7 +28,7 @@ export default function CustomInput({
       type={type}
       value={value}
       data-testid={dataTestId}
-      onChange={(e: any) => onchange?.(e?.target.value)}
+      onChange={onchange}
       placeholder={placeholder}
       className={className}
       name={name}

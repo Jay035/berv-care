@@ -50,7 +50,7 @@ export default function Form({
             name="email"
             placeholder=""
             onchange={(e: any) => {
-              e.preventDefault();
+              // e.preventDefault();
               setEmail?.(e.target.value);
               console.log(email);
             }}
