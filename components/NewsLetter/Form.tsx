@@ -14,6 +14,7 @@ export default function Form({
 }: Props) {
   return (
     <form
+    id="newsletter-form"
       onSubmit={handleSubscribe}
       className="flex items-center flex-col lg:flex-row gap-4"
     >

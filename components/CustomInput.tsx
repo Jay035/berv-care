@@ -5,7 +5,7 @@ type Props = {
   value?: string;
   id?: string;
   dataTestId?: string;
-  onchange?: (x: any) => void;
+  onchange?: (e: any) => void;
   placeholder: string;
   type: string;
   className: string;
@@ -28,7 +28,7 @@ export default function CustomInput({
       type={type}
       value={value}
       data-testid={dataTestId}
-      onChange={onchange}
+      onChange={(e: any) => onchange?.(e?.target.value)}
       placeholder={placeholder}
       className={className}
       name={name}

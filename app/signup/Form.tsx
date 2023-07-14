@@ -16,7 +16,7 @@ export default function Form({
 }: FormProps) {
   return (
     <div className="">
-      <form className="flex flex-col gap-5" onSubmit={register}>
+      <form className="flex flex-col gap-5" id="signup-form" onSubmit={register}>
         {error && <p className="text-red-500 font-bold">{error}</p>}
         {/* <div className="flex flex-col gap-2">
           <label htmlFor="name" className="">

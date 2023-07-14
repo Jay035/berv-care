@@ -1,21 +1,21 @@
-"use client";
 import CustomInput from "@/components/CustomInput";
-import { auth, provider } from "@/config/Config";
-import { useAuth } from "@/context/Auth";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 
-export default function Form() {
-  const {login, signInWithGoogle, error, email, password, setEmail, setPassword, loading} : any = useAuth();
-  console.log(email)
-  
-
+export default function Form({
+  login,
+  signInWithGoogle,
+  error,
+  email,
+  password,
+  setEmail,
+  setPassword,
+  loading,
+}: FormProps) {
+  console.log(email);
   return (
     <div className="">
-      <form className="flex flex-col gap-5" onSubmit={login}>
+      <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
         {error && <p className="text-red-500 font-medium">{error}</p>}
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="">
@@ -29,11 +29,9 @@ export default function Form() {
             value={email}
             name="email"
             placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setEmail?.(e.target.value);
-              console.log(email);
-            }}
+            onchange={
+              setEmail
+            }
           />
         </div>
 
@@ -48,11 +46,7 @@ export default function Form() {
             value={password}
             name="password"
             placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setPassword?.(e.target.value);
-              console.log(password);
-            }}
+            onchange={setPassword}
           />
         </div>
 

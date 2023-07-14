@@ -78,20 +78,17 @@ export const Navbar = () => {
               Find Hospitals
             </Link>
           </li>
-          <div className="xl:hidden mt-5 w-full max-w-[300px]">
+          <div className="xl:hidden mt-5 w-full ">
             {!user && (
-              <div className="flex flex-col gap-8 w-fit">
+              <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
                     e.preventDefault();
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className=""
+                  className="py-3 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
                 >
-                  <Link
-                    href="/login"
-                    className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
-                  >
+                  <Link href="/login" className="">
                     Login
                   </Link>
                 </button>
@@ -100,13 +97,9 @@ export const Navbar = () => {
                     e.preventDefault();
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className=""
+                  className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
                 >
-                  {/* <GetStartedBtn /> */}
-                  <Link
-                    href="/signup"
-                    className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-                  >
+                  <Link href="/signup" className="">
                     Sign up
                   </Link>
                 </button>

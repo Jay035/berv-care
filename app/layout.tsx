@@ -8,7 +8,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 // const inter = Inter({ subsets: ["latin"] });
 
