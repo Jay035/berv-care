@@ -16,7 +16,11 @@ export default function Form({
 }: FormProps) {
   return (
     <div className="">
-      <form className="flex flex-col gap-5" id="signup-form" onSubmit={register}>
+      <form
+        className="flex flex-col gap-5"
+        id="signup-form"
+        onSubmit={register}
+      >
         {error && <p className="text-red-500 font-bold">{error}</p>}
         {/* <div className="flex flex-col gap-2">
           <label htmlFor="name" className="">
@@ -49,11 +53,7 @@ export default function Form({
             value={email}
             name="email"
             placeholder=""
-            onchange={(e: any) => {
-              // e.preventDefault();
-              setEmail?.(e.target.value);
-              console.log(email);
-            }}
+            onChange={setEmail}
           />
         </div>
 
@@ -69,11 +69,7 @@ export default function Form({
             value={password}
             name="password"
             placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setPassword?.(e.target.value);
-              console.log(password);
-            }}
+            onChange={setPassword}
           />
         </div>
         <button

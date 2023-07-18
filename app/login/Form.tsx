@@ -12,7 +12,7 @@ export default function Form({
   setPassword,
   loading,
 }: FormProps) {
-  console.log(email);
+  // console.log(email);
   return (
     <div className="">
       <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
@@ -29,7 +29,7 @@ export default function Form({
             value={email}
             name="email"
             placeholder=""
-            onchange={
+            onChange={
               setEmail
             }
           />
@@ -46,11 +46,9 @@ export default function Form({
             value={password}
             name="password"
             placeholder=""
-            onchange={(e: any) => {
-              // e.preventDefault();
-              setPassword?.(e.target.value);
-              console.log(password);
-            }}
+            onChange={
+              setPassword
+            }
           />
         </div>
 

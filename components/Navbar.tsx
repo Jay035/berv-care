@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "@/config/Config";
 import { useAuth } from "@/context/Auth";
 import { useRouter } from "next/navigation";
 
@@ -12,7 +11,6 @@ export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
-  const dp = auth?.currentUser?.photoURL;
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
