@@ -6,7 +6,15 @@ import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   const {
-    user
+    user,
+    register,
+    signInWithGoogle,
+    error,
+    loading,
+    email,
+    setEmail,
+    password,
+    setPassword,
   } = useAuth();
   const router = useRouter();
 
@@ -19,7 +27,16 @@ export default function SignUp() {
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
       <h1 className="text-2xl font-semibold">Create an account</h1>
 
-      <Form />
+      <Form
+        register={register}
+        signInWithGoogle={signInWithGoogle}
+        error={error}
+        loading={loading}
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+      />
     </main>
   );
 }

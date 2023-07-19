@@ -1,13 +1,17 @@
 import CustomInput from "@/components/CustomInput";
-import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
-export default function Form() {
-  const { login, signInWithGoogle, error, loading } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Form({
+  login,
+  signInWithGoogle,
+  error,
+  loading,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}: FormProps) {
   // console.log(email);
   return (
     <div className="">

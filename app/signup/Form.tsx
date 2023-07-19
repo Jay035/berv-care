@@ -1,23 +1,18 @@
 // "use client"
 import CustomInput from "@/components/CustomInput";
-import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
-export default function Form() {
-  const {
-    register,
-    signInWithGoogle,
-    error,
-    // email,
-    // password,
-    // setEmail,
-    // setPassword,
-    loading,
-  } = useAuth();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+export default function Form({
+  register,
+  signInWithGoogle,
+  error,
+  loading,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}: FormProps) {
   return (
     <div className="">
       <form

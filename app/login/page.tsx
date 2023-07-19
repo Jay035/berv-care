@@ -1,11 +1,13 @@
 "use client";
 import { useAuth } from "@/context/Auth";
 import Form from "./Form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const { user } = useAuth();
+  const { user, login, signInWithGoogle, error, loading } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -21,7 +23,16 @@ export default function Login() {
       </div>
 
       <div className="">
-        <Form />
+        <Form
+          login={login}
+          signInWithGoogle={signInWithGoogle}
+          error={error}
+          loading={loading}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+        />
       </div>
     </main>
   );
