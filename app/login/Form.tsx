@@ -5,12 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Form() {
-  const {
-    login,
-    signInWithGoogle,
-    error,
-    loading,
-  } = useAuth();
+  const { login, signInWithGoogle, error, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // console.log(email);

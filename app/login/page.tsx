@@ -5,9 +5,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const {
-    user,
-  } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -23,8 +21,7 @@ export default function Login() {
       </div>
 
       <div className="">
-        <Form
-        />
+        <Form />
       </div>
     </main>
   );
