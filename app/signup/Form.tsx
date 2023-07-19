@@ -1,19 +1,23 @@
 // "use client"
 import CustomInput from "@/components/CustomInput";
-// import { useAuth } from "@/context/Auth";
+import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function Form({
-  register,
-  signInWithGoogle,
-  error,
-  email,
-  password,
-  setEmail,
-  setPassword,
-  loading,
-}: FormProps) {
+export default function Form() {
+  const {
+    register,
+    signInWithGoogle,
+    error,
+    // email,
+    // password,
+    // setEmail,
+    // setPassword,
+    loading,
+  } = useAuth();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   return (
     <div className="">
       <form
@@ -41,37 +45,30 @@ export default function Form({
             }}
           />
         </div> */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="">
-            Email
-          </label>
 
-          <CustomInput
-            id="email"
-            type="email"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={email}
-            name="email"
-            placeholder=""
-            onChange={setEmail}
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="email"
+          id="email"
+          type="email"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={email}
+          name="email"
+          placeholder=""
+          onChange={(e) => setEmail?.(e.target.value)}
+        />
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="">
-            Password
-          </label>
-
-          <CustomInput
-            id="password"
-            type="password"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={password}
-            name="password"
-            placeholder=""
-            onChange={setPassword}
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="password"
+          id="password"
+          type="password"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={password}
+          name="password"
+          placeholder=""
+          onChange={(e) => setPassword?.(e.target.value)}
+        />
         <button
           disabled={email === "" || password === ""}
           type="submit"

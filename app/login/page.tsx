@@ -7,14 +7,6 @@ import { useRouter } from "next/navigation";
 export default function Login() {
   const {
     user,
-    login,
-    signInWithGoogle,
-    error,
-    email,
-    password,
-    setEmail,
-    setPassword,
-    loading,
   } = useAuth();
   const router = useRouter();
 
@@ -32,14 +24,6 @@ export default function Login() {
 
       <div className="">
         <Form
-          login={login}
-          signInWithGoogle={signInWithGoogle}
-          error={error}
-          email={email}
-          password={password}
-          setEmail={setEmail}
-          setPassword={setPassword}
-          loading={loading}
         />
       </div>
     </main>

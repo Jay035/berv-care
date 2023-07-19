@@ -1,56 +1,52 @@
 import CustomInput from "@/components/CustomInput";
+import { useAuth } from "@/context/Auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function Form({
-  login,
-  signInWithGoogle,
-  error,
-  email,
-  password,
-  setEmail,
-  setPassword,
-  loading,
-}: FormProps) {
+export default function Form() {
+  const {
+    login,
+    signInWithGoogle,
+    error,
+    loading,
+  } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // console.log(email);
   return (
     <div className="">
       <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
         {error && <p className="text-red-500 font-medium">{error}</p>}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="">
-            Email
-          </label>
 
-          <CustomInput
-            id="email"
-            type="email"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={email}
-            name="email"
-            placeholder=""
-            onChange={
-              setEmail
-            }
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="">
-            Password
-          </label>
-          <CustomInput
-            id="password"
-            type="password"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={password}
-            name="password"
-            placeholder=""
-            onChange={
-              setPassword
-            }
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="email"
+          id="email"
+          type="email"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={email}
+          name="email"
+          placeholder=""
+          onChange={(e) => {
+            setEmail?.(e.target?.value);
+            console.log(email);
+          }}
+        />
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="password"
+          id="password"
+          type="password"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={password}
+          name="password"
+          placeholder=""
+          onChange={(e) => {
+            setPassword?.(e.target?.value);
+            console.log(email);
+          }}
+        />
 
         <button
           disabled={email === "" || password === ""}
