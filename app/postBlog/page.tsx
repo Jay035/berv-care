@@ -63,20 +63,16 @@ export default function PostBlog() {
       </div>
       <div className="grid lg:grid-cols-2 gap-8">
         <section className="col-span-1">
-          <div className="">
-            <label htmlFor="" className="text-lg font-medium ">
-              Title
-            </label>
-            <CustomInput
-              type="text"
-              dataTestId="blog-title"
-              className="w-full mt-3 text-black border border-black py-2 md:py-4 px-4 rounded-lg"
-              value={title}
-              name="blog-title"
-              onchange={(e: any) => setTitle(e.target.value)}
-              placeholder=""
-            />
-          </div>
+          <CustomInput
+            type="text"
+            label="title"
+            // dataTestId="blog-title"
+            className="w-full mt-3 text-black border border-black py-2 md:py-4 px-4 rounded-lg"
+            value={title}
+            name="blog-title"
+            onChange={(e: any) => setTitle(e.target.value)}
+            placeholder=""
+          />
 
           <div className="">
             <h1 className="text-lg font-medium my-3">Content</h1>

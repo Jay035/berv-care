@@ -35,7 +35,7 @@ export const Navbar = () => {
           menuShown
             ? ` top-0 left-0 w-full h-screen bg-[#6B7280]/40 xl:bg-transparent backdrop-blur-sm xl:h-fit xl:w-fit transition-all `
             : `-left-full xl:left-0`
-        } absolute items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
+        } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
       >
         <ul className="relative w-[80%] bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
           <li
@@ -318,7 +318,7 @@ export const Navbar = () => {
         onClick={toggleMenu}
         className={`z-[999999999999] grid justify-self-end justify-between flex-col xl:hidden gap-1.5 cursor-pointer ${
           menuShown
-            ? "bg-white px-1.5 pt-5 py-4  rounded-full"
+            ? "bg-white fixed right-8 sm:right-16 px-1.5 pt-5 py-4 rounded-full"
             : "bg-transparent"
         }`}
       >
