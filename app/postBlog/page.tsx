@@ -7,11 +7,13 @@ import { OutputData } from "@editorjs/editorjs";
 import { addDoc, collection } from "@firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { toast } from "react-toastify";
 import Markdown from "markdown-to-jsx";
+import { useAuth } from "@/context/Auth";
+import { Metadata } from "next";
 
 const EditorBlock = dynamic(
   () => import("@/components/PostBlog/BlogPostEditor"),
@@ -20,8 +22,13 @@ const EditorBlock = dynamic(
   }
 );
 
+export const metadata: Metadata = {
+  title: `Berv-Care | Post Blog`,
+};
+
 export default function PostBlog() {
   const router = useRouter();
+  const {user} = useAuth()
   // const [data, setData] = useState<OutputData>();
   const [markdown, setMarkdown] = useState(
     ""
@@ -51,6 +58,12 @@ export default function PostBlog() {
       toast.error(err.message);
     }
   };
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <main className="px-[9.5vw] mt-7">

@@ -19,7 +19,7 @@ export default function SignUp() {
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
+    if (!user) {
       router.push("/");
     }
   }, []);
