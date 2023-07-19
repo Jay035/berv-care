@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "@/context/Auth";
 import Form from "./Form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignUp() {
@@ -11,11 +11,10 @@ export default function SignUp() {
     signInWithGoogle,
     error,
     loading,
-    email,
-    setEmail,
-    password,
-    setPassword,
+    
   } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   useEffect(() => {
