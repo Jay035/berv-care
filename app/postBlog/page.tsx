@@ -11,6 +11,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { toast } from "react-toastify";
+import Markdown from "markdown-to-jsx";
 
 const EditorBlock = dynamic(
   () => import("@/components/PostBlog/BlogPostEditor"),
@@ -42,7 +43,9 @@ export default function PostBlog() {
       console.log(datePosted, markdown, title);
       toast.success("Congratulations, you have published your story");
       console.log("Congratulations, you have published your story");
-      router.push("/blog");
+      setTimeout(() => {
+        router.push("/blog");
+      }, 1000);
     } catch (err: any) {
       console.log(err.message);
       toast.error(err.message);
@@ -102,17 +105,17 @@ export default function PostBlog() {
             <h1 className="text-2xl mb-2 font-bold">{title && title}</h1>
             <div className="">
               {markdown && (
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  transformImageUri={(uri) =>
-                    uri.startsWith("http")
-                      ? uri
-                      : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-                  }
-                >
-                  {markdown}
-                </ReactMarkdown>
+                // <ReactMarkdown
+                //   remarkPlugins={[remarkGfm]}
+                //   transformImageUri={(uri) =>
+                //     uri.startsWith("http")
+                //       ? uri
+                //       : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
+                //   }
+                // >
+                <Markdown>{markdown}</Markdown>
               )}
+              {/* </ReactMarkdown> */}
             </div>
           </div>
         </section>

@@ -78,6 +78,7 @@ export const Navbar = () => {
               Find Hospitals
             </Link>
           </li>
+          {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden mt-5 w-full ">
             {!user && (
               <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
@@ -110,28 +111,29 @@ export const Navbar = () => {
 
             {user && (
               <div className="flex flex-col items-left gap-4">
-                <div
-                  className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
+                <button
+                  className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/postBlog");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                 >
-                  <Link
+                  {/* <Link
                     href="/postBlog"
                     className="text-[#14532D] font-semibold"
-                  >
-                    Post a Blog
-                  </Link>
-                </div>
-                <section className="absolute bottom-4 left-8">
+                  > */}
+                  Post a Blog
+                  {/* </Link> */}
+                </button>
+                <section className="absolute bottom-4 left-8 sm:left-[5.5rem]">
                   <div className="relative w-full">
                     <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                       <div
                         className="flex items-center gap-4"
                         onClick={(e) => {
                           e.preventDefault();
-                          setProfileOptionsShown((prevState) => !prevState);
+                          setProfileOptionsShown(true);
                         }}
                       >
                         {user?.photoURL ? (
@@ -151,9 +153,19 @@ export const Navbar = () => {
                         <p>{user?.email}</p>
                       </div>
                       {profileOptionsShown ? (
-                        <i className="ri-arrow-down-s-line"></i>
+                        <i
+                          className="ri-arrow-down-s-line"
+                          onClick={() =>
+                            setProfileOptionsShown((prevState) => !prevState)
+                          }
+                        ></i>
                       ) : (
-                        <i className="ri-arrow-up-s-line"></i>
+                        <i
+                          className="ri-arrow-up-s-line"
+                          onClick={() =>
+                            setProfileOptionsShown((prevState) => !prevState)
+                          }
+                        ></i>
                       )}
                     </div>
                     {profileOptionsShown && (
@@ -243,17 +255,18 @@ export const Navbar = () => {
         )} */}
         {user && (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
-            <div
+            <button
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
-                e.preventDefault();
+                // e.preventDefault();
+                router.push("/postBlog");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
             >
-              <Link href="/postBlog" className="text-[#14532D] font-semibold">
-                Post a Blog
-              </Link>
-            </div>
+              {/* <Link href="/postBlog" className="text-[#14532D] font-semibold"> */}
+              Post a Blog
+              {/* </Link> */}
+            </button>
             <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50">
               <div className="relative w-full" id="profileInfoContainer">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">

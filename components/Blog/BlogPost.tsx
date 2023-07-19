@@ -24,7 +24,7 @@ export default function BlogPost({ post }: any) {
   };
   return (
     <section>
-      <div className="text-left">
+      <div className="text-left ">
         <img
           className="w-full"
           src="/blog-1.png"
@@ -35,7 +35,8 @@ export default function BlogPost({ post }: any) {
         <h1 className=" mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
-        {/* <p className="text-[#6B7280]"> */}
+        <div className="truncate w-fit max-w-[240px] h-fit max-h-5">
+
           <Markdown
             // remarkPlugins={[remarkGfm]}
             // transformImageUri={(uri) =>
@@ -46,7 +47,7 @@ export default function BlogPost({ post }: any) {
           >
             {post?.content}
           </Markdown>
-        {/* </p> */}
+        </div>
         <button
           className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3"
           onClick={() => navigateToPreview(`/blog/${post?.id}`)}
