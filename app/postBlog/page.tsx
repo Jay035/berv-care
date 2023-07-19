@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function PostBlog() {
   const router = useRouter();
-  const {user} = useAuth()
+  const { user } = useAuth();
   // const [data, setData] = useState<OutputData>();
   const [markdown, setMarkdown] = useState(
     ""
@@ -61,7 +61,8 @@ export default function PostBlog() {
 
   useEffect(() => {
     if (!user) {
-      router.push("/");
+      alert("You have to be signed in to post a blog");
+      router.push("/login");
     }
   }, []);
 
