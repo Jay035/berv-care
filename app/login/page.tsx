@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Login() {
-  const { user, login, signInWithGoogle, error, loading } = useAuth();
+  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,12 +21,7 @@ export default function Login() {
       </div>
 
       <div className="">
-        <Form
-          login={login}
-          signInWithGoogle={signInWithGoogle}
-          error={error}
-          loading={loading}
-        />
+        <Form />
       </div>
     </main>
   );

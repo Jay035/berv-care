@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/Navbar";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
@@ -9,6 +9,8 @@ import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
 import "react-toastify/dist/ReactToastify.css";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/config/Config";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -70,6 +72,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     // User is signed in.
+  //     console.log(user);
+  //     // setUser(user);
+  //     // setIsUserLoggedIn(true);
+  //   } else {
+  //     // User is not signed in.
+  //     // setIsUserLoggedIn(false);
+  //   }
+  // });
   return (
     <html lang="en">
       <head>
@@ -81,7 +94,7 @@ export default function RootLayout({
       <body className={TomatoGrotesk.className}>
         <ScrollToTop />
         <Transition />
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <AuthProvider>
           <Navbar />
           <BlogContextProvider>{children}</BlogContextProvider>

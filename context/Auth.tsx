@@ -30,12 +30,11 @@ type Props = {
 export function AuthProvider({ children }: Props) {
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
-  const [user, setUser]: any = useState();
+  const [user, setUser]: any = useState(auth?.currentUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const login = async (email: string, password: string) => {
-    // e.preventDefault();
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -105,6 +104,7 @@ export function AuthProvider({ children }: Props) {
       console.log(auth.currentUser);
       router.push("/");
     } catch (err: any) {
+      console.error(err.message)
       setError(err.message);
       setLoading((prevState) => !prevState);
     }
@@ -136,6 +136,9 @@ export function AuthProvider({ children }: Props) {
     signInWithGoogle,
     error,
     loading,
+    setLoading,
+    setError,
+    setUser,
   };
 
   return (

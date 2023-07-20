@@ -40,7 +40,10 @@ interface FormProps {
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
+  setError?: (x: string) => void;
   setPassword?: (x: string) => void;
+  setLoading?: (x: any) => void;
+  setIsUserLoggedIn?: (x: any) => void;
   register?: (email: string, password: string) => void;
   signInWithGoogle?: (x: any) => void;
   login?: (email: string, password: string) => void;

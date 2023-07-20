@@ -1,15 +1,15 @@
 "use client";
-import { useAuth } from "@/context/Auth";
 import Form from "./Form";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { auth } from "@/config/Config";
 
 export default function SignUp() {
-  const { user, register, signInWithGoogle, error, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
+    console.log(auth?.currentUser)
+    if (auth?.currentUser) {
       router.push("/");
     }
   }, []);
@@ -17,12 +17,7 @@ export default function SignUp() {
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-[90vh]">
       <h1 className="text-2xl font-semibold">Create an account</h1>
 
-      <Form
-        register={register}
-        signInWithGoogle={signInWithGoogle}
-        error={error}
-        loading={loading}
-      />
+      <Form />
     </main>
   );
 }

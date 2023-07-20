@@ -1,28 +1,62 @@
 import CustomInput from "@/components/CustomInput";
+import { auth } from "@/config/Config";
+import { useAuth } from "@/context/Auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Form({
-  login,
-  signInWithGoogle,
-  error,
-  loading,
-}: FormProps) {
+export default function Form() {
+  const router = useRouter();
+  const { signInWithGoogle } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const login = async (e: any) => {
+    e.preventDefault();
+    console.log("logging in....")
+    setLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setLoading((prevState) => !prevState);
+      console.log("successfully signed in");
+      console.log(auth.currentUser);
+      // setIsUserLoggedIn(true);
+      // setUser(auth?.currentUser);
+      router.push("/");
+    } catch (err: any) {
+      setLoading((prevState) => !prevState);
+      // setIsUserLoggedIn(false);
+      console.log(err.code);
+      switch (err.code) {
+        case "auth/invalid-email":
+          setError("Invalid email");
+          break;
+        case "auth/user-not-found":
+          setError("No account with that email was found");
+          break;
+        case "auth/user-not-found":
+          setError("No account with that email was found");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect password");
+          break;
+        case "auth/network-request-failed":
+          setError("Network request failed, check your network connection");
+          break;
+        default:
+          setError("Incorrect email or password");
+          break;
+      }
+    }
+  };
   // console.log(email);
   return (
     <div className="">
-      <form
-        className="flex flex-col gap-5"
-        id="login-form"
-        onSubmit={(e: any) => {
-          // e.preventDefault();
-          console.log(email, password)
-          login?.(email, password);
-        }}
-      >
+      <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
         {error && <p className="text-red-500 font-medium">{error}</p>}
 
         <CustomInput

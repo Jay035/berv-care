@@ -1,29 +1,45 @@
 // "use client"
 import CustomInput from "@/components/CustomInput";
+import { auth } from "@/config/Config";
+import { useAuth } from "@/context/Auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Form({
-  register,
-  signInWithGoogle,
-  error,
-  loading,
-}: FormProps) {
+export default function Form() {
+  const router = useRouter();
+  const {
+    signInWithGoogle,
+  } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const register = async (e: any) => {
+    e.preventDefault();
+    setLoading?.(true);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setLoading?.((prevState: boolean) => !prevState);
+      console.log("successfully registered");
+      console.log(auth.currentUser);
+      router.push("/");
+    } catch (err: any) {
+      console.error(err.message);
+      setError?.(err.message);
+      setLoading?.((prevState: boolean) => !prevState);
+    }
+  };
 
   return (
     <div className="">
       <form
         className="flex flex-col gap-5"
         id="signup-form"
-        onSubmit={(e: any) =>
-           {
-            // e.preventDefault()
-            console.log(email, password)
-            register?.(email, password)}
-          }
+        onSubmit={register}
       >
         {error && <p className="text-red-500 font-bold">{error}</p>}
         {/* <div className="flex flex-col gap-2">

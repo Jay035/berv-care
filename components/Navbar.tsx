@@ -146,7 +146,8 @@ export const Navbar = () => {
                           />
                         ) : (
                           <p className="font-bold bg-[#14532D] py-2 px-4 text-white rounded-full">
-                            {user?.displayName.slice(0, 1) ||
+                            {(user?.displayName &&
+                              user?.displayName.slice(0, 1)) ||
                               user?.email.slice(0, 1)}
                           </p>
                         )}
@@ -287,7 +288,7 @@ export const Navbar = () => {
                       />
                     ) : (
                       <p className="font-bold bg-[#14532D] py-2 px-4 text-white rounded-full">
-                        {user?.displayName.slice(0, 1) ||
+                        {(user?.displayName && user?.displayName.slice(0, 1)) ||
                           user?.email.slice(0, 1)}
                       </p>
                     )}
