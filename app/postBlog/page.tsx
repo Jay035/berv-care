@@ -3,17 +3,18 @@ import CustomInput from "@/components/CustomInput";
 import Editor from "@/components/PostBlog/BlogPostEditor";
 import EditorRenderer from "@/components/PostBlog/EditorRenderer";
 import { db } from "@/config/Config";
-import { OutputData } from "@editorjs/editorjs";
+// import { OutputData } from "@editorjs/editorjs";
 import { addDoc, collection } from "@firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import { toast } from "react-toastify";
-import Markdown from "markdown-to-jsx";
+// import ReactMarkdown from "react-markdown";
+// import remarkGfm from "remark-gfm";
+// import { toast } from "react-toastify";
+// import Markdown from "markdown-to-jsx";
 import { useAuth } from "@/context/Auth";
 import { Metadata } from "next";
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 const EditorBlock = dynamic(
   () => import("@/components/PostBlog/BlogPostEditor"),
@@ -48,14 +49,14 @@ export default function PostBlog() {
         content: markdown,
       });
       console.log(datePosted, markdown, title);
-      toast.success("Congratulations, you have published your story");
+      // toast.success("Congratulations, you have published your story");
       console.log("Congratulations, you have published your story");
       setTimeout(() => {
         router.push("/blog");
       }, 1000);
     } catch (err: any) {
       console.log(err.message);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
   };
 
@@ -127,7 +128,7 @@ export default function PostBlog() {
                 //       : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
                 //   }
                 // >
-                <Markdown>{markdown}</Markdown>
+                <ReactMarkdown>{markdown}</ReactMarkdown>
               )}
               {/* </ReactMarkdown> */}
             </div>
