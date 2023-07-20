@@ -6,8 +6,6 @@ import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { user, login, signInWithGoogle, error, loading } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -28,10 +26,6 @@ export default function Login() {
           signInWithGoogle={signInWithGoogle}
           error={error}
           loading={loading}
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
         />
       </div>
     </main>

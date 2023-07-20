@@ -32,18 +32,18 @@ interface FormProps {
   router?: any;
   user?: string;
   name?: string;
-  email: string;
+  email?: string | undefined;
   error: string;
-  password: string;
+  password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
   setPassword?: (x: string) => void;
-  register?: (x: any) => void;
+  register?: (email: string, password: string) => void;
   signInWithGoogle?: (x: any) => void;
-  login?: (x: any) => void;
+  login?: (email: string, password: string) => void;
   logOut?: (x: any) => void;
 };
 

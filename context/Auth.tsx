@@ -17,20 +17,10 @@ interface AuthContextType {
 export const AuthContext = createContext<FormProps>({
   user: "",
   name: "",
-  email: "",
   error: "",
-  password: "",
   isUserLoggedIn: false,
   loading: false,
   router: "",
-  // setName?: () => 
-  // setEmail?: (x: string) => void,
-  // setUser?: (x: string) => void;
-  // setPassword?: (x: string) => void;
-  // register?: (x: any) => void;
-  // signInWithGoogle?: (x: any) => void;
-  // login?: (x: any) => void;
-  // logOut?: (x: any) => void;
 });
 
 type Props = {
@@ -42,13 +32,10 @@ export function AuthProvider({ children }: Props) {
   const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
   const [user, setUser]: any = useState();
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const login = async (e: any) => {
-    e.preventDefault();
+  const login = async (email: string, password: string) => {
+    // e.preventDefault();
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -62,9 +49,12 @@ export function AuthProvider({ children }: Props) {
       setLoading((prevState) => !prevState);
       setIsUserLoggedIn(false);
       console.log(err.code);
-      switch (err.code) {
+      switch (err.message) {
         case "auth/invalid-email":
           setError("Invalid email");
+          break;
+        case "auth/user-not-found":
+          setError("No account with that email was found");
           break;
         case "auth/user-not-found":
           setError("No account with that email was found");
@@ -103,8 +93,8 @@ export function AuthProvider({ children }: Props) {
     }
   };
 
-  const register = async (e: any) => {
-    e.preventDefault();
+  const register = async (email: string, password: string) => {
+    // e.preventDefault();
     setLoading(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
@@ -145,12 +135,6 @@ export function AuthProvider({ children }: Props) {
     logOut,
     signInWithGoogle,
     error,
-    name,
-    email,
-    password,
-    setName,
-    setEmail,
-    setPassword,
     loading,
   };
 

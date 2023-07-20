@@ -5,16 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignUp() {
-  const {
-    user,
-    register,
-    signInWithGoogle,
-    error,
-    loading,
-    
-  } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { user, register, signInWithGoogle, error, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -31,10 +22,6 @@ export default function SignUp() {
         signInWithGoogle={signInWithGoogle}
         error={error}
         loading={loading}
-        email={email}
-        setEmail={setEmail}
-        password={password}
-        setPassword={setPassword}
       />
     </main>
   );

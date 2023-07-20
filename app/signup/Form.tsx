@@ -2,23 +2,28 @@
 import CustomInput from "@/components/CustomInput";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Form({
   register,
   signInWithGoogle,
   error,
   loading,
-  email,
-  setEmail,
-  password,
-  setPassword,
 }: FormProps) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   return (
     <div className="">
       <form
         className="flex flex-col gap-5"
         id="signup-form"
-        onSubmit={register}
+        onSubmit={(e: any) =>
+           {
+            // e.preventDefault()
+            console.log(email, password)
+            register?.(email, password)}
+          }
       >
         {error && <p className="text-red-500 font-bold">{error}</p>}
         {/* <div className="flex flex-col gap-2">
