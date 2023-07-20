@@ -1,38 +1,50 @@
 import Image from "next/image";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
-type Props = {
+interface InputProps {
   value?: string;
   id?: string;
-  dataTestId?: string;
-  onchange?: (x: any) => void;
+  label?: string;
+  style?: string;
+  // dataTestId?: string;
+  onChange?: (e: any) => void;
   placeholder: string;
-  type: string;
+  type: "text" | "number" | "email" | "password";
   className: string;
   name: string;
-};
+}
 
 export default function CustomInput({
   type,
   value,
   name,
-  dataTestId,
-  onchange,
+  label,
+  style,
+  // dataTestId,
+  onChange,
   placeholder,
   className,
   id,
-}: Props) {
+}: InputProps) {
+  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   onChange?.(e.target.value);
+  // };
   return (
-    <input
-      id={id}
-      type={type}
-      value={value}
-      data-testid={dataTestId}
-      onChange={onchange}
-      placeholder={placeholder}
-      className={className}
-      name={name}
-      required
-    />
+    <div className={style}>
+      <label htmlFor={label} className="capitalize">
+        {label}
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        // data-testid={dataTestId}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={className}
+        name={name}
+        required
+      />
+    </div>
   );
 }

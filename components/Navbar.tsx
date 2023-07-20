@@ -2,15 +2,15 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { auth } from "@/config/Config";
 import { useAuth } from "@/context/Auth";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const { user, logOut }: any = useAuth();
+  const router = useRouter();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
-  const dp = auth?.currentUser?.photoURL;
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
@@ -35,7 +35,7 @@ export const Navbar = () => {
           menuShown
             ? ` top-0 left-0 w-full h-screen bg-[#6B7280]/40 xl:bg-transparent backdrop-blur-sm xl:h-fit xl:w-fit transition-all `
             : `-left-full xl:left-0`
-        } absolute items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
+        } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
       >
         <ul className="relative w-[80%] bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
           <li
@@ -78,65 +78,62 @@ export const Navbar = () => {
               Find Hospitals
             </Link>
           </li>
-          <div className="xl:hidden mt-5 w-full max-w-[300px]">
+          {/* BUTTONS FOR MOBILE */}
+          <div className="xl:hidden mt-5 w-full ">
             {!user && (
-              <div className="flex flex-col gap-8 w-fit">
+              <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/login");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className=""
+                  className="py-3 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
                 >
-                  <Link
-                    href="/login"
-                    className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
-                  >
-                    Login
-                  </Link>
+                  {/* <Link href="/login" className=""> */}
+                  Login
+                  {/* </Link> */}
                 </button>
                 <button
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className=""
+                  className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
                 >
-                  {/* <GetStartedBtn /> */}
-                  <Link
-                    href="/signup"
-                    className="py-3 md:py-4 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-                  >
-                    Sign up
-                  </Link>
+                  {/* <Link href="/signup" className=""> */}
+                  Sign up
+                  {/* </Link> */}
                 </button>
               </div>
             )}
 
             {user && (
               <div className="flex flex-col items-left gap-4">
-                <div
-                  className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
+                <button
+                  className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
-                    e.preventDefault();
+                    // e.preventDefault();
+                    router.push("/postBlog");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                 >
-                  <Link
+                  {/* <Link
                     href="/postBlog"
                     className="text-[#14532D] font-semibold"
-                  >
-                    Post a Blog
-                  </Link>
-                </div>
-                <section className="absolute bottom-4 left-8">
+                  > */}
+                  Post a Blog
+                  {/* </Link> */}
+                </button>
+                <section className="absolute bottom-4 left-8 sm:left-[5.5rem]">
                   <div className="relative w-full">
                     <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                       <div
                         className="flex items-center gap-4"
                         onClick={(e) => {
                           e.preventDefault();
-                          setProfileOptionsShown((prevState) => !prevState);
+                          setProfileOptionsShown(true);
                         }}
                       >
                         {user?.photoURL ? (
@@ -149,16 +146,27 @@ export const Navbar = () => {
                           />
                         ) : (
                           <p className="font-bold bg-[#14532D] py-2 px-4 text-white rounded-full">
-                            {user?.displayName.slice(0, 1) ||
+                            {(user?.displayName &&
+                              user?.displayName.slice(0, 1)) ||
                               user?.email.slice(0, 1)}
                           </p>
                         )}
                         <p>{user?.email}</p>
                       </div>
                       {profileOptionsShown ? (
-                        <i className="ri-arrow-down-s-line"></i>
+                        <i
+                          className="ri-arrow-down-s-line"
+                          onClick={() =>
+                            setProfileOptionsShown((prevState) => !prevState)
+                          }
+                        ></i>
                       ) : (
-                        <i className="ri-arrow-up-s-line"></i>
+                        <i
+                          className="ri-arrow-up-s-line"
+                          onClick={() =>
+                            setProfileOptionsShown((prevState) => !prevState)
+                          }
+                        ></i>
                       )}
                     </div>
                     {profileOptionsShown && (
@@ -248,17 +256,18 @@ export const Navbar = () => {
         )} */}
         {user && (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
-            <div
+            <button
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
-                e.preventDefault();
+                // e.preventDefault();
+                router.push("/postBlog");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
             >
-              <Link href="/postBlog" className="text-[#14532D] font-semibold">
-                Post a Blog
-              </Link>
-            </div>
+              {/* <Link href="/postBlog" className="text-[#14532D] font-semibold"> */}
+              Post a Blog
+              {/* </Link> */}
+            </button>
             <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50">
               <div className="relative w-full" id="profileInfoContainer">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
@@ -279,7 +288,7 @@ export const Navbar = () => {
                       />
                     ) : (
                       <p className="font-bold bg-[#14532D] py-2 px-4 text-white rounded-full">
-                        {user?.displayName.slice(0, 1) ||
+                        {(user?.displayName && user?.displayName.slice(0, 1)) ||
                           user?.email.slice(0, 1)}
                       </p>
                     )}
@@ -323,7 +332,7 @@ export const Navbar = () => {
         onClick={toggleMenu}
         className={`z-[999999999999] grid justify-self-end justify-between flex-col xl:hidden gap-1.5 cursor-pointer ${
           menuShown
-            ? "bg-white px-1.5 pt-5 py-4  rounded-full"
+            ? "bg-white fixed right-8 sm:right-16 px-1.5 pt-5 py-4 rounded-full"
             : "bg-transparent"
         }`}
       >

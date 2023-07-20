@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Suspense, lazy } from "react";
 import { sortByDate } from "@/utils/index";
 import { useBlogContext } from "@/context/BlogContext";
@@ -6,8 +6,8 @@ import { useBlogContext } from "@/context/BlogContext";
 const BlogPost = lazy(() => import("@/components/Blog/BlogPost"));
 
 export default function Blog() {
-  const {blogs} = useBlogContext()
-  
+  const { blogs } = useBlogContext();
+
   return (
     <div
       id="healthCenter"

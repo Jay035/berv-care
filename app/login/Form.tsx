@@ -1,60 +1,92 @@
-"use client";
 import CustomInput from "@/components/CustomInput";
-import { auth, provider } from "@/config/Config";
+import { auth } from "@/config/Config";
 import { useAuth } from "@/context/Auth";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Form() {
-  const {login, signInWithGoogle, error, email, password, setEmail, setPassword, loading} : any = useAuth();
-  console.log(email)
-  
+  const router = useRouter();
+  const { signInWithGoogle } = useAuth();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  const login = async (e: any) => {
+    e.preventDefault();
+    console.log("logging in....")
+    setLoading(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setLoading((prevState) => !prevState);
+      console.log("successfully signed in");
+      console.log(auth.currentUser);
+      // setIsUserLoggedIn(true);
+      // setUser(auth?.currentUser);
+      router.push("/");
+    } catch (err: any) {
+      setLoading((prevState) => !prevState);
+      // setIsUserLoggedIn(false);
+      console.log(err.code);
+      switch (err.code) {
+        case "auth/invalid-email":
+          setError("Invalid email");
+          break;
+        case "auth/user-not-found":
+          setError("No account with that email was found");
+          break;
+        case "auth/user-not-found":
+          setError("No account with that email was found");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect password");
+          break;
+        case "auth/network-request-failed":
+          setError("Network request failed, check your network connection");
+          break;
+        default:
+          setError("Incorrect email or password");
+          break;
+      }
+    }
+  };
+  // console.log(email);
   return (
     <div className="">
-      <form className="flex flex-col gap-5" onSubmit={login}>
+      <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
         {error && <p className="text-red-500 font-medium">{error}</p>}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="">
-            Email
-          </label>
 
-          <CustomInput
-            id="email"
-            type="email"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={email}
-            name="email"
-            placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setEmail?.(e.target.value);
-              console.log(email);
-            }}
-          />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="">
-            Password
-          </label>
-          <CustomInput
-            id="password"
-            type="password"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={password}
-            name="password"
-            placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setPassword?.(e.target.value);
-              console.log(password);
-            }}
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="email"
+          id="email"
+          type="email"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={email}
+          name="email"
+          placeholder=""
+          onChange={(e) => {
+            setEmail?.(e.target?.value);
+            console.log(email);
+          }}
+        />
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="password"
+          id="password"
+          type="password"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={password}
+          name="password"
+          placeholder=""
+          onChange={(e) => {
+            setPassword?.(e.target?.value);
+            console.log(email);
+          }}
+        />
 
         <button
           disabled={email === "" || password === ""}

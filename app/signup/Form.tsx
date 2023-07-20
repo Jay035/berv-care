@@ -1,27 +1,48 @@
-"use client"
+// "use client"
 import CustomInput from "@/components/CustomInput";
+import { auth } from "@/config/Config";
 import { useAuth } from "@/context/Auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Form() {
+  const router = useRouter();
   const {
-    register,
     signInWithGoogle,
-    error,
-    email,
-    password,
-    setEmail,
-    setPassword,
-    loading,
-    setName, name
-  }  = useAuth();
+  } = useAuth();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const register = async (e: any) => {
+    e.preventDefault();
+    setLoading?.(true);
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      setLoading?.((prevState: boolean) => !prevState);
+      console.log("successfully registered");
+      console.log(auth.currentUser);
+      router.push("/");
+    } catch (err: any) {
+      console.error(err.message);
+      setError?.(err.message);
+      setLoading?.((prevState: boolean) => !prevState);
+    }
+  };
 
   return (
     <div className="">
-      <form className="flex flex-col gap-5" onSubmit={register}>
+      <form
+        className="flex flex-col gap-5"
+        id="signup-form"
+        onSubmit={register}
+      >
         {error && <p className="text-red-500 font-bold">{error}</p>}
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <label htmlFor="name" className="">
             Name
           </label>
@@ -39,48 +60,33 @@ export default function Form() {
               console.log(name);
             }}
           />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="email" className="">
-            Email
-          </label>
+        </div> */}
 
-          <CustomInput
-            id="email"
-            type="email"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={email}
-            name="email"
-            placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setEmail?.(e.target.value);
-              console.log(email);
-            }}
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="email"
+          id="email"
+          type="email"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={email}
+          name="email"
+          placeholder=""
+          onChange={(e) => setEmail?.(e.target.value)}
+        />
 
-        <div className="flex flex-col gap-2">
-          <label htmlFor="password" className="">
-            Password
-          </label>
-
-          <CustomInput
-            id="password"
-            type="password"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={password}
-            name="password"
-            placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setPassword?.(e.target.value);
-              console.log(password);
-            }}
-          />
-        </div>
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="password"
+          id="password"
+          type="password"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={password}
+          name="password"
+          placeholder=""
+          onChange={(e) => setPassword?.(e.target.value)}
+        />
         <button
-          disabled={name === "" || email === "" || password === ""}
+          disabled={email === "" || password === ""}
           type="submit"
           className={` w-full mt-6 bg-[#14532D] disabled:bg-[#14532D]/50 hover:bg-[#14532D]/90 text-white px-4 py-2 rounded-lg`}
         >

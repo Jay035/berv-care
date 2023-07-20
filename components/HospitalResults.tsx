@@ -101,14 +101,16 @@ export default function HospitalResults({ hospitals }: any) {
               alt="search icon"
               width={18}
               height={18}
+              // className="py-2"
             />
             <CustomInput
               type="text"
-              dataTestId="searchbar"
+              // label=""
+              // dataTestId="searchbar"
               className="w-full outline-none text-black"
               value={query}
               name="search"
-              onchange={handleSearch}
+              onChange={handleSearch}
               placeholder="Enter your Location (State)"
             />
           </div>
@@ -132,7 +134,7 @@ export default function HospitalResults({ hospitals }: any) {
             >
               <div
                 id="max-w-sm"
-                className="flex flex-col gap-2 w-fit max-w-[240px] lg:max-w-sm"
+                className="flex flex-col gap-2 w-fit max-w-[240px] "
               >
                 <h2 className="font-bold text-[#14532d]">{hospital?.name}</h2>
                 <p className="text-[#6B7280]  truncate">{hospital?.address}</p>
