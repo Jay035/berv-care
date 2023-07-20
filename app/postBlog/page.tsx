@@ -23,9 +23,9 @@ const EditorBlock = dynamic(
   }
 );
 
-export const metadata: Metadata = {
-  title: `Berv-Care | Post Blog`,
-};
+// export const metadata: Metadata = {
+//   title: `Berv-Care | Post Blog`,
+// };
 
 export default function PostBlog() {
   const router = useRouter();
