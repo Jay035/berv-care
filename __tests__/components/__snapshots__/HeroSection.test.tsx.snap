@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero section should render hero section properly 1`] = `
+<div>
+  <section
+    class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
+  >
+    <div
+      class="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left"
+    >
+      <p
+        class="font-semibold text-base xl:text-lg text-[#6B7280] mb-1"
+      >
+        Find the Care You Deserve, With Ease
+      </p>
+      <h1
+        class="font-extrabold text-[#14532D] text-3xl md:text-4xl xl:text-6xl"
+      >
+        Your Pathway to Trusted Care Providers
+      </h1>
+      <p
+        class="mt-4 text-lg xl:text-xl text-[#374151]"
+      >
+        With 
+        <span
+          class="font-bold text-[#14532D]"
+        >
+          Berv-Care
+        </span>
+        , finding the nearest care has never been easier. Start your journey to exceptional care today.
+      </p>
+      <div
+        class="mt-12 text-lg"
+      >
+        <a
+          class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+          href="/hospitals"
+        >
+          Get Started
+        </a>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <img
+        alt="doctor treating patient"
+        class="w-full"
+        src="/doctor-1.png"
+      />
+    </div>
+  </section>
+</div>
+`;
