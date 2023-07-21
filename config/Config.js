@@ -10,7 +10,6 @@ import 'firebase/storage';
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_apiKey,
   authDomain: process.env.NEXT_PUBLIC_authDomain,
-  // databaseURL: process.env.NEXT_PUBLIC_DATABASE_URL,
   projectId: process.env.NEXT_PUBLIC_projectId,
   storageBucket: process.env.NEXT_PUBLIC_storageBucket,
   messagingSenderId: process.env.NEXT_PUBLIC_messagingSenderId,
@@ -22,7 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Storage and get a reference to the service
-// const storage = firebase.storage()
 const storage = getStorage(app);
 const storageRef = ref(storage);
 

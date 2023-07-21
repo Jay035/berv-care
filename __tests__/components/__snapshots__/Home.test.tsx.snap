@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page should render hero section properly 1`] = `
+<div>
+  <section
+    class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
+  >
+    <div
+      class="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left"
+    >
+      <p
+        class="font-semibold text-base xl:text-lg text-[#6B7280] mb-1"
+      >
+        Find the Care You Deserve, With Ease
+      </p>
+      <h1
+        class="font-extrabold text-[#14532D] text-3xl md:text-4xl xl:text-6xl"
+      >
+        Your Pathway to Trusted Care Providers
+      </h1>
+      <p
+        class="mt-4 text-lg xl:text-xl text-[#374151]"
+      >
+        With 
+        <span
+          class="font-bold text-[#14532D]"
+        >
+          Berv-Care
+        </span>
+        , finding the nearest care has never been easier. Start your journey to exceptional care today.
+      </p>
+      <div
+        class="mt-12 text-lg"
+      >
+        <a
+          class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+          href="/hospitals"
+        >
+          Get Started
+        </a>
+      </div>
+    </div>
+    <div
+      class=""
+    >
+      <img
+        alt="doctor treating patient"
+        class="w-full"
+        src="/doctor-1.png"
+      />
+    </div>
+  </section>
+</div>
+`;
+
+exports[`Home page should render how it works section properly 1`] = `
+<div>
+  <section
+    class="px-[9.5vw] my-28 pt-20 pb-24 bg-[#FDE68A]"
+    id="howItWorks"
+  >
+    <h1
+      class="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold"
+    >
+      How it works?
+    </h1>
+    <div
+      class="mt-14 mb-20 grid gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-8"
+    >
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Get Started
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Click the 'Get started' button to view health centres around you
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Search
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Search for hospitals within your location. You can input your location or select from a list of nearby hospitals
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Select
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Click on the 'View' button to select the hospital you want.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Share
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Berv-Care also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Sign Up
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Berv-Care requires users to create an account to access the platform's admin features.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Markdown Support
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Berv-Care allows admin users to write content(create hospital entries and corresponding details) with markdown.
+          </p>
+        </div>
+      </div>
+    </div>
+    <a
+      class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+      href="/hospitals"
+    >
+      Get Started
+    </a>
+  </section>
+</div>
+`;

@@ -30,12 +30,7 @@ export default function HeroSection({}: Props) {
         {/* CTAs */}
         <div className="mt-12 text-lg">
           <GetStartedBtn />
-          {/* <button className="capitalize py-4 w-[11.25rem] md:w-full bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black">
-            Get Started
-          </button>
-          <button className="py-4 w-[11.25rem] md:w-full rounded-[50px] border border-black transition hover:bg-[#14532D] hover:text-white hover:border-none">
-            Book Test
-          </button> */}
+          
         </div>
       </div>
       <div className="">

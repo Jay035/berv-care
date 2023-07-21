@@ -6,6 +6,7 @@ interface InputProps {
   id?: string;
   label?: string;
   style?: string;
+  autoFocus?: boolean;
   // dataTestId?: string;
   onChange?: (e: any) => void;
   placeholder: string;
@@ -24,6 +25,7 @@ export default function CustomInput({
   onChange,
   placeholder,
   className,
+  autoFocus,
   id,
 }: InputProps) {
   // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +37,7 @@ export default function CustomInput({
         {label}
       </label>
       <input
+      autoFocus={autoFocus}
         id={id}
         type={type}
         value={value}

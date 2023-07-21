@@ -29,7 +29,24 @@ export default function Form() {
       router.push("/");
     } catch (err: any) {
       console.error(err.message);
-      setError?.(err.message);
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          setError("Email already in use");
+          break;
+        case "auth/weak-password":
+          setError("Weak pasword. Password should be at least 6 characters");
+          break;
+        case "auth/invalid-email":
+          setError("Invalid email");
+          break;
+        case "auth/network-request-failed":
+          setError("Network request failed, check your network connection");
+          break;
+        default:
+          setError("Incorrect email or password");
+          break;
+      }
+      // setError?.(err.message);
       setLoading?.((prevState: boolean) => !prevState);
     }
   };

@@ -1,7 +1,7 @@
 "use client";
-import CustomInput from "@/components/CustomInput";
-import Editor from "@/components/PostBlog/BlogPostEditor";
-import EditorRenderer from "@/components/PostBlog/EditorRenderer";
+// import CustomInput from "@/components/CustomInput";
+// import Editor from "@/components/PostBlog/BlogPostEditor";
+// import EditorRenderer from "@/components/PostBlog/EditorRenderer";
 import { db } from "@/config/Config";
 // import { OutputData } from "@editorjs/editorjs";
 import { addDoc, collection } from "@firebase/firestore";
@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/Auth";
 import { Metadata } from "next";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Form from "./Form";
 
 const EditorBlock = dynamic(
   () => import("@/components/PostBlog/BlogPostEditor"),
@@ -52,7 +53,7 @@ export default function PostBlog() {
       // toast.success("Congratulations, you have published your story");
       console.log("Congratulations, you have published your story");
       setTimeout(() => {
-        router.push("/blog");
+        router.push("/");
       }, 1000);
     } catch (err: any) {
       console.log(err.message);
@@ -79,62 +80,7 @@ export default function PostBlog() {
           Publish
         </button>
       </div>
-      <div className="grid lg:grid-cols-2 gap-8">
-        <section className="col-span-1">
-          <CustomInput
-            type="text"
-            label="title"
-            // dataTestId="blog-title"
-            className="w-full mt-3 text-black border border-black py-2 md:py-4 px-4 rounded-lg"
-            value={title}
-            name="blog-title"
-            onChange={(e: any) => setTitle(e.target.value)}
-            placeholder=""
-          />
-
-          <div className="">
-            <h1 className="text-lg font-medium my-3">Content</h1>
-            {/* <div className="border border-black rounded-md">
-            <EditorBlock
-              data={data}
-              onChange={setData}
-              holder="editorjs-container"
-              />
-            </div> */}
-            <div>
-              <textarea
-                autoFocus={true}
-                value={markdown}
-                onChange={(e) => setMarkdown(e.target.value)}
-                rows={10}
-                cols={50}
-                className="p-2 w-full rounded-lg border border-black"
-                placeholder="Write your content in Markdown here..."
-              />
-            </div>
-          </div>
-        </section>
-        <section className="col-span-1 ">
-          <h1 className="text-lg font-medium mb-3">Preview</h1>
-          <div className="border rounded-lg p-4">
-            <h1 className="text-2xl mb-2 font-bold">{title && title}</h1>
-            <div className="">
-              {markdown && (
-                // <ReactMarkdown
-                //   remarkPlugins={[remarkGfm]}
-                //   transformImageUri={(uri) =>
-                //     uri.startsWith("http")
-                //       ? uri
-                //       : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-                //   }
-                // >
-                <ReactMarkdown>{markdown}</ReactMarkdown>
-              )}
-              {/* </ReactMarkdown> */}
-            </div>
-          </div>
-        </section>
-      </div>
+      <Form title={title} markdown={markdown} setTitle={setTitle} setMarkdown={setMarkdown} />
       <button
         disabled={title === "" || markdown === ""}
         onClick={publishBlog}
