@@ -1,6 +1,11 @@
 # Berv-Care: Your Pathway to Trusted Care Providers
 
+![Preview](/public/screenshot-1.png)
+
 ## Welcome! 👋
+
+### Table of Contents 
+<!-- [Headers](#headers)   -->
 Thanks for checking out my repository
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
