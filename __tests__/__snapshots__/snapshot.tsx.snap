@@ -1,957 +1,247 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders homepage unchanged 1`] = `
+exports[`should render hero section properly 1`] = `
 <div>
-  <main
-    class="mt-[4.56rem] mb-[3.375rem]"
+  <section
+    class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
   >
-    <section
-      class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
+    <div
+      class="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left"
     >
-      <div
-        class="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left xl:w-[32.3rem]"
+      <p
+        class="font-semibold text-base xl:text-lg text-[#6B7280] mb-1"
       >
-        <p
-          class="font-semibold text-base text-[#6B7280] mb-1"
-        >
-          Find the Care You Deserve, With Ease
-        </p>
-        <h1
-          class="font-extrabold text-[#14532D] text-3xl xl:text-5xl"
-        >
-          Your Pathway to Trusted Care Providers
-        </h1>
-        <p
-          class="mt-4 text-lg text-[#374151]"
-        >
-          With 
-          <span
-            class="font-bold text-[#14532D]"
-          >
-            Berv-Care
-          </span>
-          , finding the nearest care has never been easier. Start your journey to exceptional care today.
-        </p>
-        <div
-          class="mt-12 text-lg"
-        >
-          <a
-            class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-            href="/hospitals"
-          >
-            Get Started
-          </a>
-        </div>
-      </div>
-      <div
-        class=""
-      >
-        <img
-          alt="doctor treating patient"
-          class="w-full"
-          src="/doctor-1.png"
-        />
-      </div>
-    </section>
-    <section
-      class="px-[9.5vw] my-28 py-20 bg-[#FDE68A]"
-      id="howItWorks"
-    >
+        Find the Care You Deserve, With Ease
+      </p>
       <h1
-        class="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold"
+        class="font-extrabold text-[#14532D] text-3xl md:text-4xl xl:text-6xl"
       >
-        How it works?
-      </h1>
-      <div
-        class="mt-14 mb-20 grid gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-8"
-      >
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Get Started
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Click the 'Get started' button
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Search
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Search for hospitals within your location. You can input your location or select from a list of nearby cities to find hospitals in your area.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Select
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Click on the 'View' button to select the hospital you want.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Share
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Sign Up
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care requires admin users to create an account to access the platform's admin features.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Markdown Support
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care allows admin users to write content(create hospital entries and corresponding details) with markdown.
-            </p>
-          </div>
-        </div>
-      </div>
-      <a
-        class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-        href="/hospitals"
-      >
-        Get Started
-      </a>
-    </section>
-    <section
-      class="px-[9.5vw] mb-28"
-    >
-      <h1
-        class="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold"
-      >
-        Why Berv-Care?
+        Your Pathway to Trusted Care Providers
       </h1>
       <p
-        class="mt-4 text-center md:text-lg text-[#6B7280] max-w-[867px] mx-auto"
+        class="mt-4 text-lg xl:text-xl text-[#374151]"
       >
-        We have designed our platform with a user-centric approach. Our intuitive interface and easy-to-use features make the process of finding care closest to you effortless.
-         
+        With 
+        <span
+          class="font-bold text-[#14532D]"
+        >
+          Berv-Care
+        </span>
+        , finding the nearest care has never been easier. Start your journey to exceptional care today.
       </p>
       <div
-        class="mt-[32.5px]"
+        class="mt-12 text-lg"
       >
-        <div
-          class="md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]"
+        <a
+          class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+          href="/hospitals"
         >
-          <section
-            class="bg-[#DCFCE7] md:flex lg:justify-center lg:items-center py-11 px-6 "
-          >
-            <p
-              class="text-3xl lg:text-4xl"
-            >
-              Find the health care facilities within your region without hassle.
-            </p>
-          </section>
-          <section
-            class="w-full"
-          >
-            <img
-              alt="health care facility"
-              class="w-full h-full lg:object-cover"
-              src="/img-1.jpg"
-            />
-          </section>
-        </div>
-        <div
-          class="flex flex-col-reverse md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]"
-        >
-          <section
-            class="w-full "
-          >
-            <img
-              alt="health care"
-              class="w-full h-full lg:object-cover"
-              src="/img-4.jpg"
-            />
-          </section>
-          <section
-            class="bg-[#FEF3C7] lg:flex lg:justify-center lg:items-center py-11 px-6"
-          >
-            <p
-              class="text-3xl lg:text-4xl"
-            >
-              Talk to the best doctors. Discover the best way to stay healthy.
-            </p>
-          </section>
-        </div>
+          Get Started
+        </a>
       </div>
-    </section>
-    <section
-      class="px-[9.5vw] mb-12"
+    </div>
+    <div
+      class=""
     >
-      <h1
-        class="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold"
-      >
-        Testimonials!
-      </h1>
-      <p
-        class="mt-4 mb-8 text-center md:text-lg text-[#6B7280] max-w-[867px] mx-auto"
-      >
-        We have thousands of our happy customers leaving reviews on their experiences. Hear what they have to say
-         
-      </p>
-      <div
-        class="grid lg:grid-cols-3"
-      >
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-black pt-[65.36px] pb-[45px]"
-        >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
-          <p
-            class="mt-[61.4px]"
-          >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
-          </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]"
-        >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
-          <p
-            class="mt-[61.4px]"
-          >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
-          </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]"
-        >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
-          <p
-            class="mt-[61.4px]"
-          >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
-          </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
-      </div>
-    </section>
-    <section
-      class="px-[9.5vw] pt-4 mb-28 text-center md:text-left"
-      id="healthCenter"
-    >
-      <h3
-        class="text-[#14532D] font-semibold"
-      >
-        OUR HEALTH CENTER
-      </h3>
-      <h1
-        class="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight"
-      >
-        Read our latest medical and lifestyle articles
-      </h1>
-      <section
-        class="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full"
-      >
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-1.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-2.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-3.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-      </section>
-    </section>
-  </main>
+      <img
+        alt="doctor treating patient"
+        class="w-full"
+        src="/doctor-1.png"
+      />
+    </div>
+  </section>
 </div>
 `;
 
-exports[`renders homepage unchanged 2`] = `
+exports[`should render how it works section properly 1`] = `
 <div>
-  <main
-    class="mt-[4.56rem] mb-[3.375rem]"
+  <section
+    class="px-[9.5vw] my-28 pt-20 pb-24 bg-[#FDE68A]"
+    id="howItWorks"
   >
-    <section
-      class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
+    <h1
+      class="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold"
+    >
+      How it works?
+    </h1>
+    <div
+      class="mt-14 mb-20 grid gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-8"
     >
       <div
-        class="w-full mx-auto text-center md:w-[32rem] lg:w-full lg:text-left xl:w-[32.3rem]"
-      >
-        <p
-          class="font-semibold text-base text-[#6B7280] mb-1"
-        >
-          Find the Care You Deserve, With Ease
-        </p>
-        <h1
-          class="font-extrabold text-[#14532D] text-3xl xl:text-5xl"
-        >
-          Your Pathway to Trusted Care Providers
-        </h1>
-        <p
-          class="mt-4 text-lg text-[#374151]"
-        >
-          With 
-          <span
-            class="font-bold text-[#14532D]"
-          >
-            Berv-Care
-          </span>
-          , finding the nearest care has never been easier. Start your journey to exceptional care today.
-        </p>
-        <div
-          class="mt-12 text-lg"
-        >
-          <a
-            class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-            href="/hospitals"
-          >
-            Get Started
-          </a>
-        </div>
-      </div>
-      <div
-        class=""
+        class="flex flex-col gap-5"
       >
         <img
-          alt="doctor treating patient"
-          class="w-full"
-          src="/doctor-1.png"
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
         />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Get Started
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Click the 'Get started' button to view health centres around you
+          </p>
+        </div>
       </div>
-    </section>
-    <section
-      class="px-[9.5vw] my-28 py-20 bg-[#FDE68A]"
-      id="howItWorks"
-    >
-      <h1
-        class="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold"
-      >
-        How it works?
-      </h1>
       <div
-        class="mt-14 mb-20 grid gap-y-12 md:grid-cols-2 lg:grid-cols-3 gap-x-8"
+        class="flex flex-col gap-5"
       >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
         <div
-          class="flex flex-col gap-5"
+          class=""
         >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
           >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Get Started
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Click the 'Get started' button
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
+            Search
+          </h2>
+          <p
+            class="text-[#374151]"
           >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Search
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Search for hospitals within your location. You can input your location or select from a list of nearby cities to find hospitals in your area.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Select
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Click on the 'View' button to select the hospital you want.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Share
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Sign Up
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care requires admin users to create an account to access the platform's admin features.
-            </p>
-          </div>
-        </div>
-        <div
-          class="flex flex-col gap-5"
-        >
-          <img
-            alt="vector"
-            data-nimg="1"
-            decoding="async"
-            height="48"
-            loading="lazy"
-            src="/Vector-1.svg"
-            style="color: transparent;"
-            width="48"
-          />
-          <div
-            class=""
-          >
-            <h2
-              class="text-[20px] font-semibold mb-2 tracking-tight"
-            >
-              Markdown Support
-            </h2>
-            <p
-              class="text-[#374151]"
-            >
-              Berv-Care allows admin users to write content(create hospital entries and corresponding details) with markdown.
-            </p>
-          </div>
+            Search for hospitals within your location. You can input your location or select from a list of nearby hospitals
+          </p>
         </div>
       </div>
-      <a
-        class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
-        href="/hospitals"
-      >
-        Get Started
-      </a>
-    </section>
-    <section
-      class="px-[9.5vw] mb-28"
-    >
-      <h1
-        class="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold"
-      >
-        Why Berv-Care?
-      </h1>
-      <p
-        class="mt-4 text-center md:text-lg text-[#6B7280] max-w-[867px] mx-auto"
-      >
-        We have designed our platform with a user-centric approach. Our intuitive interface and easy-to-use features make the process of finding care closest to you effortless.
-         
-      </p>
       <div
-        class="mt-[32.5px]"
+        class="flex flex-col gap-5"
       >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
         <div
-          class="md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]"
+          class=""
         >
-          <section
-            class="bg-[#DCFCE7] md:flex lg:justify-center lg:items-center py-11 px-6 "
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
           >
-            <p
-              class="text-3xl lg:text-4xl"
-            >
-              Find the health care facilities within your region without hassle.
-            </p>
-          </section>
-          <section
-            class="w-full"
+            Select
+          </h2>
+          <p
+            class="text-[#374151]"
           >
-            <img
-              alt="health care facility"
-              class="w-full h-full lg:object-cover"
-              src="/img-1.jpg"
-            />
-          </section>
-        </div>
-        <div
-          class="flex flex-col-reverse md:grid md:grid-cols-[45%_auto] w-full md:max-h-[285px]"
-        >
-          <section
-            class="w-full "
-          >
-            <img
-              alt="health care"
-              class="w-full h-full lg:object-cover"
-              src="/img-4.jpg"
-            />
-          </section>
-          <section
-            class="bg-[#FEF3C7] lg:flex lg:justify-center lg:items-center py-11 px-6"
-          >
-            <p
-              class="text-3xl lg:text-4xl"
-            >
-              Talk to the best doctors. Discover the best way to stay healthy.
-            </p>
-          </section>
+            Click on the 'View' button to select the hospital you want.
+          </p>
         </div>
       </div>
-    </section>
-    <section
-      class="px-[9.5vw] mb-12"
-    >
-      <h1
-        class="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold"
-      >
-        Testimonials!
-      </h1>
-      <p
-        class="mt-4 mb-8 text-center md:text-lg text-[#6B7280] max-w-[867px] mx-auto"
-      >
-        We have thousands of our happy customers leaving reviews on their experiences. Hear what they have to say
-         
-      </p>
       <div
-        class="grid lg:grid-cols-3"
+        class="flex flex-col gap-5"
       >
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-black pt-[65.36px] pb-[45px]"
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
         >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
-          <p
-            class="mt-[61.4px]"
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
           >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
-          </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]"
-        >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
+            Share
+          </h2>
           <p
-            class="mt-[61.4px]"
+            class="text-[#374151]"
           >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
+            Berv-Care also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.
           </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
-        <section
-          class="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]"
-        >
-          <img
-            alt="quotes"
-            data-nimg="1"
-            decoding="async"
-            height="31"
-            loading="lazy"
-            src="/quote.svg"
-            style="color: transparent;"
-            width="31"
-          />
-          <p
-            class="mt-[61.4px]"
-          >
-            Everything went well and Smoothly. Technician was right on time to pick up sample. It was a seamless expereince, One i would easily recommend to my friends.
-          </p>
-          <hr
-            class="my-6 border-[#111827]"
-          />
-          <h3>
-            Ikechukwu Ogujiaba
-          </h3>
-        </section>
+        </div>
       </div>
-    </section>
-    <section
-      class="px-[9.5vw] pt-4 mb-28 text-center md:text-left"
-      id="healthCenter"
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Sign Up
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Berv-Care requires users to create an account to access the platform's admin features.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-5"
+      >
+        <img
+          alt="vector"
+          data-nimg="1"
+          decoding="async"
+          height="48"
+          loading="lazy"
+          src="/Vector-1.svg"
+          style="color: transparent;"
+          width="48"
+        />
+        <div
+          class=""
+        >
+          <h2
+            class="text-[20px] font-semibold mb-2 tracking-tight"
+          >
+            Markdown Support
+          </h2>
+          <p
+            class="text-[#374151]"
+          >
+            Berv-Care allows admin users to write content(create hospital entries and corresponding details) with markdown.
+          </p>
+        </div>
+      </div>
+    </div>
+    <a
+      class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+      href="/hospitals"
     >
-      <h3
-        class="text-[#14532D] font-semibold"
-      >
-        OUR HEALTH CENTER
-      </h3>
-      <h1
-        class="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight"
-      >
-        Read our latest medical and lifestyle articles
-      </h1>
-      <section
-        class="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full"
-      >
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-1.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-2.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-        <div
-          class="text-left"
-        >
-          <img
-            alt="blog pics"
-            class="w-full"
-            src="/blog-3.png"
-          />
-          <h1
-            class="mt-[21px] mb-4 text-xl font-bold text-[#111827] tracking-tight"
-          >
-            Brev: Your mobile healthcare
-          </h1>
-          <p
-            class="text-[#6B7280]"
-          >
-            Tortor interdum condimentum nunc molestie quam lectus euismod pulvinar risus. Cursus in odio aenean.
-          </p>
-        </div>
-      </section>
-    </section>
-  </main>
+      Get Started
+    </a>
+  </section>
 </div>
 `;

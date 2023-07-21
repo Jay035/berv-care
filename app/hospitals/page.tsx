@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: `Your Pathway to Trusted Care Providers`,
 };
 
-export default async function HospitalsPage({}: Props) {
+export default async function HospitalsPage() {
   const hospitalData = getAllHospitals();
   const hospitals = await hospitalData;
 

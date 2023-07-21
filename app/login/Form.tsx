@@ -16,8 +16,9 @@ export default function Form() {
   const [error, setError] = useState("");
 
   const login = async (e: any) => {
+    console.log(process.env.NEXT_PUBLIC_storageBucket);
     e.preventDefault();
-    console.log("logging in....")
+    console.log("logging in....");
     setLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -38,9 +39,9 @@ export default function Form() {
         case "auth/user-not-found":
           setError("No account with that email was found");
           break;
-        case "auth/user-not-found":
-          setError("No account with that email was found");
-          break;
+        // case "auth/user-not-found":
+        //   setError("No account with that email was found");
+        //   break;
         case "auth/wrong-password":
           setError("Incorrect password");
           break;

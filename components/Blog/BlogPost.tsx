@@ -17,7 +17,6 @@ import Markdown from "markdown-to-jsx";
 export default function BlogPost({ post }: any) {
   const { router } = useAuth();
   const date = new Date(post?.date).toLocaleDateString();
-  // console.log(date);
   if (!post) console.log("no post");
   const navigateToPreview = (params: string) => {
     router.push(params);
@@ -28,14 +27,13 @@ export default function BlogPost({ post }: any) {
         <img
           className="w-full"
           src="/blog-1.png"
-          // src={post.frontmatter?.cover_image}
           alt="blog pics"
         />
         <p className="mt-4 text-sm text-[#6B7280]">Posted on {date} </p>
         <h1 className=" mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
-        <div className="truncate w-fit max-w-[240px] h-fit max-h-5">
+        <div className="truncate w-fit max-w-[260px] h-fit max-h-5">
 
           <Markdown
             // remarkPlugins={[remarkGfm]}
@@ -46,11 +44,12 @@ export default function BlogPost({ post }: any) {
             // }
           >
             {post?.content}
-          </Markdown>
+          </Markdown>...
         </div>
         <button
-          className="bg-[#14532D] text-white rounded-lg mt-3 px-4 py-3"
-          onClick={() => navigateToPreview(`/blog/${post?.id}`)}
+        disabled
+          className="bg-[#14532D] disabled:bg-[#14532D]/80 text-white rounded-lg mt-3 px-4 py-3"
+          // onClick={() => navigateToPreview(`/blog/${post?.id}`)}
         >
           {/* <Link href={`/blog/${post?.id}`} className=""> */}
           Read more
