@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render hero section properly 1`] = `
+exports[`Home page should render hero section properly 1`] = `
 <div>
   <section
     class="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]"
@@ -53,7 +53,7 @@ exports[`should render hero section properly 1`] = `
 </div>
 `;
 
-exports[`should render how it works section properly 1`] = `
+exports[`Home page should render how it works section properly 1`] = `
 <div>
   <section
     class="px-[9.5vw] my-28 pt-20 pb-24 bg-[#FDE68A]"

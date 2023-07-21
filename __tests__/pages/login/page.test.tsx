@@ -1,12 +1,15 @@
-// import { render, screen } from "@testing-library/react";
-// import "@testing-library/jest-dom";
-// import Login from "@/app/login/page";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import Login from "@/app/login/page";
 
-// describe("Login page", () =>
-//   it("should render properly", () => {
-//     render(<Login />);
+describe("Login page", () =>
+  it("should render properly", () => {
+    const { container } = render(<Login />);
 
-//     const header = screen.getByRole("heading");
-//     const headerText = "Welcome back";
-//     expect(header).toHaveTextContent(headerText);
-//   }));
+    // const heading = screen.getByRole("heading", {
+    //   name: /Welcome back/i,
+    // });
+
+    // expect(heading).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
+  }));

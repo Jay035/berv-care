@@ -1,7 +1,8 @@
 import HeroSection from "@/components/HeroSection";
+import HowItWorks from "@/components/HowItWorks";
 import { render, screen } from "@testing-library/react";
 
-describe("Hero section", () => {
+describe("Home page", () => {
   it("should render hero section properly", () => {
     const { container } = render(<HeroSection />);
     const heading = screen.getByRole("heading", {
@@ -11,4 +12,11 @@ describe("Hero section", () => {
     expect(heading).toBeInTheDocument();
     expect(container).toMatchSnapshot();
   });
+
+  it("should render how it works section properly", () => {
+    const { container } = render(<HowItWorks />);
+    expect(container).toMatchSnapshot();
+  });
+
+  
 });
