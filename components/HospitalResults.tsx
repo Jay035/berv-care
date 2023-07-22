@@ -3,7 +3,9 @@ import Link from "next/link";
 import CustomInput from "./CustomInput";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Papa from "papaparse";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
+import { convertDataToCSV } from "@/utils/csvUtils";
 
 export default function HospitalResults({ hospitals }: any) {
   const [usersRegion, setUsersRegion] = useState("");
@@ -66,15 +68,22 @@ export default function HospitalResults({ hospitals }: any) {
 
   const handleSearch = (e: any) => {
     e.preventDefault();
-    console.log(filteredHospitals);
-    if (filteredHospitals.length === 0) {
-      setData(hospitals?.data);
-    } else {
-      setData(filteredHospitals);
+    try {
+      console.log(filteredHospitals);
+      if (filteredHospitals.length === 0) {
+        setData(hospitals?.data);
+      } else {
+        setData(filteredHospitals);
+      }
+      setQuery(e.target.value);
+      setSearchError("");
+      // Convert the data to CSV format using papaparse
+      convertDataToCSV(data)
+    } catch (error) {
+      throw new Error("Failed to fetch and export data.");
     }
-    setQuery(e.target.value);
-    setSearchError("");
   };
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -134,7 +143,7 @@ export default function HospitalResults({ hospitals }: any) {
             >
               <div
                 id="max-w-sm"
-                className="flex flex-col gap-2 w-fit max-w-[240px] "
+                className="flex flex-col gap-2 w-fit max-w-[240px]"
               >
                 <h2 className="font-bold text-[#14532d]">{hospital?.name}</h2>
                 <p className="text-[#6B7280]  truncate">{hospital?.address}</p>
