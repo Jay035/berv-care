@@ -88,7 +88,7 @@ export default function HospitalResults({ hospitals }: any) {
   };
 
   const handleExportData = async () => {
-    toast.info('exporting data....')
+    // toast.info('exporting data....')
     try {
       // Convert the data to CSV format using papaparse
       const csvData = convertDataToCSV(data);

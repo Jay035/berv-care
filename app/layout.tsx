@@ -7,8 +7,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ToastProvider from "@/components/ToastProvider";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -73,13 +73,14 @@ export default function RootLayout({
         ></link>
       </head>
       <body className={TomatoGrotesk.className}>
-        <ScrollToTop />
-        <Transition />
-        <ToastContainer />
         <AuthProvider>
-          <Navbar />
-          <BlogContextProvider>{children}</BlogContextProvider>
-          <Footer />
+          <ToastProvider>
+            <ScrollToTop />
+            <Transition />
+            <Navbar />
+            <BlogContextProvider>{children}</BlogContextProvider>
+            <Footer />
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>
