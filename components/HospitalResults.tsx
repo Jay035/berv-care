@@ -6,6 +6,9 @@ import Image from "next/image";
 import Papa from "papaparse";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { convertDataToCSV } from "@/utils/csvUtils";
+import { uploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
+import ExportDataButton from "./ExportDataButton";
+import { toast } from "react-toastify";
 
 export default function HospitalResults({ hospitals }: any) {
   const [usersRegion, setUsersRegion] = useState("");
@@ -14,7 +17,8 @@ export default function HospitalResults({ hospitals }: any) {
   );
   // console.log(nearbyHospitals);
   const [data, setData] = useState(hospitals?.data);
-  // const [data, setData] = useState(usersRegion !== "" ? nearbyHospitals :hospitals?.data);
+  const [hospitalLocationSelected, setHospitalLocationSelected] =
+    useState("all");
   const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
   const [currentSliceEnd, setCurrentSliceEnd] = useState<number>(12);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -28,7 +32,7 @@ export default function HospitalResults({ hospitals }: any) {
     locationCoord: { loaded, coordinates },
   } = useGeoLocation();
   const { longitude, latitude } = coordinates;
-  console.log(coordinates, loaded);
+  // console.log(coordinates, loaded);
 
   const next = () => {
     setCurrentSliceStart(currentSliceStart + 12);
@@ -69,21 +73,33 @@ export default function HospitalResults({ hospitals }: any) {
   const handleSearch = (e: any) => {
     e.preventDefault();
     try {
-      console.log(filteredHospitals);
+      // console.log(filteredHospitals);
       if (filteredHospitals.length === 0) {
         setData(hospitals?.data);
       } else {
         setData(filteredHospitals);
       }
       setQuery(e.target.value);
+      setHospitalLocationSelected(e.target.value);
       setSearchError("");
-      // Convert the data to CSV format using papaparse
-      convertDataToCSV(data)
     } catch (error) {
       throw new Error("Failed to fetch and export data.");
     }
   };
 
+  const handleExportData = async () => {
+    toast.info('exporting data....')
+    try {
+      // Convert the data to CSV format using papaparse
+      const csvData = convertDataToCSV(data);
+      await uploadCSVToFirebaseStorage(csvData, hospitalLocationSelected);
+      console.log(csvData);
+      toast.success("Data exported successfully");
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.message);
+    }
+  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -92,7 +108,7 @@ export default function HospitalResults({ hospitals }: any) {
       setSearchError("Please submit a value");
     }
   };
-  console.log(data);
+  // console.log(data);
 
   // useEffect(() => {
   //   getResult();
@@ -102,9 +118,10 @@ export default function HospitalResults({ hospitals }: any) {
     <section className="">
       {data?.length > 0 && (
         <form
-        //  onSubmit={handleSubmit}
+          className="max-w-4xl lg:mx-auto"
+          //  onSubmit={handleSubmit}
         >
-          <div className="flex justify-start max-w-4xl lg:mx-auto items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
+          <div className="flex justify-start items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
             <Image
               src="/search-icon.png"
               alt="search icon"
@@ -116,6 +133,7 @@ export default function HospitalResults({ hospitals }: any) {
               type="text"
               // label=""
               // dataTestId="searchbar"
+              autocomplete="off"
               className="w-full outline-none text-black"
               value={query}
               name="search"
@@ -132,6 +150,8 @@ export default function HospitalResults({ hospitals }: any) {
           {searchError && <p className="text-red-500">{searchError}</p>}
         </form>
       )}
+
+      <ExportDataButton handleExportData={handleExportData} />
 
       <div className="my-12 grid gap-4 w-full lg:grid-cols-2">
         {data

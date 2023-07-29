@@ -1,5 +1,4 @@
 import { Navbar } from "@/components/Navbar";
-// import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
@@ -8,9 +7,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
-import "react-toastify/dist/ReactToastify.css";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/config/Config";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -54,12 +52,6 @@ export const metadata: Metadata = {
   description: "Your Pathway to Trusted Care Providers",
   icons: {
     icon: "/logo.svg",
-    // shortcut: '/shortcut-icon.png',
-    // apple: '/apple-icon.png',
-    // other: {
-    //   rel: 'apple-touch-icon-precomposed',
-    //   url: '/apple-touch-icon-precomposed.png',
-    // },
   },
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "cyan" },
@@ -72,17 +64,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in.
-  //     console.log(user);
-  //     // setUser(user);
-  //     // setIsUserLoggedIn(true);
-  //   } else {
-  //     // User is not signed in.
-  //     // setIsUserLoggedIn(false);
-  //   }
-  // });
   return (
     <html lang="en">
       <head>
@@ -94,7 +75,7 @@ export default function RootLayout({
       <body className={TomatoGrotesk.className}>
         <ScrollToTop />
         <Transition />
-        {/* <ToastContainer /> */}
+        <ToastContainer />
         <AuthProvider>
           <Navbar />
           <BlogContextProvider>{children}</BlogContextProvider>

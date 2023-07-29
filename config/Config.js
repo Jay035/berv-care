@@ -11,7 +11,7 @@ const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_apiKey,
   authDomain: process.env.NEXT_PUBLIC_authDomain,
   projectId: process.env.NEXT_PUBLIC_projectId,
-  storageBucket: process.env.NEXT_PUBLIC_storageBucket,
+  storageBucket: "berv-care-49a8d.appspot.com",
   messagingSenderId: process.env.NEXT_PUBLIC_messagingSenderId,
   appId: process.env.NEXT_PUBLIC_appId,
   measurementId: process.env.NEXT_PUBLIC_measurementId,
@@ -19,6 +19,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// if (firebase.apps.length === 0) {
+//   FIREBASE_CLIENT.initializeApp(firebaseConfig);
+// }
 
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app);
