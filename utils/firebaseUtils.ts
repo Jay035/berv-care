@@ -1,12 +1,16 @@
 import { storage } from "@/config/Config";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { toast } from "react-toastify";
 
-export const uploadCSVToFirebaseStorage = async (
+export async function uploadCSVToFirebaseStorage(
   csvData: string,
   selectedHospitalLocation: string
-) => {
+) {
   // Create a storage reference from our storage service
-  const storageRef = ref(storage, `csv/${selectedHospitalLocation}-hospital(s)-csv`);
+  const storageRef = ref(
+    storage,
+    `csv/${selectedHospitalLocation}-hospital(s)-csv`
+  );
   const metadata = {
     contentType: "text/csv",
   };
@@ -60,7 +64,9 @@ export const uploadCSVToFirebaseStorage = async (
       // For instance, get the download URL: https://firebasestorage.googleapis.com/...
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
+        alert(`Download generated CSV file at ${downloadURL}`);
+        return downloadURL;
       });
     }
   );
-};
+}

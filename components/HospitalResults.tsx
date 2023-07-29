@@ -9,8 +9,10 @@ import { convertDataToCSV } from "@/utils/csvUtils";
 import { uploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 import ExportDataButton from "./ExportDataButton";
 import { toast } from "react-toastify";
+import { useAuth } from "@/context/Auth";
 
 export default function HospitalResults({ hospitals }: any) {
+  const [ downloadCSVLink, setDownloadCSVLink] = useState();
   const [usersRegion, setUsersRegion] = useState("");
   const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
@@ -90,16 +92,18 @@ export default function HospitalResults({ hospitals }: any) {
   const handleExportData = async () => {
     // toast.info('exporting data....')
     try {
-      // Convert the data to CSV format using papaparse
       const csvData = convertDataToCSV(data);
       await uploadCSVToFirebaseStorage(csvData, hospitalLocationSelected);
-      console.log(csvData);
       toast.success("Data exported successfully");
     } catch (err: any) {
       console.log(err);
       toast.error(err.message);
     }
   };
+
+  function notify() {
+    toast.info(`download csv file at ${downloadCSVLink}`);
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

@@ -34,6 +34,7 @@ interface FormProps {
   name?: string;
   email?: string | undefined;
   error: string;
+  downloadCSVLink?: string;
   password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
@@ -43,6 +44,7 @@ interface FormProps {
   setError?: (x: string) => void;
   setPassword?: (x: string) => void;
   setLoading?: (x: any) => void;
+  setDownloadCSVLink?: (x: any) => void;
   setIsUserLoggedIn?: (x: any) => void;
   register?: (email: string, password: string) => void;
   signInWithGoogle?: (x: any) => void;

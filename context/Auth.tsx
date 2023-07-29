@@ -8,10 +8,16 @@ import {
   signOut,
 } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { ReactNode, useState, useContext, useEffect, createContext } from "react";
+import {
+  ReactNode,
+  useState,
+  useContext,
+  useEffect,
+  createContext,
+} from "react";
 
 interface AuthContextType {
-  children: FormProps[]
+  children: FormProps[];
 }
 
 export const AuthContext = createContext<FormProps>({
@@ -33,6 +39,7 @@ export function AuthProvider({ children }: Props) {
   const [user, setUser]: any = useState(auth?.currentUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [downloadCSVLink, setDownloadCSVLink] = useState("");
 
   const login = async (email: string, password: string) => {
     setLoading(true);
@@ -74,7 +81,7 @@ export function AuthProvider({ children }: Props) {
   const logOut = async () => {
     await signOut(auth);
     setIsUserLoggedIn(false);
-    setUser(null)
+    setUser(null);
     router.push("/");
   };
 
@@ -104,13 +111,12 @@ export function AuthProvider({ children }: Props) {
       console.log(auth.currentUser);
       router.push("/");
     } catch (err: any) {
-      console.error(err.message)
+      console.error(err.message);
       setError(err.message);
       setLoading((prevState) => !prevState);
     }
   };
 
-  
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -126,7 +132,7 @@ export function AuthProvider({ children }: Props) {
     console.log(isUserLoggedIn);
   }, []);
 
-  const value= {
+  const value = {
     router,
     user,
     isUserLoggedIn,
@@ -139,6 +145,8 @@ export function AuthProvider({ children }: Props) {
     setLoading,
     setError,
     setUser,
+    downloadCSVLink,
+    setDownloadCSVLink,
   };
 
   return (
@@ -148,4 +156,4 @@ export function AuthProvider({ children }: Props) {
   );
 }
 
-export const useAuth =() => useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);
