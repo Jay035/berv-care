@@ -38,11 +38,11 @@ export default function Transition() {
   }, []);
   return (
     <div ref={trans} className="">
-      <div className="transition first absolute left-0 top-0 w-full h-full z-[1000000000000000000000000000000000] bg-[#14532dc9]"></div>
-      <div className="transition second absolute left-[20%] top-0 w-full h-full z-[1000000000000000000000000000000000] bg-[#14532dc9]"></div>
-      <div className="transition third absolute left-[40%] top-0 w-full h-full z-[1000000000000000000000000000000000] bg-[#14532dc9]"></div>
-      <div className="transition fourth absolute left-[60%] top-0 w-full h-full z-[1000000000000000000000000000000000] bg-[#14532dc9]"></div>
-      <div className="transition fifth absolute left-[80%] top-0 w-full h-full z-[1000000000000000000000000000000000] bg-[#14532dc9]"></div>
+      <div className="transition first absolute left-0 top-0 w-full h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
+      <div className="transition second absolute left-[20%] top-0 w-full h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
+      <div className="transition third absolute left-[40%] top-0 w-full h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
+      <div className="transition fourth absolute left-[60%] top-0 w-full h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
+      <div className="transition fifth absolute left-[80%] top-0 w-full h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
     </div>
   );
 }
