@@ -31,16 +31,9 @@ export default function Form({
 
         <div className="">
           <h1 className="text-lg font-medium my-3">Content</h1>
-          {/* <div className="border border-black rounded-md">
-            <EditorBlock
-              data={data}
-              onChange={setData}
-              holder="editorjs-container"
-              />
-            </div> */}
+
           <div>
             <textarea
-              // autoFocus={true}
               value={markdown}
               onChange={(e) => setMarkdown(e.target.value)}
               rows={10}
@@ -56,18 +49,7 @@ export default function Form({
         <div className="border rounded-lg p-4">
           <h1 className="text-2xl mb-2 font-bold">{title && title}</h1>
           <div className="">
-            {markdown && (
-              // <ReactMarkdown
-              //   remarkPlugins={[remarkGfm]}
-              //   transformImageUri={(uri) =>
-              //     uri.startsWith("http")
-              //       ? uri
-              //       : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-              //   }
-              // >
-              <ReactMarkdown>{markdown}</ReactMarkdown>
-            )}
-            {/* </ReactMarkdown> */}
+            {markdown && <ReactMarkdown>{markdown}</ReactMarkdown>}
           </div>
         </div>
       </section>

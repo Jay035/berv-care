@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Suspense, lazy } from "react";
 import { useBlogContext } from "@/context/BlogContext";
+import PostLoader from "../PostLoader";
 
 const BlogPost = lazy(() => import("./BlogPost"));
 
@@ -17,17 +18,15 @@ export default function Blog() {
       <h1 className="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight">
         Read our latest medical and lifestyle articles
       </h1>
-      <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
-        <Suspense
-          fallback={
-            <p className="font-bold text-2xl text-center">Loading....</p>
-          }
-        >
+      {blogs.length > 0 ? (
+        <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
           {blogs?.map((post: any, index: number) => (
             <BlogPost post={post} key={index} />
           ))}
-        </Suspense>
-      </section>
+        </section>
+      ) : (
+        <PostLoader />
+      )}
       <Link
         href="/blog"
         className="rounded-[50px] mx-auto w-fit text-white mt-12 bg-[#14532D] py-4 sm:py-[18px] px-8 md:px-14"

@@ -1,9 +1,6 @@
-declare module '@editorjs/paragraph';
-declare module '@editorjs/image';
-declare module '@editorjs/link';
-declare module '@editorjs/quote';
-declare module '@editorjs/raw';
-declare module '@editorjs/table';
+declare module "react-markdown";
+declare module "markdown-truncate";
+declare module 'markdown-it'
 
 type HospitalProps = {
   id: number;
@@ -50,7 +47,7 @@ interface FormProps {
   signInWithGoogle?: (x: any) => void;
   login?: (email: string, password: string) => void;
   logOut?: (x: any) => void;
-};
+}
 
 interface BlogMetadata {
   title: string;

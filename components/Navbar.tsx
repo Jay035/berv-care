@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/Auth";
@@ -7,15 +7,31 @@ import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const { user, logOut }: any = useAuth();
+  const optionsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
+    
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      optionsRef.current &&
+      !optionsRef.current.contains(event.target as Node)
+    ) {
+      setProfileOptionsShown(false);
+    }
+  };
+
   useEffect(() => {
     console.log(user);
+    window.addEventListener("click", handleOutsideClick);
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
   }, []);
 
   return (
@@ -143,7 +159,7 @@ export const Navbar = () => {
                   Post a Blog
                   {/* </Link> */}
                 </button>
-                <section className="absolute bottom-4 left-8 sm:left-[5.5rem]">
+                <section className="absolute bottom-4 left-8 sm:left-[5.5rem]" ref={optionsRef}>
                   <div className="relative w-full">
                     <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                       <div
@@ -289,7 +305,7 @@ export const Navbar = () => {
               Post a Blog
               {/* </Link> */}
             </button>
-            <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50">
+            <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50" ref={optionsRef}>
               <div className="relative w-full" id="profileInfoContainer">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                   <div

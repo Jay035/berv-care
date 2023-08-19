@@ -1,18 +1,30 @@
+import truncateMarkdown from "markdown-truncate";
+import MarkdownIt from "markdown-it";
 import { useAuth } from "@/context/Auth";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import Link from "next/link";
-import Markdown from "markdown-to-jsx";
 import img from "../../public/blog-1.png";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 export default function BlogPost({ post }: any) {
   const { router } = useAuth();
   const date = new Date(post?.date).toLocaleDateString();
+  const md = useRef<any>();
+  const [limit, setLimit] = useState(10);
   if (!post) console.log("no post");
   const navigateToPreview = (params: string) => {
     router.push(params);
   };
+
+  // useEffect(() => {
+  //   md.current = new MarkdownIt();
+  // }, []);
+
+  // const output =
+  //   md.current &&
+  //   md.current.render(truncateMarkdown(post?.content, { limit, ellipsis: true }));
+
   return (
     <section>
       <div className="text-left ">
@@ -21,18 +33,11 @@ export default function BlogPost({ post }: any) {
         <h1 className="mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
-        <div className="truncate w-fit max-w-[260px] h-fit max-h-5">
-          <Markdown
-          // remarkPlugins={[remarkGfm]}
-          // transformImageUri={(uri) =>
-          //   uri.startsWith("http")
-          //     ? uri
-          //     : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-          // }
-          >
+        <div className="">
+          {/* <div className="" dangerouslySetInnerHTML={{ __html: output }} /> */}
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {post?.content}
-          </Markdown>
-          ...
+          </ReactMarkdown>
         </div>
         <button
           disabled
