@@ -78,6 +78,23 @@ export const Navbar = () => {
               Find Hospitals
             </Link>
           </li>
+          {!user && (
+            <li
+              onClick={(e: any) => {
+                e.preventDefault();
+                if (user) {
+                  router.push("/postBlog");
+                } else {
+                  alert("You must be logged in to post a blog");
+                  router.push("/login");
+                }
+                setMenuShown((prevState: boolean) => !prevState);
+              }}
+              className="cursor-pointer transition"
+            >
+              Post a blog
+            </li>
+          )}
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden mt-5 w-full ">
             {!user && (
@@ -171,18 +188,18 @@ export const Navbar = () => {
                     </div>
                     {profileOptionsShown && (
                       <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute">
-                        <a href="#" className="flex items-center gap-2 px-4">
+                        {/* <a href="#" className="flex items-center gap-2 px-4">
                           <i className="ri-user-line"></i>
                           <span className="font-semibold text-black">
                             Profile
                           </span>
                         </a>
                         <a href="#" className="flex items-center gap-2 px-4">
-                        <i className="ri-pencil-line"></i>
+                          <i className="ri-pencil-line"></i>
                           <span className="font-semibold text-black">
                             My blogs
                           </span>
-                        </a>
+                        </a> */}
 
                         <p
                           onClick={(e) => {
@@ -190,7 +207,8 @@ export const Navbar = () => {
                             logOut();
                             setMenuShown((prevState: boolean) => !prevState);
                           }}
-                          className="border-t mt-2 w-full flex gap-2 py-3 px-4 text-center cursor-pointer"
+                          // border-t
+                          className=" mt-2 w-full flex gap-2 py-1 px-4 text-center cursor-pointer"
                         >
                           <i className="ri-logout-box-line"></i>
                           <span className="font-bold">SIGN OUT</span>
@@ -306,11 +324,11 @@ export const Navbar = () => {
                   </div>
                 </div>
                 {profileOptionsShown && (
-                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-24">
-                    <a href="" className="flex items-center gap-2 px-4">
+                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-16">
+                    {/* <a href="" className="flex items-center gap-2 px-4">
                       <i className="ri-user-line"></i>
                       <span className="font-semibold text-black">Profile</span>
-                    </a>
+                    </a> */}
 
                     <p
                       onClick={(e) => {
@@ -318,7 +336,8 @@ export const Navbar = () => {
                         logOut();
                         setMenuShown((prevState: boolean) => !prevState);
                       }}
-                      className="border-t mt-2 w-full flex gap-2 py-3 px-4 text-center cursor-pointer"
+                      // border-t
+                      className="mt-2 w-full flex gap-2 py-1 px-4 text-center cursor-pointer"
                     >
                       <i className="ri-logout-box-line"></i>
                       <span className="font-bold">SIGN OUT</span>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import img from "../public/doctor-1.png";
 import GetStartedBtn from "./GetStartedBtn";
 
 type Props = {};
@@ -14,9 +15,10 @@ export default function HeroSection({}: Props) {
         <h1 className="font-extrabold text-[#14532D] text-3xl md:text-4xl xl:text-6xl">
           Your Pathway to Trusted Care Providers
         </h1>
-        <p 
-        // contentEditable={true}
-         className="mt-4 text-lg xl:text-xl text-[#374151]">
+        <p
+          // contentEditable={true}
+          className="mt-4 text-lg xl:text-xl text-[#374151]"
+        >
           With <span className="font-bold text-[#14532D]">Berv-Care</span>,
           finding the nearest care has never been easier. Start your journey to
           exceptional care today.
@@ -30,17 +32,10 @@ export default function HeroSection({}: Props) {
         {/* CTAs */}
         <div className="mt-12 text-lg">
           <GetStartedBtn />
-          
         </div>
       </div>
       <div className="">
-        <img
-          src="/doctor-1.png"
-          //   sizes='100vw'
-
-          className="w-full"
-          alt="doctor treating patient"
-        />
+        <Image src={img} className="w-full" alt="doctor treating patient" />
       </div>
     </section>
   );

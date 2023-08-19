@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import img from "../public/img-1.jpg";
+import Image from "next/image";
 // import ReactMapGL, { Marker } from'react-map-gl'; // for map
 type Props = {
   hospital: HospitalProps;
@@ -36,9 +38,9 @@ export default function SingleHospital({ hospital }: Props) {
     <section className="">
       <div className="grid lg:grid-cols-[70%_30%] gap-10">
         <section>
-          <img
+          <Image
             className="w-full lg:h-[70%] object-cover"
-            src="/img-1.jpg"
+            src={img}
             alt="hospital image"
           />
           <h1 className="capitalize font-extrabold text-[#14532D] text-3xl tracking-tight md:text-4xl xl:text-5xl mt-4">

@@ -3,16 +3,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import Markdown from "markdown-to-jsx";
-
-// type Props = {
-//   slug: string;
-//   frontmatter: {
-//     title: string;
-//     description: string;
-//     date: string;
-//     excerpt: string;
-//   };
-// };
+import img from "../../public/blog-1.png";
+import Image from "next/image";
 
 export default function BlogPost({ post }: any) {
   const { router } = useAuth();
@@ -24,30 +16,26 @@ export default function BlogPost({ post }: any) {
   return (
     <section>
       <div className="text-left ">
-        <img
-          className="w-full"
-          src="/blog-1.png"
-          alt="blog pics"
-        />
+        <Image className="w-full" src={img} alt="blog pics" />
         <p className="mt-4 text-sm text-[#6B7280]">Posted on {date} </p>
-        <h1 className=" mb-3 text-xl font-bold text-[#111827] tracking-tight">
+        <h1 className="mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
         <div className="truncate w-fit max-w-[260px] h-fit max-h-5">
-
           <Markdown
-            // remarkPlugins={[remarkGfm]}
-            // transformImageUri={(uri) =>
-            //   uri.startsWith("http")
-            //     ? uri
-            //     : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
-            // }
+          // remarkPlugins={[remarkGfm]}
+          // transformImageUri={(uri) =>
+          //   uri.startsWith("http")
+          //     ? uri
+          //     : `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${uri}`
+          // }
           >
             {post?.content}
-          </Markdown>...
+          </Markdown>
+          ...
         </div>
         <button
-        disabled
+          disabled
           className="bg-[#14532D] disabled:bg-[#14532D]/80 text-white rounded-lg mt-3 px-4 py-3"
           // onClick={() => navigateToPreview(`/blog/${post?.id}`)}
         >
