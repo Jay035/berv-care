@@ -10,8 +10,6 @@ import { BlogContextProvider } from "@/context/BlogContext";
 import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from "@/components/ToastProvider";
 
-// const inter = Inter({ subsets: ["latin"] });
-
 const TomatoGrotesk = localFont({
   src: [
     {
