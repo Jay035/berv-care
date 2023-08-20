@@ -9,7 +9,7 @@ export default function DownloadModal({
 }: Props) {
   console.log(downloadCSVLink);
   return (
-    <div className="absolute z-[99999999999999999999] top-0 left-0 bg-[#eeee]/50 backdrop-blur-sm w-full h-screen flex justify-center items-center">
+    <div className="absolute z-[99999999999999999] top-0 left-0 bg-[#eeee]/50 backdrop-blur-sm w-full h-screen flex justify-center items-center">
       <div className="bg-white w-96 h-48 flex justify-center items-center rounded-lg relative">
         <button
           className="absolute top-0 right-0"
