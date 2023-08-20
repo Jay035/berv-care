@@ -1,3 +1,4 @@
+import PostLoader from "@/components/PostLoader";
 import getHospital from "@/lib/getHospital";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -38,7 +39,7 @@ export default async function HospitalPage({
         <i className="ri-arrow-drop-left-line text-[#14532D] text-3xl lg:text-4xl"></i>{" "}
         Go back
       </Link>
-      <Suspense fallback={<p>Loading....</p>}>
+      <Suspense fallback={<PostLoader />}>
         <SingleHospital hospital={hospital} />
       </Suspense>
     </main>
