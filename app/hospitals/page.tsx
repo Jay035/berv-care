@@ -1,4 +1,3 @@
-import CustomLoader from "@/components/CustomLoader";
 import PostLoader from "@/components/PostLoader";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";

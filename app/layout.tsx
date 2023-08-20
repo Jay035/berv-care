@@ -72,7 +72,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className={TomatoGrotesk.className}>
+      <body className={`${TomatoGrotesk.className} relative`}>
         <AuthProvider>
           <ToastProvider>
             <ScrollToTop />

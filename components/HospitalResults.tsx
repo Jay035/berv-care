@@ -6,18 +6,19 @@ import Image from "next/image";
 import Papa from "papaparse";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { convertDataToCSV } from "@/utils/csvUtils";
-import { uploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
+import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 import ExportDataButton from "./ExportDataButton";
 import { toast } from "react-toastify";
 import { useAuth } from "@/context/Auth";
+import DownloadModal from "./DownloadModal";
 
 export default function HospitalResults({ hospitals }: any) {
-  const [ downloadCSVLink, setDownloadCSVLink] = useState();
+  const [downloadCSVLink, setDownloadCSVLink] = useState("");
+  const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
   const [usersRegion, setUsersRegion] = useState("");
   const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
   );
-  // console.log(nearbyHospitals);
   const [data, setData] = useState(hospitals?.data);
   const [hospitalLocationSelected, setHospitalLocationSelected] =
     useState("all");
@@ -93,17 +94,17 @@ export default function HospitalResults({ hospitals }: any) {
     // toast.info('exporting data....')
     try {
       const csvData = convertDataToCSV(data);
-      await uploadCSVToFirebaseStorage(csvData, hospitalLocationSelected);
+      await UploadCSVToFirebaseStorage(
+        csvData,
+        hospitalLocationSelected,
+        setDownloadCSVLink
+      );
       toast.success("Data exported successfully");
     } catch (err: any) {
       console.log(err);
       toast.error(err.message);
     }
   };
-
-  function notify() {
-    toast.info(`download csv file at ${downloadCSVLink}`);
-  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -120,6 +121,12 @@ export default function HospitalResults({ hospitals }: any) {
 
   return (
     <section className="">
+      {downloadButtonClicked && (
+        <DownloadModal
+          downloadCSVLink={downloadCSVLink}
+          setDownloadButtonClicked={setDownloadButtonClicked}
+        />
+      )}
       {data?.length > 0 && (
         <form
           className="max-w-4xl lg:mx-auto"
@@ -155,7 +162,10 @@ export default function HospitalResults({ hospitals }: any) {
         </form>
       )}
 
-      <ExportDataButton handleExportData={handleExportData} />
+      <ExportDataButton
+        handleExportData={handleExportData}
+        setDownloadButtonClicked={setDownloadButtonClicked}
+      />
 
       <div className="my-12 grid gap-4 w-full lg:grid-cols-2">
         {data

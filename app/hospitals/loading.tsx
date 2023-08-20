@@ -1,5 +1,9 @@
 import PostLoader from "@/components/PostLoader";
 
 export default function Loader() {
-  return <PostLoader />;
+  return (
+    <div className="px-[9.5vw]">
+      <PostLoader />;
+    </div>
+  );
 }

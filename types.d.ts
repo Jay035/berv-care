@@ -1,6 +1,6 @@
 declare module "react-markdown";
 declare module "markdown-truncate";
-declare module 'markdown-it'
+declare module 'markdown-it';
 
 type HospitalProps = {
   id: number;
