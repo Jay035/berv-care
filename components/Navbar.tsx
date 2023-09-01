@@ -35,7 +35,7 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="flex justify-between items-center w-full py-7 font-Sora px-8 sm:px-[9.5vw] lg:px-[7vw]">
+    <header className="flex justify-between items-center w-full py-7 font-Sora px-8 sm:px-[6vw]">
       <Link href="/">
         <Image
           className="w-7"
@@ -53,7 +53,7 @@ export const Navbar = () => {
             : `-left-full xl:left-0`
         } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative  overflow-hidden`}
       >
-        <ul className="relative w-[80%] bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
+        <ul className="relative w-[80%] whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
           <li
             onClick={(e: any) => {
               e.preventDefault();
@@ -133,7 +133,7 @@ export const Navbar = () => {
                     router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+                  className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] border border-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
                 >
                   {/* <Link href="/signup" className=""> */}
                   Sign up
@@ -238,7 +238,7 @@ export const Navbar = () => {
           </div>
         </ul>
       </div>
-      <div className="hidden xl:flex">
+      <div className="hidden xl:flex text-center whitespace-nowrap">
         {!user && (
           <div className="flex gap-4 items-center">
             <Link
@@ -249,7 +249,7 @@ export const Navbar = () => {
             </Link>
             <Link
               href="/signup"
-              className="cursor-pointer py-3 w-fit px-8 text-lg bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+              className="cursor-pointer py-3 w-fit px-8 text-lg border border-[#14532D] bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
             >
               Sign up
             </Link>

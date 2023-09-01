@@ -35,7 +35,7 @@ export default function HospitalResults({ hospitals }: any) {
     locationCoord: { loaded, coordinates },
   } = useGeoLocation();
   const { longitude, latitude } = coordinates;
-  // console.log(coordinates, loaded);
+  console.log(coordinates, loaded);
 
   const next = () => {
     setCurrentSliceStart(currentSliceStart + 12);
@@ -65,9 +65,9 @@ export default function HospitalResults({ hospitals }: any) {
       const response = await fetch(url, options);
       const result = await response.json();
       console.log("result", result);
-      console.log("user's city", result?.address?.city);
-      setUsersRegion(result?.address?.city);
-      setData(nearbyHospitals);
+      // console.log("user's city", result?.address?.city);
+      // setUsersRegion(result?.address?.city);
+      // setData(nearbyHospitals);
     } catch (error) {
       console.error(error);
     }
@@ -94,6 +94,7 @@ export default function HospitalResults({ hospitals }: any) {
     // toast.info('exporting data....')
     try {
       const csvData = convertDataToCSV(data);
+      console.log(csvData)
       await UploadCSVToFirebaseStorage(
         csvData,
         hospitalLocationSelected,
@@ -117,7 +118,7 @@ export default function HospitalResults({ hospitals }: any) {
 
   // useEffect(() => {
   //   getResult();
-  // }, [usersRegion]);
+  // }, []);
 
   return (
     <section className="">

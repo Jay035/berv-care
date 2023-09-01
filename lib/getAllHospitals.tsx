@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 
 export default async function getAllHospitals() {
   const res = await fetch("https://api.reliancehmo.com/v3/providers");
@@ -5,7 +6,7 @@ export default async function getAllHospitals() {
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
+    toast.error("Failed to fetch data");
   }
   return res.json();
 }
