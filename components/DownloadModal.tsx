@@ -16,8 +16,8 @@ export default function DownloadModal({
     let text = downloadCSVLink;
     navigator.clipboard.writeText(text).then(
       function () {
-        console.log("Async: copying address was successful");
-        toast.success("Async: copying address was successful");
+        console.log("Copying link was successful");
+        toast.success("Copying link was successful");
         setIsLinkCopied(!isLinkCopied);
         setTimeout(() => {
           setDownloadButtonClicked(false);
