@@ -33,7 +33,7 @@ export default function PostBlog() {
       toast.success("Congratulations, you have published your story");
       console.log("Congratulations, you have published your story");
       setTimeout(() => {
-        router.push("/");
+        router.push("/blog");
       }, 1000);
     } catch (err: any) {
       console.log(err.message);
