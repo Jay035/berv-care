@@ -28,11 +28,11 @@ export default function Transition() {
       top: "-100%",
       ease: Power3.easeInOut,
     });
-    // gsap.to(".fifth", {
-    //   delay: 1,
-    //   top: "-100%",
-    //   ease: Power3.easeInOut,
-    // });
+    gsap.to(".fifth", {
+      delay: 1,
+      top: "-100%",
+      ease: Power3.easeInOut,
+    });
     }, trans);
     return () => ctx.revert();
   }, []);
@@ -42,7 +42,7 @@ export default function Transition() {
       <div className="transition second absolute left-[20%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
       <div className="transition third absolute left-[40%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
       <div className="transition fourth absolute left-[60%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
-      {/* <div className="transition fifth absolute left-[80%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div> */}
+      <div className="transition fifth absolute left-[80%] top-0 w-[20%] h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
     </div>
   );
 }
