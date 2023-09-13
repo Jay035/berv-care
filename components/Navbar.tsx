@@ -12,7 +12,7 @@ export const Navbar = () => {
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
-    
+
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
   };
@@ -50,47 +50,49 @@ export const Navbar = () => {
         className={`${
           menuShown
             ? ` top-0 left-0 w-full h-screen bg-[#6B7280]/40 xl:bg-transparent backdrop-blur-sm xl:backdrop-blur-0 xl:h-fit xl:w-fit transition-all `
-            : `-left-full xl:left-0`
-        } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative overflow-hidden`}
+            : `-left-full xl:left-0 w-fit`
+        } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative overflow-x-hidden`}
       >
-        <ul className="relative w-[80%] whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0">
+        <ul
+          className={` ${
+            menuShown && "w-[80%]"
+          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0`}
+        >
           <li
+            className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/" className="cursor-pointer transition">
-              About us
-            </Link>
+            <Link href="/">About us</Link>
           </li>
           <li
+            className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/#howItWorks" className="cursor-pointer transition">
-              How It Works
-            </Link>
+            <Link href="/#howItWorks">How It Works</Link>
           </li>
           <li
+            className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/blog" className="cursor-pointer transition">
-              Health Center
-            </Link>
+            <Link href="/blog">Health Center</Link>
           </li>
           <li
+          className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/hospitals" className="cursor-pointer transition">
+            <Link href="/hospitals">
               Find Hospitals
             </Link>
           </li>
@@ -106,13 +108,13 @@ export const Navbar = () => {
                 }
                 setMenuShown((prevState: boolean) => !prevState);
               }}
-              className="cursor-pointer transition"
+              className="cursor-pointer transition w-fit"
             >
               Post a blog
             </li>
           )}
           {/* BUTTONS FOR MOBILE */}
-          <div className="xl:hidden mt-5 w-full ">
+          <div className="xl:hidden mt-5 w-fit">
             {!user && (
               <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
                 <button
@@ -159,7 +161,10 @@ export const Navbar = () => {
                   Post a Blog
                   {/* </Link> */}
                 </button>
-                <section className="absolute bottom-4 left-8 sm:left-[5.5rem]" ref={optionsRef}>
+                <section
+                  className="absolute bottom-4 left-8 sm:left-[5.5rem]"
+                  ref={optionsRef}
+                >
                   <div className="relative w-full">
                     <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                       <div
@@ -305,7 +310,10 @@ export const Navbar = () => {
               Post a Blog
               {/* </Link> */}
             </button>
-            <section className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50" ref={optionsRef}>
+            <section
+              className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50"
+              ref={optionsRef}
+            >
               <div className="relative w-full" id="profileInfoContainer">
                 <div className="flex justify-between items-center cursor-pointer gap-4 px-3 py-2 border border-[#EAECF0] rounded-[50px]">
                   <div
