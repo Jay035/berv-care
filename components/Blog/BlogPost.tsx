@@ -41,7 +41,7 @@ export default function BlogPost({ post }: any) {
         </div>
         <button
           disabled
-          className="bg-[#14532D] disabled:bg-[#14532D]/80 text-white rounded-lg mt-3 px-4 py-3"
+          className="bg-[#14532D] disabled:bg-[#14532D]/60 text-white rounded-lg mt-3 px-4 py-3"
           // onClick={() => navigateToPreview(`/blog/${post?.id}`)}
         >
           {/* <Link href={`/blog/${post?.id}`} className=""> */}
