@@ -36,18 +36,18 @@ export default function SingleHospital({ hospital }: Props) {
   }, []);
   return (
     <section className="">
-      <div className="grid lg:grid-cols-[70%_30%] gap-10">
+      <div className="grid lg:grid-cols-[60%_auto] gap-10">
         <section>
           <Image
             className="w-full lg:h-[70%] object-cover"
             src={img}
             alt="hospital image"
           />
-          <h1 className="capitalize font-extrabold text-[#14532D] text-3xl tracking-tight md:text-4xl xl:text-5xl mt-4">
-            {hospital?.name}
-          </h1>
         </section>
         <section className="flex flex-col gap-4">
+          <h1 className="capitalize font-extrabold text-[#14532D] text-3xl tracking-tight md:text-4xl">
+            {hospital?.name}
+          </h1>
           <p className="mt-2">
             <span className="font-medium text-lg">Address: </span>{" "}
             <span>
