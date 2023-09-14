@@ -3,12 +3,13 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/Auth";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const { user, logOut }: any = useAuth();
   const optionsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const pathname = usePathname();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileOptionsShown, setProfileOptionsShown] =
     useState<boolean>(false);
@@ -28,6 +29,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     console.log(user);
+    console.log(pathname)
     window.addEventListener("click", handleOutsideClick);
     return () => {
       window.removeEventListener("click", handleOutsideClick);
@@ -244,7 +246,7 @@ export const Navbar = () => {
         </ul>
       </div>
       <div className="hidden xl:flex text-center whitespace-nowrap">
-        {!user && (
+        {!user && pathname !== "/login"&& (
           <div className="flex gap-4 items-center">
             <Link
               href="/login"

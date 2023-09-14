@@ -59,7 +59,7 @@ export default function SingleHospital({ hospital }: Props) {
           {hospital?.email_address && (
             <p className="">
               <span className="font-medium text-lg">Email address:</span>{" "}
-              <span className="break-words break-keep">
+              <span className="break-words break-all">
                 {hospital?.email_address}
               </span>
             </p>
