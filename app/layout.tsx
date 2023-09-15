@@ -70,7 +70,7 @@ export default function RootLayout({
           rel="stylesheet"
         ></link>
       </head>
-      <body className={`${TomatoGrotesk.className} relative overflow-x-hidden`}>
+      <body className={`${TomatoGrotesk.className} relative max-w-7xl mx-auto overflow-x-hidden`}>
         <AuthProvider>
           <ToastProvider>
             <ScrollToTop />
