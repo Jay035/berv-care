@@ -29,7 +29,7 @@ export default function Blog() {
       )}
       <Link
         href="/blog"
-        className="rounded-[50px] mx-auto w-fit text-white mt-12 bg-[#14532D] py-4 sm:py-[18px] px-8 md:px-14"
+        className="rounded-[50px] mx-auto w-fit text-white mt-12 bg-[#14532D] hover:bg-[#14532D]/70 py-4 sm:py-[18px] px-8 md:px-14"
       >
         Read all posts
       </Link>

@@ -262,42 +262,6 @@ export const Navbar = () => {
             </Link>
           </div>
         )}
-        {/* {user && (
-          <div className="flex items-center gap-4">
-            <div
-              className="px-[18px] py-[10px] border border-[#14532D] rounded-[50px]"
-              onClick={(e: any) => {
-                e.preventDefault();
-                setMenuShown((prevState: boolean) => !prevState);
-              }}
-            >
-              <Link href="/postBlog" className="text-[#14532D] font-semibold">
-                Post a Blog
-              </Link>
-            </div>
-            <div className="flex items-center gap-4 px-[18px] py-[10px] border border-[#EAECF0] rounded-[50px]">
-              <Image
-                width={28}
-                height={28}
-                className="rounded-full"
-                src={user?.photoURL}
-                alt="profile pic"
-              />
-              <p className="font-bold bg-[#14532D] py-2 px-4 text-white rounded-full">
-                {user?.displayName.slice(0, 1) || user?.email.slice(0, 1)}
-              </p>
-            </div>
-            <p
-              onClick={(e) => {
-                logOut();
-                setMenuShown((prevState: boolean) => !prevState);
-              }}
-              className="bg-[#14532D] text-center text-white px-[39.5px] py-[10px] rounded-[50px] cursor-pointer"
-            >
-              SIGN OUT
-            </p>
-          </div>
-        )} */}
         {user && (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
             <button
@@ -308,9 +272,7 @@ export const Navbar = () => {
                 setMenuShown((prevState: boolean) => !prevState);
               }}
             >
-              {/* <Link href="/postBlog" className="text-[#14532D] font-semibold"> */}
               Post a Blog
-              {/* </Link> */}
             </button>
             <section
               className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50"

@@ -18,7 +18,7 @@ export default function MeetOurDoctors({}: Props) {
         src={img}
         alt=""
       />
-      <button className="rounded-[50px] w-fit mx-auto text-white bg-[#14532D] py-3 md:py-4 sm:py-[18px] px-6 md:px-14">
+      <button className="rounded-[50px] w-fit mx-auto text-white transition bg-[#14532D] hover:bg-[#14532D]/70 py-3 md:py-4 sm:py-[18px] px-6 md:px-14">
         See all doctors
       </button>
     </section>

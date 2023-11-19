@@ -9,7 +9,10 @@ type DataProps = {
 
 export default function HowItWorks({}) {
   return (
-    <section id="howItWorks" className="px-[9.5vw] my-28 pt-20 pb-24 bg-[#FDE68A]">
+    <section
+      id="howItWorks"
+      className="px-[9.5vw] my-28 pt-20 pb-24 bg-[#FDE68A]"
+    >
       <h1 className="text-[28px] md:text-[32px] tracking-tight text-[#14532D] leading-10 font-semibold">
         How it works?
       </h1>
@@ -27,19 +30,6 @@ export default function HowItWorks({}) {
             </div>
           )
         )}
-
-        {/* <div className="flex flex-col gap-5">
-          <Image src="/Vector-1.svg" width={48} height={48} alt="vector" />
-          <div className="">
-            <h2 className="text-[20px] font-semibold mb-2">
-              View Health Centre
-            </h2>
-            <p className="text-[#374151]">
-              Click on the health centre you'll like to view to see more details
-              about it{" "}
-            </p>
-          </div>
-        </div> */}
       </div>
       <GetStartedBtn />
     </section>
