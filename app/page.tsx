@@ -12,15 +12,15 @@ export default function Home() {
     // dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert/
     <div className="">
       <Navbar />
-    <main className="mt-[4.56rem] mb-[3.375rem]">
-      <HeroSection />
-      <HowItWorks />
-      <Why />
-      <MeetOurDoctors />
-      <Testimonials />
-      <Blog />
-      <NewsLetter />
-    </main>
+      <main className="mt-[4.56rem] mb-[3.375rem]">
+        <HeroSection />
+        <HowItWorks />
+        <Why />
+        <MeetOurDoctors />
+        <Testimonials />
+        <Blog />
+        <NewsLetter />
+      </main>
     </div>
   );
 }

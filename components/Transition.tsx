@@ -37,7 +37,7 @@ export default function Transition() {
     return () => ctx.revert();
   }, []);
   return (
-    <div ref={trans} className="overflow-x-hidden w-fit">
+    <div ref={trans} className="overflow-hidden w-fit">
       <div className="transition first absolute left-0 top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
       <div className="transition second absolute left-[20%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>
       <div className="transition third absolute left-[40%] top-0 w-1/4 h-full z-[10000000000000000000000000000000000000] bg-[#14532dc9]"></div>

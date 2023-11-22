@@ -75,7 +75,6 @@ export default function RootLayout({
           <ToastProvider>
             <ScrollToTop />
             <Transition />
-            
             <BlogContextProvider>{children}</BlogContextProvider>
             <Footer />
           </ToastProvider>
