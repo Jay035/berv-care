@@ -16,6 +16,12 @@ export const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
+    console.log(menuShown)
+    if(menuShown){
+      if (typeof window != "undefined" && window.document) {
+        document.body.style.overflow = "hidden";
+      }
+    }
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -28,8 +34,9 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    console.log(user);
-    console.log(pathname)
+    // console.log(user);
+    // console.log(pathname)
+    
     window.addEventListener("click", handleOutsideClick);
     return () => {
       window.removeEventListener("click", handleOutsideClick);
@@ -58,7 +65,7 @@ export const Navbar = () => {
         <ul
           className={` ${
             menuShown && "w-[80%]"
-          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-44 xl:pt-0`}
+          } whitespace-nowrap bg-white xl:bg-transparent min-h-screen h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
         >
           <li
             className="cursor-pointer transition w-fit"
@@ -116,16 +123,16 @@ export const Navbar = () => {
             </li>
           )}
           {/* BUTTONS FOR MOBILE */}
-          <div className="xl:hidden mt-5 w-fit">
+          <div className="xl:hidden w-fit">
             {!user && (
-              <div className="flex flex-col gap-6 w-fit sm:flex-row sm:w-full">
+              <div className="flex flex-col gap-4 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
                     // e.preventDefault();
                     router.push("/login");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className="py-3 w-fit px-8 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
+                  className="py-3 w-fit px-10 text-lg md:px-14 text-[#14532D] border border-[#14532D] bg-white rounded-[50px] transition "
                 >
                   {/* <Link href="/login" className=""> */}
                   Login
@@ -137,7 +144,7 @@ export const Navbar = () => {
                     router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
-                  className="py-3 w-fit px-8 text-lg md:px-14 bg-[#14532D] border border-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+                  className="py-3 w-fit px-10 text-lg md:px-14 bg-[#14532D] border border-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
                 >
                   {/* <Link href="/signup" className=""> */}
                   Sign up

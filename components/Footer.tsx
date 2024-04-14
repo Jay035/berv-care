@@ -52,7 +52,7 @@ export default function Footer({}: Props) {
       <p>©2023 Berv-Care</p>
       <p>
         Design by{" "}
-        <a href="https://www.uniqueideas.me/" className="font-semibold">
+        <a href="https://twitter.com/uniquee_ideas" className="font-semibold">
           UniqueIdeas
         </a>
       </p>
