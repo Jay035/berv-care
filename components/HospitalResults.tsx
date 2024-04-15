@@ -130,10 +130,10 @@ export default function HospitalResults({ hospitals }: any) {
       )}
       {data?.length > 0 && (
         <form
-          className="max-w-4xl lg:mx-auto"
+          className="max-w-4xl w-full lg:mx-auto"
           //  onSubmit={handleSubmit}
         >
-          <div className="flex justify-start items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
+          <div className="flex items-center text-[#9CA3AF] py-2 px-2 md:px-3 gap-[9.5px] border rounded-lg w-full md:border-[#6B7280]">
             <Image
               src="/search-icon.png"
               alt="search icon"
@@ -143,10 +143,11 @@ export default function HospitalResults({ hospitals }: any) {
             />
             <CustomInput
               type="text"
+              style="w-full"
               // label=""
               // dataTestId="searchbar"
               autocomplete="off"
-              className="w-full outline-none text-black"
+              className="w-full selection:bg-black outline-none text-black"
               value={query}
               name="search"
               onChange={handleSearch}

@@ -1,13 +1,11 @@
-import { Navbar } from "@/components/Navbar";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
-import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
-import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from "@/components/ToastProvider";
 
 const TomatoGrotesk = localFont({
@@ -27,11 +25,6 @@ const TomatoGrotesk = localFont({
       weight: "600",
       style: "normal",
     },
-    // {
-    //   path: './Roboto-Italic.woff2',
-    //   weight: '400',
-    //   style: 'italic',
-    // },
     {
       path: "./Tomato_Grotesk/TomatoGrotesk-Bold.otf",
       weight: "700",
@@ -76,7 +69,7 @@ export default function RootLayout({
             <ScrollToTop />
             <Transition />
             <BlogContextProvider>{children}</BlogContextProvider>
-            <Footer />
+            
           </ToastProvider>
         </AuthProvider>
       </body>

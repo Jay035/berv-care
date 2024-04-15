@@ -28,7 +28,7 @@ export default function Form({
         onChange={handleEmailChange}
         placeholder="Enter email address"
       />
-      <button disabled={email === ""} className="rounded-[50px] w-fit xl:min-w-[344px]  text-white bg-[#14532D] disabled:bg-[#14532D]/80 py-3 md:py-4 sm:py-[18px] px-6">
+      <button disabled={email === ""} className="rounded-[50px] w-fit lg:min-w-[344px]  text-white bg-[#14532D] disabled:bg-[#14532D]/80 py-3 md:py-4 sm:py-[18px] px-6">
         Subscribe to newsletter
       </button>
     </form>

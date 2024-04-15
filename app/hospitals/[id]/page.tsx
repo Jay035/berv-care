@@ -46,6 +46,7 @@ export default async function HospitalPage({
           <SingleHospital hospital={hospital} />
         </Suspense>
       </main>
+      
     </div>
   );
 }

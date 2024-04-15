@@ -22,7 +22,6 @@ export default function NewsLetter({}: Props) {
       console.log(`Subscribing ${email} to our newsletter...`);
       await addDoc(usersEmailRef, { email: email });
       toast.success("Congratulations, you have subscribed to our newsletter");
-      console.log("Congratulations, you have subscribed to our newsletter");
       setEmail("");
     } catch (err: any) {
       console.log(err.message);

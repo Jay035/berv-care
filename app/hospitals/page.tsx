@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import PostLoader from "@/components/PostLoader";
 import getAllHospitals from "@/lib/getAllHospitals";
@@ -28,6 +29,7 @@ export default async function HospitalsPage() {
           <HospitalResults hospitals={hospitals} />
         </Suspense>
       </main>
+      <Footer />
     </div>
   );
 }

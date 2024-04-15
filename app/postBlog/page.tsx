@@ -10,6 +10,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Form from "./Form";
 import { toast } from "react-toastify";
 import { Navbar } from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function PostBlog() {
   const router = useRouter();
@@ -75,6 +76,7 @@ export default function PostBlog() {
           Publish
         </button>
       </main>
+      <Footer />
     </div>
   );
 }
