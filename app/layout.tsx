@@ -62,14 +62,17 @@ export default function RootLayout({
           href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
           rel="stylesheet"
         ></link>
+        <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
+        <link rel="preconnect" href="https://firestore.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
       </head>
       <body
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
+        <Transition />
+        <ScrollToTop />
         <AuthProvider>
           <ToastProvider>
-            <ScrollToTop />
-            <Transition />
             <BlogContextProvider>{children}</BlogContextProvider>
           </ToastProvider>
         </AuthProvider>

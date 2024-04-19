@@ -27,14 +27,6 @@
   background: #14532d8e;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-/* *{
-  border: 1px solid red;
-} */
-
 @media screen and (max-width: 400px) {
   #max-w-sm {
     max-width: 210px;
