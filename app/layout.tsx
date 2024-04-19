@@ -64,7 +64,7 @@ export default function RootLayout({
         ></link>
       </head>
       <body
-        className={`${TomatoGrotesk.className} relative max-w-[2000px] mx-auto overflow-x-hidden`}
+        className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
         <AuthProvider>
           <ToastProvider>

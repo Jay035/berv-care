@@ -14,6 +14,7 @@ export default function MeetOurDoctors({}: Props) {
       Skip the long queues. We’ll bring the doctor to you!
       </p> */}
       <Image
+        placeholder="blur"
         className="my-8 w-full h-[40vh] object-cover md:h-fit"
         src={img}
         alt=""
