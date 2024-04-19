@@ -1,12 +1,15 @@
-// import { render, screen } from "@testing-library/react";
-// import "@testing-library/jest-dom";
-// import HospitalsPage from "@/app/hospitals/page";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import HospitalsPage from "@/app/hospitals/page";
 
-// describe("Hospitals page", () =>
-//   it("render properly", () => {
-//     render(<HospitalsPage />);
+describe("Hospitals page", () =>
+  it("render properly", () => {
+    // render(<HospitalsPage />);
+    const { container } = render(<HospitalsPage />);
 
-//     const header = screen.getByRole("heading");
-//     const headerText = "Find Hospitals Around You, With Ease";
-//     expect(header).toHaveTextContent(headerText);
-//   }));
+
+    // const header = screen.getByRole("heading");
+    // const headerText = "Find Hospitals Around You, With Ease";
+    // expect(header).toHaveTextContent(headerText);
+    expect(container).toMatchSnapshot();
+}));

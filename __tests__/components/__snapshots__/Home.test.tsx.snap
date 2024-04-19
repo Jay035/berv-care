@@ -33,7 +33,7 @@ exports[`Home page should render hero section properly 1`] = `
         class="mt-12 text-lg"
       >
         <a
-          class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+          class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:bg-[#14532D]/70"
           href="/hospitals"
         >
           Get Started
@@ -46,7 +46,14 @@ exports[`Home page should render hero section properly 1`] = `
       <img
         alt="doctor treating patient"
         class="w-full"
-        src="/doctor-1.png"
+        data-nimg="1"
+        decoding="async"
+        height="40"
+        loading="lazy"
+        src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+        srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+        style="color: transparent;"
+        width="40"
       />
     </div>
   </section>
@@ -237,7 +244,7 @@ exports[`Home page should render how it works section properly 1`] = `
       </div>
     </div>
     <a
-      class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:text-black hover:bg-white hover:border hover:border-black"
+      class="py-4 md:py-5 w-fit px-8 text-lg md:px-14 bg-[#14532D] text-white rounded-[50px] transition hover:bg-[#14532D]/70"
       href="/hospitals"
     >
       Get Started

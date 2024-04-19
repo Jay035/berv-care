@@ -17,11 +17,13 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
     console.log(menuShown)
-    if(menuShown){
-      if (typeof window != "undefined" && window.document) {
-        document.body.style.overflow = "hidden";
-      }
-    }
+    // if(menuShown){
+    //   if (typeof window != "undefined" && window.document) {
+    //     document.body.style.overflow = "hidden";
+    //   }
+    // }else{
+    //   document.body.style.overflow = "unset";
+    // }
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -49,8 +51,8 @@ export const Navbar = () => {
         <Image
           className="w-7"
           src="/logo.svg"
-          width={28}
-          height={28}
+          width="0"
+          height="0"
           alt="logo"
         />
       </Link>
@@ -65,7 +67,7 @@ export const Navbar = () => {
         <ul
           className={` ${
             menuShown && "w-[80%]"
-          } whitespace-nowrap bg-white xl:bg-transparent min-h-screen h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
+          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
         >
           <li
             className="cursor-pointer transition w-fit"

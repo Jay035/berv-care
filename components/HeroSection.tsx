@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import img from "../public/doctor-1.png";
 import GetStartedBtn from "./GetStartedBtn";
 
@@ -35,7 +34,7 @@ export default function HeroSection({}: Props) {
         </div>
       </div>
       <div className="">
-        <Image src={img} className="w-full" alt="doctor treating patient" />
+        <Image placeholder="blur" src={img} className="w-full" alt="doctor treating patient" />
       </div>
     </section>
   );
