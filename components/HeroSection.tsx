@@ -34,7 +34,7 @@ export default function HeroSection({}: Props) {
         </div>
       </div>
       <div className="">
-        <img src="/doctor-1.png" className="w-full" alt="doctor treating patient" />
+        <Image src={img} className="w-full" alt="doctor treating patient" />
       </div>
     </section>
   );
