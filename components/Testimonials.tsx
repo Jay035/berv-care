@@ -16,13 +16,13 @@ export default function Testimonials({}: Props) {
         <section className="bg-[#FFFBEB] px-8 border-2 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
           <p className="mt-[61.4px]">
-            Finding the right caregiver was a daunting task until I discovered {" "}
+            Finding the right caregiver was a daunting task until I discovered{" "}
             <span className="font-medium">Berv-Care</span>. The platform made
             the process seamless, and the caregiver we connected with has become
             an invaluable part of our family.
           </p>
           <hr className="my-6 border-[#111827]" />
-          <h3>Remi</h3>
+          <p>Remi</p>
         </section>
         <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
@@ -34,7 +34,7 @@ export default function Testimonials({}: Props) {
             whenever I had questions.
           </p>
           <hr className="my-6 border-[#111827]" />
-          <h3>David</h3>
+          <p>David</p>
         </section>
         <section className="bg-[#FFFBEB] px-8 border-2 border-t-0 lg:border-t-2 lg:border-l-0 border-black pt-[65.36px] pb-[45px]">
           <Image src="/quote.svg" width={31} height={31} alt="quotes" />
@@ -45,7 +45,7 @@ export default function Testimonials({}: Props) {
             significant difference in the quality of life for my family members.
           </p>
           <hr className="my-6 border-[#111827]" />
-          <h3>Ikechukwu </h3>
+          <p>Ikechukwu </p>
         </section>
       </div>
     </section>
