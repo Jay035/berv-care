@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/context/Auth";
 import { usePathname, useRouter } from "next/navigation";
+import { sora } from "../utils/fonts";
 
 export const Navbar = () => {
   const { user, logOut }: any = useAuth();
@@ -16,7 +17,7 @@ export const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
-    console.log(menuShown)
+    console.log(menuShown);
     // if(menuShown){
     //   if (typeof window != "undefined" && window.document) {
     //     document.body.style.overflow = "hidden";
@@ -38,7 +39,7 @@ export const Navbar = () => {
   useEffect(() => {
     // console.log(user);
     // console.log(pathname)
-    
+
     window.addEventListener("click", handleOutsideClick);
     return () => {
       window.removeEventListener("click", handleOutsideClick);
@@ -46,7 +47,9 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className="flex justify-between items-center w-full py-7 font-Sora px-8 sm:px-[6vw]">
+    <header
+      className={`${sora.className} flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+    >
       <Link href="/">
         <Image
           className="w-7"
@@ -97,15 +100,13 @@ export const Navbar = () => {
             <Link href="/blog">Health Center</Link>
           </li>
           <li
-          className="cursor-pointer transition w-fit"
+            className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/hospitals">
-              Find Hospitals
-            </Link>
+            <Link href="/hospitals">Find Hospitals</Link>
           </li>
           {!user && (
             <li
@@ -125,9 +126,9 @@ export const Navbar = () => {
             </li>
           )}
           {/* BUTTONS FOR MOBILE */}
-          <div className="xl:hidden w-fit">
+          <ul className="xl:hidden w-fit list-none">
             {!user && (
-              <div className="flex flex-col gap-4 w-fit sm:flex-row sm:w-full">
+              <li className="flex flex-col gap-4 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
                     // e.preventDefault();
@@ -152,11 +153,11 @@ export const Navbar = () => {
                   Sign up
                   {/* </Link> */}
                 </button>
-              </div>
+              </li>
             )}
 
             {user && (
-              <div className="flex flex-col items-left gap-4">
+              <li className="flex flex-col items-left gap-4">
                 <button
                   className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
@@ -247,13 +248,13 @@ export const Navbar = () => {
                     )}
                   </div>
                 </section>
-              </div>
+              </li>
             )}
-          </div>
+          </ul>
         </ul>
       </div>
       <div className="hidden xl:flex text-center whitespace-nowrap">
-        {!user && pathname !== "/login"&& (
+        {!user && pathname !== "/login" && (
           <div className="flex gap-4 items-center">
             <Link
               href="/login"

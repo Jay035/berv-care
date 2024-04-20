@@ -1,5 +1,6 @@
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import "remixicon/fonts/remixicon.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -58,10 +59,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
-          rel="stylesheet"
-        ></link>
+        <meta name="theme-color" content="#1e1e1e" />
+        {/* <style>
+          <link
+          
+            href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+            rel="stylesheet"
+          ></link>
+        </style> */}
         <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
         <link rel="preconnect" href="https://firestore.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
