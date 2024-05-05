@@ -14,6 +14,7 @@ export default function Transition() {
         skewY: 100,
         stagger: 0.25,
         opacity: 0,
+        display: "none"
       });
       // gsap.to(".second", {
       //   // delay: 0.4,
