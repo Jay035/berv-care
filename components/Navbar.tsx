@@ -126,9 +126,9 @@ export const Navbar = () => {
             </li>
           )}
           {/* BUTTONS FOR MOBILE */}
-          <ul className="xl:hidden w-fit list-none">
+          <div className="xl:hidden w-fit list-none">
             {!user && (
-              <li className="flex flex-col gap-4 w-fit sm:flex-row sm:w-full">
+              <div className="flex flex-col gap-4 w-fit sm:flex-row sm:w-full">
                 <button
                   onClick={(e: any) => {
                     // e.preventDefault();
@@ -153,11 +153,11 @@ export const Navbar = () => {
                   Sign up
                   {/* </Link> */}
                 </button>
-              </li>
+              </div>
             )}
 
             {user && (
-              <li className="flex flex-col items-left gap-4">
+              <div className="flex flex-col items-left gap-4">
                 <button
                   className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
@@ -248,9 +248,9 @@ export const Navbar = () => {
                     )}
                   </div>
                 </section>
-              </li>
+              </div>
             )}
-          </ul>
+          </div>
         </ul>
       </div>
       <div className="hidden xl:flex text-center whitespace-nowrap">

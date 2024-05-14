@@ -19,7 +19,6 @@ export default function PostBlog() {
   const [title, setTitle] = useState("");
   const blogsRef = collection(db, "blogs");
   const datePosted = new Date().toLocaleDateString();
-  console.log(datePosted);
 
   const publishBlog = async () => {
     try {
@@ -29,12 +28,12 @@ export default function PostBlog() {
         title: title,
         content: markdown,
       });
-      console.log(datePosted, markdown, title);
+
       toast.success("Congratulations, you have published your story");
-      console.log("Congratulations, you have published your story");
+
       setTimeout(() => {
         router.push("/blog");
-      }, 1000);
+      }, 600);
     } catch (err: any) {
       console.log(err.message);
       // toast.error(err.message);
@@ -46,6 +45,9 @@ export default function PostBlog() {
       alert("You have to be signed in to post a blog");
       router.push("/login");
     }
+    // else {
+    //   router.push("/postBlog");
+    // }
   }, []);
 
   return (

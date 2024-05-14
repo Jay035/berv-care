@@ -1,5 +1,7 @@
 import CustomInput from "@/components/CustomInput";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Props = {
   title: string;
@@ -19,10 +21,11 @@ export default function Form({
       <section className="col-span-1">
         <CustomInput
           autoFocus={true}
+          autocomplete="off"
           type="text"
           label="title"
           // dataTestId="blog-title"
-          className="w-full mt-3 text-black border border-black py-2 md:py-4 px-4 rounded-lg"
+          className="w-full outline-green-950 mt-3 text-black border border-black py-2 md:py-4 px-4 rounded-lg"
           value={title}
           name="blog-title"
           onChange={(e: any) => setTitle(e.target.value)}
@@ -38,7 +41,7 @@ export default function Form({
               onChange={(e) => setMarkdown(e.target.value)}
               rows={10}
               cols={50}
-              className="p-2 w-full rounded-lg border border-black"
+              className="p-2 w-full outline-green-950 rounded-lg border border-black"
               placeholder="Write your content in Markdown here..."
             />
           </div>
@@ -49,7 +52,9 @@ export default function Form({
         <div className="border rounded-lg p-4">
           <h1 className="text-2xl mb-2 font-bold">{title && title}</h1>
           <div className="">
-            {markdown && <ReactMarkdown>{markdown}</ReactMarkdown>}
+            {markdown && (
+              <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>
+            )}
           </div>
         </div>
       </section>

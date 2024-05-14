@@ -56,3 +56,4 @@ interface BlogMetadata {
   image: string;
   date: string;
 }
+

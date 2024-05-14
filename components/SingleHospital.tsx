@@ -39,6 +39,7 @@ export default function SingleHospital({ hospital }: Props) {
       <div className="grid lg:grid-cols-[60%_auto] gap-10">
         <section>
           <Image
+            placeholder="blur"
             className="w-full lg:h-[70%] object-cover"
             src={img}
             alt="hospital image"

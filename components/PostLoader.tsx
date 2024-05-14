@@ -2,7 +2,7 @@ type Props = {};
 
 export default function PostLoader({}: Props) {
   return (
-    <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+    <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full">
       <div className="border border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div className="animate-pulse flex space-x-4">
           <div className="rounded-full bg-[#14532D]/50 h-10 w-10"></div>

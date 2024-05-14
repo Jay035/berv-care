@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* highlighted texts */
+*::selection {
+  @apply text-white bg-[#14532d67];
+}
 
 /* width */
 ::-webkit-scrollbar {

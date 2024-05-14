@@ -14,33 +14,14 @@ export default function Transition() {
         skewY: 100,
         stagger: 0.25,
         opacity: 0,
-        display: "none"
+        display: "none",
       });
-      // gsap.to(".second", {
-      //   // delay: 0.4,
-      //   top: "-100%",
-      //   ease: Power3.easeInOut,
-
-      // });
-      // gsap.to(".third", {
-      //   delay: 0.6,
-      //   top: "-100%",
-      //   ease: Power3.easeInOut,
-      // });
-      // gsap.to(".fourth", {
-      //   delay: 0.8,
-      //   top: "-100%",
-      //   ease: Power3.easeInOut,
-      // });
     }, trans);
     return () => ctx.revert();
   }, []);
   return (
     <div ref={trans} className="overflow-hidden w-fit">
-      <div className="first absolute left-0 top-0 w-full h-screen z-[100000000] bg-[#14532dc9]"></div>
-      {/* <div className="second absolute left-[25%] top-0 w-1/2 h-full z-[100000] bg-[#14532dc9]"></div> */}
-      {/* <div className="third absolute left-[50%] top-0 w-1/4 h-full z-[100000] bg-[#14532dc9]"></div>
-      <div className="fourth absolute left-[75%] top-0 w-1/4 h-full z-[100000] bg-[#14532dc9]"></div> */}
+      <div className="first absolute left-0 top-0 w-full h-screen z-[9999999999999] bg-[#14532dc9]"></div>
     </div>
   );
 }

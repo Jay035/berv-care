@@ -16,19 +16,17 @@ export default function HospitalResults({ hospitals }: any) {
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
   const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
   const [usersRegion, setUsersRegion] = useState("");
-  const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
-    el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
-  );
   const [data, setData] = useState(hospitals?.data);
   const [hospitalLocationSelected, setHospitalLocationSelected] =
     useState("all");
-  const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
-  const [currentSliceEnd, setCurrentSliceEnd] = useState<number>(12);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [query, setQuery] = useState("");
   const [searchError, setSearchError] = useState("");
+
   const filteredHospitals = hospitals?.data?.filter((el: HospitalProps) =>
     el?.state?.name.toLowerCase().includes(query.toLowerCase())
+  );
+  const nearbyHospitals = hospitals?.data?.filter((el: HospitalProps) =>
+    el?.state?.name.toLowerCase().includes(usersRegion?.toLowerCase())
   );
 
   const {
@@ -36,6 +34,11 @@ export default function HospitalResults({ hospitals }: any) {
   } = useGeoLocation();
   const { longitude, latitude } = coordinates;
   console.log(coordinates, loaded);
+
+  // PAGINATION
+  const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
+  const [currentSliceEnd, setCurrentSliceEnd] = useState<number>(12);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const next = () => {
     setCurrentSliceStart(currentSliceStart + 12);
@@ -68,6 +71,7 @@ export default function HospitalResults({ hospitals }: any) {
       // console.log("user's city", result?.address?.city);
       // setUsersRegion(result?.address?.city);
       // setData(nearbyHospitals);
+      console.log(nearbyHospitals);
     } catch (error) {
       console.error(error);
     }
@@ -76,7 +80,6 @@ export default function HospitalResults({ hospitals }: any) {
   const handleSearch = (e: any) => {
     e.preventDefault();
     try {
-      // console.log(filteredHospitals);
       if (filteredHospitals.length === 0) {
         setData(hospitals?.data);
       } else {
@@ -94,7 +97,7 @@ export default function HospitalResults({ hospitals }: any) {
     // toast.info('exporting data....')
     try {
       const csvData = convertDataToCSV(data);
-      console.log(csvData)
+      console.log(csvData);
       await UploadCSVToFirebaseStorage(
         csvData,
         hospitalLocationSelected,
@@ -116,9 +119,9 @@ export default function HospitalResults({ hospitals }: any) {
   };
   // console.log(data);
 
-  // useEffect(() => {
-  //   getResult();
-  // }, []);
+  useEffect(() => {
+    getResult();
+  }, []);
 
   return (
     <section className="">
