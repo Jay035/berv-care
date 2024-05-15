@@ -72,7 +72,7 @@ export const Navbar = () => {
             menuShown && "w-[80%]"
           } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
         >
-          <li
+          <span
             className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
@@ -80,8 +80,8 @@ export const Navbar = () => {
             }}
           >
             <Link href="/">About us</Link>
-          </li>
-          <li
+          </span>
+          <span
             className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
@@ -89,8 +89,8 @@ export const Navbar = () => {
             }}
           >
             <Link href="/#howItWorks">How It Works</Link>
-          </li>
-          <li
+          </span>
+          <span
             className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
@@ -98,8 +98,8 @@ export const Navbar = () => {
             }}
           >
             <Link href="/blog">Health Center</Link>
-          </li>
-          <li
+          </span>
+          <span
             className="cursor-pointer transition w-fit"
             onClick={(e: any) => {
               e.preventDefault();
@@ -107,9 +107,9 @@ export const Navbar = () => {
             }}
           >
             <Link href="/hospitals">Find Hospitals</Link>
-          </li>
+          </span>
           {!user && (
-            <li
+            <span
               onClick={(e: any) => {
                 e.preventDefault();
                 if (user) {
@@ -123,7 +123,7 @@ export const Navbar = () => {
               className="cursor-pointer transition w-fit"
             >
               Post a blog
-            </li>
+            </span>
           )}
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden w-fit list-none">
