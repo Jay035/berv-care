@@ -17,9 +17,9 @@ export default function Blog() {
         id="healthCenter"
         className="px-[9.5vw] mt-10 mb-[97px] text-center flex flex-col items-center"
       >
-        <h3 className="text-[#14532D] font-semibold lg:text-lg">
+        <h1 className="text-[#14532D] font-semibold lg:text-lg">
           OUR HEALTH CENTER
-        </h3>
+        </h1>
         <h1 className="text-[28px] md:text-[32px] w-full lg:text-5xl max-w-screen-md leading-10 mt-3 mb-[47px] font-bold tracking-tight">
           Read our latest medical and lifestyle articles
         </h1>

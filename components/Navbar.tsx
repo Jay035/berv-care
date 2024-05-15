@@ -67,7 +67,7 @@ export const Navbar = () => {
             : `-left-full xl:left-0 w-fit`
         } fixed items-center z-30 sm:text-lg text-[#6B7280] xl:relative overflow-x-hidden`}
       >
-        <ul
+        <section
           className={` ${
             menuShown && "w-[80%]"
           } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
@@ -251,7 +251,7 @@ export const Navbar = () => {
               </div>
             )}
           </div>
-        </ul>
+        </section>
       </div>
       <div className="hidden xl:flex text-center whitespace-nowrap">
         {!user && pathname !== "/login" && (
