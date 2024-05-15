@@ -20,9 +20,9 @@ export default function Blog() {
         <h1 className="text-[#14532D] font-semibold lg:text-lg">
           OUR HEALTH CENTER
         </h1>
-        <h1 className="text-[28px] md:text-[32px] w-full lg:text-5xl max-w-screen-md leading-10 mt-3 mb-[47px] font-bold tracking-tight">
+        <h2 className="text-[28px] md:text-[32px] w-full lg:text-5xl max-w-screen-md leading-10 mt-3 mb-[47px] font-bold tracking-tight">
           Read our latest medical and lifestyle articles
-        </h1>
+        </h2>
         {blogs.length > 0 ? (
           <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
             {blogs?.map((post: any, index: number) => (
