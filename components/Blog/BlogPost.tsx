@@ -1,12 +1,8 @@
-import truncateMarkdown from "markdown-truncate";
-import MarkdownIt from "markdown-it";
 import { useAuth } from "@/context/Auth";
-import { ReactMarkdown } from "react-markdown";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import img from "../../public/blog-1.png";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 
 export default function BlogPost({ post }: any) {
   const { router } = useAuth();
@@ -17,13 +13,8 @@ export default function BlogPost({ post }: any) {
     router.push(params);
   };
 
-  // truncateMarkdown("markdown *is* __properly__ truncated", {
-  //   limit: 15,
-  //   ellipsis: true,
-  // });
   return (
-    <section>
-      <div className="text-left ">
+      <article className="text-left">
         <Image
           placeholder="blur"
           className="w-full"
@@ -34,9 +25,8 @@ export default function BlogPost({ post }: any) {
         <h1 className="mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
-        <div className="h-full prose max-h-6 overflow-hidden">
-          {/* <div className="" dangerouslySetInnerHTML={{ __html: output }} /> */}
-          <Markdown remarkPlugins={[remarkGfm]}>{post?.content}</Markdown>...
+        <div className="h-full prose prose-slate prose-a:text-[#DD2D4A] max-h-6 overflow-hidden">
+          <Markdown remarkPlugins={[remarkGfm]}>{post?.content}</Markdown>
         </div>
         <button
           disabled
@@ -47,7 +37,6 @@ export default function BlogPost({ post }: any) {
           Read more
           {/* </Link> */}
         </button>
-      </div>
-    </section>
+      </article>
   );
 }
