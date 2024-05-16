@@ -53,7 +53,7 @@ export default function PostBlog() {
   return (
     <div className="">
       <Navbar />
-      <main className="px-[9.5vw] mt-7">
+      <main className="px-[9.5vw] mt-7 h-full xl:min-h-[70vh]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tell your Story</h1>
           <button

@@ -49,8 +49,8 @@ export default function Form({
       </section>
       <section className="col-span-1 ">
         <h1 className="text-lg font-medium mb-3">Preview</h1>
-        <div className="border rounded-lg p-4">
-          <h1 className="text-2xl mb-2 font-bold">{title && title}</h1>
+        <div className="border rounded-lg p-4 prose">
+          <h1 className="mb-2 font-bold">{title && title}</h1>
           <div className="">
             {markdown && (
               <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>

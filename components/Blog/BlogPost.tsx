@@ -17,10 +17,10 @@ export default function BlogPost({ post }: any) {
     router.push(params);
   };
 
-  truncateMarkdown("markdown *is* __properly__ truncated", {
-    limit: 15,
-    ellipsis: true,
-  });
+  // truncateMarkdown("markdown *is* __properly__ truncated", {
+  //   limit: 15,
+  //   ellipsis: true,
+  // });
   return (
     <section>
       <div className="text-left ">
@@ -34,7 +34,7 @@ export default function BlogPost({ post }: any) {
         <h1 className="mb-3 text-xl font-bold text-[#111827] tracking-tight">
           {post?.title}
         </h1>
-        <div className="h-full max-h-6 overflow-hidden">
+        <div className="h-full prose max-h-6 overflow-hidden">
           {/* <div className="" dangerouslySetInnerHTML={{ __html: output }} /> */}
           <Markdown remarkPlugins={[remarkGfm]}>{post?.content}</Markdown>...
         </div>
