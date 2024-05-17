@@ -23,7 +23,7 @@ export default function HeroSection({}: Props) {
   });
   return (
     <section className="grid items-center lg:grid-cols-2 gap-[7.25rem] mt-4 lg:h-[70vh] lg:items-center lg:justify-center lg:mt-0 lg:mb-0 mb-[3.375rem] px-8 sm:px-[9.5vw]">
-      <div className="text-center lg:text-left md:w-[32rem] mx-auto lg:w-full lg:text-left">
+      <div className="text-center lg:text-left md:w-[32rem] mx-auto lg:w-full">
         <p className="hero_text font-semibold text-base xl:text-lg text-[#6B7280] mb-1">
           Find the Care You Deserve, With Ease
         </p>
