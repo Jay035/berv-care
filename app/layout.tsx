@@ -60,13 +60,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#1e1e1e" />
-        {/* <style>
-          <link
-          
-            href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
-            rel="stylesheet"
-          ></link>
-        </style> */}
         <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
         <link rel="preconnect" href="https://firestore.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -9,9 +9,9 @@ export default function Loader() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect width="19.5" height="19.5" fill="#14532D" className="animate-[animation1]" />
-        <rect x="19.5" y="19.5" width="19.5" height="19.5" fill="#FBBF24" className="animate-[animation1]" />
-        <rect y="39" width="19.5" height="19.5" fill="#14532D" className="animate-[animation1]" />
+        <rect width="19.5" height="19.5" fill="#14532D" className="animate-pulse" />
+        <rect x="19.5" y="19.5" width="19.5" height="19.5" fill="#FBBF24" className="animate-pulse" />
+        <rect y="39" width="19.5" height="19.5" fill="#14532D" className="animate-pulse" />
       </svg>
     </div>
   );

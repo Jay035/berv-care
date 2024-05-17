@@ -1,28 +1,33 @@
 "use client";
+import { useGSAP } from "@gsap/react";
 import { Power3, gsap } from "gsap";
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { useEffect } from "react";
 
 export default function Transition() {
   let trans = useRef(null);
 
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      gsap.to(".first", {
+  useGSAP(() => {
+      gsap.to(".intro", {
         ease: Power3.easeInOut,
-        duration: 2,
+        // xPercent:"-100",
+        duration: 1.3,
         skewY: 100,
         stagger: 0.25,
         opacity: 0,
         display: "none",
       });
-    }, trans);
-    return () => ctx.revert();
-  }, []);
+  });
+
+  // stop page scrolling while animation is in play 
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+    setTimeout(() => {
+      document.body.style.overflow = "unset"
+    }, 1300);
+  }, [])
   return (
-    <div ref={trans} className="overflow-hidden w-fit">
-      <div className="first absolute left-0 top-0 w-full h-screen z-[9999999999999] bg-[#14532dc9]"></div>
-    </div>
+      <div ref={trans} id="intro" className="intro absolute left-0 top-0 w-full h-screen z-[9999999999999] bg-[#14532dc9]"></div>
   );
 }
 

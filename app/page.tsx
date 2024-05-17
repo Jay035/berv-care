@@ -10,7 +10,7 @@ import Why from "@/components/Why";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="relative">
       <Navbar />
       <main className="mt-[4.56rem] mb-[3.375rem]">
         <HeroSection />

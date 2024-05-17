@@ -11,10 +11,12 @@ import {
 
 interface BlogProps {
   blogs: any[];
+  loading: boolean;
 }
 
 export const BlogContext = createContext<BlogProps>({
   blogs: [""],
+  loading: false
 });
 
 type Props = {
@@ -23,16 +25,22 @@ type Props = {
 
 export function BlogContextProvider({ children }: Props) {
   const [blogs, setBlogs]: any[] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false)
   const blogsCollectionRef = collection(db, "blogs");
 
   const getBlogs = async () => {
+    setLoading(true)
     try {
       const data = await getDocs(blogsCollectionRef);
       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
       setBlogs(res);
+      setLoading(false)
+      console.log(res)
     } catch (err: any) {
       console.log(err.message);
+      setLoading(false)
     }
+    console.log(loading)
   };
 
   useEffect(() => {
@@ -41,6 +49,7 @@ export function BlogContextProvider({ children }: Props) {
 
   const value = {
     blogs,
+    loading
   };
 
   return (

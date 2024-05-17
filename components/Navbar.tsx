@@ -18,13 +18,6 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
     console.log(menuShown);
-    // if(menuShown){
-    //   if (typeof window != "undefined" && window.document) {
-    //     document.body.style.overflow = "hidden";
-    //   }
-    // }else{
-    //   document.body.style.overflow = "unset";
-    // }
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -37,9 +30,6 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-    // console.log(user);
-    // console.log(pathname)
-
     window.addEventListener("click", handleOutsideClick);
     return () => {
       window.removeEventListener("click", handleOutsideClick);
