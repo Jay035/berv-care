@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useBlogContext } from "@/context/BlogContext";
 import PostLoader, { BlogPostLoader } from "../PostLoader";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const BlogPost = dynamic(() => import("./BlogPost"));
 
@@ -18,6 +19,8 @@ export default function Blog() {
       <h2 className="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight">
         Read our latest medical and lifestyle articles
       </h2>
+      <Suspense fallback={<BlogPostLoader />}>
+
       {!loading ? (
         blogs.length > 0 ? (
           <section className="flex flex-col">
@@ -41,6 +44,7 @@ export default function Blog() {
       ) : (
         <BlogPostLoader />
       )}
+      </Suspense>
     </section>
   );
 }

@@ -3,9 +3,10 @@ import { Navbar } from "@/components/Navbar";
 import PostLoader from "@/components/PostLoader";
 import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { Suspense, lazy } from "react";
 
-const HospitalResults = lazy(() => import("@/components/HospitalResults"));
+const HospitalResults = dynamic(() => import("@/components/HospitalResults"));
 
 export const metadata: Metadata = {
   title: `Berv-Care | Hospitals`,
@@ -23,7 +24,7 @@ export default async function HospitalsPage() {
         <h1 data-testid="hospital_page_title" className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl">
           Find Hospitals Around You, With Ease
         </h1>
-        <div id="map"></div>
+        {/* <div id="map"></div> */}
 
         <Suspense fallback={<PostLoader />}>
           <HospitalResults hospitals={hospitals} />
