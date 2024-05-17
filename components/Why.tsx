@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import img1 from '../public/img-1.jpg';
-import img4 from '../public/img-4.jpg';
+import Image from "next/image";
+import img1 from "../public/img-1.jpg";
+import img4 from "../public/img-4.jpg";
 
 type Props = {};
 
@@ -26,6 +26,7 @@ export default function Why({}: Props) {
           </section>
           <section className="w-full md:max-h-[285px]">
             <Image
+              placeholder="blur"
               className="w-full h-full lg:object-cover"
               src={img1}
               alt="health care facility"
@@ -35,6 +36,7 @@ export default function Why({}: Props) {
         <div className="flex flex-col-reverse md:grid md:grid-cols-[45%_auto] w-full ">
           <section className="w-full md:max-h-[285px]">
             <Image
+              placeholder="blur"
               className="w-full h-full lg:object-cover"
               src={img4}
               alt="health care"

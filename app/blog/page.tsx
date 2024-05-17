@@ -1,15 +1,14 @@
 "use client";
-import { lazy, useEffect, useState } from "react";
 import { sortByDate } from "@/utils/index";
 import { useBlogContext } from "@/context/BlogContext";
-import PostLoader from "@/components/PostLoader";
+import PostLoader, { BlogPostLoader } from "@/components/PostLoader";
 import { Navbar } from "@/components/Navbar";
+import dynamic from "next/dynamic";
 
-const BlogPost = lazy(() => import("@/components/Blog/BlogPost"));
+const BlogPost = dynamic(() => import("@/components/Blog/BlogPost"));
 
 export default function Blog() {
   const { blogs, loading } = useBlogContext();
-console.log(blogs)
 
   return (
     <div className="">
@@ -37,7 +36,7 @@ console.log(blogs)
             </p>
           )
         ) : (
-          <PostLoader />
+          <BlogPostLoader />
         )}
       </div>
     </div>

@@ -121,7 +121,7 @@ export function AuthProvider({ children }: Props) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
-        console.log(user);
+        // console.log(user);
         setUser(user);
         setIsUserLoggedIn(true);
       } else {

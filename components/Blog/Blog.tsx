@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
-import { Suspense, lazy } from "react";
 import { useBlogContext } from "@/context/BlogContext";
-import PostLoader from "../PostLoader";
+import PostLoader, { BlogPostLoader } from "../PostLoader";
+import dynamic from "next/dynamic";
 
-const BlogPost = lazy(() => import("./BlogPost"));
+const BlogPost = dynamic(() => import("./BlogPost"));
 
 export default function Blog() {
   const { blogs, loading } = useBlogContext();
@@ -19,20 +19,28 @@ export default function Blog() {
         Read our latest medical and lifestyle articles
       </h2>
       {!loading ? (
-          blogs.length > 0 ? (
-            <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full ">
+        blogs.length > 0 ? (
+          <section className="flex flex-col">
+            <div className="grid gap-8 gap-y-10 md:grid-cols-2 mb-12 lg:grid-cols-3 w-full">
               {blogs?.map((post: any, index: number) => (
                 <BlogPost post={post} key={index} />
               ))}
-            </section>
-          ) : (
-            <p className="text-2xl">
-              No blogs at the moment...Kindly check back later
-            </p>
-          )
+            </div>
+            <Link
+              href="/blog"
+              className="rounded-[50px] mx-auto w-fit text-white bg-[#14532D] hover:bg-[#14532D]/70 py-4 sm:py-[18px] px-8 md:px-14"
+            >
+              Read all posts
+            </Link>
+          </section>
         ) : (
-          <PostLoader />
-        )}
+          <p className="text-2xl">
+            No blogs at the moment...Kindly check back later
+          </p>
+        )
+      ) : (
+        <BlogPostLoader />
+      )}
     </section>
   );
 }

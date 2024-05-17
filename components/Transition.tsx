@@ -10,12 +10,13 @@ export default function Transition() {
   useGSAP(() => {
       gsap.to(".intro", {
         ease: Power3.easeInOut,
-        // xPercent:"-100",
-        duration: 1.3,
-        skewY: 100,
+        x:"-100vw",
+        duration: .6,
+        // skewY: 100,
         stagger: 0.25,
-        opacity: 0,
-        display: "none",
+        // opacity: 0,
+        // display: "none",
+        
       });
   });
 

@@ -35,12 +35,12 @@ export function BlogContextProvider({ children }: Props) {
       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
       setBlogs(res);
       setLoading(false)
-      console.log(res)
+      // console.log(res)
     } catch (err: any) {
       console.log(err.message);
       setLoading(false)
     }
-    console.log(loading)
+    // console.log(loading)
   };
 
   useEffect(() => {
