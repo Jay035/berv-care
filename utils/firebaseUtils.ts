@@ -1,5 +1,4 @@
 import { storage } from "@/config/Config";
-import { useAuth } from "@/context/Auth";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { toast } from "react-toastify";
 

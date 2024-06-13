@@ -4,17 +4,17 @@ import { addDoc, collection } from "@firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAuth } from "@/context/Auth";
 import { Metadata } from "next";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Form from "./Form";
 import { toast } from "react-toastify";
 import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
 export default function PostBlog() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user } = useGlobalProvider();
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
   const blogsRef = collection(db, "blogs");

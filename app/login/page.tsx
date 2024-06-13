@@ -1,11 +1,11 @@
 "use client";
-import { useAuth } from "@/context/Auth";
 import Form from "./Form";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
 export default function Login() {
-  const { user } = useAuth();
+  const { user } = useGlobalProvider();
   const router = useRouter();
 
   useEffect(() => {

@@ -1,6 +1,6 @@
 import CustomInput from "@/components/CustomInput";
 import { auth } from "@/config/Config";
-import { useAuth } from "@/context/Auth";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export default function Form() {
   const router = useRouter();
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle } = useGlobalProvider();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
