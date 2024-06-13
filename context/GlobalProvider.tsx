@@ -1,4 +1,16 @@
 "use client";
+
+// PACKAGES
+import {
+  ReactNode,
+  useState,
+  useContext,
+  useEffect,
+  createContext,
+} from "react";
+import { useRouter } from "next/navigation";
+
+// COMPONENTS
 import { auth, provider } from "@/config/Config";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
@@ -9,18 +21,10 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { useRouter } from "next/navigation";
-import {
-  ReactNode,
-  useState,
-  useContext,
-  useEffect,
-  createContext,
-} from "react";
 
-interface AuthContextType {
-  children: GlobalProps[];
-}
+// interface AuthContextType {
+//   children: GlobalProps[];
+// }
 
 export const GlobalContext = createContext<GlobalProps>({
   user: "",
@@ -124,10 +128,9 @@ export function GlobalProvider({ children }: Props) {
     location: { longitude, latitude },
   } = useGeoLocation();
 
-const data  = fetchNearbyPlaces(latitude,longitude)
-console.log(data)
-
   useEffect(() => {
+    const data = fetchNearbyPlaces(latitude, longitude);
+    console.log(data);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
@@ -145,7 +148,7 @@ console.log(data)
   const value = {
     router,
     user,
-    data,
+    // data,
     userAddress,
     // locationCoord,
     // setLocationCoord,

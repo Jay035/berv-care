@@ -1,4 +1,6 @@
 "use client";
+
+// PACKAGES
 import React, { useEffect, useRef, useState } from "react";
 import {
   GoogleMap,
@@ -8,22 +10,23 @@ import {
   LoadScript,
   useLoadScript,
 } from "@react-google-maps/api";
-import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { useQuery } from "react-query";
+
+// COMPONENTS 
+import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 
 // ASSETS
 import hospitalIcon from "../../public/hospital-fill.svg";
 
-type Props = {};
 
-export async function Map({}: Props) {
+export async function Map() {
   const {
     location: { longitude, latitude },
   } = useGeoLocation();
 
-const data  = fetchNearbyPlaces(latitude,longitude)
-console.log(data)
+  const data = fetchNearbyPlaces(latitude, longitude);
+  console.log(data);
 
   const mapContainerStyle = {
     width: "100%",
@@ -44,7 +47,7 @@ console.log(data)
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
-    libraries : libraries as any,
+    libraries: libraries as any,
   });
 
   const mapRef = useRef<google.maps.Map | null>(null);
@@ -63,8 +66,6 @@ console.log(data)
   //   { enabled: !!clickedPos.lat, refetchOnWindowFocus: false }
   // );
 
-  
-
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
   };
@@ -74,12 +75,14 @@ console.log(data)
   };
 
   const onMapClick = (e: google.maps.MapMouseEvent) => {
+    // e.preventDefault()
     setClickedPos({
       lat: Number(e.latLng?.lat()),
       lng: Number(e.latLng?.lng()),
     });
-    fetchNearbyPlaces(latitude, longitude)
+    fetchNearbyPlaces(latitude, longitude);
     console.log(clickedPos);
+    console.log(e.latLng?.lat());
   };
 
   const onMarkerClick = (marker: MarkerType) => console.log(marker);
@@ -89,11 +92,15 @@ console.log(data)
   }
 
   if (!isLoaded) {
-    return <div className="h-[90vh] w-full bg-gray-300">Loading maps</div>;
+    return (
+      <div className="h-[90vh] w-full bg-gray-300 flex justify-center items-center">
+        <div className="w-[90%] h-4 rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="mb-10" >
+    <div className="mb-10">
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
