@@ -28,28 +28,28 @@ export default async function getHospitalData() {
   return res.json();
 }
 
-// export const fetchNearbyPlaces = async (
-//   lat: number,
-//   lng: number
-// ): Promise<MarkerType[]> => {
-//   const apiKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
+export const fetchNearbyPlaces = async (
+  lat: number,
+  lng: number
+): Promise<MarkerType[]> => {
+  const apiKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
 
-//   const url = `https://trueway-places.p.rapidapi.com/FindPlacesNearby?location=${lat}%2C${lng}&type=${type}&radius=${place_Radius}&language=en`;
-//   const options = {
-//     method: "GET",
-//     headers: {
-//       "x-rapidapi-key": apiKey,
-//       "x-rapidapi-host": "trueway-places.p.rapidapi.com",
-//     },
-//   };
+  const url = `https://trueway-places.p.rapidapi.com/FindPlacesNearby?location=${lat}%2C${lng}&type=${type}&radius=${place_Radius}&language=en`;
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": apiKey,
+      "x-rapidapi-host": "trueway-places.p.rapidapi.com",
+    },
+  };
 
-//   const response = await fetch(url, options);
+  const response = await fetch(url, options);
 
-//   if (!response.ok) {
-//     throw new Error("Failed to fetch data");
-//   }
-//   const data = await response.json();
-//   console.log(data);
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await response.json();
+  console.log(data);
 
-//   return data.results;
-// };
+  return data.results;
+};
