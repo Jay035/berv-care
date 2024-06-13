@@ -1,11 +1,11 @@
-import { useAuth } from "@/context/Auth";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import img from "../../public/blog-1.png";
 import Image from "next/image";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
 export default function BlogPost({ post }: any) {
-  const { router } = useAuth();
+  const { router } = useGlobalProvider();
   const date = new Date(post?.date).toLocaleDateString();
 
   if (!post) console.log("no post");
@@ -26,7 +26,7 @@ export default function BlogPost({ post }: any) {
           {post?.title}
         </h1>
         <div className="h-full prose prose-slate prose-a:text-[#DD2D4A] max-h-6 overflow-hidden">
-          <Markdown remarkPlugins={[remarkGfm]}>{post?.content}</Markdown>
+          <Markdown remarkPlugins={[remarkGfm]}>{post?.content.slice(0, 1)}</Markdown>
         </div>
         <button
           disabled

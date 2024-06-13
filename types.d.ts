@@ -24,9 +24,10 @@ type HospitalProps = {
   website_address: string;
 };
 
-interface FormProps {
+interface GlobalProps {
   router?: any;
   user?: string;
+  userAddress?: string;
   name?: string;
   email?: string | undefined;
   error: string;
@@ -34,9 +35,21 @@ interface FormProps {
   password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
+  locationCoord?: {
+    loaded?: boolean;
+    coordinates?: {
+      latitude: number;
+      longitude: number;
+    };
+    error?: {
+      code: number;
+      message: string;
+    };
+  };
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
+  setUserAddress?: (x: string) => void;
   setError?: (x: string) => void;
   setPassword?: (x: string) => void;
   setLoading?: (x: any) => void;
@@ -55,3 +68,22 @@ interface BlogMetadata {
   date: string;
 }
 
+interface Location {
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+}
+
+interface PositionError {
+  code: number;
+  message: string;
+}
+
+type MarkerType = {
+  id: string;
+  location: google.maps.LatLngLiteral;
+  name: string;
+  phone_number: string;
+  website: string;
+}

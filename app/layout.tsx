@@ -5,9 +5,10 @@ import localFont from "next/font/local";
 import { Metadata } from "next";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
-import { AuthProvider } from "@/context/Auth";
 import { BlogContextProvider } from "@/context/BlogContext";
 import ToastProvider from "@/components/ToastProvider";
+import { GlobalProvider } from "@/context/GlobalProvider";
+import BodyComponent from "./body";
 
 const TomatoGrotesk = localFont({
   src: [
@@ -39,6 +40,7 @@ const TomatoGrotesk = localFont({
   ],
 });
 
+
 export const metadata: Metadata = {
   title: "Berv-Care",
   description: "Your Pathway to Trusted Care Providers",
@@ -63,17 +65,25 @@ export default function RootLayout({
         <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
         <link rel="preconnect" href="https://firestore.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossOrigin=""
+        />
       </head>
       <body
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
         <Transition />
         <ScrollToTop />
-        <AuthProvider>
+        <GlobalProvider>
           <ToastProvider>
-            <BlogContextProvider>{children}</BlogContextProvider>
+            <BlogContextProvider>
+              <BodyComponent>{children}</BodyComponent>
+            </BlogContextProvider>
           </ToastProvider>
-        </AuthProvider>
+        </GlobalProvider>
       </body>
     </html>
   );

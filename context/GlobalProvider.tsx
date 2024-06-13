@@ -1,5 +1,6 @@
 "use client";
 import { auth, provider } from "@/config/Config";
+import useGeoLocation from "@/hooks/useGeoLocationHook";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -17,10 +18,10 @@ import {
 } from "react";
 
 interface AuthContextType {
-  children: FormProps[];
+  children: GlobalProps[];
 }
 
-export const AuthContext = createContext<FormProps>({
+export const GlobalContext = createContext<GlobalProps>({
   user: "",
   name: "",
   error: "",
@@ -33,8 +34,9 @@ type Props = {
   children: ReactNode;
 };
 
-export function AuthProvider({ children }: Props) {
+export function GlobalProvider({ children }: Props) {
   const router = useRouter();
+  const [userAddress, setUserAddress] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
   const [user, setUser]: any = useState(auth?.currentUser);
   const [loading, setLoading] = useState(false);
@@ -117,7 +119,18 @@ export function AuthProvider({ children }: Props) {
     }
   };
 
+  // const [locationCoord, setLocationCoord] = useState<locationCoord>({
+  //   loaded: false,
+  //   coordinates: { latitude: 0, longitude: 0 },
+  // });
+
+  const {
+    location: { longitude, latitude },
+  } = useGeoLocation();
+  console.log(longitude, latitude)
+
   useEffect(() => {
+  
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
@@ -135,6 +148,10 @@ export function AuthProvider({ children }: Props) {
   const value = {
     router,
     user,
+    userAddress,
+    // locationCoord,
+    // setLocationCoord,
+    setUserAddress,
     isUserLoggedIn,
     register,
     login,
@@ -151,9 +168,9 @@ export function AuthProvider({ children }: Props) {
 
   return (
     <>
-      <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+      <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>
     </>
   );
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useGlobalProvider = () => useContext(GlobalContext);

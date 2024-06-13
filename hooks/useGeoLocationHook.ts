@@ -1,126 +1,128 @@
-import { useState, useEffect } from 'react'
-interface GeolocationPosition {
-  coords: {
-    latitude: number
-    longitude: number
-  }
-}
-
-interface GeolocationPositionError {
-  code: number
-  message: string
-}
-
-interface locationCoord {
-  loaded: boolean
-  coordinates: {
-    latitude: number
-    longitude: number
-  }
-  error?: {
-    code: number
-    message: string
-  }
-}
+import { useGlobalProvider } from "@/context/GlobalProvider";
+import { useState, useEffect } from "react";
 
 const useGeoLocation = () => {
-  const [locationCoord, setLocationCoord] = useState<locationCoord>({
-    loaded: false,
-    coordinates: { latitude: 0, longitude: 0 },
-  })
+  const { userAddress, setUserAddress } = useGlobalProvider();
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
+  const [error, setError] = useState<PositionError | null>(null);
+  const apiKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
 
-  const onSuccess = (location: GeolocationPosition) => {
-    setLocationCoord({
-      loaded: true,
-      coordinates: { latitude: location.coords.latitude, longitude: location.coords.longitude },
-    })
-  }
-  const onError = (error: GeolocationPositionError) => {
-    setLocationCoord((prev) => ({
-      ...prev,
-      loaded: true,
-      error,
-    }))
-  }
+  const getUserAddress = async (lat: number, lng: number) => {
+    // let headersList = {
+    //   Accept: "*/*",
+    //   "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    // };
+
+    // const response = await fetch(
+    //   `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
+    //     location?.latitude
+    //   },${location?.longitude}&key=${process?.env
+    //     .NEXT_PUBLIC_Google_Places_API!}`,
+    //   {
+    //     method: "GET",
+    //     headers: headersList,
+    //   }
+    // );
+    // const data = await response.json();
+    // console.log(data?.results[0]?.formatted_address);
+    // setUserAddress?.(data?.results[0]?.formatted_address);
+    console.log(location);
+    const url = `https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${lat}%2C${lng}&language=en`;
+    const options = {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": apiKey,
+        "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      // const result = await response.json();
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //   async function getPlaceDetails(Place) {
+  //     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+  //     // Use place ID to create a new Place instance.
+  //     const place = new Place({
+  //         id: 'ChIJN5Nz71W3j4ARhx5bwpTQEGg',
+  //         requestedLanguage: 'en', // optional
+  //     });
+
+  //     // Call fetchFields, passing the desired data fields.
+  //     await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
+
+  //     // Log the result
+  //     console.log(place.displayName);
+  //     console.log(place.formattedAddress);
+
+  //     // Add an Advanced Marker
+  //     const marker = new AdvancedMarkerElement({
+  //         map,
+  //         position: place.location,
+  //         title: place.displayName,
+  //     });
+  // }
+
+  const fetchHospitalData = async () => {
+    // const res = await fetch("https://api.reliancehmo.com/v3/providers");
+
+    let headersList = {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    };
+
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${
+        location?.latitude
+      },${
+        location?.longitude
+      }&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${process
+        ?.env.NEXT_PUBLIC_Google_Places_API!}`,
+      {
+        method: "GET",
+        headers: headersList,
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    // if (!response.ok) {
+    //   toast.error("Failed to fetch data");
+    // }
+    // return response.json();
+  };
 
   useEffect(() => {
-    if (!('geolocation' in navigator)) {
-      onError({
+    if (!navigator.geolocation) {
+      setError({
         code: 0,
-        message: 'Geolocation not supported',
-      })
-      setLocationCoord((prev) => ({
-        ...prev,
-        loaded: true,
-        error: {
-          code: 0,
-          message: 'Geolocation not supported',
-        },
-      }))
+        message: "Geolocation is not supported by your browser",
+      });
+      return;
     }
-    navigator.geolocation.getCurrentPosition(onSuccess, onError)
-  }, [])
 
-//   function initMap(): void {
-//     const map = new google.maps.Map(
-//       document.getElementById("map") as HTMLElement,
-//       {
-//         zoom: 8,
-//         center: { lat: 40.731, lng: -73.997 },
-//       }
-//     );
-//     const geocoder = new google.maps.Geocoder();
-//     const infowindow = new google.maps.InfoWindow();
-  
-//     (document.getElementById("submit") as HTMLElement).addEventListener(
-//       "click",
-//       () => {
-//         geocodeLatLng(geocoder, map, infowindow);
-//       }
-//     );
-//   }
-  
-//   function geocodeLatLng(
-//     geocoder: google.maps.Geocoder,
-//     map: google.maps.Map,
-//     infowindow: google.maps.InfoWindow
-//   ) {
-//     const input = (document.getElementById("latlng") as HTMLInputElement).value;
-//     const latlngStr = input.split(",", 2);
-//     const latlng = {
-//       lat: parseFloat(latlngStr[0]),
-//       lng: parseFloat(latlngStr[1]),
-//     };
-  
-//     geocoder
-//       .geocode({ location: latlng })
-//       .then((response) => {
-//         if (response.results[0]) {
-//           map.setZoom(11);
-  
-//           const marker = new google.maps.Marker({
-//             position: latlng,
-//             map: map,
-//           });
-  
-//           infowindow.setContent(response.results[0].formatted_address);
-//           infowindow.open(map, marker);
-//         } else {
-//           window.alert("No results found");
-//         }
-//       })
-//       .catch((e) => window.alert("Geocoder failed due to: " + e));
-//   }
-  
-//   declare global {
-//     interface Window {
-//       initMap: () => void;
-//     }
-//   }
-//   window.initMap = initMap;
+    const onSuccess = (position: GeolocationPosition) => {
+      setLocation({
+        latitude: position?.coords?.latitude,
+        longitude: position.coords.longitude,
+      });
+      getUserAddress(position?.coords?.latitude, position?.coords?.longitude);
+    };
 
-  //  when the component is mounted fetch the location if there is geolocation in the browser
+    const onError = (error: GeolocationPositionError) => {
+      setError({ code: error.code, message: error.message });
+      console.log({ code: error.code, message: error.message });
+    };
 
-  return { locationCoord }
-}
-export default useGeoLocation
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  }, []);
+
+  return { location, error };
+};
+
+export default useGeoLocation;

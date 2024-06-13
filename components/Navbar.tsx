@@ -2,12 +2,12 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuth } from "@/context/Auth";
 import { usePathname, useRouter } from "next/navigation";
 import { sora } from "../utils/fonts";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
 export const Navbar = () => {
-  const { user, logOut }: any = useAuth();
+  const { user, logOut }: any = useGlobalProvider();
   const optionsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -173,7 +173,8 @@ export const Navbar = () => {
                         className="flex items-center gap-4"
                         onClick={(e) => {
                           e.preventDefault();
-                          setProfileOptionsShown(true);
+                          setProfileOptionsShown((prevState) => !prevState);
+                          console.log(profileOptionsShown)
                         }}
                       >
                         {user?.photoURL ? (
@@ -282,7 +283,8 @@ export const Navbar = () => {
                     className="flex items-center gap-4"
                     onClick={(e) => {
                       e.preventDefault();
-                      setProfileOptionsShown((prevState) => !prevState);
+                      setProfileOptionsShown(true);
+                      console.log(profileOptionsShown)
                     }}
                   >
                     {user?.photoURL ? (

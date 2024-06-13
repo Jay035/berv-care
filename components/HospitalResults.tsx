@@ -9,7 +9,6 @@ import { convertDataToCSV } from "@/utils/csvUtils";
 import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 import ExportDataButton from "./ExportDataButton";
 import { toast } from "react-toastify";
-import { useAuth } from "@/context/Auth";
 import DownloadModal from "./DownloadModal";
 
 export default function HospitalResults({ hospitals }: any) {
@@ -30,10 +29,8 @@ export default function HospitalResults({ hospitals }: any) {
   );
 
   const {
-    locationCoord: { loaded, coordinates },
+    location: { longitude, latitude },
   } = useGeoLocation();
-  const { longitude, latitude } = coordinates;
-  console.log(coordinates, loaded);
 
   // PAGINATION
   const [currentSliceStart, setCurrentSliceStart] = useState<number>(0);
@@ -67,11 +64,11 @@ export default function HospitalResults({ hospitals }: any) {
     try {
       const response = await fetch(url, options);
       const result = await response.json();
-      console.log("result", result);
+      // console.log("result", result);
       // console.log("user's city", result?.address?.city);
       // setUsersRegion(result?.address?.city);
       // setData(nearbyHospitals);
-      console.log(nearbyHospitals);
+      // console.log(nearbyHospitals);
     } catch (error) {
       console.error(error);
     }
@@ -120,7 +117,7 @@ export default function HospitalResults({ hospitals }: any) {
   // console.log(data);
 
   useEffect(() => {
-    getResult();
+    // getResult();
   }, []);
 
   return (
@@ -167,10 +164,12 @@ export default function HospitalResults({ hospitals }: any) {
         </form>
       )}
 
-      <ExportDataButton
-        handleExportData={handleExportData}
-        setDownloadButtonClicked={setDownloadButtonClicked}
-      />
+      {data?.length > 0 && (
+        <ExportDataButton
+          handleExportData={handleExportData}
+          setDownloadButtonClicked={setDownloadButtonClicked}
+        />
+      )}
 
       <div className="my-12 grid gap-4 w-full lg:grid-cols-2">
         {data
@@ -196,7 +195,7 @@ export default function HospitalResults({ hospitals }: any) {
             </section>
           ))}
       </div>
-      {data.length > 0 && (
+      {data?.length > 0 && (
         <div className="flex gap-10 justify-center items-center my-8">
           <button
             disabled={currentPage === 1}

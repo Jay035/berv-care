@@ -1,10 +1,11 @@
 import Footer from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import PostLoader from "@/components/PostLoader";
-import getAllHospitals from "@/lib/getAllHospitals";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense, lazy } from "react";
+import { Map } from "./Map";
+import getHospitalData from "@/lib/getAllHospitals";
 
 const HospitalResults = dynamic(() => import("@/components/HospitalResults"));
 
@@ -14,18 +15,24 @@ export const metadata: Metadata = {
 };
 
 export default async function HospitalsPage() {
-  const hospitalData = getAllHospitals();
+  const hospitalData = getHospitalData();
   const hospitals = await hospitalData;
+
+  console.log(hospitals)
 
   return (
     <div className="">
       <Navbar />
       <main className="px-8 sm:px-[9.5vw] mt-6 py-12">
-        <h1 data-testid="hospital_page_title" className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl">
+        <h1
+          data-testid="hospital_page_title"
+          className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl"
+        >
           Find Hospitals Around You, With Ease
         </h1>
-        {/* <div id="map"></div> */}
 
+        {/* <Map /> */}
+        
         <Suspense fallback={<PostLoader />}>
           <HospitalResults hospitals={hospitals} />
         </Suspense>
