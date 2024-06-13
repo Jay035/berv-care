@@ -1,5 +1,5 @@
 // "use client";
-
+import axios from "axios";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import { toast } from "react-toastify";
 
@@ -34,22 +34,41 @@ export const fetchNearbyPlaces = async (
 ): Promise<MarkerType[]> => {
   const apiKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
 
-  const url = `https://trueway-places.p.rapidapi.com/FindPlacesNearby?location=${lat}%2C${lng}&type=${type}&radius=${place_Radius}&language=en`;
-  const options = {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": apiKey,
-      "x-rapidapi-host": "trueway-places.p.rapidapi.com",
-    },
+  // const url = `https://trueway-places.p.rapidapi.com/FindPlacesNearby?location=${lat}%2C${lng}&type=${type}&radius=${place_Radius}&language=en`;
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "x-rapidapi-key": apiKey,
+  //     "x-rapidapi-host": "trueway-places.p.rapidapi.com",
+  //   },
+  // };
+
+  let headersList = {
+    Accept: "*/*",
+    // "User-Agent": "Thunder Client (https://www.thunderclient.com)",
   };
 
-  const response = await fetch(url, options);
+  let reqOptions = {
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${apiKey!}`,
+    method: "GET",
+    headers: headersList,
+  };
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  const data = await response.json();
-  console.log(data);
+  // const respons = await fetch(
+  //   `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${apiKey!}`,
+  //   {
+  //     method: "GET",
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "*",
+  //       Accept: "*/*",
+  //       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+  //     },
+  //   }
+  // );
 
-  return data.results;
+  let response = await axios.request(reqOptions);
+  console.log(response.data.results);
+  let data = response.data.results;
+
+  return data;
 };

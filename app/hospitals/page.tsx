@@ -5,7 +5,8 @@ import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense, lazy } from "react";
 import { Map } from "./Map";
-import getHospitalData from "@/lib/getAllHospitals";
+import getHospitalData, { fetchNearbyPlaces } from "@/lib/getAllHospitals";
+import useGeoLocation from "@/hooks/useGeoLocationHook";
 
 const HospitalResults = dynamic(() => import("@/components/HospitalResults"));
 
@@ -18,7 +19,8 @@ export default async function HospitalsPage() {
   const hospitalData = getHospitalData();
   const hospitals = await hospitalData;
 
-  console.log(hospitals)
+
+  console.log(hospitals);
 
   return (
     <div className="">
@@ -32,9 +34,11 @@ export default async function HospitalsPage() {
         </h1>
 
         {/* <Map /> */}
-        
+
         <Suspense fallback={<PostLoader />}>
-          <HospitalResults hospitals={hospitals} />
+          <HospitalResults 
+          hospitals={hospitals}
+           />
         </Suspense>
       </main>
       <Footer />

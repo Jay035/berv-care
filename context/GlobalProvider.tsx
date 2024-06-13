@@ -1,6 +1,7 @@
 "use client";
 import { auth, provider } from "@/config/Config";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
+import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -119,18 +120,14 @@ export function GlobalProvider({ children }: Props) {
     }
   };
 
-  // const [locationCoord, setLocationCoord] = useState<locationCoord>({
-  //   loaded: false,
-  //   coordinates: { latitude: 0, longitude: 0 },
-  // });
-
   const {
     location: { longitude, latitude },
   } = useGeoLocation();
-  console.log(longitude, latitude)
+
+const data  = fetchNearbyPlaces(latitude,longitude)
+console.log(data)
 
   useEffect(() => {
-  
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
@@ -148,6 +145,7 @@ export function GlobalProvider({ children }: Props) {
   const value = {
     router,
     user,
+    data,
     userAddress,
     // locationCoord,
     // setLocationCoord,
