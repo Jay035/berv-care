@@ -87,3 +87,16 @@ type MarkerType = {
   phone_number: string;
   website: string;
 }
+
+type WeatherType = {
+  temp: number;
+  text: string;
+};
+
+ type MarkerType = {
+  id: string;
+  location: google.maps.LatLngLiteral;
+  name: string;
+  phone_number: string;
+  website: string;
+};

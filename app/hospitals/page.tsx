@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default async function HospitalsPage() {
   const hospitalData = getHospitalData();
   const hospitals = await hospitalData;
+ 
 
   console.log(hospitals);
 
@@ -35,9 +36,7 @@ export default async function HospitalsPage() {
         {/* <Map /> */}
 
         <Suspense fallback={<PostLoader />}>
-          <HospitalResults 
-          hospitals={hospitals}
-           />
+          <HospitalResults hospitals={hospitals} />
         </Suspense>
       </main>
       <Footer />
