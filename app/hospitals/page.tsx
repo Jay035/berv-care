@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 export default async function HospitalsPage() {
   const hospitalData = getHospitalData();
   const hospitals = await hospitalData;
- 
 
   console.log(hospitals);
 

@@ -1,172 +1,83 @@
-const mapStyles = [
+// Map Styles from Snazzy Maps
+const mapStyles =  [
   {
-    featureType: "all",
-    elementType: "geometry.fill",
+    featureType: 'administrative',
+    elementType: 'labels.text.fill',
     stylers: [
       {
-        weight: "2.00",
-      },
-    ],
+        color: '#444444'
+      }
+    ]
   },
   {
-    featureType: "all",
-    elementType: "geometry.stroke",
+    featureType: 'landscape',
+    elementType: 'all',
     stylers: [
       {
-        color: "#9c9c9c",
-      },
-    ],
+        color: '#f2f2f2'
+      }
+    ]
   },
   {
-    featureType: "all",
-    elementType: "labels.text",
+    featureType: 'poi',
+    elementType: 'all',
     stylers: [
       {
-        visibility: "on",
-      },
-    ],
+        visibility: 'off'
+      }
+    ]
   },
   {
-    featureType: "landscape",
-    elementType: "all",
+    featureType: 'road',
+    elementType: 'all',
     stylers: [
       {
-        color: "#f2f2f2",
+        saturation: -100
       },
-    ],
+      {
+        lightness: 45
+      }
+    ]
   },
   {
-    featureType: "landscape",
-    elementType: "geometry.fill",
+    featureType: 'road.highway',
+    elementType: 'all',
     stylers: [
       {
-        color: "#ffffff",
-      },
-    ],
+        visibility: 'simplified'
+      }
+    ]
   },
   {
-    featureType: "landscape.man_made",
-    elementType: "geometry.fill",
+    featureType: 'road.arterial',
+    elementType: 'labels.icon',
     stylers: [
       {
-        color: "#ffffff",
-      },
-    ],
+        visibility: 'off'
+      }
+    ]
   },
   {
-    featureType: "poi",
-    elementType: "all",
+    featureType: 'transit',
+    elementType: 'all',
     stylers: [
       {
-        visibility: "off",
-      },
-    ],
+        visibility: 'off'
+      }
+    ]
   },
   {
-    featureType: "road",
-    elementType: "all",
+    featureType: 'water',
+    elementType: 'all',
     stylers: [
       {
-        saturation: -100,
+        color: '#46bcec'
       },
       {
-        lightness: 45,
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#eeeeee",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#7b7b7b",
-      },
-    ],
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#ffffff",
-      },
-    ],
-  },
-  {
-    featureType: "road.highway",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "simplified",
-      },
-    ],
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "labels.icon",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "transit",
-    elementType: "all",
-    stylers: [
-      {
-        visibility: "off",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "all",
-    stylers: [
-      {
-        color: "#46bcec",
-      },
-      {
-        visibility: "on",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#c8d7d4",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#070707",
-      },
-    ],
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#ffffff",
-      },
-    ],
-  },
+        visibility: 'on'
+      }
+    ]
+  }
 ];
 
 export default mapStyles;

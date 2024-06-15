@@ -20,14 +20,19 @@ import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 import hospitalIcon from "../../public/hospital-fill.svg";
 import { fetchWeather } from "../api/api";
 import mapStyles from "./mapStyles";
+import CurrentLocation from "@/components/CurrentLocation";
 
 export async function Map() {
   const {
     location: { longitude, latitude },
   } = useGeoLocation();
 
-  const data = fetchNearbyPlaces(latitude, longitude);
-  console.log(data);
+  // const data = fetchNearbyPlaces(latitude, longitude);
+  // console.log(data);
+
+  useEffect(() => {
+console.log(location)
+  },[])
 
   const mapContainerStyle = {
     width: "100%",
@@ -68,16 +73,18 @@ export async function Map() {
   );
 
   const {
-    data: nearbyPositions,
+    data: nearbyHospitals,
     isLoading,
     isError,
   } = useQuery(
-    [clickedPos.lat, clickedPos.lng],
-    () => fetchNearbyPlaces(clickedPos.lat, clickedPos.lng),
-    { enabled: !!clickedPos.lat, refetchOnWindowFocus: false }
+    // [clickedPos.lat, clickedPos.lng],
+    [latitude, longitude],
+    () => fetchNearbyPlaces(latitude, longitude),
+    // () => fetchNearbyPlaces(clickedPos.lat, clickedPos.lng),
+    { enabled: !!latitude, refetchOnWindowFocus: false }
   );
 
-  console.log(nearbyPositions);
+  console.log(nearbyHospitals);
 
   const {
     data: markerWeather,
@@ -88,7 +95,7 @@ export async function Map() {
     refetchOnWindowFocus: false,
     staleTime: 60 * 1000 * 5, // 5 minutes
   });
-  console.log(markerWeather);
+  // console.log(markerWeather);
 
   const moveTo = (position: google.maps.LatLngLiteral) => {
     if (mapRef.current) {
@@ -107,15 +114,15 @@ export async function Map() {
   };
 
   const onMapClick = (e: google.maps.MapMouseEvent) => {
-    // e.preventDefault()
-    setClickedPos({
-      lat: Number(e.latLng?.lat()),
-      lng: Number(e.latLng?.lng()),
-    });
-    setSelectedMarker({} as MarkerType);
-    // fetchNearbyPlaces(latitude, longitude);
     console.log(clickedPos);
-    console.log(e.latLng?.lat());
+    
+    // setClickedPos({
+    //   lat: Number(e.latLng?.lat()),
+    //   lng: Number(e.latLng?.lng()),
+    // });
+    // setSelectedMarker({} as MarkerType);
+    // fetchNearbyPlaces(latitude, longitude);
+    console.log(e.latLng?.lat(), e.latLng?.lng());
   };
 
   const onMarkerClick = (marker: MarkerType) => {
@@ -124,6 +131,9 @@ export async function Map() {
   };
   if (loadError) {
     return <div>Error loading maps</div>;
+  }
+  if(isLoading){
+    return <div>Loading...</div>;
   }
 
   if (!isLoaded) {
@@ -136,33 +146,35 @@ export async function Map() {
 
   return (
     <div className="mb-10">
-      {/* <CurrentLocation moveTo={moveTo} /> */}
+      <CurrentLocation moveTo={moveTo} />
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
         onLoad={onLoad}
         onUnmount={onUnMount}
         center={center}
-        onClick={onMapClick}
+        // onClick={onMapClick}
         options={options}
       >
-        {clickedPos.lat ? <Marker position={clickedPos} /> : null}
-        {nearbyPositions?.map((marker) => (
-          <Marker
-            key={marker.id}
-            position={marker.location}
+        {latitude ? <Marker position={center} /> : null}
+        {nearbyHospitals?.map((marker, index) => {
+          return(
+            <Marker
+            key={index}
+            position={marker.geometry.location}
             onClick={() => onMarkerClick(marker)}
             icon={{
-              url: hospitalIcon,
+              url: "/hospital-fill.svg",
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
               scaledSize: new window.google.maps.Size(30, 30),
             }}
           />
-        ))}
-        {selectedMarker.location && (
+          )
+        })}
+        {/* {selectedMarker?.geometry?.location && (
           <InfoWindow
-            position={selectedMarker.location}
+            position={selectedMarker.geometry.location}
             onCloseClick={() => setSelectedMarker({} as MarkerType)}
           >
             <div>
@@ -177,7 +189,7 @@ export async function Map() {
               )}
             </div>
           </InfoWindow>
-        )}
+        )} */}
       </GoogleMap>
     </div>
   );
