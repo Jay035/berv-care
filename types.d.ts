@@ -82,21 +82,20 @@ interface PositionError {
 
 type MarkerType = {
   id: string;
-  geometry:{
-
+  geometry: {
     location: google.maps.LatLngLiteral;
-  }
+  };
   name: string;
   phone_number: string;
   website: string;
-}
+};
 
 type WeatherType = {
   temp: number;
   text: string;
 };
 
- type MarkerType = {
+type MarkerType = {
   id: string;
   location: google.maps.LatLngLiteral;
   name: string;

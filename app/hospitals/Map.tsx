@@ -31,8 +31,8 @@ export async function Map() {
   // console.log(data);
 
   useEffect(() => {
-console.log(location)
-  },[])
+    console.log(location);
+  }, []);
 
   const mapContainerStyle = {
     width: "100%",
@@ -52,11 +52,7 @@ console.log(location)
 
   const apiKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
   const libraries = ["places"];
-  // const { isLoaded, loadError } = useLoadScript({
-  //   id: "google-map-script",
-  //   googleMapsApiKey: apiKey,
-  //   libraries: libraries as any
-  // });
+  
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: apiKey,
@@ -115,7 +111,7 @@ console.log(location)
 
   const onMapClick = (e: google.maps.MapMouseEvent) => {
     console.log(clickedPos);
-    
+
     // setClickedPos({
     //   lat: Number(e.latLng?.lat()),
     //   lng: Number(e.latLng?.lng()),
@@ -132,7 +128,7 @@ console.log(location)
   if (loadError) {
     return <div>Error loading maps</div>;
   }
-  if(isLoading){
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -158,19 +154,19 @@ console.log(location)
       >
         {latitude ? <Marker position={center} /> : null}
         {nearbyHospitals?.map((marker, index) => {
-          return(
+          return (
             <Marker
-            key={index}
-            position={marker.geometry.location}
-            onClick={() => onMarkerClick(marker)}
-            icon={{
-              url: "/hospital-fill.svg",
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-          )
+              key={index}
+              position={marker.geometry.location}
+              onClick={() => onMarkerClick(marker)}
+              icon={{
+                url: "/hospital-fill.svg",
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+              }}
+            />
+          );
         })}
         {/* {selectedMarker?.geometry?.location && (
           <InfoWindow

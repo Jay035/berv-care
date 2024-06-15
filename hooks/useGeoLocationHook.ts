@@ -1,51 +1,55 @@
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import { useState, useEffect } from "react";
 
+// GOOGLE API KEY 
+const googleAPIKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
+ 
+
+const getUserAddress = async (lat: number, lng: number) => {
+  console.log(lat, lng);
+  let headersList = {
+    Accept: "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+  };
+
+  const response = await fetch(
+    `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${googleAPIKey!}`,
+    {
+      method: "GET",
+      headers: headersList,
+    }
+  );
+  const data = await response.json();
+  console.log(data?.results[0]);
+  // setUserAddress?.(data?.results[0]?.formatted_address);
+  // console.log(location);
+
+  // const url = `https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${lat}%2C${lng}&language=en`;
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     "x-rapidapi-key": apiKey,
+  //     "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
+  //   },
+  // };
+
+  // try {
+  //   const response = await fetch(url, options);
+  //   // const result = await response.json();
+  //   console.log(response);
+  // } catch (error) {
+  //   console.error(error);
+  // }
+};
+
 const useGeoLocation = () => {
   const { userAddress, setUserAddress } = useGlobalProvider();
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
   const [error, setError] = useState<PositionError | null>(null);
-  const googleAPIKey = process?.env.NEXT_PUBLIC_Google_Places_API!;
 
-  const getUserAddress = async (lat: number, lng: number) => {
-    console.log("get user address func");
-    let headersList = {
-      Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-    };
-
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${googleAPIKey!}`,
-      {
-        method: "GET",
-        headers: headersList,
-      }
-    );
-    const data = await response.json();
-    console.log(data?.results[0]?.formatted_address);
-    // setUserAddress?.(data?.results[0]?.formatted_address);
-    console.log(location);
-
-    // const url = `https://trueway-geocoding.p.rapidapi.com/ReverseGeocode?location=${lat}%2C${lng}&language=en`;
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "x-rapidapi-key": apiKey,
-    //     "x-rapidapi-host": "trueway-geocoding.p.rapidapi.com",
-    //   },
-    // };
-
-    // try {
-    //   const response = await fetch(url, options);
-    //   // const result = await response.json();
-    //   console.log(response);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
 
   //   async function getPlaceDetails(Place) {
-  //     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+      // const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
   //     // Use place ID to create a new Place instance.
   //     const place = new Place({
   //         id: 'ChIJN5Nz71W3j4ARhx5bwpTQEGg',
@@ -67,29 +71,29 @@ const useGeoLocation = () => {
   //     });
   // }
 
-  const fetchNearbyHospitals = async (lat: number, lng: number) => {
-    // const res = await fetch("https://api.reliancehmo.com/v3/providers");
+  // const fetchNearbyHospitals = async (lat: number, lng: number) => {
+  //   // const res = await fetch("https://api.reliancehmo.com/v3/providers");
 
-    let headersList = {
-      Accept: "*/*",
-      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-    };
+  //   let headersList = {
+  //     Accept: "*/*",
+  //     "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+  //   };
 
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${googleAPIKey!}`,
-      {
-        method: "GET",
-        headers: headersList,
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+  //   const response = await fetch(
+  //     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${googleAPIKey!}`,
+  //     {
+  //       method: "GET",
+  //       headers: headersList,
+  //     }
+  //   );
+  //   const data = await response.json();
+  //   console.log(data);
 
-    // if (!response.ok) {
-    //   toast.error("Failed to fetch data");
-    // }
-    // return response.json();
-  };
+  //   // if (!response.ok) {
+  //   //   toast.error("Failed to fetch data");
+  //   // }
+  //   // return response.json();
+  // };
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -105,8 +109,8 @@ const useGeoLocation = () => {
         latitude: position?.coords?.latitude,
         longitude: position.coords.longitude,
       });
+      console.log(location)
 
-      // initMap(position?.coords?.latitude, position?.coords?.longitude);
       getUserAddress(position?.coords?.latitude, position?.coords?.longitude);
       // fetchNearbyHospitals(
       //   position?.coords?.latitude,

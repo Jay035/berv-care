@@ -129,8 +129,6 @@ export function GlobalProvider({ children }: Props) {
   } = useGeoLocation();
 
   useEffect(() => {
-    const data = fetchNearbyPlaces(latitude, longitude);
-    console.log(data);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
@@ -150,8 +148,6 @@ export function GlobalProvider({ children }: Props) {
     user,
     // data,
     userAddress,
-    // locationCoord,
-    // setLocationCoord,
     setUserAddress,
     isUserLoggedIn,
     register,
