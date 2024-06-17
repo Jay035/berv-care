@@ -4,7 +4,7 @@ import PostLoader from "@/components/PostLoader";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense, lazy } from "react";
-import { Map } from "./Map";
+import { Map } from "./components/Map";
 import getHospitalData, { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 

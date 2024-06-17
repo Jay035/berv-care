@@ -7,6 +7,7 @@ import {
   useContext,
   useEffect,
   createContext,
+  useRef,
 } from "react";
 import { useRouter } from "next/navigation";
 
@@ -47,6 +48,16 @@ export function GlobalProvider({ children }: Props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
+
+// MAP 
+
+const mapRef = useRef<google.maps.Map | null>();
+const [destinationHospital, setDestinationHospital] =
+useState<LatLngLiteral>();
+
+
+
+// -----------------------------------
 
   const login = async (email: string, password: string) => {
     setLoading(true);
@@ -124,9 +135,6 @@ export function GlobalProvider({ children }: Props) {
     }
   };
 
-  const {
-    location: { longitude, latitude },
-  } = useGeoLocation();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -161,6 +169,10 @@ export function GlobalProvider({ children }: Props) {
     setUser,
     downloadCSVLink,
     setDownloadCSVLink,
+    // MAP props
+    // mapRef,
+    destinationHospital,
+    setDestinationHospital
   };
 
   return (

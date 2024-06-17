@@ -35,17 +35,7 @@ interface GlobalProps {
   password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
-  locationCoord?: {
-    loaded?: boolean;
-    coordinates?: {
-      latitude: number;
-      longitude: number;
-    };
-    error?: {
-      code: number;
-      message: string;
-    };
-  };
+
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
@@ -59,6 +49,11 @@ interface GlobalProps {
   signInWithGoogle?: (x: any) => void;
   login?: (email: string, password: string) => void;
   logOut?: (x: any) => void;
+
+  // MAP props
+  mapRef?: google.maps.Map | null;
+  destinationHospital?: LatLngLiteral;
+  setDestinationHospital?: (e: LatLngLiteral) => void;
 }
 
 interface BlogMetadata {
@@ -68,12 +63,12 @@ interface BlogMetadata {
   date: string;
 }
 
-interface Location {
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-}
+type Location = {
+  // location: {
+  latitude: number;
+  longitude: number;
+  // };
+};
 
 interface PositionError {
   code: number;
@@ -81,13 +76,14 @@ interface PositionError {
 }
 
 type MarkerType = {
-  id: string;
+  place_id: string;
   geometry: {
     location: google.maps.LatLngLiteral;
   };
   name: string;
   phone_number: string;
   website: string;
+  icon: string;
 };
 
 type WeatherType = {
@@ -95,10 +91,6 @@ type WeatherType = {
   text: string;
 };
 
-type MarkerType = {
-  id: string;
-  location: google.maps.LatLngLiteral;
-  name: string;
-  phone_number: string;
-  website: string;
-};
+type LatLngLiteral = google.maps.LatLngLiteral;
+type DirectionsResult = google.maps.DirectionsResult;
+type MapOptions = google.maps.MapOptions;
