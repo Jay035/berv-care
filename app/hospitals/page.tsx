@@ -22,8 +22,8 @@ export default async function HospitalsPage() {
   console.log(hospitals);
 
   return (
-    <div className="">
-      <Navbar />
+    <>
+      {/* <Navbar /> */}
       <main className="px-8 sm:px-[9.5vw] mt-6 py-12">
         <h1
           data-testid="hospital_page_title"
@@ -32,13 +32,13 @@ export default async function HospitalsPage() {
           Find Hospitals Around You, With Ease
         </h1>
 
-        {/* <Map /> */}
+        <Map />
 
         <Suspense fallback={<PostLoader />}>
           <HospitalResults hospitals={hospitals} />
         </Suspense>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

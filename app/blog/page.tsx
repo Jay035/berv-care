@@ -11,8 +11,8 @@ export default function Blog() {
   const { blogs, loading } = useBlogContext();
 
   return (
-    <div className="">
-      <Navbar />
+    <>
+      {/* <Navbar /> */}
       <div
         id="healthCenter"
         className="px-[9.5vw] mt-10 mb-[97px] text-center flex flex-col items-center"
@@ -39,6 +39,6 @@ export default function Blog() {
           <BlogPostLoader />
         )}
       </div>
-    </div>
+    </>
   );
 }
