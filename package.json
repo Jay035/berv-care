@@ -13,7 +13,6 @@
   "dependencies": {
     "@firebase/firestore": "^3.12.1",
     "@gsap/react": "^2.1.1",
-    "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.19.3",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
@@ -34,6 +33,7 @@
     "react-dom": "^18.3.1",
     "react-markdown": "^8.0.7",
     "react-query": "^3.39.3",
+    "react-select": "^5.8.0",
     "react-toastify": "9.0.0",
     "remark-gfm": "^3.0.1",
     "remixicon": "^4.2.0",

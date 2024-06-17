@@ -34,9 +34,6 @@ import Places from "./Places";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import Distance from "./Distance";
 
-// GOOGLE API KEY
-const lib = ["places"];
-
 export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
   const [destinationHospital, setDestinationHospital] =
@@ -47,15 +44,12 @@ export function Map() {
     userLocation: { lat, lng },
   } = useGeoLocation();
 
-  // useEffect(() => {
-  //   console.log(lat, lng);
-  // }, []);
-
   const mapContainerStyle = {
     width: "100%",
     height: "90vh",
   };
 
+  // MAP OPTIONS
   const options = useMemo<MapOptions>(
     () => ({
       styles: mapStyles,
@@ -66,10 +60,7 @@ export function Map() {
     []
   );
 
-  // const center = {
-  //   lat: 4.8472226,
-  //   lng: 6.974604,
-  // };
+  // MAP CENTER POSITION
   const center = useMemo<LatLngLiteral>(
     () => ({
       lat: lat,
@@ -78,11 +69,8 @@ export function Map() {
     [lat, lng]
   );
 
-  const hospitals = useMemo(() => generateHospitals(center), [center]);
-
   const { isLoaded, loadError } = useLoadScript({
     // id: "google-map-script",
-
     googleMapsApiKey: process?.env.NEXT_PUBLIC_Google_Places_API!,
     libraries: ["places"],
   });
@@ -135,9 +123,9 @@ export function Map() {
 
   // const onLoad = useCallback((map : google.maps.Map): void  => (mapRef.current = map), [])
 
-  // const onUnMount = (): void => {
-  //   mapRef.current = null;
-  // };
+  const onUnMount = (): void => {
+    mapRef.current = null;
+  };
 
   const onMapClick = (e: google.maps.MapMouseEvent) => {
     console.log(clickedPos);
@@ -170,47 +158,29 @@ export function Map() {
       (result, status) => {
         if (status === "OK" && result) {
           setDirections(result);
-          console.log(result)
+          console.log(result);
         }
-        console.log('err')
+        console.log("err");
       }
     );
   };
-
-  const directionsCallback = useCallback(
-    (
-      response: google.maps.DirectionsResult | null,
-      status: google.maps.DirectionsStatus
-    ) => {
-      console.log("callback func");
-      if (status === "OK" && response) {
-        setDirections(response);
-        console.log(directions, response);
-      } else {
-        console.error("Directions request failed due to " + status);
-      }
-    },
-    []
-  );
 
   if (loadError) {
     return <div>Error loading maps</div>;
   }
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  if (!isLoaded) {
+  if (!isLoaded || isLoading) {
     return (
       <div className="h-[90vh] w-full bg-gray-300 flex justify-center items-center">
-        <div className="w-6 h-4 bg-white rounded-full animate-spin"></div>
+        <div className="w-4 h-4 bg-white border-black rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
     <div className="mb-10">
+      <div className="mb-6">
+
       <Places
         destination={destinationHospital!}
         setDestinationHospital={(position) => {
@@ -219,16 +189,17 @@ export function Map() {
           console.log(position);
           mapRef.current?.setZoom(12);
         }}
-      />
-{directions && <Distance leg={directions.routes[0].legs[0]} />}
+        />
+      {directions && <Distance leg={directions.routes[0].legs[0]} />}
 
+      </div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={10}
         onLoad={onLoad}
         center={center}
         options={options}
-        // onUnmount={onUnMount}
+        onUnmount={onUnMount}
         // onClick={onMapClick}
       >
         {directions && (

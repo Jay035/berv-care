@@ -24,7 +24,7 @@ export default async function HospitalsPage() {
   return (
     <>
       {/* <Navbar /> */}
-      <main className="px-8 sm:px-[9.5vw] mt-6 py-12">
+      <main className="px-8 sm:px-[9.5vw] py-12">
         <h1
           data-testid="hospital_page_title"
           className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl"
