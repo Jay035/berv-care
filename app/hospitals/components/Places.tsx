@@ -51,6 +51,7 @@ export default function Places({
       clearSuggestions()
       try {
         const results = await getGeocode({ address: selectedOption.value });
+        console.log(selectedOption.value)
         const { lat, lng } = await getLatLng(results[0]);
         setDestinationHospital({ lat, lng });
       } catch (error) {
@@ -64,18 +65,6 @@ export default function Places({
     value: suggestion.description,
   }));
 
-  // console.log(status, data)
-
-  // const handleSubmit = async (val: string) => {
-  //   setValue(val, false);
-  //   clearSuggestions();
-
-  //   const results = await getGeocode({ address: val });
-  //   const { lat, lng } = await getLatLng(results[0]);
-  //   setDestinationHospital?.({ lat, lng });
-  //   console.log({ lat, lng });
-  // };
-
   return (
     <Select
       options={options}
@@ -84,21 +73,5 @@ export default function Places({
       placeholder="Search hospital..."
       isDisabled={!ready}
     />
-    // <Combobox onSelect={handleSubmit}>
-    //   <ComboboxInput
-    //     value={value}
-    //     disabled={!ready}
-    //     onChange={(e) => setValue(e.target.value)}
-    //     placeholder="Search hospital..."
-    //   />
-    //   <ComboboxPopover>
-    //     <ComboboxList>
-    //       {status === "OK" &&
-    //         data?.map(({ place_id, description }) => (
-    //           <ComboboxOption key={place_id} value={description} />
-    //         ))}
-    //     </ComboboxList>
-    //   </ComboboxPopover>
-    // </Combobox>
-  );
+      );
 }

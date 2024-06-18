@@ -3,14 +3,13 @@ type Props = {
 };
 
 export default function Distance({ leg }: Props) {
-  console.log(leg);
   if (!leg.distance || !leg.duration) return null;
 
   return (
-    <div>
+    <div className="mt-2">
       <p>
-        This hospital is <span className="bold">{leg.distance.text}</span> away from your current
-        location. That would take <span className="bold">{leg.duration.text} each direction</span>
+        This hospital is <span className="font-bold">{leg.distance.text}</span> away from your current
+        location. That would take <span className="font-bold">{leg.duration.text} by driving</span>
       </p>
     </div>
   );

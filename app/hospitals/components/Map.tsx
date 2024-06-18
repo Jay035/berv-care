@@ -75,11 +75,11 @@ export function Map() {
     libraries: ["places"],
   });
 
-  const [clickedPos, setClickedPos] = useState<google.maps.LatLngLiteral>(
+  const [clickedPos, setClickedPos] = useState<LatLngLiteral>(
     {} as google.maps.LatLngLiteral
   );
 
-  const [selectedMarker, setSelectedMarker] = React.useState<MarkerType>(
+  const [selectedMarker, setSelectedMarker] = useState<MarkerType>(
     {} as MarkerType
   );
 
@@ -91,37 +91,29 @@ export function Map() {
     // [clickedPos.lat, clickedPos.lng],
     [lat, lng],
     () => fetchNearbyPlaces(lat, lng),
-    // () => fetchNearbyPlaces(clickedPos.lat, clickedPos.lng),
     { enabled: !!lat, refetchOnWindowFocus: false }
   );
+  console.log(nearbyHospitals)
 
-  // console.log(nearbyHospitals);
-
-  // const {
-  //   data: markerWeather,
-  //   isLoading: isLoadingMarkerWeather,
-  //   isError: isErrorMarkerWeather,
-  // } = useQuery([selectedMarker.id], () => fetchWeather(selectedMarker), {
-  //   enabled: !!selectedMarker.id,
-  //   refetchOnWindowFocus: false,
-  //   staleTime: 60 * 1000 * 5, // 5 minutes
-  // });
+  const {
+    data: markerWeather,
+    isLoading: isLoadingMarkerWeather,
+    isError: isErrorMarkerWeather,
+  } = useQuery(
+    [selectedMarker?.geometry?.location?.lat],
+    () => fetchWeather(selectedMarker?.geometry?.location),
+    {
+      enabled: !!selectedMarker?.geometry?.location?.lat,
+      refetchOnWindowFocus: false,
+      staleTime: 60 * 1000 * 5, // 5 minutes
+    }
+  );
   // console.log(markerWeather);
-
-  // const moveTo = (position: google.maps.LatLngLiteral) => {
-  //   if (mapRef.current) {
-  //     mapRef.current.panTo({ lat: position.lat, lng: position.lng });
-  //     mapRef.current.setZoom(12);
-  //     setClickedPos(position);
-  //   }
-  // };
 
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
     console.log(center);
   };
-
-  // const onLoad = useCallback((map : google.maps.Map): void  => (mapRef.current = map), [])
 
   const onUnMount = (): void => {
     mapRef.current = null;
@@ -146,7 +138,13 @@ export function Map() {
 
   const fetchDirections = (hospital: LatLngLiteral) => {
     if (!hospital) return;
-    console.log(hospital);
+    setSelectedMarker((prevValue) => ({
+      ...prevValue,
+      geometry: {
+        location: hospital,
+      },
+    }));
+    console.log("selected marker", selectedMarker);
 
     const service = new google.maps.DirectionsService();
     service.route(
@@ -158,7 +156,7 @@ export function Map() {
       (result, status) => {
         if (status === "OK" && result) {
           setDirections(result);
-          console.log(result);
+          console.log("direction", result);
         }
         console.log("err");
       }
@@ -179,19 +177,16 @@ export function Map() {
 
   return (
     <div className="mb-10">
-      <div className="mb-6">
-
-      <Places
-        destination={destinationHospital!}
-        setDestinationHospital={(position) => {
-          setDestinationHospital(position);
-          mapRef.current?.panTo(position);
-          console.log(position);
-          mapRef.current?.setZoom(12);
-        }}
+      <div className="mb-6 max-w-4xl w-full lg:mx-auto">
+        <Places
+          destination={destinationHospital!}
+          setDestinationHospital={(position) => {
+            setDestinationHospital(position);
+            mapRef.current?.panTo(position);
+            mapRef.current?.setZoom(12);
+          }}
         />
-      {directions && <Distance leg={directions.routes[0].legs[0]} />}
-
+        {directions && <Distance leg={directions.routes[0].legs[0]} />}
       </div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -214,19 +209,6 @@ export function Map() {
             }}
           />
         )}
-        {/* {destinationHospital && (
-          <DirectionsService
-            options={{
-              destination: destinationHospital!,
-              origin: center,
-              travelMode: google.maps.TravelMode.DRIVING,
-            }}
-            callback={directionsCallback}
-          />
-        )}
-        {directionsResponse && (
-          <DirectionsRenderer directions={directionsResponse} />
-        )} */}
 
         {center && <Marker position={center} />}
         {destinationHospital && (
@@ -235,28 +217,16 @@ export function Map() {
               position={destinationHospital}
               onClick={() => fetchDirections(destinationHospital)}
               icon={{
-                url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+                url: "/blue-location-marker.png",
                 // origin: new window.google.maps.Point(0, 0),
                 // anchor: new window.google.maps.Point(15, 15),
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
             />
 
-            <Circle
-              center={destinationHospital}
-              radius={15000}
-              options={closeOptions}
-            />
-            <Circle
-              center={destinationHospital}
-              radius={30000}
-              options={middleOptions}
-            />
-            <Circle
-              center={destinationHospital}
-              radius={45000}
-              options={farOptions}
-            />
+            <Circle center={center} radius={15000} options={closeOptions} />
+            <Circle center={center} radius={30000} options={middleOptions} />
+            <Circle center={center} radius={45000} options={farOptions} />
           </>
         )}
 
@@ -269,12 +239,15 @@ export function Map() {
                     <Marker
                       key={marker.place_id}
                       clusterer={clusterer}
-                      position={marker.geometry.location}
-                      onClick={() => fetchDirections(marker.geometry.location)}
+                      position={marker?.geometry?.location}
+                      onClick={() => {
+                        setSelectedMarker(marker);
+                        console.log(selectedMarker);
+                        fetchDirections(marker?.geometry?.location);
+                      }}
                       icon={{
                         // url: marker.icon,
-                        url: "https://maps.google.com/mapfiles/ms/icons/hospitals.png",
-                        // url: "/hospital-fill.svg",
+                        url: "/hospital-marker.png",
                         origin: new window.google.maps.Point(0, 0),
                         anchor: new window.google.maps.Point(15, 15),
                         scaledSize: new window.google.maps.Size(20, 20),
@@ -286,13 +259,13 @@ export function Map() {
             )}
           </MarkerClusterer>
         )}
-        {/* {selectedMarker?.geometry?.location && (
+        {selectedMarker?.geometry?.location && (
           <InfoWindow
-            position={selectedMarker.geometry.location}
+            position={selectedMarker?.geometry?.location}
             onCloseClick={() => setSelectedMarker({} as MarkerType)}
           >
             <div>
-              <h3>{selectedMarker.name}</h3>
+              <h3 className="font-semibold">{selectedMarker?.name}</h3>
               {isLoadingMarkerWeather ? (
                 <p>Loading Weather ...</p>
               ) : (
@@ -303,7 +276,7 @@ export function Map() {
               )}
             </div>
           </InfoWindow>
-        )} */}
+        )}
       </GoogleMap>
       {/* </LoadScript> */}
     </div>

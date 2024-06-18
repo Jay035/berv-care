@@ -13,7 +13,7 @@ export default function HeroSection({}: Props) {
     const heading = new SplitType("#hero_title", { types: "words" });
     const paragraph = new SplitType(".hero_text", { types: "words" });
 
-    gsap.from([heading.words, paragraph.lines, "#hero_btn", "#hero_img"], {
+    gsap.from([heading.words, paragraph.words, "#hero_btn", "#hero_img"], {
       y: 24,
       opacity: 0,
       duration: 0.8,

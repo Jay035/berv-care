@@ -81,9 +81,24 @@ type MarkerType = {
     location: google.maps.LatLngLiteral;
   };
   name: string;
-  phone_number: string;
-  website: string;
+  // phone_number: string;
+  // website: string;
   icon: string;
+  icon_background_color: string;
+  icon_mask_base_uri: string;
+  rating: number;
+  vicinity: string;
+  business_status: string;
+  photos?: {
+    height: number;
+    width: number;
+    photo_reference: string;
+    html_attributions: string[];
+  };
+
+  opening_hours?: {
+    open_now: boolean;
+  };
 };
 
 type WeatherType = {

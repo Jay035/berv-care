@@ -20,13 +20,13 @@ export const fetchNearbyPlaces = async (lat: number, lng: number): Promise<Marke
   }
 
   const data = await response.json();
-  console.log(data)
+  // console.log(data.results)
   return data.results;
 };
 
-export const fetchWeather = async (marker: MarkerType): Promise<WeatherType> => {
+export const fetchWeather = async ({lat, lng} : LatLngLiteral): Promise<WeatherType> => {
   const response = await fetch(
-    `https://yahoo-weather5.p.rapidapi.com/weather?lat=${marker.geometry.location.lat}&long=${marker.geometry.location.lng}&format=json&u=c`,
+    `https://yahoo-weather5.p.rapidapi.com/weather?lat=${lat}&long=${lng}&format=json&u=c`,
     {
       method: 'GET',
       headers: {
@@ -41,6 +41,7 @@ export const fetchWeather = async (marker: MarkerType): Promise<WeatherType> => 
   }
 
   const data = await response.json();
+  // console.log(data)
 
   return {
     temp: data.current_observation.condition.temperature,

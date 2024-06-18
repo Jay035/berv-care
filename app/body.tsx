@@ -13,7 +13,7 @@ export default function BodyComponent({
   const path = usePathname()
   return (
     <QueryClientProvider client={queryClient}>
-      {(path !== "/login" && path !== "signup") && <Navbar />}
+      {(path !== "/login" && path !== "/signup") && <Navbar />}
       
       {children}
       </QueryClientProvider>
