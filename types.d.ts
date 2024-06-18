@@ -35,7 +35,13 @@ interface GlobalProps {
   password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
-
+  showModal?: boolean;
+	modalHeader?: string;
+  toggleModal?: () => void;
+  
+	setModalHeader?: (x: string) => void;
+  
+  
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
@@ -49,9 +55,11 @@ interface GlobalProps {
   signInWithGoogle?: (x: any) => void;
   login?: (email: string, password: string) => void;
   logOut?: (x: any) => void;
-
+  
   // MAP props
   mapRef?: google.maps.Map | null;
+  selectedHospitalInfo?: MarkerType;
+  setSelectedHospitalInfo?: (e: MarkerType) => void;
   destinationHospital?: LatLngLiteral;
   setDestinationHospital?: (e: LatLngLiteral) => void;
 }
@@ -109,3 +117,9 @@ type WeatherType = {
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
+
+
+interface ModalProps {
+	modalHeader: string;
+	children: ReactElement;
+}

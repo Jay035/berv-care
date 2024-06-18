@@ -33,6 +33,7 @@ import CurrentLocation from "@/components/CurrentLocation";
 import Places from "./Places";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import Distance from "./Distance";
+import Link from "next/link";
 
 export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
@@ -43,6 +44,13 @@ export function Map() {
   const {
     userLocation: { lat, lng },
   } = useGeoLocation();
+  const {
+    showModal,
+    toggleModal,
+    setModalHeader,
+    selectedHospitalInfo,
+    setSelectedHospitalInfo,
+  } = useGlobalProvider();
 
   const mapContainerStyle = {
     width: "100%",
@@ -93,7 +101,7 @@ export function Map() {
     () => fetchNearbyPlaces(lat, lng),
     { enabled: !!lat, refetchOnWindowFocus: false }
   );
-  console.log(nearbyHospitals)
+  console.log(nearbyHospitals);
 
   const {
     data: markerWeather,
@@ -144,7 +152,6 @@ export function Map() {
         location: hospital,
       },
     }));
-    console.log("selected marker", selectedMarker);
 
     const service = new google.maps.DirectionsService();
     service.route(
@@ -156,7 +163,6 @@ export function Map() {
       (result, status) => {
         if (status === "OK" && result) {
           setDirections(result);
-          console.log("direction", result);
         }
         console.log("err");
       }
@@ -215,7 +221,9 @@ export function Map() {
           <>
             <Marker
               position={destinationHospital}
-              onClick={() => fetchDirections(destinationHospital)}
+              onClick={() => {
+                fetchDirections(destinationHospital);
+              }}
               icon={{
                 url: "/blue-location-marker.png",
                 // origin: new window.google.maps.Point(0, 0),
@@ -242,7 +250,8 @@ export function Map() {
                       position={marker?.geometry?.location}
                       onClick={() => {
                         setSelectedMarker(marker);
-                        console.log(selectedMarker);
+                        setSelectedHospitalInfo?.(marker);
+                        console.log(selectedHospitalInfo);
                         fetchDirections(marker?.geometry?.location);
                       }}
                       icon={{
@@ -272,6 +281,9 @@ export function Map() {
                 <>
                   <p>{markerWeather?.text}</p>
                   <p>{markerWeather?.temp} &#xb0;C</p>
+                  <Link href={`/hospital/${selectedMarker?.place_id}`}>
+                    View info
+                  </Link>
                 </>
               )}
             </div>

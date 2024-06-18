@@ -45,6 +45,8 @@ export default function Places({
     },
   });
 
+  const { setSelectedHospitalInfo} = useGlobalProvider()
+
   const handleSelect = async (selectedOption: PlaceOption | null) => {
     if (selectedOption) {
       setValue(selectedOption.value, false);
@@ -54,6 +56,11 @@ export default function Places({
         console.log(selectedOption.value)
         const { lat, lng } = await getLatLng(results[0]);
         setDestinationHospital({ lat, lng });
+        // setSelectedHospitalInfo?.((prevValue: any) => ({
+        //   ...prevValue,
+        //   name: selectedOption.value
+
+        // }))
       } catch (error) {
         console.error("Error: ", error);
       }

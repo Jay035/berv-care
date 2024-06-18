@@ -49,8 +49,17 @@ export function GlobalProvider({ children }: Props) {
   const [error, setError] = useState("");
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
 
-// MAP 
+  // MODAL 
+  
+	const [showModal, setShowModal] = useState<boolean>(false);
+	const [modalHeader, setModalHeader] = useState<string>("");
 
+  function toggleModal() {
+		setShowModal((prevState) => !prevState);
+	}
+
+// MAP 
+const [selectedHospitalInfo, setSelectedHospitalInfo] = useState<MarkerType>({} as MarkerType)
 const mapRef = useRef<google.maps.Map | null>();
 const [destinationHospital, setDestinationHospital] =
 useState<LatLngLiteral>();
@@ -171,6 +180,8 @@ useState<LatLngLiteral>();
     setDownloadCSVLink,
     // MAP props
     // mapRef,
+    selectedHospitalInfo,
+    setSelectedHospitalInfo,
     destinationHospital,
     setDestinationHospital
   };
