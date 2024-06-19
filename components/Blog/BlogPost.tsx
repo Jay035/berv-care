@@ -26,17 +26,19 @@ export default function BlogPost({ post }: any) {
           {post?.title}
         </h1>
         <div className="h-full prose prose-slate prose-a:text-[#DD2D4A] max-h-6 overflow-hidden">
-          <Markdown remarkPlugins={[remarkGfm]}>{post?.content.slice(0, 1)}</Markdown>
+          <Markdown remarkPlugins={[remarkGfm]}>{post?.content
+          // .slice(0, 50)
+          }</Markdown>
         </div>
-        <button
+        {/* <button
           disabled
           className="bg-[#14532D] disabled:bg-[#14532D]/60 text-white rounded-lg mt-3 px-4 py-3"
           // onClick={() => navigateToPreview(`/blog/${post?.id}`)}
-        >
+        > */}
           {/* <Link href={`/blog/${post?.id}`} className=""> */}
-          Read more
+          {/* Read more */}
           {/* </Link> */}
-        </button>
+        {/* </button> */}
       </article>
   );
 }

@@ -7,11 +7,11 @@ export const HowItWorksData = [
   {
     title: "Search",
     description:
-      "Search for hospitals within your location. You can input your location or select from a list of nearby hospitals",
+      "Search for preferred hospital name/address within your location or select from a list of nearby hospitals",
   },
   {
     title: "Select",
-    description: "Click on the 'View' button to select the hospital you want.",
+    description: "Click on the marker on the map to view more information about the selected hospital",
   },
   // {
   //   title: "Export",
@@ -21,16 +21,16 @@ export const HowItWorksData = [
   {
     title: "Share",
     description:
-      "Berv-Care also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link.",
+      "Berv-Care also allows users to share the list of hospitals with others. Users can generate a shareable link or download the csv file directly into their device.",
   },
   {
     title: "Sign Up",
     description:
-      "Berv-Care requires users to create an account to access the platform's admin features.",
+      "Berv-Care requires users to create an account to access the platform's premium features.",
   },
   {
     title: "Markdown Support",
     description:
-      "Berv-Care allows admin users to write content(create hospital entries and corresponding details) with markdown.",
+      "Berv-Care allows admin users to write content (blogs) using markdown.",
   },
 ];
