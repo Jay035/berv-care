@@ -20,22 +20,22 @@ import {
   DirectionsService,
 } from "@react-google-maps/api";
 import { useQuery } from "react-query";
+import Image from "next/image";
 
 // COMPONENTS
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 import { fetchWeather } from "../../api/api";
 import mapStyles from "./mapStyles";
-
-// ASSETS
-// import hospitalIcon from "../../public/hospital-fill.svg";
-import CurrentLocation from "@/components/CurrentLocation";
 import Places from "./Places";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import Distance from "./Distance";
-import Link from "next/link";
-import Image from "next/image";
 import NearbyHospitals from "@/components/NearbyHospitals";
+import ExportDataButton from "@/components/ExportDataButton";
+import { convertDataToCSV } from "@/utils/csvUtils";
+import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
+import PostLoader from "@/components/PostLoader";
+import DownloadModal from "@/components/DownloadModal";
 
 export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
@@ -51,9 +51,12 @@ export function Map() {
     setSelectedHospitalInfo,
     directions,
     setDirections,
-    nearbyHospitals,
-    setNearbyHospitals,
+    downloadCSVLink,
+    setDownloadCSVLink,
   } = useGlobalProvider();
+
+  // const [downloadCSVLink, setDownloadCsvLink] = useState("");
+  // const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
 
   const mapContainerStyle = {
     width: "100%",
@@ -94,21 +97,17 @@ export function Map() {
     {} as MarkerType
   );
 
+  // fetch nearby hospitals info
   const {
     data: nearbyHospitalsData,
     isLoading,
     isError,
-  } = useQuery(
-    // [clickedPos.lat, clickedPos.lng],
-    [lat, lng],
-    () => fetchNearbyPlaces(lat, lng),
-    { enabled: !!lat, refetchOnWindowFocus: false }
-  );
-  useEffect(() => {
-    // setNearbyHospitals?.(nearbyHospitalsData)
-    console.log(nearbyHospitalsData);
-  }, [nearbyHospitalsData]);
+  } = useQuery([lat, lng], () => fetchNearbyPlaces(lat, lng), {
+    enabled: !!lat,
+    refetchOnWindowFocus: false,
+  });
 
+  // Fetch weather info
   const {
     data: markerWeather,
     isLoading: isLoadingMarkerWeather,
@@ -122,11 +121,9 @@ export function Map() {
       staleTime: 60 * 1000 * 5, // 5 minutes
     }
   );
-  // console.log(markerWeather);
 
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
-    // console.log(center);
   };
 
   const onUnMount = (): void => {
@@ -136,12 +133,6 @@ export function Map() {
   const onMapClick = (e: google.maps.MapMouseEvent) => {
     console.log(clickedPos);
 
-    // setClickedPos({
-    //   lat: Number(e.latLng?.lat()),
-    //   lng: Number(e.latLng?.lng()),
-    // });
-    // setSelectedMarker({} as MarkerType);
-    // fetchNearbyPlaces(latitude, longitude);
     console.log(e.latLng?.lat(), e.latLng?.lng());
   };
 
@@ -175,6 +166,22 @@ export function Map() {
     );
   };
 
+  const handleExportData = async () => {
+    try {
+      const csvData = convertDataToCSV(nearbyHospitalsData!);
+      console.log(csvData);
+      await UploadCSVToFirebaseStorage(
+        csvData,
+        setDownloadCSVLink
+        // hospitalLocationSelected,
+      );
+      console.log("Data exported successfully");
+    } catch (err: any) {
+      console.log(err);
+      // toast.error(err.message);
+    }
+  };
+
   if (loadError) {
     return <div>Error loading maps</div>;
   }
@@ -189,6 +196,12 @@ export function Map() {
 
   return (
     <div className="mb-10">
+      {/* {downloadButtonClicked && (
+        <DownloadModal
+          downloadCSVLink={downloadCSVLink}
+          setDownloadButtonClicked={setDownloadButtonClicked}
+        />
+      )} */}
       <div className="mb-6 max-w-4xl w-full lg:mx-auto">
         <Places
           destination={destinationHospital!}
@@ -335,8 +348,18 @@ export function Map() {
           indicates destination location
         </div>
       </section>
-      {nearbyHospitalsData && (
-        <NearbyHospitals hospitals={nearbyHospitalsData} />
+      {nearbyHospitalsData ? (
+        <>
+          <NearbyHospitals hospitals={nearbyHospitalsData} />
+          {nearbyHospitalsData?.length > 0 && (
+            <ExportDataButton
+              handleExportData={handleExportData}
+              data={nearbyHospitalsData}
+            />
+          )}
+        </>
+      ) : (
+        <PostLoader />
       )}
     </div>
   );
@@ -370,16 +393,4 @@ const farOptions = {
   fillOpacity: 0.05,
   strokeColor: "#FF5252",
   fillColor: "#FF5252",
-};
-
-const generateHospitals = (position: LatLngLiteral) => {
-  const _houses: Array<LatLngLiteral> = [];
-  for (let i = 0; i < 100; i++) {
-    const direction = Math.random() < 0.5 ? -2 : 2;
-    _houses.push({
-      lat: position.lat + Math.random() / direction,
-      lng: position.lng + Math.random() / direction,
-    });
-  }
-  return _houses;
 };

@@ -1,17 +1,20 @@
 import { storage } from "@/config/Config";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { toast } from "react-toastify";
 
 export async function UploadCSVToFirebaseStorage(
   csvData: string,
-  selectedHospitalLocation: string,
-  setDownloadCSVLink: (e:any) => void,
+  setDownloadCsvLink?: (e: any) => void,
+  hospitalLocationSelected?: string,
 ) {
+  // const {setDownloadCSVLink} = useGlobalProvider()
+  console.log(csvData)
 
   // Create a storage reference from our storage service
   const storageRef = ref(
     storage,
-    `csv/${selectedHospitalLocation}-hospital(s)-csv`
+    `csv/nearby-hospital(s)-csv`
   );
   const metadata = {
     contentType: "text/csv",
@@ -19,7 +22,7 @@ export async function UploadCSVToFirebaseStorage(
 
   // Upload the CSV file as a Blob
   const blob = new Blob([csvData], { type: "text/csv" });
-  console.log(selectedHospitalLocation);
+  console.log(hospitalLocationSelected);
   const uploadTask = uploadBytesResumable(storageRef, blob, metadata);
 
   // console.log("CSV file uploaded to Firebase Cloud Storage.", uploadTask);
@@ -67,7 +70,7 @@ export async function UploadCSVToFirebaseStorage(
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         console.log("File available at", downloadURL);
         // toast.success(`Download generated CSV file at ${downloadURL}`);
-        setDownloadCSVLink?.(downloadURL);
+        setDownloadCsvLink?.(downloadURL);
         return downloadURL;
       });
     }

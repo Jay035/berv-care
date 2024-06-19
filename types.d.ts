@@ -36,6 +36,7 @@ interface GlobalProps {
   isUserLoggedIn?: boolean;
   loading: boolean;
   showModal?: boolean;
+  downloadButtonClicked?: boolean;
   modalHeader?: string;
   toggleModal?: () => void;
 
@@ -48,6 +49,7 @@ interface GlobalProps {
   setError?: (x: string) => void;
   setPassword?: (x: string) => void;
   setLoading?: (x: any) => void;
+  setDownloadButtonClicked?: (x: boolean) => void;
   setDownloadCSVLink?: (x: any) => void;
   setIsUserLoggedIn?: (x: any) => void;
   register?: (email: string, password: string) => void;

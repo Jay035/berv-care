@@ -43,11 +43,13 @@ type Props = {
 export function GlobalProvider({ children }: Props) {
   const router = useRouter();
   const [userAddress, setUserAddress] = useState("");
-  const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
+  const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(false);
   const [user, setUser]: any = useState(auth?.currentUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
+
+  const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
 
   // MODAL
 
@@ -178,6 +180,8 @@ export function GlobalProvider({ children }: Props) {
     setUser,
     downloadCSVLink,
     setDownloadCSVLink,
+    downloadButtonClicked,
+    setDownloadButtonClicked,
 
     // MAP props
     selectedHospitalInfo,

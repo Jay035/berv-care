@@ -32,10 +32,11 @@ export default async function HospitalsPage() {
           Find Hospitals Around You, With Ease
         </h1>
 
-        {/* <Map /> */}
-        <Suspense fallback={<PostLoader />}>
+        <Map />
+        
+        {/* <Suspense fallback={<PostLoader />}>
           <HospitalResults hospitals={hospitals} />
-        </Suspense>
+        </Suspense> */}
       </main>
       <Footer />
     </>

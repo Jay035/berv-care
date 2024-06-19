@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import DownloadModal from "./DownloadModal";
 
 export default function HospitalResults({ hospitals }: any) {
-  const [downloadCSVLink, setDownloadCSVLink] = useState("");
+  const [downloadCSVLink, setDownloadCsvLink] = useState("");
   const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
   const [usersRegion, setUsersRegion] = useState("");
   const [data, setData] = useState(hospitals?.data);
@@ -74,8 +74,8 @@ export default function HospitalResults({ hospitals }: any) {
       console.log(csvData);
       await UploadCSVToFirebaseStorage(
         csvData,
+        setDownloadCsvLink,
         hospitalLocationSelected,
-        setDownloadCSVLink
       );
       toast.success("Data exported successfully");
     } catch (err: any) {
@@ -172,6 +172,7 @@ export default function HospitalResults({ hospitals }: any) {
             </section>
           ))}
       </div>
+
       {data?.length > 0 && (
         <div className="flex gap-10 justify-center items-center my-8">
           <button

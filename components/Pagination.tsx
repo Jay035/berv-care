@@ -25,12 +25,13 @@ export default function Pagination({
     <div className="flex gap-5 justify-center items-center my-8 mx-6">
       <button
         disabled={currentPage === 1}
-        className="bg-[#14532D] text-white px-4 py-3 rounded-lg disabled:bg-[#14532D]/70"
+        className="border border-[#14532D] text-[#14532D] px-4 py-3 rounded-lg disabled:opacity-80 disabled:hover:opacity-100 hover:bg-[#14532D] hover:text-white"
         onClick={() => handlePageClick(currentPage - 1)}
       >
-        Previous
+        <i className="ri-arrow-left-line"></i>
+        {/* Previous */}
       </button>
-      {/* <div className="flex gap-4 text-lg items-center">
+      <div className="flex gap-4 text-lg items-center">
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             className={`border w-8 h-8 rounded-lg 
@@ -42,13 +43,14 @@ export default function Pagination({
             {index + 1}
           </button>
         ))}
-      </div> */}
+      </div>
       <button
         disabled={currentPage === totalPages}
-        className="bg-[#14532D] text-white px-4 py-3 rounded-lg disabled:bg-[#14532D]/70"
+        className="border bg-[#14532D] text-white border-[#14532D]  px-4 py-3 rounded-lg disabled:opacity-80 disabled:hover:opacity-100 hover:bg-[#14532D] hover:text-white"
         onClick={() => handlePageClick(currentPage + 1)}
       >
-        Next
+        <i className="ri-arrow-right-line"></i>
+        {/* Next */}
       </button>
     </div>
   );
