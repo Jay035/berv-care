@@ -1,19 +1,28 @@
-import React from "react";
+import { useGlobalProvider } from "@/context/GlobalProvider";
+// import { HandleExportData } from "@/lib/HandleExportData";
+import { convertDataToCSV } from "@/utils/csvUtils";
+import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 
 type Props = {
-  handleExportData: (data: any) => void;
-  setDownloadButtonClicked: (e: any) => void;
+  handleExportData?: (data: any) => void;
+  setDownloadButtonClicked?: (e: any) => void;
+  data?: MarkerType[];
 };
 
 export default function ExportDataButton({
   handleExportData,
   setDownloadButtonClicked,
+  data,
 }: Props) {
+  const { toggleModal, setModalHeader } = useGlobalProvider();
+
   return (
     <button
       onClick={(e) => {
-        handleExportData(e);
-        setDownloadButtonClicked(true);
+        handleExportData?.(data);
+        setDownloadButtonClicked?.(true);
+        toggleModal?.();
+        setModalHeader?.("Export");
       }}
       className="border mt-3 p-2 rounded-lg font-medium w-full max-w-4xl mx-auto flex justify-center"
     >

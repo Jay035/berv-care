@@ -4,7 +4,7 @@ import PostLoader from "@/components/PostLoader";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { Suspense, lazy } from "react";
-import { Map } from "./Map";
+import { Map } from "./components/Map";
 import getHospitalData, { fetchNearbyPlaces } from "@/lib/getAllHospitals";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 
@@ -22,9 +22,9 @@ export default async function HospitalsPage() {
   console.log(hospitals);
 
   return (
-    <div className="">
-      <Navbar />
-      <main className="px-8 sm:px-[9.5vw] mt-6 py-12">
+    <>
+      {/* <Navbar /> */}
+      <main className="px-8 sm:px-[9.5vw] py-12">
         <h1
           data-testid="hospital_page_title"
           className="mb-8 max-w-3xl mx-auto text-center font-extrabold text-[#14532D] text-3xl tracking-tight xl:text-5xl"
@@ -32,15 +32,13 @@ export default async function HospitalsPage() {
           Find Hospitals Around You, With Ease
         </h1>
 
-        {/* <Map /> */}
-
-        <Suspense fallback={<PostLoader />}>
-          <HospitalResults 
-          hospitals={hospitals}
-           />
-        </Suspense>
+        <Map />
+        
+        {/* <Suspense fallback={<PostLoader />}>
+          <HospitalResults hospitals={hospitals} />
+        </Suspense> */}
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

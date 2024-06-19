@@ -7,6 +7,7 @@ import {
   useContext,
   useEffect,
   createContext,
+  useRef,
 } from "react";
 import { useRouter } from "next/navigation";
 
@@ -42,11 +43,33 @@ type Props = {
 export function GlobalProvider({ children }: Props) {
   const router = useRouter();
   const [userAddress, setUserAddress] = useState("");
-  const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(null);
+  const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(false);
   const [user, setUser]: any = useState(auth?.currentUser);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
+
+  const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
+
+  // MODAL
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalHeader, setModalHeader] = useState<string>("");
+
+  function toggleModal() {
+    setShowModal((prevState) => !prevState);
+  }
+
+  // MAP
+  const [selectedHospitalInfo, setSelectedHospitalInfo] = useState<MarkerType>(
+    {} as MarkerType
+  );
+  const [nearbyHospitals, setNearbyHospitals] = useState<MarkerType[]>();
+  const [destinationHospital, setDestinationHospital] =
+    useState<LatLngLiteral>();
+  const [directions, setDirections] = useState<DirectionsResult>();
+
+  // -----------------------------------
 
   const login = async (email: string, password: string) => {
     setLoading(true);
@@ -124,13 +147,7 @@ export function GlobalProvider({ children }: Props) {
     }
   };
 
-  const {
-    location: { longitude, latitude },
-  } = useGeoLocation();
-
   useEffect(() => {
-    const data = fetchNearbyPlaces(latitude, longitude);
-    console.log(data);
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
@@ -150,8 +167,6 @@ export function GlobalProvider({ children }: Props) {
     user,
     // data,
     userAddress,
-    // locationCoord,
-    // setLocationCoord,
     setUserAddress,
     isUserLoggedIn,
     register,
@@ -165,6 +180,23 @@ export function GlobalProvider({ children }: Props) {
     setUser,
     downloadCSVLink,
     setDownloadCSVLink,
+    downloadButtonClicked,
+    setDownloadButtonClicked,
+
+    // MAP props
+    selectedHospitalInfo,
+    setSelectedHospitalInfo,
+    toggleModal,
+    showModal,
+    modalHeader,
+    setModalHeader,
+    setShowModal,
+    destinationHospital,
+    setDestinationHospital,
+    directions,
+    setDirections,
+    nearbyHospitals,
+    setNearbyHospitals
   };
 
   return (

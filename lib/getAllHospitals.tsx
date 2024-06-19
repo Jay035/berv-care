@@ -54,20 +54,7 @@ export const fetchNearbyPlaces = async (
     headers: headersList,
   };
 
-  // const respons = await fetch(
-  //   `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=10000&type=hospital&keyword=hospital&name=hospital&key=${apiKey!}`,
-  //   {
-  //     method: "GET",
-  //     headers: {
-  //       "Access-Control-Allow-Origin": "*",
-  //       Accept: "*/*",
-  //       "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-  //     },
-  //   }
-  // );
-
   let response = await axios.request(reqOptions);
-  console.log(response.data.results);
   let data = response.data.results;
 
   return data;

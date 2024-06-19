@@ -35,17 +35,13 @@ interface GlobalProps {
   password?: string | undefined;
   isUserLoggedIn?: boolean;
   loading: boolean;
-  locationCoord?: {
-    loaded?: boolean;
-    coordinates?: {
-      latitude: number;
-      longitude: number;
-    };
-    error?: {
-      code: number;
-      message: string;
-    };
-  };
+  showModal?: boolean;
+  downloadButtonClicked?: boolean;
+  modalHeader?: string;
+  toggleModal?: () => void;
+
+  setModalHeader?: (x: string) => void;
+
   setName?: (x: string) => void;
   setEmail?: (x: string) => void;
   setUser?: (x: string) => void;
@@ -53,12 +49,24 @@ interface GlobalProps {
   setError?: (x: string) => void;
   setPassword?: (x: string) => void;
   setLoading?: (x: any) => void;
+  setDownloadButtonClicked?: (x: boolean) => void;
   setDownloadCSVLink?: (x: any) => void;
   setIsUserLoggedIn?: (x: any) => void;
   register?: (email: string, password: string) => void;
   signInWithGoogle?: (x: any) => void;
   login?: (email: string, password: string) => void;
   logOut?: (x: any) => void;
+
+  // MAP props
+  mapRef?: google.maps.Map | null;
+  selectedHospitalInfo?: MarkerType;
+  setSelectedHospitalInfo?: (e: MarkerType) => void;
+  destinationHospital?: LatLngLiteral;
+  setDestinationHospital?: (e: LatLngLiteral) => void;
+  directions?: DirectionsResult;
+  setDirections?: (dir: DirectionsResult) => void;
+  nearbyHospitals?: MarkerType[];
+  setNearbyHospitals?: (e: MarkerType[]) => void;
 }
 
 interface BlogMetadata {
@@ -68,12 +76,12 @@ interface BlogMetadata {
   date: string;
 }
 
-interface Location {
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-}
+type Location = {
+  // location: {
+  latitude: number;
+  longitude: number;
+  // };
+};
 
 interface PositionError {
   code: number;
@@ -81,9 +89,41 @@ interface PositionError {
 }
 
 type MarkerType = {
-  id: string;
-  location: google.maps.LatLngLiteral;
+  place_id: string;
+  geometry: {
+    location: google.maps.LatLngLiteral;
+  };
   name: string;
-  phone_number: string;
-  website: string;
+  // phone_number: string;
+  // website: string;
+  icon: string;
+  icon_background_color: string;
+  icon_mask_base_uri: string;
+  rating: number;
+  vicinity: string;
+  business_status: string;
+  photos?: {
+    height: number;
+    width: number;
+    photo_reference: string;
+    html_attributions: string[];
+  };
+
+  opening_hours?: {
+    open_now: boolean;
+  };
+};
+
+type WeatherType = {
+  temp: number;
+  text: string;
+};
+
+type LatLngLiteral = google.maps.LatLngLiteral;
+type DirectionsResult = google.maps.DirectionsResult;
+type MapOptions = google.maps.MapOptions;
+
+interface ModalProps {
+  modalHeader: string;
+  children: ReactElement;
 }

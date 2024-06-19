@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import DownloadModal from "./DownloadModal";
 
 export default function HospitalResults({ hospitals }: any) {
-  const [downloadCSVLink, setDownloadCSVLink] = useState("");
+  const [downloadCSVLink, setDownloadCsvLink] = useState("");
   const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
   const [usersRegion, setUsersRegion] = useState("");
   const [data, setData] = useState(hospitals?.data);
@@ -29,7 +29,7 @@ export default function HospitalResults({ hospitals }: any) {
   );
 
   const {
-    location: { longitude, latitude },
+    userLocation,
   } = useGeoLocation();
 
   // PAGINATION
@@ -49,30 +49,7 @@ export default function HospitalResults({ hospitals }: any) {
     setCurrentPage(currentPage - 1);
   };
 
-  const getResult = async () => {
-    // const res = await fetch(`https://api.distancematrix.ai/maps/api/geocode/json?latlng=${latitude},${longitude}&key=<your_access_token>`)
-    const apiKey = `${process?.env?.rapidApiKey}`;
-    const url = `https://forward-reverse-geocoding.p.rapidapi.com/v1/reverse?lat=${latitude}&lon=${longitude}&accept-language=en&polygon_threshold=0.0`;
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": apiKey,
-        "X-RapidAPI-Host": "forward-reverse-geocoding.p.rapidapi.com",
-      },
-    };
-
-    try {
-      const response = await fetch(url, options);
-      const result = await response.json();
-      // console.log("result", result);
-      // console.log("user's city", result?.address?.city);
-      // setUsersRegion(result?.address?.city);
-      // setData(nearbyHospitals);
-      // console.log(nearbyHospitals);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+ 
 
   const handleSearch = (e: any) => {
     e.preventDefault();
@@ -97,8 +74,8 @@ export default function HospitalResults({ hospitals }: any) {
       console.log(csvData);
       await UploadCSVToFirebaseStorage(
         csvData,
+        setDownloadCsvLink,
         hospitalLocationSelected,
-        setDownloadCSVLink
       );
       toast.success("Data exported successfully");
     } catch (err: any) {
@@ -195,6 +172,7 @@ export default function HospitalResults({ hospitals }: any) {
             </section>
           ))}
       </div>
+
       {data?.length > 0 && (
         <div className="flex gap-10 justify-center items-center my-8">
           <button
