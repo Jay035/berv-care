@@ -45,22 +45,17 @@ export default function Places({
     },
   });
 
-  const { setSelectedHospitalInfo} = useGlobalProvider()
+  const { setSelectedHospitalInfo } = useGlobalProvider();
 
   const handleSelect = async (selectedOption: PlaceOption | null) => {
     if (selectedOption) {
       setValue(selectedOption.value, false);
-      clearSuggestions()
+      clearSuggestions();
       try {
         const results = await getGeocode({ address: selectedOption.value });
-        console.log(selectedOption.value)
+        console.log(selectedOption.value);
         const { lat, lng } = await getLatLng(results[0]);
         setDestinationHospital({ lat, lng });
-        // setSelectedHospitalInfo?.((prevValue: any) => ({
-        //   ...prevValue,
-        //   name: selectedOption.value
-
-        // }))
       } catch (error) {
         console.error("Error: ", error);
       }
@@ -73,12 +68,19 @@ export default function Places({
   }));
 
   return (
-    <Select
-      options={options}
-      onInputChange={(inputValue) => setValue(inputValue)}
-      onChange={handleSelect}
-      placeholder="Search hospital..."
-      isDisabled={!ready}
-    />
-      );
+    <div className="">
+      <Select
+        options={options}
+        onInputChange={(inputValue) => setValue(inputValue)}
+        onChange={handleSelect}
+        placeholder="Search hospital..."
+        isDisabled={!ready}
+      />
+      {value && (
+        <p className="mt-2">
+          Search result for <span className="text-[#14532d]"> &quot;{value}&quot;</span>
+        </p>
+      )}
+    </div>
+  );
 }

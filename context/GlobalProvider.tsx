@@ -49,24 +49,25 @@ export function GlobalProvider({ children }: Props) {
   const [error, setError] = useState("");
   const [downloadCSVLink, setDownloadCSVLink] = useState("");
 
-  // MODAL 
-  
-	const [showModal, setShowModal] = useState<boolean>(false);
-	const [modalHeader, setModalHeader] = useState<string>("");
+  // MODAL
+
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalHeader, setModalHeader] = useState<string>("");
 
   function toggleModal() {
-		setShowModal((prevState) => !prevState);
-	}
+    setShowModal((prevState) => !prevState);
+  }
 
-// MAP 
-const [selectedHospitalInfo, setSelectedHospitalInfo] = useState<MarkerType>({} as MarkerType)
-const mapRef = useRef<google.maps.Map | null>();
-const [destinationHospital, setDestinationHospital] =
-useState<LatLngLiteral>();
+  // MAP
+  const [selectedHospitalInfo, setSelectedHospitalInfo] = useState<MarkerType>(
+    {} as MarkerType
+  );
+  const [nearbyHospitals, setNearbyHospitals] = useState<MarkerType[]>();
+  const [destinationHospital, setDestinationHospital] =
+    useState<LatLngLiteral>();
+  const [directions, setDirections] = useState<DirectionsResult>();
 
-
-
-// -----------------------------------
+  // -----------------------------------
 
   const login = async (email: string, password: string) => {
     setLoading(true);
@@ -144,7 +145,6 @@ useState<LatLngLiteral>();
     }
   };
 
-
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -178,12 +178,21 @@ useState<LatLngLiteral>();
     setUser,
     downloadCSVLink,
     setDownloadCSVLink,
+
     // MAP props
-    // mapRef,
     selectedHospitalInfo,
     setSelectedHospitalInfo,
+    toggleModal,
+    showModal,
+    modalHeader,
+    setModalHeader,
+    setShowModal,
     destinationHospital,
-    setDestinationHospital
+    setDestinationHospital,
+    directions,
+    setDirections,
+    nearbyHospitals,
+    setNearbyHospitals
   };
 
   return (

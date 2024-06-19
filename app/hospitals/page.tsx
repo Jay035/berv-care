@@ -33,7 +33,6 @@ export default async function HospitalsPage() {
         </h1>
 
         {/* <Map /> */}
-
         <Suspense fallback={<PostLoader />}>
           <HospitalResults hospitals={hospitals} />
         </Suspense>

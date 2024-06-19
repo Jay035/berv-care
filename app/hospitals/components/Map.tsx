@@ -34,22 +34,25 @@ import Places from "./Places";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import Distance from "./Distance";
 import Link from "next/link";
+import Image from "next/image";
+import NearbyHospitals from "@/components/NearbyHospitals";
 
 export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
   const [destinationHospital, setDestinationHospital] =
     useState<LatLngLiteral>();
-  // const { destinationHospital, setDestinationHospital} = useGlobalProvider()
-  const [directions, setDirections] = useState<DirectionsResult>();
   const {
     userLocation: { lat, lng },
   } = useGeoLocation();
   const {
-    showModal,
     toggleModal,
     setModalHeader,
     selectedHospitalInfo,
     setSelectedHospitalInfo,
+    directions,
+    setDirections,
+    nearbyHospitals,
+    setNearbyHospitals,
   } = useGlobalProvider();
 
   const mapContainerStyle = {
@@ -92,7 +95,7 @@ export function Map() {
   );
 
   const {
-    data: nearbyHospitals,
+    data: nearbyHospitalsData,
     isLoading,
     isError,
   } = useQuery(
@@ -101,7 +104,10 @@ export function Map() {
     () => fetchNearbyPlaces(lat, lng),
     { enabled: !!lat, refetchOnWindowFocus: false }
   );
-  console.log(nearbyHospitals);
+  useEffect(() => {
+    // setNearbyHospitals?.(nearbyHospitalsData)
+    console.log(nearbyHospitalsData);
+  }, [nearbyHospitalsData]);
 
   const {
     data: markerWeather,
@@ -120,7 +126,7 @@ export function Map() {
 
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
-    console.log(center);
+    // console.log(center);
   };
 
   const onUnMount = (): void => {
@@ -162,7 +168,7 @@ export function Map() {
       },
       (result, status) => {
         if (status === "OK" && result) {
-          setDirections(result);
+          setDirections?.(result);
         }
         console.log("err");
       }
@@ -192,7 +198,9 @@ export function Map() {
             mapRef.current?.setZoom(12);
           }}
         />
-        {directions && <Distance leg={directions.routes[0].legs[0]} />}
+        {destinationHospital && directions && (
+          <Distance leg={directions.routes[0].legs[0]} />
+        )}
       </div>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -223,6 +231,7 @@ export function Map() {
               position={destinationHospital}
               onClick={() => {
                 fetchDirections(destinationHospital);
+                window.scroll(0, 200);
               }}
               icon={{
                 url: "/blue-location-marker.png",
@@ -232,17 +241,17 @@ export function Map() {
               }}
             />
 
-            <Circle center={center} radius={15000} options={closeOptions} />
-            <Circle center={center} radius={30000} options={middleOptions} />
-            <Circle center={center} radius={45000} options={farOptions} />
+            <Circle center={center} radius={10000} options={closeOptions} />
+            <Circle center={center} radius={20000} options={middleOptions} />
+            <Circle center={center} radius={30000} options={farOptions} />
           </>
         )}
 
-        {nearbyHospitals && (
+        {nearbyHospitalsData && (
           <MarkerClusterer>
             {(clusterer) => (
               <div className="">
-                {nearbyHospitals?.map((marker) => {
+                {nearbyHospitalsData?.map((marker) => {
                   return (
                     <Marker
                       key={marker.place_id}
@@ -251,7 +260,7 @@ export function Map() {
                       onClick={() => {
                         setSelectedMarker(marker);
                         setSelectedHospitalInfo?.(marker);
-                        console.log(selectedHospitalInfo);
+                        // console.log(selectedHospitalInfo);
                         fetchDirections(marker?.geometry?.location);
                       }}
                       icon={{
@@ -268,29 +277,67 @@ export function Map() {
             )}
           </MarkerClusterer>
         )}
-        {selectedMarker?.geometry?.location && (
+        {selectedHospitalInfo && selectedMarker?.geometry?.location && (
           <InfoWindow
             position={selectedMarker?.geometry?.location}
             onCloseClick={() => setSelectedMarker({} as MarkerType)}
           >
             <div>
               <h3 className="font-semibold">{selectedMarker?.name}</h3>
+              {isErrorMarkerWeather && (
+                <p>Couldn&apos;t get weather information</p>
+              )}
               {isLoadingMarkerWeather ? (
                 <p>Loading Weather ...</p>
               ) : (
                 <>
-                  <p>{markerWeather?.text}</p>
-                  <p>{markerWeather?.temp} &#xb0;C</p>
-                  <Link href={`/hospital/${selectedMarker?.place_id}`}>
-                    View info
-                  </Link>
+                  {markerWeather?.text && <p>{markerWeather?.text}</p>}
+                  {markerWeather?.temp && <p>{markerWeather?.temp} &#xb0;C</p>}
+                  {selectedMarker && selectedMarker?.name ? (
+                    <button
+                      onClick={() => {
+                        toggleModal?.();
+                        setModalHeader?.("Hospital information");
+                        setSelectedHospitalInfo?.(selectedMarker);
+                        console.log(selectedMarker);
+                      }}
+                      className="underline mt-2 text-[#14532D]"
+                    >
+                      View more info
+                    </button>
+                  ) : null}
                 </>
               )}
             </div>
           </InfoWindow>
         )}
       </GoogleMap>
-      {/* </LoadScript> */}
+      <section className="mt-4 flex flex-col gap-2">
+        <p className="font-bold">Note</p>
+        <div className="flex items-center gap-1">
+          <Image
+            width={0}
+            height={0}
+            className="w-6 h-6"
+            src="/red-location-marker.png"
+            alt="red location icon"
+          />{" "}
+          indicates your current location
+        </div>
+        <div className="flex items-center gap-1 ">
+          <Image
+            width={0}
+            height={0}
+            className="w-6 h-6"
+            src="/blue-location-marker.png"
+            alt="blue location icon"
+          />{" "}
+          indicates destination location
+        </div>
+      </section>
+      {nearbyHospitalsData && (
+        <NearbyHospitals hospitals={nearbyHospitalsData} />
+      )}
     </div>
   );
 }
