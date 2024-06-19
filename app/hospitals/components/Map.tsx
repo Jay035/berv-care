@@ -41,6 +41,8 @@ export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
   const [destinationHospital, setDestinationHospital] =
     useState<LatLngLiteral>();
+  const [nearbyHospitalLocation, setNearbyHospitalLocation] =
+    useState<LatLngLiteral>();
   const {
     userLocation: { lat, lng },
   } = useGeoLocation();
@@ -54,9 +56,6 @@ export function Map() {
     downloadCSVLink,
     setDownloadCSVLink,
   } = useGlobalProvider();
-
-  // const [downloadCSVLink, setDownloadCsvLink] = useState("");
-  // const [downloadButtonClicked, setDownloadButtonClicked] = useState(false);
 
   const mapContainerStyle = {
     width: "100%",
@@ -141,6 +140,14 @@ export function Map() {
     console.log(marker);
   };
 
+  const moveTo = (position: google.maps.LatLngLiteral) => {
+    if (mapRef.current) {
+      mapRef.current.panTo({ lat: position.lat, lng: position.lng });
+      mapRef.current.setZoom(20);
+      setNearbyHospitalLocation(position);
+    }
+  };
+
   const fetchDirections = (hospital: LatLngLiteral) => {
     if (!hospital) return;
     setSelectedMarker((prevValue) => ({
@@ -196,12 +203,6 @@ export function Map() {
 
   return (
     <div className="mb-10">
-      {/* {downloadButtonClicked && (
-        <DownloadModal
-          downloadCSVLink={downloadCSVLink}
-          setDownloadButtonClicked={setDownloadButtonClicked}
-        />
-      )} */}
       <div className="mb-6 max-w-4xl w-full lg:mx-auto">
         <Places
           destination={destinationHospital!}
@@ -238,6 +239,23 @@ export function Map() {
         )}
 
         {center && <Marker position={center} />}
+        {nearbyHospitalLocation && (
+          <>
+            <Marker
+              position={nearbyHospitalLocation}
+              onClick={() => {
+                fetchDirections(nearbyHospitalLocation);
+                window.scroll(0, 200);
+              }}
+              icon={{
+                url: "/blue-location-marker.png",
+                // origin: new window.google.maps.Point(0, 0),
+                // anchor: new window.google.maps.Point(15, 15),
+                scaledSize: new window.google.maps.Size(30, 30),
+              }}
+            />
+          </>
+        )}
         {destinationHospital && (
           <>
             <Marker
@@ -350,7 +368,7 @@ export function Map() {
       </section>
       {nearbyHospitalsData ? (
         <>
-          <NearbyHospitals hospitals={nearbyHospitalsData} />
+          <NearbyHospitals hospitals={nearbyHospitalsData} moveTo={moveTo} />
           {nearbyHospitalsData?.length > 0 && (
             <ExportDataButton
               handleExportData={handleExportData}

@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Pagination from "./Pagination";
 
-export default function NearbyHospitals({ hospitals }: any) {
+type Props = {
+  hospitals: any;
+  moveTo: (pos: google.maps.LatLngLiteral) => void;
+};
+
+export default function NearbyHospitals({ hospitals, moveTo }: Props) {
   const [data, setData] = useState(hospitals);
 
   // PAGINATION
@@ -16,7 +21,6 @@ export default function NearbyHospitals({ hospitals }: any) {
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
 
   return (
     // hospitals && (
@@ -35,13 +39,22 @@ export default function NearbyHospitals({ hospitals }: any) {
               <h2 className="capitalize font-extrabold tracking-tight">
                 {hospital?.name}
               </h2>
-              <p>{hospital?.vicinity}, Nigeria.</p>
-            </div>
+              <p className="truncate max-w-[240px] sm:max-w-sm lg:max-w-[240px] xl:max-w-sm">{hospital?.vicinity}, Nigeria.</p>
             {hospital?.business_status && (
-              <span className="text-xs w-fit font-semibold text-center bg-[#14532D]/80 text-white p-2 rounded-2xl ">
+              <span className="text-xs border border-black rounded-2xl font-semibold py-[2px] px-2">
                 {hospital?.business_status}
               </span>
             )}
+            </div>
+            <button
+            className="w-fit text-sm sm:text-base whitespace-nowrap font-semibold text-center bg-[#14532D]/90 text-white p-2 px-4 rounded-2xl "
+              onClick={() => {
+                moveTo(hospital?.geometry?.location);
+                window.scrollTo(0, 250);
+              }}
+            >
+              View on map
+            </button>
           </div>
         ))}
       </div>
