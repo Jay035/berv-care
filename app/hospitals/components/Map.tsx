@@ -343,7 +343,7 @@ export function Map() {
           </InfoWindow>
         )}
       </GoogleMap>
-      <section className="mt-4 flex flex-col gap-2">
+      <section className="mt-4 flex flex-col gap-2 w-fit ">
         <p className="font-bold">Note</p>
         <div className="flex items-center gap-1">
           <Image

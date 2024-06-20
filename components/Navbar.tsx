@@ -98,23 +98,18 @@ export const Navbar = () => {
           >
             <Link href="/hospitals">Find Hospitals</Link>
           </span>
-          {/* {!user && (
+          {!user && (
             <span
               onClick={(e: any) => {
-                // e.preventDefault();
-                if (user) {
-                  router.push("/postBlog");
-                } else {
-                  alert("You must be logged in to post a blog");
-                  router.push("/login");
-                }
+                alert("You must be logged in to post a blog");
+                router.push("/login");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
               className="cursor-pointer transition w-fit"
             >
               Post a blog
             </span>
-          )} */}
+          )}
 
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden w-fit list-none">
