@@ -69,10 +69,13 @@ export default function BodyComponent({
                 )}
               </div>
             </div>
-            <p className="mt-2">
+            <p className="my-2">
               <span className="font-medium text-lg">Address: </span>{" "}
               <span>{selectedHospitalInfo?.vicinity}, Nigeria.</span>
             </p>
+            {selectedHospitalInfo?.rating && (
+              <p>Rating: {selectedHospitalInfo?.rating}</p>
+            )}
             {directions && <Distance leg={directions.routes[0].legs[0]} />}
           </div>
         </Modal>
