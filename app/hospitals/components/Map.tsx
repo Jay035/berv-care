@@ -123,6 +123,7 @@ export function Map() {
 
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
+    console.log(center)
   };
 
   const onUnMount = (): void => {
@@ -308,6 +309,7 @@ export function Map() {
             )}
           </MarkerClusterer>
         )}
+
         {selectedHospitalInfo && selectedMarker?.geometry?.location && (
           <InfoWindow
             position={selectedMarker?.geometry?.location}
@@ -345,6 +347,8 @@ export function Map() {
       </GoogleMap>
       <section className="mt-4 flex flex-col gap-2 w-fit ">
         <p className="font-bold">Note</p>
+        <div className="flex flex-col md:flex-row gap-2">
+
         <div className="flex items-center gap-1">
           <Image
             width={0}
@@ -364,6 +368,7 @@ export function Map() {
             alt="blue location icon"
           />{" "}
           indicates destination location
+        </div>
         </div>
       </section>
       {nearbyHospitalsData ? (
