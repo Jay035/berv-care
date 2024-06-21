@@ -69,7 +69,7 @@ export const Navbar = () => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/">About us</Link>
+            <Link href="/#about_us">About us</Link>
           </span>
           <span
             className="cursor-pointer transition w-fit"

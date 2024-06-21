@@ -349,7 +349,7 @@ export function Map() {
         <p className="font-bold">Note</p>
         <div className="flex flex-col md:flex-row gap-2">
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 pr-2 border-r-2">
           <Image
             width={0}
             height={0}
