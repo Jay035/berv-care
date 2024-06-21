@@ -33,8 +33,8 @@ export default function BlogPreview({ params: { id } }: SingleBlogParams) {
 
   return (
     <div className="">
-      <Navbar />
-      <main className="px-[9.5vw]">
+      {/* <Navbar /> */}
+      <main className="px-[9.5vw] pt-40">
         <Link href="/blog">Go back</Link>
         {id}
         {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}

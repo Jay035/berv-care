@@ -1,6 +1,9 @@
 "use client";
-import { db } from "@/config/Config";
-import { collection, getDocs } from "@firebase/firestore";
+import { auth, db } from "@/config/Config";
+import { collection, getDocs, query, where } from "@firebase/firestore";
+// import { ref } from "firebase/storage";
+
+import { ref, child, get } from 'firebase/database';
 import {
   ReactNode,
   useState,
@@ -11,7 +14,10 @@ import {
 
 interface BlogProps {
   blogs: any[];
+  userData?: string;
+  setUserData?: () => void;
   loading: boolean;
+  fetchUserData?: () => void;
 }
 
 export const BlogContext = createContext<BlogProps>({
@@ -25,6 +31,7 @@ type Props = {
 
 export function BlogContextProvider({ children }: Props) {
   const [blogs, setBlogs]: any[] = useState([]);
+  const [userData, setUserData]: any[] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const blogsCollectionRef = collection(db, "blogs");
 
@@ -35,13 +42,16 @@ export function BlogContextProvider({ children }: Props) {
       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
       setBlogs(res);
       setLoading(false);
-      // console.log(res)
+      // console.log(data)
     } catch (err: any) {
       console.log(err.message);
       setLoading(false);
     }
     // console.log(loading)
   };
+
+
+
 
   const getMedicalBlogs = () => {
     fetch(
@@ -68,11 +78,15 @@ export function BlogContextProvider({ children }: Props) {
   useEffect(() => {
     // getMedicalBlogs()
     getBlogs();
+    // fetchUserData();
   }, []);
 
   const value = {
     blogs,
     loading,
+    userData,
+    setUserData,
+    // fetchUserData,
   };
 
   return (

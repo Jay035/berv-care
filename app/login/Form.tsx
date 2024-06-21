@@ -16,7 +16,7 @@ export default function Form() {
   const [error, setError] = useState("");
 
   const login = async (e: any) => {
-    console.log(process.env.NEXT_PUBLIC_storageBucket);
+    // console.log(process.env.NEXT_PUBLIC_storageBucket);
     e.preventDefault();
     console.log("logging in....");
     setLoading(true);

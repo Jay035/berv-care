@@ -13,6 +13,16 @@ export const Navbar = () => {
   const pathname = usePathname();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileMenuShown, setProfileMenuShown] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 200) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
@@ -36,9 +46,13 @@ export const Navbar = () => {
   //   };
   // }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+  });
+
   return (
     <header
-      className={`${sora.className} flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+      className={`${sora.className} ${scrolled ? 'bg-white/90 backdrop-blur-[2px]' : 'bg-white'} fixed top-0 left-0 z-50  flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
     >
       <Link href="/">
         <Image

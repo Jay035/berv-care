@@ -6,6 +6,7 @@ import { getFirestore } from "@firebase/firestore";
 import { useRouter } from "next/navigation";
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_apiKey,
@@ -33,5 +34,6 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
+
 
 export { app, auth, provider, db, storage, storageRef };

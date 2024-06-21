@@ -30,7 +30,7 @@ export default function Transition() {
     <div
       ref={trans}
       id="intro"
-      className="intro absolute left-0 top-0 w-full h-full z-[999999999999999999999999] bg-[#14532dfa]"
+      className="intro absolute left-0 top-0 w-full min-h-screen h-full z-[999999999999999999999999999] bg-[#14532dfa]"
     ></div>
   );
 }

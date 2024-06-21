@@ -3,12 +3,24 @@ import Link from "next/link";
 import { useBlogContext } from "@/context/BlogContext";
 import PostLoader, { BlogPostLoader } from "../PostLoader";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
+import fetchUserData from "@/lib/FetchUserData";
 
 const BlogPost = dynamic(() => import("./BlogPost"));
 
 export default function Blog() {
   const { blogs, loading } = useBlogContext();
+
+  useEffect(() => {
+    fetchUserData().then(userData => {
+      if (userData) {
+        // Handle the fetched user data
+        console.log(userData);
+      } else {
+        console.log('No data found for the current user.');
+      }
+    });
+  }, [blogs]);
 
   return (
     <section
@@ -20,30 +32,30 @@ export default function Blog() {
         Read our latest medical and lifestyle articles
       </h2>
       <Suspense fallback={<BlogPostLoader />}>
-
-      {!loading ? (
-        blogs.length > 0 ? (
-          <section className="flex flex-col">
-            <div className="grid gap-8 gap-y-10 md:grid-cols-2 mb-12 lg:grid-cols-3 w-full">
-              {blogs?.map((post: any, index: number) => (
-                <BlogPost post={post} key={index} />
-              ))}
-            </div>
-            <Link
-              href="/blog"
-              className="rounded-[50px] mx-auto w-fit text-white bg-[#14532D] hover:bg-[#14532D]/70 py-4 sm:py-[18px] px-8 md:px-14"
-            >
-              Read all posts
-            </Link>
-          </section>
+        {!loading ? (
+          blogs.length > 0 ? (
+            <section className="flex flex-col">
+              <div className="grid gap-8 gap-y-10 md:grid-cols-2 mb-12 lg:grid-cols-3 w-full">
+                {blogs?.map((post: any, index: number) => (
+                  <BlogPost post={post} key={index} />
+                ))}
+              </div>
+              <Link
+                // onClick={() => console.log(userData)}
+                href="/blog"
+                className="rounded-[50px] mx-auto w-fit text-white bg-[#14532D] hover:bg-[#14532D]/70 py-4 sm:py-[18px] px-8 md:px-14"
+              >
+                Read all posts
+              </Link>
+            </section>
+          ) : (
+            <p className="text-2xl">
+              No blogs at the moment...Kindly check back later
+            </p>
+          )
         ) : (
-          <p className="text-2xl">
-            No blogs at the moment...Kindly check back later
-          </p>
-        )
-      ) : (
-        <BlogPostLoader />
-      )}
+          <BlogPostLoader />
+        )}
       </Suspense>
     </section>
   );

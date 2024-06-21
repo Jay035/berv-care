@@ -71,42 +71,42 @@ export function GlobalProvider({ children }: Props) {
 
   // -----------------------------------
 
-  const login = async (email: string, password: string) => {
-    setLoading(true);
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setLoading((prevState) => !prevState);
-      console.log("successfully signed in");
-      console.log(auth.currentUser);
-      setIsUserLoggedIn(true);
-      setUser(auth?.currentUser);
-      router.push("/");
-    } catch (err: any) {
-      setLoading((prevState) => !prevState);
-      setIsUserLoggedIn(false);
-      console.log(err.code);
-      switch (err.message) {
-        case "auth/invalid-email":
-          setError("Invalid email");
-          break;
-        case "auth/user-not-found":
-          setError("No account with that email was found");
-          break;
-        case "auth/user-not-found":
-          setError("No account with that email was found");
-          break;
-        case "auth/wrong-password":
-          setError("Incorrect password");
-          break;
-        case "auth/network-request-failed":
-          setError("Network request failed, check your network connection");
-          break;
-        default:
-          setError("Incorrect email or password");
-          break;
-      }
-    }
-  };
+  // const login = async (email: string, password: string) => {
+  //   setLoading(true);
+  //   try {
+  //     await signInWithEmailAndPassword(auth, email, password);
+  //     setLoading((prevState) => !prevState);
+  //     console.log("successfully signed in");
+  //     console.log(auth.currentUser);
+  //     setIsUserLoggedIn(true);
+  //     setUser(auth?.currentUser);
+  //     router.push("/");
+  //   } catch (err: any) {
+  //     setLoading((prevState) => !prevState);
+  //     setIsUserLoggedIn(false);
+  //     console.log(err.code);
+  //     switch (err.message) {
+  //       case "auth/invalid-email":
+  //         setError("Invalid email");
+  //         break;
+  //       case "auth/user-not-found":
+  //         setError("No account with that email was found");
+  //         break;
+  //       case "auth/user-not-found":
+  //         setError("No account with that email was found");
+  //         break;
+  //       case "auth/wrong-password":
+  //         setError("Incorrect password");
+  //         break;
+  //       case "auth/network-request-failed":
+  //         setError("Network request failed, check your network connection");
+  //         break;
+  //       default:
+  //         setError("Incorrect email or password");
+  //         break;
+  //     }
+  //   }
+  // };
 
   const logOut = async () => {
     await signOut(auth);
@@ -121,6 +121,7 @@ export function GlobalProvider({ children }: Props) {
       await signInWithPopup(auth, provider);
       setIsUserLoggedIn(true);
       setUser(auth?.currentUser);
+      console.log(auth?.currentUser)
       router.push("/");
     } catch (err: any) {
       console.log(err.message);
@@ -129,23 +130,23 @@ export function GlobalProvider({ children }: Props) {
     }
   };
 
-  const register = async (email: string, password: string) => {
-    // e.preventDefault();
-    setLoading(true);
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setLoading((prevState) => !prevState);
-      setIsUserLoggedIn(true);
-      setUser(auth?.currentUser);
-      console.log("successfully registered");
-      console.log(auth.currentUser);
-      router.push("/");
-    } catch (err: any) {
-      console.error(err.message);
-      setError(err.message);
-      setLoading((prevState) => !prevState);
-    }
-  };
+  // const register = async (email: string, password: string) => {
+  //   // e.preventDefault();
+  //   setLoading(true);
+  //   try {
+  //     await createUserWithEmailAndPassword(auth, email, password);
+  //     setLoading((prevState) => !prevState);
+  //     setIsUserLoggedIn(true);
+  //     setUser(auth?.currentUser);
+  //     console.log("successfully registered");
+  //     console.log(auth.currentUser);
+  //     router.push("/");
+  //   } catch (err: any) {
+  //     console.error(err.message);
+  //     setError(err.message);
+  //     setLoading((prevState) => !prevState);
+  //   }
+  // };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -169,8 +170,8 @@ export function GlobalProvider({ children }: Props) {
     userAddress,
     setUserAddress,
     isUserLoggedIn,
-    register,
-    login,
+    // register,
+    // login,
     logOut,
     signInWithGoogle,
     error,

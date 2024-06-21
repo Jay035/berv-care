@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/config/Config";
+import { auth, db } from "@/config/Config";
 import { addDoc, collection } from "@firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -21,12 +21,14 @@ export default function PostBlog() {
   const datePosted = new Date().toLocaleDateString();
 
   const publishBlog = async () => {
+    console.log(datePosted)
     try {
       console.log(`publishing blog....`);
       await addDoc(blogsRef, {
         date: datePosted,
         title: title,
         content: markdown,
+        uid: auth?.currentUser?.uid
       });
 
       toast.success("Congratulations, you have published your story");
@@ -53,7 +55,7 @@ export default function PostBlog() {
   return (
     <>
       {/* <Navbar /> */}
-      <main className="px-[9.5vw] mt-7 h-full xl:min-h-[70vh]">
+      <main className="px-[9.5vw] pt-40 h-full xl:min-h-[70vh]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tell your Story</h1>
           <button

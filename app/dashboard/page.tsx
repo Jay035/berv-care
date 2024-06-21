@@ -4,6 +4,6 @@ type Props = {}
 
 export default function Dashboard({}: Props) {
   return (
-    <div>Dashboard</div>
+    <div className='pt-40 '>Dashboard</div>
   )
 }
