@@ -55,7 +55,7 @@ export function BlogContextProvider({ children }: Props) {
 
   const getMedicalBlogs = () => {
     fetch(
-      "https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=f0e2512718a24d80b06d988e5000208e"
+      `https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=${process.env.NEXT_PUBLIC_NewsAPI_Key}`
     )
       .then((response) => response.json())
       .then((data) => console.log(data))
