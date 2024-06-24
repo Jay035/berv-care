@@ -122,7 +122,7 @@ export function GlobalProvider({ children }: Props) {
       setIsUserLoggedIn(true);
       setUser(auth?.currentUser);
       console.log(auth?.currentUser)
-      router.push("/");
+      router.push("/dashboard");
     } catch (err: any) {
       console.log(err.message);
       setError(err.message);
