@@ -12,17 +12,6 @@ export default function Blog() {
   const { blogs, loading } = useBlogContext();
   console.log(blogs)
 
-  // useEffect(() => {
-  //   fetchUserBlogs().then(userData => {
-  //     if (userData) {
-  //       // Handle the fetched user data
-  //       console.log(userData);
-  //     } else {
-  //       console.log('No data found for the current user.');
-  //     }
-  //   });
-  // }, [blogs]);
-
   return (
     <section
       id="healthCenter"

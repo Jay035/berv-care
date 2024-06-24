@@ -3,14 +3,13 @@ import remarkGfm from "remark-gfm";
 import img from "../../public/blog-1.png";
 import Image from "next/image";
 import { useGlobalProvider } from "@/context/GlobalProvider";
-import Link from "next/link";
 
 export default function BlogPost({ post }: any) {
   const { router } = useGlobalProvider();
   const date = post?.date;
 
   if (!post) console.log("no post");
-  const navigateToPreview = (params: string) => {
+  const navigateTo = (params: string) => {
     router.push(params);
   };
 
@@ -32,11 +31,11 @@ export default function BlogPost({ post }: any) {
       <button
         // disabled
         className="bg-[#14532D] disabled:bg-[#14532D]/60 text-white rounded-lg mt-3 px-4 py-3"
-        // onClick={() => navigateToPreview(`/blog/${post?.id}`)}
+        onClick={() => navigateTo(`/blog/${post?.id}`)}
       >
-        <Link href={`/blog/${post?.id}`} className="">
-          Read more
-        </Link>
+        {/* <Link href={`/blog/${post?.id}`} className=""> */}
+        Read more
+        {/* </Link> */}
       </button>
     </article>
   );

@@ -6,6 +6,8 @@ import remarkGfm from "remark-gfm";
 import fs from "fs";
 import Link from "next/link";
 import path from "path";
+import { useRouter } from "next/navigation";
+import { BackBtn } from "@/components/BackBtn";
 
 type SingleBlogParams = {
   params: {
@@ -35,13 +37,12 @@ export default async function BlogPreview({
   // const slug = props?.params?.slug;
   // const post = fetchBlogContent(slug);
   const blog = await fetchSingleBlog(id);
-
-  // console.log(blog);
+ 
 
   return (
     <div className="">
       <main className="px-[9.5vw] py-40">
-        <Link href="/blog" className="font-medium">Go back</Link>
+        <BackBtn />
         {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}
         <h1 className="text-4xl font-bold my-8 max-w-lg">{blog?.title}</h1>
         <p className="mt-4 text-sm text-[#6B7280]">Posted on {blog?.date} </p>
