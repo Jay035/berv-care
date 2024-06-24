@@ -193,13 +193,9 @@ export const Navbar = () => {
                         <p className="truncate">{user?.email}</p>
                       </div>
                       {profileMenuShown ? (
-                        <i
-                          className="ri-arrow-down-s-line"
-                        ></i>
+                        <i className="ri-arrow-down-s-line"></i>
                       ) : (
-                        <i
-                          className="ri-arrow-up-s-line"
-                        ></i>
+                        <i className="ri-arrow-up-s-line"></i>
                       )}
                     </div>
                     {profileMenuShown && (
@@ -208,8 +204,9 @@ export const Navbar = () => {
                           onClick={() => {
                             router.push("/dashboard");
                             setMenuShown((prevState: boolean) => !prevState);
+                            setProfileMenuShown((prevState) => !prevState);
                           }}
-                          className="flex items-center gap-2 px-4 font-medium py-2 text-black"
+                          className="flex items-center gap-2 px-4 border-b font-medium py-2 text-black"
                         >
                           My Dashboard
                         </p>
@@ -308,9 +305,10 @@ export const Navbar = () => {
                     <p
                       onClick={() => {
                         router.push("/dashboard");
-                        setMenuShown((prevState: boolean) => !prevState);
+                        setProfileMenuShown((prevState) => !prevState);
+                        // setMenuShown((prevState: boolean) => !prevState);
                       }}
-                      className="flex items-center gap-2 px-4 py-1 font-medium text-black"
+                      className="flex items-center gap-2 px-4 py-1 border-b font-medium text-black"
                     >
                       My Dashboard
                     </p>
@@ -324,7 +322,7 @@ export const Navbar = () => {
                         }, 500);
                       }}
                       // border-t
-                      className="mt-2 w-full flex gap-2 font-medium py-1 px-4 text-center cursor-pointer"
+                      className=" w-full flex gap-2 font-medium py-1 px-4 text-center cursor-pointer"
                     >
                       <i className="ri-logout-box-line"></i>
                       <span className="">Sign Out</span>

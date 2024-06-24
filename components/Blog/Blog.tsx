@@ -4,23 +4,24 @@ import { useBlogContext } from "@/context/BlogContext";
 import PostLoader, { BlogPostLoader } from "../PostLoader";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect } from "react";
-import fetchUserData from "@/lib/FetchUserData";
+import fetchUserBlogs from "@/lib/FetchUserData";
 
 const BlogPost = dynamic(() => import("./BlogPost"));
 
 export default function Blog() {
   const { blogs, loading } = useBlogContext();
+  console.log(blogs)
 
-  useEffect(() => {
-    fetchUserData().then(userData => {
-      if (userData) {
-        // Handle the fetched user data
-        console.log(userData);
-      } else {
-        console.log('No data found for the current user.');
-      }
-    });
-  }, [blogs]);
+  // useEffect(() => {
+  //   fetchUserBlogs().then(userData => {
+  //     if (userData) {
+  //       // Handle the fetched user data
+  //       console.log(userData);
+  //     } else {
+  //       console.log('No data found for the current user.');
+  //     }
+  //   });
+  // }, [blogs]);
 
   return (
     <section

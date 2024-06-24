@@ -12,22 +12,29 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 
+function generateRandomId() {
+  return Math.random().toString(36).substr(2, 12);
+}
+
 export default function PostBlog() {
   const router = useRouter();
   const { user } = useGlobalProvider();
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
+  const blogId = generateRandomId();
   const blogsRef = collection(db, "blogs");
   const datePosted = new Date().toLocaleDateString();
 
   const publishBlog = async () => {
-    console.log(datePosted)
+    console.log(blogId);
+
     try {
       console.log(`publishing blog....`);
       await addDoc(blogsRef, {
         date: datePosted,
         title: title,
         content: markdown,
+        id: blogId,
         uid: auth?.currentUser?.uid
       });
 
@@ -47,14 +54,10 @@ export default function PostBlog() {
       alert("You have to be signed in to post a blog");
       router.push("/login");
     }
-    // else {
-    //   router.push("/postBlog");
-    // }
   }, []);
 
   return (
     <>
-      {/* <Navbar /> */}
       <main className="px-[9.5vw] pt-40 h-full xl:min-h-[70vh]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tell your Story</h1>

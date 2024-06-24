@@ -3,7 +3,7 @@ import { auth, db } from "@/config/Config";
 import { collection, getDocs, query, where } from "@firebase/firestore";
 // import { ref } from "firebase/storage";
 
-import { ref, child, get } from 'firebase/database';
+import { ref, child, get } from "firebase/database";
 import {
   ReactNode,
   useState,
@@ -49,9 +49,6 @@ export function BlogContextProvider({ children }: Props) {
     }
     // console.log(loading)
   };
-
-
-
 
   const getMedicalBlogs = () => {
     fetch(

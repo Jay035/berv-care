@@ -3,7 +3,7 @@ import BlogPost from "@/components/Blog/BlogPost";
 import { BlogPostLoader } from "@/components/PostLoader";
 import { useBlogContext } from "@/context/BlogContext";
 import { useGlobalProvider } from "@/context/GlobalProvider";
-import fetchUserData from "@/lib/FetchUserData";
+import fetchUserBlogs from "@/lib/FetchUserData";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -19,7 +19,7 @@ export default function Content() {
   const [userBlogs, setUserBlogs] = useState([]);
 
   useEffect(() => {
-    fetchUserData().then((data: any) => {
+    fetchUserBlogs().then((data: any) => {
       if (data) {
         console.log(data);
         setUserBlogs(data);

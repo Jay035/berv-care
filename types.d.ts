@@ -79,6 +79,13 @@ interface BlogMetadata {
   date: string;
 }
 
+interface BlogData{
+  title: string;
+  content: string;
+  id:string;
+  date: string;
+}
+
 type Location = {
   // location: {
   latitude: number;
