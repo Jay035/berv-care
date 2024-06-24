@@ -1,15 +1,6 @@
-import { auth } from "@/config/Config";
 import React from "react";
+import Content from "./components/Content";
 
-type Props = {};
-
-export default function Dashboard({}: Props) {
- 
-  return (
-    <main className="pt-40 ">
-      <h1>
-        Welcome {auth?.currentUser?.displayName || auth.currentUser?.email}
-      </h1>
-    </main>
-  );
+export default function Dashboard() {
+  return <Content />;
 }

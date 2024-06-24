@@ -26,7 +26,10 @@ type HospitalProps = {
 
 interface GlobalProps {
   router?: any;
-  user?: string;
+  user?: {
+    displayName: string,
+    email: string,
+  };
   userAddress?: string;
   name?: string;
   email?: string | undefined;

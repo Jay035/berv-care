@@ -28,7 +28,10 @@ import {
 // }
 
 export const GlobalContext = createContext<GlobalProps>({
-  user: "",
+  user: {
+    displayName: "",
+    email: "",
+  },
   name: "",
   error: "",
   isUserLoggedIn: false,
@@ -121,7 +124,7 @@ export function GlobalProvider({ children }: Props) {
       await signInWithPopup(auth, provider);
       setIsUserLoggedIn(true);
       setUser(auth?.currentUser);
-      console.log(auth?.currentUser)
+      console.log(auth?.currentUser);
       router.push("/dashboard");
     } catch (err: any) {
       console.log(err.message);
@@ -152,7 +155,7 @@ export function GlobalProvider({ children }: Props) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
-        // console.log(user);
+        console.log(user);
         setUser(user);
         setIsUserLoggedIn(true);
       } else {
@@ -197,7 +200,7 @@ export function GlobalProvider({ children }: Props) {
     directions,
     setDirections,
     nearbyHospitals,
-    setNearbyHospitals
+    setNearbyHospitals,
   };
 
   return (
