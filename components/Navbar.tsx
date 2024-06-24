@@ -52,7 +52,9 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`${sora.className} ${scrolled ? 'bg-white/90 backdrop-blur-[2px]' : 'bg-white'} fixed top-0 left-0 z-50  flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+      className={`${sora.className} ${
+        scrolled ? "bg-white/90 backdrop-blur-[2px]" : "bg-white"
+      } fixed top-0 left-0 z-50  flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
     >
       <Link href="/">
         <Image
@@ -193,41 +195,37 @@ export const Navbar = () => {
                       {profileMenuShown ? (
                         <i
                           className="ri-arrow-down-s-line"
-                          // onClick={() => setProfileMenuShown(false)}
                         ></i>
                       ) : (
                         <i
                           className="ri-arrow-up-s-line"
-                          // onClick={() => setProfileMenuShown(true)}
                         ></i>
                       )}
                     </div>
                     {profileMenuShown && (
                       <div className="shadow-2xl text-xs transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 hover:bg-white/80 left-0 md:right-0 md:left-[unset] bottom-14 absolute">
-                        {/* <a href="#" className="flex items-center gap-2 px-4">
-                          <span className="font-semibold text-black">
-                            Profile
-                          </span>
-                        </a>
-                        <a href="#" className="flex items-center gap-2 px-4">
-                          <span className="font-semibold text-black">
-                            My blogs
-                          </span>
-                        </a> */}
+                        <p
+                          onClick={() => {
+                            router.push("/dashboard");
+                            setMenuShown((prevState: boolean) => !prevState);
+                          }}
+                          className="flex items-center gap-2 px-4 font-medium py-2 text-black"
+                        >
+                          My Dashboard
+                        </p>
 
                         <p
                           onClick={(e) => {
-                            // e.preventDefault();
                             logOut();
                             setTimeout(() => {
                               setMenuShown((prevState: boolean) => !prevState);
                             }, 500);
                           }}
                           // border-t
-                          className=" w-full flex gap-2 py-[6px] px-4 text-center cursor-pointer"
+                          className=" w-full flex gap-2 py-[6px] font-medium px-4 text-center cursor-pointer"
                         >
                           <i className="ri-logout-box-line"></i>
-                          <span className="font-bold">SIGN OUT</span>
+                          <span className="">SIGN OUT</span>
                         </p>
                       </div>
                     )}
@@ -263,7 +261,6 @@ export const Navbar = () => {
             <button
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
-                // e.preventDefault();
                 router.push("/postBlog");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
@@ -307,11 +304,16 @@ export const Navbar = () => {
                   </div> */}
                 </div>
                 {profileMenuShown && (
-                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-16">
-                    {/* <a href="" className="flex items-center gap-2 px-4">
-                     
-                      <span className="font-semibold text-black">Profile</span>
-                    </a> */}
+                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-fit">
+                    <p
+                      onClick={() => {
+                        router.push("/dashboard");
+                        setMenuShown((prevState: boolean) => !prevState);
+                      }}
+                      className="flex items-center gap-2 px-4 py-1 font-medium text-black"
+                    >
+                      My Dashboard
+                    </p>
 
                     <p
                       onClick={(e) => {
@@ -322,10 +324,10 @@ export const Navbar = () => {
                         }, 500);
                       }}
                       // border-t
-                      className="mt-2 w-full flex gap-2 py-1 px-4 text-center cursor-pointer"
+                      className="mt-2 w-full flex gap-2 font-medium py-1 px-4 text-center cursor-pointer"
                     >
                       <i className="ri-logout-box-line"></i>
-                      <span className="font-bold">SIGN OUT</span>
+                      <span className="">Sign Out</span>
                     </p>
                   </div>
                 )}

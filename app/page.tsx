@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div className="relative">
       {/* <Navbar /> */}
-      <main className="pt-40 lg:pt-10 xl:pt-20 pb-[3.375rem]">
+      <main className="pt-40 lg:pt-10 xl:pt-28 pb-[3.375rem]">
         <HeroSection />
         <HowItWorks />
         <Why />
