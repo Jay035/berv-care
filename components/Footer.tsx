@@ -24,11 +24,35 @@ export default function Footer({}: Props) {
         <div className="">
           <h1 className="font-medium text-xl mb-2">Company</h1>
           <ul className="flex flex-col gap-1">
-            <li>About us</li>
-            <li>Blog</li>
-            <li>How It works</li>
+          <Link
+            href="/#about_us"
+           
+            className="w-fit"
+          >
+            About us
+          </Link>
+          <Link
+            href="/blog"
+            className="w-fit"
+          
+          >
+           Blog
+          </Link>
+          <Link
+            href="/#howItWorks"
+            className="w-fit"
+          
+          >
+            How It Works
+          </Link>
             {/* <li>Newsletter</li> */}
-            <li>Testimonials</li>
+            <Link
+            href="/#testimonials"
+            className="w-fit"
+            
+          >
+              Testimonials
+          </Link>
           </ul>
         </div>
         <div className="">

@@ -20,14 +20,14 @@ export default function BlogPost({ post }: any) {
       <h1 className="mb-3 text-xl font-bold text-[#111827] tracking-tight">
         {post?.title}
       </h1>
-      <div className="h-full prose prose-slate prose-a:text-[#DD2D4A] max-h-6 overflow-hidden">
+      {/* <div className="h-full prose prose-slate prose-a:text-[#DD2D4A] max-h-6 overflow-hidden">
         <Markdown remarkPlugins={[remarkGfm]}>
           {
             post?.content
             // .slice(0, 50)
           }
         </Markdown>
-      </div>
+      </div> */}
       <button
         // disabled
         className="bg-[#14532D] disabled:bg-[#14532D]/60 text-white rounded-lg mt-3 px-4 py-3"

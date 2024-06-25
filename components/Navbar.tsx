@@ -76,44 +76,48 @@ export const Navbar = () => {
         <section
           className={` ${
             menuShown && "w-[80%]"
-          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
+          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
         >
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+          <Link
+            href="/#about_us"
+            onClick={() => {
+              setMenuShown((prevState: boolean) => !prevState);
+            }}
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+          >
+            About us
+          </Link>
+          
+          <Link
+            href="/#howItWorks"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/#about_us">About us</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+            How It Works
+          </Link>
+
+          <Link
+            href="/blog"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/#howItWorks">How It Works</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+            Health Center
+          </Link>
+
+          <Link
+            href="/hospitals"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/blog">Health Center</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
-              setMenuShown((prevState: boolean) => !prevState);
-            }}
-          >
-            <Link href="/hospitals">Find Hospitals</Link>
-          </span>
+            Find Hospitals
+          </Link>
+
           {!user && (
             <span
               onClick={(e: any) => {
@@ -164,17 +168,17 @@ export const Navbar = () => {
                   Post a Blog
                 </button>
                 <section
-                  className="absolute bottom-4 left-8 sm:left-[5.5rem]"
+                  className="absolute bottom-4 left-8 sm:left-16"
                   ref={optionsRef}
                 >
-                  <div className="relative w-[70%]">
+                  <div className="relative w-full">
                     <div
                       onClick={(e) => {
                         setProfileMenuShown((prevState) => !prevState);
                       }}
                       className="flex justify-between items-center cursor-pointer gap-2 px-3 py-2 border border-[#EAECF0] rounded-[50px]"
                     >
-                      <div className="flex items-center gap-2 w-[70%]">
+                      <div className="flex items-center gap-2 w-full">
                         {user?.photoURL ? (
                           <Image
                             width={28}
@@ -190,7 +194,7 @@ export const Navbar = () => {
                               user?.email.slice(0, 1)}
                           </p>
                         )}
-                        <p className="truncate">{user?.email}</p>
+                        <p className="truncate">{user?.displayName}</p>
                       </div>
                       {profileMenuShown ? (
                         <i className="ri-arrow-down-s-line"></i>
@@ -237,7 +241,7 @@ export const Navbar = () => {
 
       {/* BUTTONS FOR LARGER SCREENS */}
       <div className="hidden xl:flex text-center whitespace-nowrap">
-        {!user && pathname !== "/login" && (
+        {!user ? (
           <div className="flex gap-4 items-center">
             <Link
               href="/login"
@@ -252,8 +256,7 @@ export const Navbar = () => {
               Sign up
             </Link>
           </div>
-        )}
-        {user && (
+        ) : (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
             <button
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
