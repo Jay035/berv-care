@@ -56,7 +56,3 @@
 }
 
 
-/* MAP STYLING */
-.leaflet-container{
-  @apply h-[90vh] w-full
-}

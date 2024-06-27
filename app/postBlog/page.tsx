@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/config/Config";
+import { auth, db } from "@/config/Config";
 import { addDoc, collection } from "@firebase/firestore";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -12,21 +12,30 @@ import { Navbar } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 
+function generateRandomId() {
+  return Math.random().toString(36).substr(2, 12);
+}
+
 export default function PostBlog() {
   const router = useRouter();
   const { user } = useGlobalProvider();
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
+  const blogId = generateRandomId();
   const blogsRef = collection(db, "blogs");
   const datePosted = new Date().toLocaleDateString();
 
   const publishBlog = async () => {
+    console.log(blogId);
+
     try {
       console.log(`publishing blog....`);
       await addDoc(blogsRef, {
         date: datePosted,
         title: title,
         content: markdown,
+        id: blogId,
+        uid: auth?.currentUser?.uid
       });
 
       toast.success("Congratulations, you have published your story");
@@ -45,15 +54,11 @@ export default function PostBlog() {
       alert("You have to be signed in to post a blog");
       router.push("/login");
     }
-    // else {
-    //   router.push("/postBlog");
-    // }
   }, []);
 
   return (
     <>
-      {/* <Navbar /> */}
-      <main className="px-[9.5vw] mt-7 h-full xl:min-h-[70vh]">
+      <main className="px-[9.5vw] pt-40 h-full xl:min-h-[70vh]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tell your Story</h1>
           <button

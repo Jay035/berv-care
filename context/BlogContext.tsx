@@ -1,6 +1,9 @@
 "use client";
-import { db } from "@/config/Config";
-import { collection, getDocs } from "@firebase/firestore";
+import { auth, db } from "@/config/Config";
+import { collection, getDocs, query, where } from "@firebase/firestore";
+// import { ref } from "firebase/storage";
+
+import { ref, child, get } from "firebase/database";
 import {
   ReactNode,
   useState,
@@ -11,6 +14,11 @@ import {
 
 interface BlogProps {
   blogs: any[];
+  userData?: string;
+  error?: string;
+  setUserData?: () => void;
+  setError?: (e: string) => void;
+  setLoading?: (e: boolean) => void;
   loading: boolean;
 }
 
@@ -25,8 +33,10 @@ type Props = {
 
 export function BlogContextProvider({ children }: Props) {
   const [blogs, setBlogs]: any[] = useState([]);
+  const [userData, setUserData]: any[] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const blogsCollectionRef = collection(db, "blogs");
+  const [error, setError] = useState("");
 
   const getBlogs = async () => {
     setLoading(true);
@@ -35,9 +45,9 @@ export function BlogContextProvider({ children }: Props) {
       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
       setBlogs(res);
       setLoading(false);
-      // console.log(res)
+      // console.log(data)
     } catch (err: any) {
-      console.log(err.message);
+      setError(err.message);
       setLoading(false);
     }
     // console.log(loading)
@@ -45,7 +55,7 @@ export function BlogContextProvider({ children }: Props) {
 
   const getMedicalBlogs = () => {
     fetch(
-      "https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=f0e2512718a24d80b06d988e5000208e"
+      `https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=${process.env.NEXT_PUBLIC_NewsAPI_Key}`
     )
       .then((response) => response.json())
       .then((data) => console.log(data))
@@ -66,13 +76,17 @@ export function BlogContextProvider({ children }: Props) {
   };
 
   useEffect(() => {
-    // getMedicalBlogs()
     getBlogs();
   }, []);
 
   const value = {
     blogs,
     loading,
+    setLoading,
+    userData,
+    setUserData,
+    error,
+    setError,
   };
 
   return (

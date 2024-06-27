@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Distance from "./hospitals/components/Distance";
 import { useState } from "react";
+import Footer from "@/components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,8 @@ export default function BodyComponent({
       {path !== "/login" && path !== "/signup" && <Navbar />}
 
       {children}
+      {path !== "/login" && path !== "/signup" && <Footer />}
+
 
       {/* MODAL  */}
       {modalHeader === "Hospital information" && (
