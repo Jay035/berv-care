@@ -24,42 +24,36 @@ export default function Footer({}: Props) {
         <div className="">
           <h1 className="font-medium text-xl mb-2">Company</h1>
           <ul className="flex flex-col gap-1">
-          <Link
-            href="/#about_us"
-           
-            className="w-fit"
-          >
-            About us
-          </Link>
-          <Link
-            href="/blog"
-            className="w-fit"
-          
-          >
-           Blog
-          </Link>
-          <Link
-            href="/#howItWorks"
-            className="w-fit"
-          
-          >
-            How It Works
-          </Link>
+            <li>
+              <Link href="/#about_us" className="w-fit">
+                About us
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog" className="w-fit">
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link href="/#howItWorks" className="w-fit">
+                How It Works
+              </Link>
+            </li>
             {/* <li>Newsletter</li> */}
-            <Link
-            href="/#testimonials"
-            className="w-fit"
-            
-          >
-              Testimonials
-          </Link>
+            <li>
+              <Link href="/#testimonials" className="w-fit">
+                Testimonials
+              </Link>
+            </li>
           </ul>
         </div>
         <div className="">
           <h1 className="font-medium text-xl mb-2">Quick links</h1>
           <ul className="flex flex-col gap-1">
             <li>Book an appointment</li>
-            <li>My Account</li>
+            <li>
+              <Link href="/dashboard">My Account</Link>
+            </li>
           </ul>
         </div>
         <div className="">
