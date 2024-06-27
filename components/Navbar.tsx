@@ -87,7 +87,7 @@ export const Navbar = () => {
           >
             About us
           </Link>
-          
+
           <Link
             href="/#howItWorks"
             className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
@@ -134,39 +134,39 @@ export const Navbar = () => {
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden w-fit list-none">
             {!user && (
-              <div className="flex flex-col text-lg gap-4 w-fit sm:flex-row sm:w-full">
-                <button
+              <div className="flex text-center flex-col text-lg gap-4 w-fit sm:flex-row sm:w-full">
+                <Link
+                  href="/login"
                   onClick={(e: any) => {
-                    router.push("/login");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-2 w-36 text-[#14532D] border border-[#14532D] bg-white rounded-[50px]"
                 >
                   Login
-                </button>
-                <button
+                </Link>
+                <Link
+                  href="/signup"
                   onClick={(e: any) => {
-                    router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-2 w-36 bg-[#14532D] border border-[#14532D] text-white rounded-[50px] hover:bg-[#14532D]/80"
                 >
                   Sign up
-                </button>
+                </Link>
               </div>
             )}
 
             {user && (
               <div className="flex flex-col items-left gap-4">
-                <button
+                <Link
+                  href="/postBlog"
                   className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
-                    router.push("/postBlog");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                 >
                   Post a Blog
-                </button>
+                </Link>
                 <section
                   className="absolute bottom-4 left-8 sm:left-16"
                   ref={optionsRef}
@@ -204,16 +204,16 @@ export const Navbar = () => {
                     </div>
                     {profileMenuShown && (
                       <div className="shadow-2xl text-xs transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 hover:bg-white/80 left-0 md:right-0 md:left-[unset] bottom-14 absolute">
-                        <p
+                        <Link
+                          href="/dashboard"
                           onClick={() => {
-                            router.push("/dashboard");
                             setMenuShown((prevState: boolean) => !prevState);
                             setProfileMenuShown((prevState) => !prevState);
                           }}
                           className="flex items-center gap-2 px-4 border-b font-medium py-2 text-black"
                         >
                           My Dashboard
-                        </p>
+                        </Link>
 
                         <p
                           onClick={(e) => {
@@ -258,15 +258,15 @@ export const Navbar = () => {
           </div>
         ) : (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
-            <button
+            <Link
+              href="/postBlog"
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
-                router.push("/postBlog");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
             >
               Post a Blog
-            </button>
+            </Link>
             <section
               className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50"
               ref={optionsRef}
@@ -305,16 +305,16 @@ export const Navbar = () => {
                 </div>
                 {profileMenuShown && (
                   <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-fit">
-                    <p
+                    <Link
+                      href="/dashboard"
                       onClick={() => {
-                        router.push("/dashboard");
                         setProfileMenuShown((prevState) => !prevState);
                         // setMenuShown((prevState: boolean) => !prevState);
                       }}
                       className="flex items-center gap-2 px-4 py-1 border-b font-medium text-black"
                     >
                       My Dashboard
-                    </p>
+                    </Link>
 
                     <p
                       onClick={(e) => {

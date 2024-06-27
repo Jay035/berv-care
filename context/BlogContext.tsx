@@ -15,9 +15,11 @@ import {
 interface BlogProps {
   blogs: any[];
   userData?: string;
+  error?: string;
   setUserData?: () => void;
+  setError?: (e: string) => void;
+  setLoading?: (e: boolean) => void;
   loading: boolean;
-  fetchUserData?: () => void;
 }
 
 export const BlogContext = createContext<BlogProps>({
@@ -34,6 +36,7 @@ export function BlogContextProvider({ children }: Props) {
   const [userData, setUserData]: any[] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
   const blogsCollectionRef = collection(db, "blogs");
+  const [error, setError] = useState("");
 
   const getBlogs = async () => {
     setLoading(true);
@@ -44,7 +47,7 @@ export function BlogContextProvider({ children }: Props) {
       setLoading(false);
       // console.log(data)
     } catch (err: any) {
-      console.log(err.message);
+      setError(err.message);
       setLoading(false);
     }
     // console.log(loading)
@@ -73,17 +76,17 @@ export function BlogContextProvider({ children }: Props) {
   };
 
   useEffect(() => {
-    // getMedicalBlogs()
     getBlogs();
-    // fetchUserData();
   }, []);
 
   const value = {
     blogs,
     loading,
+    setLoading,
     userData,
     setUserData,
-    // fetchUserData,
+    error,
+    setError,
   };
 
   return (

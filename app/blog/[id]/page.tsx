@@ -1,13 +1,14 @@
 "use client";
 
-import { fetchSingleBlog } from "@/lib/FetchUserData";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import fs from "fs";
-import Link from "next/link";
-import path from "path";
-import { useRouter } from "next/navigation";
+// import fs from "fs";
+// import Link from "next/link";
+// import path from "path";
+
+// COMPONENTS 
 import { BackBtn } from "@/components/BackBtn";
+import { FetchSingleBlog } from "@/lib/FetchUserData";
 
 type SingleBlogParams = {
   params: {
@@ -36,8 +37,7 @@ export default async function BlogPreview({
 }: SingleBlogParams) {
   // const slug = props?.params?.slug;
   // const post = fetchBlogContent(slug);
-  const blog = await fetchSingleBlog(id);
- 
+  const blog = await FetchSingleBlog(id);
 
   return (
     <div className="">
@@ -45,7 +45,7 @@ export default async function BlogPreview({
         <BackBtn />
         {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}
         <h1 className="text-4xl font-bold my-8 max-w-lg">{blog?.title}</h1>
-        <p className="mt-4 text-sm text-[#6B7280]">Posted on {blog?.date} </p>
+        <p className="mt-4 text-[#6B7280]">Posted on {blog?.date} </p>
         <article className="prose lg:prose-xl">
           <Markdown remarkPlugins={[remarkGfm]}>{blog?.content}</Markdown>
         </article>

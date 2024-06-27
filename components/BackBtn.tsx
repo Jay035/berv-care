@@ -10,7 +10,7 @@ export function BackBtn({}: Props) {
   return (
     <i
       onClick={() => router.back()}
-      className="ri-arrow-left-s-line text-3xl text-[#14532D] font-bold"
+      className="ri-arrow-left-s-line cursor-pointer text-3xl text-[#14532D] font-bold"
     ></i>
   );
 }

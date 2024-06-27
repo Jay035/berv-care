@@ -2,13 +2,12 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import img from "../../public/blog-1.png";
 import Image from "next/image";
-import { useGlobalProvider } from "@/context/GlobalProvider";
+import { useRouter } from "next/navigation";
 
 export default function BlogPost({ post }: any) {
-  const { router } = useGlobalProvider();
+  const router = useRouter();
   const date = post?.date;
 
-  if (!post) console.log("no post");
   const navigateTo = (params: string) => {
     router.push(params);
   };
@@ -33,9 +32,8 @@ export default function BlogPost({ post }: any) {
         className="bg-[#14532D] disabled:bg-[#14532D]/60 text-white rounded-lg mt-3 px-4 py-3"
         onClick={() => navigateTo(`/blog/${post?.id}`)}
       >
-        {/* <Link href={`/blog/${post?.id}`} className=""> */}
+        {" "}
         Read more
-        {/* </Link> */}
       </button>
     </article>
   );

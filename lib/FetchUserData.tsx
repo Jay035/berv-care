@@ -1,4 +1,5 @@
 import { auth, db } from "@/config/Config";
+import { useBlogContext } from "@/context/BlogContext";
 import {
   collection,
   doc,
@@ -8,7 +9,9 @@ import {
   where,
 } from "firebase/firestore";
 
-async function fetchUserBlogs() {
+
+async function FetchUserBlogs() {
+  const {setError, setLoading} = useBlogContext()
   const user = auth.currentUser;
 
   if (user) {
@@ -16,34 +19,38 @@ async function fetchUserBlogs() {
     const userCollection = collection(db, "blogs");
     const q = query(userCollection, where("uid", "==", userUid));
 
+    // setLoading?.(true)
     try {
       const querySnapshot = await getDocs(q);
-      const userData = querySnapshot.docs.map((doc) => doc.data());
-      console.log("User Data:", userData);
+      const userData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      // setLoading?.(false)
+      if(!userData) setError?.("Your voice matters—let it be heard and inspire others to live healthier, happier lives.")
       return userData;
-    } catch (error) {
+    } catch (error : any) {
       console.error("Error fetching user data:", error);
+      setError?.(error.message);
+      // setLoading?.(false)
     }
   } else {
     console.log("No user is currently logged in.");
   }
 }
 
-export default fetchUserBlogs;
+export default FetchUserBlogs;
 
-export async function fetchSingleBlog(id: string) {
+export async function FetchSingleBlog(id: string) {
+  const {setError} = useBlogContext()
   try {
     const docRef = doc(db, "blogs", id);
     const docSnap = await getDoc(docRef);
-    // const userData = querySnapshot.docs.map(doc => doc.data());
-    // console.log('User Data:', userData);
-    // return userData;
+    const docFile = { id: docSnap.id, ...docSnap.data() } as BlogData;
     if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() } as BlogData;
+      return docFile
     } else {
       console.log("No such document!");
     }
-  } catch (error) {
+  } catch (error : any) {
     console.error("Error fetching user data:", error);
+    setError?.(error.message);
   }
 }

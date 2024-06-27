@@ -27,8 +27,8 @@ type HospitalProps = {
 interface GlobalProps {
   router?: any;
   user?: {
-    displayName: string,
-    email: string,
+    displayName: string;
+    email: string;
   };
   userAddress?: string;
   name?: string;
@@ -79,11 +79,12 @@ interface BlogMetadata {
   date: string;
 }
 
-interface BlogData{
-  title: string;
-  content: string;
-  id:string;
-  date: string;
+interface BlogData {
+  title?: string;
+  content?: string;
+  id: string;
+  uid?: string;
+  date?: string;
 }
 
 type Location = {

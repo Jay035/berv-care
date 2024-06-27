@@ -1,7 +1,7 @@
 
 export default function Loader() {
   return (
-    <div className="z-[10000] bg-white absolute top-0 left-0 w-full flex items-center justify-center min-h-screen">
+    <div className="z-[999999999] bg-white absolute top-0 left-0 w-full h-full flex items-center justify-center min-h-screen">
       <svg
         width="39"
         height="59"
