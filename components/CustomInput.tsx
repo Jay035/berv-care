@@ -14,6 +14,8 @@ interface InputProps {
   type: "text" | "number" | "email" | "password";
   className: string;
   name: string;
+  showPassword?: boolean;
+  setShowPassword?: (x: any) => void;
 }
 
 export default function CustomInput({
@@ -29,10 +31,9 @@ export default function CustomInput({
   autocomplete,
   autoFocus,
   id,
+  showPassword,
+  setShowPassword,
 }: InputProps) {
-  // const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //   onChange?.(e.target.value);
-  // };
   return (
     <div className={style}>
       <label htmlFor={label} className="capitalize">
@@ -51,6 +52,22 @@ export default function CustomInput({
         name={name}
         required
       />
+      {type === "password" &&
+        (showPassword ? (
+          <i
+            className="ri-eye-line absolute bottom-1.5 right-2 cursor-pointer"
+            onClick={() =>
+              setShowPassword?.((prevState: boolean) => !prevState)
+            }
+          ></i>
+        ) : (
+          <i
+            className="ri-eye-off-line absolute bottom-1.5 right-2 cursor-pointer"
+            onClick={() =>
+              setShowPassword?.((prevState: boolean) => !prevState)
+            }
+          ></i>
+        ))}
     </div>
   );
 }

@@ -5,7 +5,7 @@ type Props = {};
 
 export default function MeetOurDoctors({}: Props) {
   return (
-    <section className="px-[9.5vw] mb-28 flex flex-col justify-center items-center">
+    <section className="px-8 sm:px-[6vw] mb-28 flex flex-col justify-center items-center">
       <h1 className="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold">
         Meet our Doctors
       </h1>

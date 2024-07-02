@@ -13,7 +13,7 @@ export default function Blog() {
   return (
     <section
       id="healthCenter"
-      className="px-[9.5vw] pt-4 mb-[97px] text-center lg:text-left flex flex-col items-center lg:items-start"
+      className="px-8 sm:px-[6vw] pt-4 mb-[97px] text-center lg:text-left flex flex-col items-center lg:items-start"
     >
       <h1 className="text-[#14532D] font-semibold">OUR HEALTH CENTER</h1>
       <h2 className="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight">

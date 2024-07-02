@@ -26,7 +26,6 @@ export const Navbar = () => {
 
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
-    // console.log(menuShown);
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -54,7 +53,7 @@ export const Navbar = () => {
     <header
       className={`${sora.className} ${
         scrolled ? "bg-white/90 backdrop-blur-[2px]" : "bg-white"
-      } fixed top-0 left-0 z-50  flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+      } fixed top-0 left-0 z-50 flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
     >
       <Link href="/">
         <Image
@@ -76,7 +75,7 @@ export const Navbar = () => {
         <section
           className={` ${
             menuShown && "w-[80%]"
-          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
+          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 px-8 sm:px-[6vw] pt-40 xl:pt-0`}
         >
           <Link
             href="/#about_us"
@@ -133,7 +132,7 @@ export const Navbar = () => {
 
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden w-fit list-none">
-            {!user && (
+            {!user ? (
               <div className="flex text-center flex-col text-lg gap-4 w-fit sm:flex-row sm:w-full">
                 <Link
                   href="/login"
@@ -154,9 +153,7 @@ export const Navbar = () => {
                   Sign up
                 </Link>
               </div>
-            )}
-
-            {user && (
+            ) : (
               <div className="flex flex-col items-left gap-4">
                 <Link
                   href="/postBlog"
@@ -168,7 +165,7 @@ export const Navbar = () => {
                   Post a Blog
                 </Link>
                 <section
-                  className="absolute bottom-4 left-8 sm:left-16"
+                  className="absolute w-40 bottom-4 left-8 sm:left-16"
                   ref={optionsRef}
                 >
                   <div className="relative w-full">
@@ -320,9 +317,9 @@ export const Navbar = () => {
                       onClick={(e) => {
                         e.preventDefault();
                         logOut();
-                        setTimeout(() => {
-                          setMenuShown((prevState: boolean) => !prevState);
-                        }, 500);
+                        // setTimeout(() => {
+                        //   setMenuShown((prevState: boolean) => !prevState);
+                        // }, 500);
                       }}
                       // border-t
                       className=" w-full flex gap-2 font-medium py-1 px-4 text-center cursor-pointer"

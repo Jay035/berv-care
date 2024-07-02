@@ -14,6 +14,8 @@ export default function Form() {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const login = async (e: any) => {
     // console.log(process.env.NEXT_PUBLIC_storageBucket);
@@ -75,7 +77,7 @@ export default function Form() {
           }}
         />
         <CustomInput
-          style="flex flex-col gap-2"
+          style="flex flex-col gap-2 relative"
           label="password"
           id="password"
           type="password"
@@ -87,6 +89,8 @@ export default function Form() {
             setPassword?.(e.target?.value);
             console.log(email);
           }}
+          showPassword={showPassword}
+            setShowPassword={setShowPassword}
         />
 
         <button

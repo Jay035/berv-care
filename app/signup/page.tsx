@@ -9,7 +9,6 @@ export default function SignUp() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(auth?.currentUser);
     if (auth?.currentUser) {
       router.push("/dashboard");
     }

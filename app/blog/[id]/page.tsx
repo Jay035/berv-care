@@ -41,10 +41,10 @@ export default async function BlogPreview({
 
   return (
     <div className="">
-      <main className="px-[9.5vw] py-40">
+      <main className="px-8 sm:px-[6vw] py-40">
         <BackBtn />
         {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}
-        <h1 className="text-4xl font-bold my-8 max-w-lg">{blog?.title}</h1>
+        <h1 className="text-[40px] leading-tight font-bold my-8 max-w-lg">{blog?.title}</h1>
         <p className="mt-4 text-[#6B7280]">Posted on {blog?.date} </p>
         <article className="prose lg:prose-xl">
           <Markdown remarkPlugins={[remarkGfm]}>{blog?.content}</Markdown>

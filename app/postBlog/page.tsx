@@ -57,8 +57,7 @@ export default function PostBlog() {
   }, []);
 
   return (
-    <>
-      <main className="px-[9.5vw] pt-40 h-full xl:min-h-[70vh]">
+      <main className="px-8 sm:px-[6vw] pt-40 h-full xl:min-h-[70vh]">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Tell your Story</h1>
           <button
@@ -83,7 +82,5 @@ export default function PostBlog() {
           Publish
         </button>
       </main>
-      <Footer />
-    </>
   );
 }

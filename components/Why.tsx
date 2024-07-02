@@ -6,7 +6,7 @@ type Props = {};
 
 export default function Why({}: Props) {
   return (
-    <section id="about_us" className="px-[9.5vw] mb-[120px]">
+    <section id="about_us" className="px-8 sm:px-[6vw] mb-[120px]">
       <h1 className="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold">
         Why Berv-Care?
       </h1>

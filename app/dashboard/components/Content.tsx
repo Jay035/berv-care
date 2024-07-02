@@ -72,15 +72,15 @@ export default function Content({ data }: any) {
   // }, []);
 
   return (
-    <main className="py-40 px-8 sm:px-[9.5vw]">
+    <main className="py-40 px-8 sm:px-[6vw]">
       <h1 className="text-3xl md:text-5xl font-semibold mb-4">
         Welcome{" "}
         <span className="font-bold text-[#14532D]">
           {user?.displayName || user?.email}
-        </span>
+        </span> 👋
       </h1>
       <section>
-        <h2 className="text-2xl md:text-3xl font-medium">My Blogs</h2>
+        <h2 className="text-2xl md:text-3xl font-medium underline">My Blogs</h2>
         {data?.length> 0 ? (
           sortedData && sortedData?.length > 0 ? (
             <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full mt-6">
@@ -93,8 +93,8 @@ export default function Content({ data }: any) {
             // <p className="text-2xl text-center mt-16">{error}</p>
           )
         ) : (
-          <div className="flex flex-col gap-6 items-center">
-            <p className="text-2xl text-center mt-16">Your voice matters—let it be heard and inspire others to live healthier, happier lives.</p>
+          <div className="flex flex-col gap-6 items-center text-center mx-auto max-w-3xl justify-center">
+            <p className="text-lg md:text-2xl mt-16">Your voice matters—let it be heard and inspire others to live healthier, happier lives.</p>
             <Link
               href="/postBlog"
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"

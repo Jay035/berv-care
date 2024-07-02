@@ -68,7 +68,7 @@ export default function PostLoader({}: Props) {
 }
 export function BlogPostLoader({}: Props) {
   return (
-    <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 w-full">
+    <section className="grid md:grid-cols-2 lg:grid-cols-3 min-h-[60vh] px-8 sm:px-[6vw] gap-6 mt-10 w-full">
       <div className="border h-[440px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         <div className="rounded-sm bg-[#14532D]/50 h-[224px] w-full"></div>
 

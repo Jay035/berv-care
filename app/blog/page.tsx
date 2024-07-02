@@ -15,7 +15,7 @@ export default function Blog() {
       {/* <Navbar /> */}
       <div
         id="healthCenter"
-        className="px-[9.5vw] pt-40 pb-[97px] text-center flex flex-col items-center"
+        className="px-8 sm:px-[6vw] pt-40 pb-[97px] text-center flex flex-col items-center"
       >
         <h1 className="text-[#14532D] font-semibold lg:text-lg">
           OUR HEALTH CENTER
