@@ -1,5 +1,4 @@
 import CustomInput from "@/components/CustomInput";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 

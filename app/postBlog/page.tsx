@@ -1,11 +1,10 @@
 "use client";
-import { auth, db } from "@/config/Config";
-import { addDoc, collection } from "@firebase/firestore";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Metadata } from "next";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+
+// COMPONENTS
+import { auth, db } from "@/config/Config";
+import { addDoc, collection } from "@firebase/firestore";
 import Form from "./Form";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 

@@ -1,14 +1,5 @@
 "use client";
 
-import { useGlobalProvider } from "@/context/GlobalProvider";
-// import {
-//   Combobox,
-//   ComboboxInput,
-//   ComboboxList,
-//   ComboboxOption,
-//   ComboboxPopover,
-// } from "@reach/combobox";
-// import '@reach/combobox/styles.css';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -31,7 +22,6 @@ interface PlaceSuggestion {
 
 export default function Places({
   setDestinationHospital,
-  destination,
 }: PlacesProps) {
   const {
     ready,
@@ -45,7 +35,6 @@ export default function Places({
     },
   });
 
-  const { setSelectedHospitalInfo } = useGlobalProvider();
 
   const handleSelect = async (selectedOption: PlaceOption | null) => {
     if (selectedOption) {

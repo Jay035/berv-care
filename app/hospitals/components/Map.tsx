@@ -1,10 +1,6 @@
 "use client";
 
-import React, {
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
   GoogleMap,
   Marker,
@@ -22,8 +18,7 @@ import Image from "next/image";
 
 // COMPONENTS
 import useGeoLocation from "@/hooks/useGeoLocationHook";
-import { fetchNearbyPlaces } from "@/lib/getAllHospitals";
-import { fetchWeather } from "../../api/api";
+import { fetchNearbyPlaces, fetchWeather } from "../../../utils/fetch";
 import mapStyles from "./mapStyles";
 import Places from "./Places";
 import { useGlobalProvider } from "@/context/GlobalProvider";
@@ -33,7 +28,7 @@ import ExportDataButton from "@/components/ExportDataButton";
 import { convertDataToCSV } from "@/utils/csvUtils";
 import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 import PostLoader from "@/components/PostLoader";
-import DownloadModal from "@/components/DownloadModal";
+import { Toast } from "@/components/Toast";
 
 export function Map() {
   const mapRef = useRef<google.maps.Map | null>();
@@ -44,6 +39,8 @@ export function Map() {
   const {
     userLocation: { lat, lng },
   } = useGeoLocation();
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [error, setError] = useState("");
   const {
     toggleModal,
     setModalHeader,
@@ -98,7 +95,7 @@ export function Map() {
   const {
     data: nearbyHospitalsData,
     isLoading,
-    isError,
+    error: fetchError,
   } = useQuery([lat, lng], () => fetchNearbyPlaces(lat, lng), {
     enabled: !!lat,
     refetchOnWindowFocus: false,
@@ -121,7 +118,7 @@ export function Map() {
 
   const onLoad = (map: google.maps.Map): void => {
     mapRef.current = map;
-    console.log(center)
+    console.log(center);
   };
 
   const onUnMount = (): void => {
@@ -130,7 +127,6 @@ export function Map() {
 
   const onMapClick = (e: google.maps.MapMouseEvent) => {
     console.log(clickedPos);
-
     console.log(e.latLng?.lat(), e.latLng?.lng());
   };
 
@@ -176,15 +172,10 @@ export function Map() {
     try {
       const csvData = convertDataToCSV(nearbyHospitalsData!);
       console.log(csvData);
-      await UploadCSVToFirebaseStorage(
-        csvData,
-        setDownloadCSVLink
-        // hospitalLocationSelected,
-      );
-      console.log("Data exported successfully");
+      await UploadCSVToFirebaseStorage(csvData, setDownloadCSVLink);
+      // console.log("Data exported successfully");
     } catch (err: any) {
-      console.log(err);
-      // toast.error(err.message);
+      setError(err.message);
     }
   };
 
@@ -202,6 +193,22 @@ export function Map() {
 
   return (
     <div className="mb-10">
+      <Toast showModal={showModal} setShowModal={setShowModal}>
+        <div className="flex items-center gap-2">
+          <i
+            className={`${
+              !error
+                ? "ri-checkbox-circle-line text-green-500"
+                : "ri-error-warning-fill text-red-500"
+            } text-xl`}
+          ></i>
+          {!error ? (
+            <span>Data exported successfully</span>
+          ) : (
+            <span>{error}</span>
+          )}
+        </div>
+      </Toast>
       <div className="mb-6 max-w-4xl w-full lg:mx-auto">
         <Places
           destination={destinationHospital!}
@@ -343,31 +350,30 @@ export function Map() {
           </InfoWindow>
         )}
       </GoogleMap>
-      
+
       <section className="mt-4 flex flex-col gap-2 w-fit ">
         <p className="font-bold">Note</p>
         <div className="flex flex-col md:flex-row gap-2">
-
-        <div className="flex items-center gap-1 pr-2 border-r-2">
-          <Image
-            width={0}
-            height={0}
-            className="w-6 h-6"
-            src="/red-location-marker.png"
-            alt="red location icon"
-          />{" "}
-          indicates your current location
-        </div>
-        <div className="flex items-center gap-1 ">
-          <Image
-            width={0}
-            height={0}
-            className="w-6 h-6"
-            src="/blue-location-marker.png"
-            alt="blue location icon"
-          />{" "}
-          indicates destination location
-        </div>
+          <div className="flex items-center gap-1 pr-2 border-r-2">
+            <Image
+              width={0}
+              height={0}
+              className="w-6 h-6"
+              src="/red-location-marker.png"
+              alt="red location icon"
+            />{" "}
+            indicates your current location
+          </div>
+          <div className="flex items-center gap-1 ">
+            <Image
+              width={0}
+              height={0}
+              className="w-6 h-6"
+              src="/blue-location-marker.png"
+              alt="blue location icon"
+            />{" "}
+            indicates destination location
+          </div>
         </div>
       </section>
       {nearbyHospitalsData ? (

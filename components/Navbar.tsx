@@ -1,8 +1,12 @@
 "use client";
+
+// HOOKS
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+
+// COMPONENTS
 import { sora } from "../utils/fonts";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 
@@ -46,6 +50,11 @@ export const Navbar = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("DOMContentLoaded", handleScroll);
+    };
   });
 
   return (

@@ -3,13 +3,11 @@ import BlogPost from "@/components/Blog/BlogPost";
 import { BlogPostLoader } from "@/components/PostLoader";
 import { useBlogContext } from "@/context/BlogContext";
 import { useGlobalProvider } from "@/context/GlobalProvider";
-import FetchUserBlogs from "@/lib/FetchUserData";
+import { FetchUserBlogs } from "@/utils/FetchUserData";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Content({ data }: any) {
-  const router = useRouter();
   const { user } = useGlobalProvider();
   const { error } = useBlogContext();
 
@@ -29,11 +27,12 @@ export default function Content({ data }: any) {
         Welcome{" "}
         <span className="font-bold text-[#14532D] capitalize">
           {user?.displayName || user?.email}
-        </span> 👋
+        </span>{" "}
+        👋
       </h1>
       <section>
         <h2 className="text-2xl md:text-3xl font-medium underline">My Blogs</h2>
-        {data?.length> 0 ? (
+        {data?.length > 0 ? (
           sortedData && sortedData?.length > 0 ? (
             <section className="grid gap-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3 w-full mt-6">
               {sortedData?.map((blog: BlogData) => (
@@ -46,7 +45,10 @@ export default function Content({ data }: any) {
           )
         ) : (
           <div className="flex flex-col gap-6 items-center text-center mx-auto max-w-3xl justify-center">
-            <p className="text-lg md:text-2xl mt-16">Your voice matters—let it be heard and inspire others to live healthier, happier lives.</p>
+            <p className="text-lg md:text-2xl mt-16">
+              Your voice matters—let it be heard and inspire others to live
+              healthier, happier lives.
+            </p>
             <Link
               href="/postBlog"
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"

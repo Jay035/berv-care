@@ -1,4 +1,3 @@
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import localFont from "next/font/local";
@@ -8,7 +7,6 @@ import { Metadata } from "next";
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { BlogContextProvider } from "@/context/BlogContext";
-import ToastProvider from "@/components/ToastProvider";
 import { GlobalProvider } from "@/context/GlobalProvider";
 import BodyComponent from "./body";
 
@@ -75,11 +73,9 @@ export default function RootLayout({
         <Transition />
         <ScrollToTop />
         <GlobalProvider>
-          <ToastProvider>
             <BlogContextProvider>
               <BodyComponent>{children}</BodyComponent>
             </BlogContextProvider>
-          </ToastProvider>
         </GlobalProvider>
       </body>
     </html>

@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 
 // COMPONENTS
 import { useBlogContext } from "@/context/BlogContext";
-import PostLoader, { BlogPostLoader } from "../PostLoader";
+import { BlogPostLoader } from "../PostLoader";
 import { Suspense } from "react";
 
 const BlogPost = dynamic(() => import("./BlogPost"));

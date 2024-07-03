@@ -4,14 +4,17 @@
 import { useState } from "react";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "@/config/Config";
-import { toast } from "react-toastify";
 
 // COMPONENTS
 import Form from "./Form";
-import { useGlobalProvider } from "@/context/GlobalProvider";
+import { Toast } from "../Toast";
 
-export default function NewsLetter({ setSubscribeButtonClicked }: any) {
+export default function NewsLetter() {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [subscriptionSuccessful, setSubscriptionSuccessful] =
+    useState<boolean>(false);
   const usersEmailRef = collection(db, "newsletter-subs");
 
   const handleEmailChange = (event: any) => {
@@ -23,19 +26,44 @@ export default function NewsLetter({ setSubscribeButtonClicked }: any) {
     e.preventDefault();
     try {
       await addDoc(usersEmailRef, { email: email });
-      setSubscribeButtonClicked?.(true);
+      setShowModal?.(true);
+      setSubscriptionSuccessful(true);
       setTimeout(() => {
-        setSubscribeButtonClicked?.(false);
-      }, 2000);
+        setShowModal?.(false);
+      }, 4000);
       setEmail("");
     } catch (err: any) {
-      console.log(err.message);
-      toast.error(err.message);
+      setSubscriptionSuccessful(false);
+      setError(err.message);
+      setTimeout(() => {
+        setShowModal?.(false);
+        setError("");
+      }, 4000);
     }
   };
 
   return (
     <section className="px-8 sm:px-[6vw]">
+      {/* MODAL  */}
+      <Toast showModal={showModal} setShowModal={setShowModal}>
+        <div className="flex items-center gap-2">
+          <i
+            className={`${
+              subscriptionSuccessful && !error
+                ? "ri-checkbox-circle-line text-green-500"
+                : "ri-error-warning-fill text-red-500"
+            } text-xl`}
+          ></i>
+          {subscriptionSuccessful && !error ? (
+            <span>Congratulations, you have subscribed to our newsletter</span>
+          ) : (
+            <span>{error}</span>
+          )}
+        </div>
+      </Toast>
+
+      {/* ---------------------------  */}
+
       <div className="bg-[#DCFCE7] py-[78px] px-8 sm:px-[6vw] md:px-[6vw]">
         <h1 className="text-center font-bold text-4xl -tracking-[2%]">
           Beat the Queue, Stay Healthy!

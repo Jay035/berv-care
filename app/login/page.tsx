@@ -1,20 +1,30 @@
 "use client";
-import Form from "./Form";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+
+// COMPONENTS
+import Form from "./Form";
 import { auth } from "@/config/Config";
 
 export default function Login() {
   const router = useRouter();
 
+  const reRoute = () => {
+    if (auth?.currentUser) {
+      router.push("/dashboard");
+    }
+  };
+
   useEffect(() => {
-    window.addEventListener("DOMContentLoaded", () => {
-      if (auth?.currentUser) {
-        router.push("/dashboard");
-      }
-    });
+    window.addEventListener("DOMContentLoaded", reRoute);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("DOMContentLoaded", reRoute);
+    };
   }, []);
+
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
       <Link

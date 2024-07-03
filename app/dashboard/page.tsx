@@ -1,5 +1,5 @@
 "use client";
-import FetchUserBlogs from "@/lib/FetchUserData";
+import { FetchUserBlogs } from "@/utils/FetchUserData";
 import Content from "./components/Content";
 
 export default async function Dashboard() {

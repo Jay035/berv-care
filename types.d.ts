@@ -1,5 +1,4 @@
 declare module "react-markdown";
-declare module "markdown-truncate";
 
 type HospitalProps = {
   id: number;
@@ -137,6 +136,8 @@ type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
 interface ModalProps {
-  modalHeader: string;
+  modalHeader?: string;
   children: ReactElement;
+  showModal?: boolean;
+  setShowModal?: (x: boolean) => void
 }

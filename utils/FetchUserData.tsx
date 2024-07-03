@@ -1,5 +1,4 @@
 import { auth, db } from "@/config/Config";
-import { useBlogContext } from "@/context/BlogContext";
 import {
   collection,
   doc,
@@ -8,9 +7,10 @@ import {
   query,
   where,
 } from "firebase/firestore";
+import { useBlogContext } from "@/context/BlogContext";
 
 
-async function FetchUserBlogs() {
+export async function FetchUserBlogs() {
   const {setError, setLoading} = useBlogContext()
   const user = auth.currentUser;
 
@@ -36,7 +36,6 @@ async function FetchUserBlogs() {
   }
 }
 
-export default FetchUserBlogs;
 
 export async function FetchSingleBlog(id: string) {
   const {setError} = useBlogContext()
