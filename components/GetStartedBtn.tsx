@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-type Props = {};
-
-export default function GetStartedBtn({}: Props) {
+export default function GetStartedBtn() {
   return (
     <Link
       data-testid="get-started-btn"

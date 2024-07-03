@@ -10,7 +10,6 @@ export const Navbar = () => {
   const { user, logOut }: any = useGlobalProvider();
   const optionsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileMenuShown, setProfileMenuShown] = useState<boolean>(false);
   const [scrolled, setScrolled] = useState(false);
@@ -165,7 +164,7 @@ export const Navbar = () => {
                   Post a Blog
                 </Link>
                 <section
-                  className="absolute w-40 bottom-4 left-8 sm:left-16"
+                  className="absolute w-44 bottom-4 left-8 sm:left-16"
                   ref={optionsRef}
                 >
                   <div className="relative w-full">

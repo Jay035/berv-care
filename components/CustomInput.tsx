@@ -52,22 +52,14 @@ export default function CustomInput({
         name={name}
         required
       />
-      {type === "password" &&
-        (showPassword ? (
-          <i
-            className="ri-eye-line absolute bottom-1.5 right-2 cursor-pointer"
-            onClick={() =>
-              setShowPassword?.((prevState: boolean) => !prevState)
-            }
-          ></i>
-        ) : (
-          <i
-            className="ri-eye-off-line absolute bottom-1.5 right-2 cursor-pointer"
-            onClick={() =>
-              setShowPassword?.((prevState: boolean) => !prevState)
-            }
-          ></i>
-        ))}
+      {id === "password" && (
+        <i
+          className={`${
+            showPassword ? "ri-eye-line" : "ri-eye-off-line"
+          }  absolute bottom-1.5 right-2 cursor-pointer`}
+          onClick={() => setShowPassword?.((prevState: boolean) => !prevState)}
+        ></i>
+      )}
     </div>
   );
 }

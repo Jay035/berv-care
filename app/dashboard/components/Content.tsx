@@ -23,59 +23,11 @@ export default function Content({ data }: any) {
     return dateB.getTime() - dateA.getTime();
   });
 
-  // const data = [
-  //   {
-  //     content:
-  //       "Offer practical advice for maintaining heart health, including tips for managing blood pressure, cholesterol, and stress.",
-  //     date: "08/08/2023",
-  //     id: "XYCZ80FldDGAfN1xK5F6",
-  //     title:
-  //       'The ABCs of Heart Health: Simple Strategies for a Stronger Heart"',
-  //     uid: "ZOYHixYD6UNAp2tBRtbWm1SFHFg2",
-  //   },
-  //   {
-  //     content:
-  //       "Offer practical advice for maintaining heart health, including tips for managing blood pressure, cholesterol, and stress.",
-  //     date: "18/08/2024",
-  //     id: "XYCZ80FldDGAfN1xK5F6",
-  //     title:
-  //       'The ABCs of Heart Health: Simple Strategies for a Stronger Heart"',
-  //     uid: "ZOYHixYD6UNAp2tBRtbWm1SFHFg2",
-  //   },
-  //   {
-  //     content:
-  //       "Offer practical advice for maintaining heart health, including tips for managing blood pressure, cholesterol, and stress.",
-  //     date: "28/08/2023",
-  //     id: "XYCZ80FldDGAfN1xK5F6",
-  //     title:
-  //       'The ABCs of Heart Health: Simple Strategies for a Stronger Heart"',
-  //     uid: "ZOYHixYD6UNAp2tBRtbWm1SFHFg2",
-  //   },
-  // ];
-
-  // useEffect(() => {
-  //   fetchUserBlogs()
-  //     .then((data: any) => {
-  //       console.log(blogData)
-  //       if (data) {
-  //         setUserBlogs(data);
-  //       } else {
-  //         setError(
-  //           "No blog(s) found, Your voice matters—let it be heard and inspire others to live healthier, happier lives."
-  //         );
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setError("Couldnt't fetch your blogs, check your internet connection");
-  //       console.log(err.message);
-  //     });
-  // }, []);
-
   return (
     <main className="py-40 px-8 sm:px-[6vw]">
       <h1 className="text-3xl md:text-5xl font-semibold mb-4">
         Welcome{" "}
-        <span className="font-bold text-[#14532D]">
+        <span className="font-bold text-[#14532D] capitalize">
           {user?.displayName || user?.email}
         </span> 👋
       </h1>

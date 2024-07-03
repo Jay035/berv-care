@@ -68,9 +68,9 @@ export default function PostLoader({}: Props) {
 }
 export function BlogPostLoader({}: Props) {
   return (
-    <section className="grid md:grid-cols-2 lg:grid-cols-3 min-h-[60vh] px-8 sm:px-[6vw] gap-6 mt-10 w-full">
-      <div className="border h-[440px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-        <div className="rounded-sm bg-[#14532D]/50 h-[224px] w-full"></div>
+    <section className="grid md:grid-cols-2 lg:grid-cols-3 min-h-[60vh] px-8 sm:px-[6vw] gap-6 mt-10 w-full justify-center mx-auto">
+      <div className="border h-[347px] border-[#14532D]/80 shadow rounded-md p-4 w-full">
+        <div className="rounded-sm animate-pulse bg-[#14532D]/50 h-[224px] w-full"></div>
 
         <div className="animate-pulse flex space-x-4 mt-3">
           <div className="rounded-full bg-[#14532D]/50 h-10 w-10"></div>
@@ -86,8 +86,8 @@ export function BlogPostLoader({}: Props) {
           </div>
         </div>
       </div>
-      <div className="border h-[440px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-        <div className="rounded-sm bg-[#14532D]/50 h-[224px] w-full"></div>
+      <div className="border h-[347px] border-[#14532D]/80 shadow rounded-md p-4 w-full">
+        <div className="rounded-sm animate-pulse bg-[#14532D]/50 h-[224px] w-full"></div>
 
         <div className="animate-pulse flex space-x-4 mt-3">
           <div className="rounded-full bg-[#14532D]/50 h-10 w-10"></div>
@@ -103,8 +103,8 @@ export function BlogPostLoader({}: Props) {
           </div>
         </div>
       </div>
-      <div className="border h-[440px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-        <div className="rounded-sm bg-[#14532D]/50 h-[224px] w-full"></div>
+      <div className="md:hidden lg:block border h-[347px] border-[#14532D]/80 shadow rounded-md p-4 w-full">
+        <div className="rounded-sm animate-pulse bg-[#14532D]/50 h-[224px] w-full"></div>
 
         <div className="animate-pulse flex space-x-4 mt-3">
           <div className="rounded-full bg-[#14532D]/50 h-10 w-10"></div>
@@ -120,7 +120,7 @@ export function BlogPostLoader({}: Props) {
           </div>
         </div>
       </div>
-      <div className="lg:hidden border h-[440px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      {/* <div className="lg:hidden border h-[347px] border-[#14532D]/80 shadow rounded-md p-4 max-w-sm w-full">
         <div className="rounded-sm bg-[#14532D]/50 h-[224px] w-full"></div>
 
         <div className="animate-pulse flex space-x-4 mt-3">
@@ -136,7 +136,7 @@ export function BlogPostLoader({}: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

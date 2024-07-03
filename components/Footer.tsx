@@ -39,7 +39,6 @@ export default function Footer({}: Props) {
                 How It Works
               </Link>
             </li>
-            {/* <li>Newsletter</li> */}
             <li>
               <Link href="/#testimonials" className="w-fit">
                 Testimonials

@@ -2,9 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-type Props = {};
-
-export function BackBtn({}: Props) {
+export function BackBtn() {
   const router = useRouter();
 
   return (

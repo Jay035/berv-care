@@ -1,9 +1,6 @@
 "use client";
-import { auth, db } from "@/config/Config";
-import { collection, getDocs, query, where } from "@firebase/firestore";
-// import { ref } from "firebase/storage";
-
-import { ref, child, get } from "firebase/database";
+import { db } from "@/config/Config";
+import { collection, getDocs } from "@firebase/firestore";
 import {
   ReactNode,
   useState,
@@ -45,12 +42,10 @@ export function BlogContextProvider({ children }: Props) {
       const res = data?.docs?.map((doc) => ({ ...doc.data(), id: doc.id }));
       setBlogs(res);
       setLoading(false);
-      // console.log(data)
     } catch (err: any) {
       setError(err.message);
       setLoading(false);
     }
-    // console.log(loading)
   };
 
   const getMedicalBlogs = () => {

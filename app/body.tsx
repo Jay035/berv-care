@@ -1,12 +1,15 @@
 "use client";
+
+// HOOKS
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+// COMPONENTS
 import Modal from "@/components/Modal";
 import { Navbar } from "@/components/Navbar";
 import { useGlobalProvider } from "@/context/GlobalProvider";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { QueryClient, QueryClientProvider } from "react-query";
 import Distance from "./hospitals/components/Distance";
-import { useState } from "react";
 import Footer from "@/components/Footer";
 
 const queryClient = new QueryClient();
@@ -22,7 +25,8 @@ export default function BodyComponent({
     selectedHospitalInfo,
     directions,
     downloadCSVLink,
-    showModal,
+    downloadButtonClicked,
+    setDownloadButtonClicked,
   } = useGlobalProvider();
 
   const [isLinkCopied, setIsLinkCopied] = useState(false);
@@ -31,7 +35,6 @@ export default function BodyComponent({
     let text = downloadCSVLink;
     navigator.clipboard.writeText(text!).then(
       function () {
-        console.log("Copying link was successful");
         setIsLinkCopied((prevstate) => !prevstate);
         setTimeout(() => {
           setIsLinkCopied((prevstate) => !prevstate);
@@ -50,7 +53,7 @@ export default function BodyComponent({
       {children}
       {path !== "/login" && path !== "/signup" && <Footer />}
 
-
+      {/* -------------------------------------------------------   */}
       {/* MODAL  */}
       {modalHeader === "Hospital information" && (
         <Modal modalHeader="Hospital information">
@@ -83,17 +86,27 @@ export default function BodyComponent({
           </div>
         </Modal>
       )}
+
       {modalHeader === "Export" && (
         <Modal modalHeader="Export">
           {downloadCSVLink ? (
-            <div className="flex flex-col gap-6 w-96 h-48 mx-auto text-center justify-center">
+            <div className="flex flex-col gap-6 w-full max-w-96 h-48 mx-auto text-center justify-center">
               <button
                 onClick={copyToClipboard}
                 className="bg-green-500 px-4 p-2 rounded-md"
               >
                 {isLinkCopied ? "Copied!!" : "Copy link"}
               </button>
-              <a href={downloadCSVLink} className="border px-4 p-2 rounded-md">
+              <a
+                href={downloadCSVLink}
+                className="border px-4 p-2 rounded-md"
+                onClick={() => {
+                  setDownloadButtonClicked?.(true);
+                  setTimeout(() => {
+                    setDownloadButtonClicked?.(false);
+                  }, 2000);
+                }}
+              >
                 Download generated CSV
               </a>
             </div>
@@ -101,6 +114,12 @@ export default function BodyComponent({
             <p className="">
               Loading<span className="animate-pulse">...</span>
             </p>
+          )}
+          {downloadButtonClicked && (
+            <div className="absolute top-2 right-2 p-4 flex gap-2 bg-white rounded">
+              <i className="ri-checkbox-circle-line text-green-500"></i>CSV
+              Downloaded successfully
+            </div>
           )}
         </Modal>
       )}

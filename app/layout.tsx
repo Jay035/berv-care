@@ -3,6 +3,8 @@ import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
+
+// COMPONENTS
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
 import { BlogContextProvider } from "@/context/BlogContext";

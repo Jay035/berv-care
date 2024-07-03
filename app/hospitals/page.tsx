@@ -22,8 +22,6 @@ export default async function HospitalsPage() {
   console.log(hospitals);
 
   return (
-    <>
-      {/* <Navbar /> */}
       <main className="px-8 sm:px-[6vw] pb-12 pt-40">
         <h1
           data-testid="hospital_page_title"
@@ -32,13 +30,10 @@ export default async function HospitalsPage() {
           Find Hospitals Around You, With Ease
         </h1>
 
-        <Map />
-        
-        {/* <Suspense fallback={<PostLoader />}>
-          <HospitalResults hospitals={hospitals} />
-        </Suspense> */}
+        <Suspense fallback={<PostLoader />}>
+          <Map />
+          {/* <HospitalResults hospitals={hospitals} /> */}
+        </Suspense>
       </main>
-      <Footer />
-    </>
   );
 }

@@ -1,13 +1,16 @@
 "use client";
+
+// HOOKS
 import { useState } from "react";
-import Form from "./Form";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "@/config/Config";
 import { toast } from "react-toastify";
 
-type Props = {};
+// COMPONENTS
+import Form from "./Form";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
-export default function NewsLetter({}: Props) {
+export default function NewsLetter({ setSubscribeButtonClicked }: any) {
   const [email, setEmail] = useState("");
   const usersEmailRef = collection(db, "newsletter-subs");
 
@@ -19,9 +22,11 @@ export default function NewsLetter({}: Props) {
   const handleSubscribe = async (e: any) => {
     e.preventDefault();
     try {
-      console.log(`Subscribing ${email} to our newsletter...`);
       await addDoc(usersEmailRef, { email: email });
-      toast.success("Congratulations, you have subscribed to our newsletter");
+      setSubscribeButtonClicked?.(true);
+      setTimeout(() => {
+        setSubscribeButtonClicked?.(false);
+      }, 2000);
       setEmail("");
     } catch (err: any) {
       console.log(err.message);

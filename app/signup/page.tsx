@@ -9,9 +9,11 @@ export default function SignUp() {
   const router = useRouter();
 
   useEffect(() => {
-    if (auth?.currentUser) {
-      router.push("/dashboard");
-    }
+    window.addEventListener("DOMContentLoaded", () => {
+      if (auth?.currentUser) {
+        router.push("/dashboard");
+      }
+    });
   }, []);
 
   return (

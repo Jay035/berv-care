@@ -1,8 +1,6 @@
 "use client";
 
 import React, {
-  useCallback,
-  useEffect,
   useMemo,
   useRef,
   useState,
@@ -345,6 +343,7 @@ export function Map() {
           </InfoWindow>
         )}
       </GoogleMap>
+      
       <section className="mt-4 flex flex-col gap-2 w-fit ">
         <p className="font-bold">Note</p>
         <div className="flex flex-col md:flex-row gap-2">

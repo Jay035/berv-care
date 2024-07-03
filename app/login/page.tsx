@@ -9,9 +9,11 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    if (auth?.currentUser) {
-      router.push("/dashboard");
-    }
+    window.addEventListener("DOMContentLoaded", () => {
+      if (auth?.currentUser) {
+        router.push("/dashboard");
+      }
+    });
   }, []);
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
