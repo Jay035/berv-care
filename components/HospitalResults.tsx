@@ -1,14 +1,16 @@
 "use client";
+
+// HOOKS
 import Link from "next/link";
-import CustomInput from "./CustomInput";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import Papa from "papaparse";
+import { useEffect, useState } from "react";
+
+// COMPONENTS 
+import CustomInput from "./CustomInput";
 import useGeoLocation from "@/hooks/useGeoLocationHook";
 import { convertDataToCSV } from "@/utils/csvUtils";
 import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 import ExportDataButton from "./ExportDataButton";
-import { toast } from "react-toastify";
 import DownloadModal from "./DownloadModal";
 
 export default function HospitalResults({ hospitals }: any) {
@@ -68,7 +70,6 @@ export default function HospitalResults({ hospitals }: any) {
   };
 
   const handleExportData = async () => {
-    // toast.info('exporting data....')
     try {
       const csvData = convertDataToCSV(data);
       console.log(csvData);
@@ -77,10 +78,10 @@ export default function HospitalResults({ hospitals }: any) {
         setDownloadCsvLink,
         hospitalLocationSelected,
       );
-      toast.success("Data exported successfully");
+     console.log("Data exported successfully");
     } catch (err: any) {
       console.log(err);
-      toast.error(err.message);
+      console.error(err.message);
     }
   };
 

@@ -1,5 +1,4 @@
 declare module "react-markdown";
-declare module "markdown-truncate";
 
 type HospitalProps = {
   id: number;
@@ -26,7 +25,10 @@ type HospitalProps = {
 
 interface GlobalProps {
   router?: any;
-  user?: string;
+  user?: {
+    displayName: string;
+    email: string;
+  };
   userAddress?: string;
   name?: string;
   email?: string | undefined;
@@ -37,6 +39,7 @@ interface GlobalProps {
   loading: boolean;
   showModal?: boolean;
   downloadButtonClicked?: boolean;
+  subscribeButtonClicked?: boolean;
   modalHeader?: string;
   toggleModal?: () => void;
 
@@ -50,6 +53,7 @@ interface GlobalProps {
   setPassword?: (x: string) => void;
   setLoading?: (x: any) => void;
   setDownloadButtonClicked?: (x: boolean) => void;
+  setSubscribeButtonClicked?: (x: boolean) => void;
   setDownloadCSVLink?: (x: any) => void;
   setIsUserLoggedIn?: (x: any) => void;
   register?: (email: string, password: string) => void;
@@ -74,6 +78,14 @@ interface BlogMetadata {
   description: string;
   image: string;
   date: string;
+}
+
+interface BlogData {
+  title?: string;
+  content?: string;
+  id: string;
+  uid?: string;
+  date?: string;
 }
 
 type Location = {
@@ -124,6 +136,8 @@ type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
 interface ModalProps {
-  modalHeader: string;
+  modalHeader?: string;
   children: ReactElement;
+  showModal?: boolean;
+  setShowModal?: (x: boolean) => void
 }

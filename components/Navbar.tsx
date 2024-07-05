@@ -1,8 +1,12 @@
 "use client";
+
+// HOOKS
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+
+// COMPONENTS
 import { sora } from "../utils/fonts";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 
@@ -10,13 +14,21 @@ export const Navbar = () => {
   const { user, logOut }: any = useGlobalProvider();
   const optionsRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const pathname = usePathname();
   const [menuShown, setMenuShown] = useState<boolean>(false);
   const [profileMenuShown, setProfileMenuShown] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    const offset = window.scrollY;
+    if (offset > 200) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   const toggleMenu = () => {
     setMenuShown((prevValue) => !prevValue);
-    // console.log(menuShown);
   };
 
   const handleOutsideClick = (event: MouseEvent) => {
@@ -36,9 +48,20 @@ export const Navbar = () => {
   //   };
   // }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup function to remove event listener
+    return () => {
+      window.removeEventListener("DOMContentLoaded", handleScroll);
+    };
+  });
+
   return (
     <header
-      className={`${sora.className} flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+      className={`${sora.className} ${
+        scrolled ? "bg-white/90 backdrop-blur-[2px]" : "bg-white"
+      } fixed top-0 left-0 z-50 flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
     >
       <Link href="/">
         <Image
@@ -60,44 +83,48 @@ export const Navbar = () => {
         <section
           className={` ${
             menuShown && "w-[80%]"
-          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 md:gap-10 px-8 sm:px-[9.5vw] pt-40 xl:pt-0`}
+          } whitespace-nowrap bg-white xl:bg-transparent h-screen xl:h-fit xl:w-fit flex flex-col xl:flex-row xl:justify-between gap-8 px-8 sm:px-[6vw] pt-40 xl:pt-0`}
         >
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+          <Link
+            href="/#about_us"
+            onClick={() => {
+              setMenuShown((prevState: boolean) => !prevState);
+            }}
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+          >
+            About us
+          </Link>
+
+          <Link
+            href="/#howItWorks"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/">About us</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+            How It Works
+          </Link>
+
+          <Link
+            href="/blog"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/#howItWorks">How It Works</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
+            Health Center
+          </Link>
+
+          <Link
+            href="/hospitals"
+            className="after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all w-fit"
+            onClick={() => {
               setMenuShown((prevState: boolean) => !prevState);
             }}
           >
-            <Link href="/blog">Health Center</Link>
-          </span>
-          <span
-            className="cursor-pointer transition w-fit"
-            onClick={(e: any) => {
-              e.preventDefault();
-              setMenuShown((prevState: boolean) => !prevState);
-            }}
-          >
-            <Link href="/hospitals">Find Hospitals</Link>
-          </span>
+            Find Hospitals
+          </Link>
+
           {!user && (
             <span
               onClick={(e: any) => {
@@ -113,52 +140,50 @@ export const Navbar = () => {
 
           {/* BUTTONS FOR MOBILE */}
           <div className="xl:hidden w-fit list-none">
-            {!user && (
-              <div className="flex flex-col text-lg gap-4 w-fit sm:flex-row sm:w-full">
-                <button
+            {!user ? (
+              <div className="flex text-center flex-col text-lg gap-4 w-fit sm:flex-row sm:w-full">
+                <Link
+                  href="/login"
                   onClick={(e: any) => {
-                    router.push("/login");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-2 w-36 text-[#14532D] border border-[#14532D] bg-white rounded-[50px]"
                 >
                   Login
-                </button>
-                <button
+                </Link>
+                <Link
+                  href="/signup"
                   onClick={(e: any) => {
-                    router.push("/signup");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                   className="py-2 w-36 bg-[#14532D] border border-[#14532D] text-white rounded-[50px] hover:bg-[#14532D]/80"
                 >
                   Sign up
-                </button>
+                </Link>
               </div>
-            )}
-
-            {user && (
+            ) : (
               <div className="flex flex-col items-left gap-4">
-                <button
+                <Link
+                  href="/postBlog"
                   className="px-[18px] py-[10px] text-[#14532D] font-semibold w-fit border border-[#14532D] rounded-[50px]"
                   onClick={(e: any) => {
-                    router.push("/postBlog");
                     setMenuShown((prevState: boolean) => !prevState);
                   }}
                 >
                   Post a Blog
-                </button>
+                </Link>
                 <section
-                  className="absolute bottom-4 left-8 sm:left-[5.5rem]"
+                  className="absolute w-44 bottom-4 left-8 sm:left-16"
                   ref={optionsRef}
                 >
-                  <div className="relative w-[70%]">
+                  <div className="relative w-full">
                     <div
                       onClick={(e) => {
                         setProfileMenuShown((prevState) => !prevState);
                       }}
                       className="flex justify-between items-center cursor-pointer gap-2 px-3 py-2 border border-[#EAECF0] rounded-[50px]"
                     >
-                      <div className="flex items-center gap-2 w-[70%]">
+                      <div className="flex items-center gap-2 w-full">
                         {user?.photoURL ? (
                           <Image
                             width={28}
@@ -174,46 +199,39 @@ export const Navbar = () => {
                               user?.email.slice(0, 1)}
                           </p>
                         )}
-                        <p className="truncate">{user?.email}</p>
+                        <p className="truncate">{user?.displayName}</p>
                       </div>
                       {profileMenuShown ? (
-                        <i
-                          className="ri-arrow-down-s-line"
-                          // onClick={() => setProfileMenuShown(false)}
-                        ></i>
+                        <i className="ri-arrow-down-s-line"></i>
                       ) : (
-                        <i
-                          className="ri-arrow-up-s-line"
-                          // onClick={() => setProfileMenuShown(true)}
-                        ></i>
+                        <i className="ri-arrow-up-s-line"></i>
                       )}
                     </div>
                     {profileMenuShown && (
                       <div className="shadow-2xl text-xs transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 hover:bg-white/80 left-0 md:right-0 md:left-[unset] bottom-14 absolute">
-                        {/* <a href="#" className="flex items-center gap-2 px-4">
-                          <span className="font-semibold text-black">
-                            Profile
-                          </span>
-                        </a>
-                        <a href="#" className="flex items-center gap-2 px-4">
-                          <span className="font-semibold text-black">
-                            My blogs
-                          </span>
-                        </a> */}
+                        <Link
+                          href="/dashboard"
+                          onClick={() => {
+                            setMenuShown((prevState: boolean) => !prevState);
+                            setProfileMenuShown((prevState) => !prevState);
+                          }}
+                          className="flex items-center gap-2 px-4 border-b font-medium py-2 text-black"
+                        >
+                          My Dashboard
+                        </Link>
 
                         <p
                           onClick={(e) => {
-                            // e.preventDefault();
                             logOut();
                             setTimeout(() => {
                               setMenuShown((prevState: boolean) => !prevState);
                             }, 500);
                           }}
                           // border-t
-                          className=" w-full flex gap-2 py-[6px] px-4 text-center cursor-pointer"
+                          className=" w-full flex gap-2 py-[6px] font-medium px-4 text-center cursor-pointer"
                         >
                           <i className="ri-logout-box-line"></i>
-                          <span className="font-bold">SIGN OUT</span>
+                          <span className="">SIGN OUT</span>
                         </p>
                       </div>
                     )}
@@ -228,7 +246,7 @@ export const Navbar = () => {
 
       {/* BUTTONS FOR LARGER SCREENS */}
       <div className="hidden xl:flex text-center whitespace-nowrap">
-        {!user && pathname !== "/login" && (
+        {!user ? (
           <div className="flex gap-4 items-center">
             <Link
               href="/login"
@@ -243,19 +261,17 @@ export const Navbar = () => {
               Sign up
             </Link>
           </div>
-        )}
-        {user && (
+        ) : (
           <div className="flex flex-col xl:flex-row xl:relative items-left xl:items-center gap-4">
-            <button
+            <Link
+              href="/postBlog"
               className="px-[18px] py-[10px] w-fit border border-[#14532D] rounded-[50px]"
               onClick={(e: any) => {
-                // e.preventDefault();
-                router.push("/postBlog");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
             >
               Post a Blog
-            </button>
+            </Link>
             <section
               className="absolute bottom-4 left-8 xl:static xl:left-0 xl:bottom-0 z-50"
               ref={optionsRef}
@@ -293,25 +309,31 @@ export const Navbar = () => {
                   </div> */}
                 </div>
                 {profileMenuShown && (
-                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-2 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-16">
-                    {/* <a href="" className="flex items-center gap-2 px-4">
-                     
-                      <span className="font-semibold text-black">Profile</span>
-                    </a> */}
+                  <div className="shadow-2xl transition-all ease-in flex flex-col gap-2 mt-4 rounded-md py-1 w-full bg-white md:w-3/4 border-2 text-start md:text-center cursor-pointer border-gray-300 left-0 md:right-0 md:left-[unset] bottom-14 absolute xl:bottom-0 xl:top-14 xl:right-0 xl:w-full xl:h-fit">
+                    <Link
+                      href="/dashboard"
+                      onClick={() => {
+                        setProfileMenuShown((prevState) => !prevState);
+                        // setMenuShown((prevState: boolean) => !prevState);
+                      }}
+                      className="flex items-center gap-2 px-4 py-1 border-b font-medium text-black"
+                    >
+                      My Dashboard
+                    </Link>
 
                     <p
                       onClick={(e) => {
                         e.preventDefault();
                         logOut();
-                        setTimeout(() => {
-                          setMenuShown((prevState: boolean) => !prevState);
-                        }, 500);
+                        // setTimeout(() => {
+                        //   setMenuShown((prevState: boolean) => !prevState);
+                        // }, 500);
                       }}
                       // border-t
-                      className="mt-2 w-full flex gap-2 py-1 px-4 text-center cursor-pointer"
+                      className=" w-full flex gap-2 font-medium py-1 px-4 text-center cursor-pointer"
                     >
                       <i className="ri-logout-box-line"></i>
-                      <span className="font-bold">SIGN OUT</span>
+                      <span className="">Sign Out</span>
                     </p>
                   </div>
                 )}

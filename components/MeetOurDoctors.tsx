@@ -5,7 +5,7 @@ type Props = {};
 
 export default function MeetOurDoctors({}: Props) {
   return (
-    <section className="px-[9.5vw] mb-28 flex flex-col justify-center items-center">
+    <section className="px-8 sm:px-[6vw] mb-28 flex flex-col justify-center items-center">
       <h1 className="text-[28px] md:text-[32px] text-center tracking-tight text-[#14532D] leading-10 font-semibold">
         Meet our Doctors
       </h1>
@@ -19,7 +19,7 @@ export default function MeetOurDoctors({}: Props) {
         src={img}
         alt="doctors smiling"
       />
-      <button className="rounded-[50px] w-fit mx-auto text-white transition bg-[#14532D] hover:bg-[#14532D]/70 py-3 md:py-4 sm:py-[18px] px-6 md:px-14">
+      <button className="rounded-[50px] cursor-text w-fit mx-auto text-white transition bg-[#14532D] hover:bg-[#14532D]/70 py-3 md:py-4 sm:py-[18px] px-6 md:px-14">
         See all doctors
       </button>
     </section>

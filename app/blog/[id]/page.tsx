@@ -1,8 +1,11 @@
-import { Navbar } from "@/components/Navbar";
-import fs from "fs";
-// import Markdown from "markdown-to-jsx";
-import Link from "next/link";
-import path from "path";
+"use client";
+
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
+// COMPONENTS
+import { BackBtn } from "@/components/BackBtn";
+import { FetchSingleBlog } from "@/utils/FetchUserData";
 
 type SingleBlogParams = {
   params: {
@@ -10,41 +13,23 @@ type SingleBlogParams = {
   };
 };
 
-// const fetchBlogContent = (slug: string) => {
-//   const folder = "posts/";
-//   const file = `${folder}${slug}.md`;
-//   const content = fs.readFileSync(file, "utf-8");
-//   const matterResult = matter(content);
-//   return matterResult;
-// };
-
-// export const generateStaticParams = async () => {
-//   const blogs = getBlogs();
-
-//   return blogs?.map((post) => ({
-//     slug: post.slug,
-//   }));
-// };
-
-export default function BlogPreview({ params: { id } }: SingleBlogParams) {
-  // const slug = props?.params?.slug;
-  // const post = fetchBlogContent(slug);
-  console.log(id);
+export default async function BlogPreview({
+  params: { id },
+}: SingleBlogParams) {
+  const blog = await FetchSingleBlog(id);
 
   return (
     <div className="">
-      <Navbar />
-      <main className="px-[9.5vw]">
-        <Link href="/blog">Go back</Link>
-        {id}
+      <main className="px-8 sm:px-[6vw] py-40">
+        <BackBtn />
         {/* <img className="w-full" src={post.data?.cover_image} alt="blog pics" /> */}
-        {/* <h1>{post?.data?.title}</h1>
-      <p className="mt-4 text-sm text-[#6B7280]">
-      Posted on {post?.data.date}{" "}
-      </p>
-      <article className="prose lg:prose-xl">
-      <Markdown>{post?.content}</Markdown>
-    </article> */}
+        <h1 className="text-[40px] leading-tight font-bold my-8 max-w-lg">
+          {blog?.title}
+        </h1>
+        <p className="mt-4 text-[#6B7280]">Posted on {blog?.date} </p>
+        <article className="prose lg:prose-xl">
+          <Markdown remarkPlugins={[remarkGfm]}>{blog?.content}</Markdown>
+        </article>
       </main>
     </div>
   );

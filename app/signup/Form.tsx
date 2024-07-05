@@ -1,31 +1,34 @@
-// "use client"
-import CustomInput from "@/components/CustomInput";
-import { auth } from "@/config/Config";
-import { useGlobalProvider } from "@/context/GlobalProvider";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+// HOOKS
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// COMPONENTS
+import CustomInput from "@/components/CustomInput";
+import { auth } from "@/config/Config";
+import { useGlobalProvider } from "@/context/GlobalProvider";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
 export default function Form() {
   const router = useRouter();
-  const {
-    signInWithGoogle,
-  } = useGlobalProvider();
+  const { signInWithGoogle } = useGlobalProvider();
+  const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const register = async (e: any) => {
     e.preventDefault();
     setLoading?.(true);
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      if (auth?.currentUser)
+        updateProfile(auth?.currentUser, { displayName: username });
       setLoading?.((prevState: boolean) => !prevState);
-      console.log("successfully registered");
-      console.log(auth.currentUser);
+      console.log("successfully registered", username);
       router.push("/");
     } catch (err: any) {
       console.error(err.message);
@@ -59,25 +62,18 @@ export default function Form() {
         onSubmit={register}
       >
         {error && <p className="text-red-500 font-bold">{error}</p>}
-        {/* <div className="flex flex-col gap-2">
-          <label htmlFor="name" className="">
-            Name
-          </label>
 
-          <CustomInput
-            id="name"
-            type="text"
-            className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
-            value={name}
-            name="name"
-            placeholder=""
-            onchange={(e: any) => {
-              e.preventDefault();
-              setName?.(e.target.value);
-              console.log(name);
-            }}
-          />
-        </div> */}
+        <CustomInput
+          style="flex flex-col gap-2"
+          label="username"
+          id="username"
+          type="text"
+          className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
+          value={username}
+          name="username"
+          placeholder=""
+          onChange={(e) => setUsername?.(e.target.value)}
+        />
 
         <CustomInput
           style="flex flex-col gap-2"
@@ -92,16 +88,19 @@ export default function Form() {
         />
 
         <CustomInput
-          style="flex flex-col gap-2"
+          style="flex flex-col gap-2 relative"
           label="password"
           id="password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
           value={password}
           name="password"
           placeholder=""
           onChange={(e) => setPassword?.(e.target.value)}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
         />
+
         <button
           disabled={email === "" || password === ""}
           type="submit"

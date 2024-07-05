@@ -1,7 +1,4 @@
 import { useGlobalProvider } from "@/context/GlobalProvider";
-// import { HandleExportData } from "@/lib/HandleExportData";
-import { convertDataToCSV } from "@/utils/csvUtils";
-import { UploadCSVToFirebaseStorage } from "@/utils/firebaseUtils";
 
 type Props = {
   handleExportData?: (data: any) => void;

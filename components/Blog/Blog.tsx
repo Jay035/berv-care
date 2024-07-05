@@ -1,8 +1,12 @@
 "use client";
+
+// HOOKS
 import Link from "next/link";
-import { useBlogContext } from "@/context/BlogContext";
-import PostLoader, { BlogPostLoader } from "../PostLoader";
 import dynamic from "next/dynamic";
+
+// COMPONENTS
+import { useBlogContext } from "@/context/BlogContext";
+import { BlogPostLoader } from "../PostLoader";
 import { Suspense } from "react";
 
 const BlogPost = dynamic(() => import("./BlogPost"));
@@ -13,19 +17,18 @@ export default function Blog() {
   return (
     <section
       id="healthCenter"
-      className="px-[9.5vw] pt-4 mb-[97px] text-center lg:text-left flex flex-col items-center lg:items-start"
+      className="px-8 sm:px-[6vw] min-h-[634px] pt-4 mb-[97px] text-center lg:text-left flex flex-col items-center lg:items-start"
     >
       <h1 className="text-[#14532D] font-semibold">OUR HEALTH CENTER</h1>
       <h2 className="text-[28px] md:text-[32px] w-full max-w-[515px] leading-10 mt-3 mb-[47px] font-bold tracking-tight">
         Read our latest medical and lifestyle articles
       </h2>
-      <Suspense fallback={<BlogPostLoader />}>
-
+      {/* <Suspense fallback={<BlogPostLoader />}> */}
       {!loading ? (
         blogs.length > 0 ? (
           <section className="flex flex-col">
             <div className="grid gap-8 gap-y-10 md:grid-cols-2 mb-12 lg:grid-cols-3 w-full">
-              {blogs?.map((post: any, index: number) => (
+              {blogs?.slice(0, 3)?.map((post: any, index: number) => (
                 <BlogPost post={post} key={index} />
               ))}
             </div>
@@ -44,7 +47,7 @@ export default function Blog() {
       ) : (
         <BlogPostLoader />
       )}
-      </Suspense>
+      {/* </Suspense> */}
     </section>
   );
 }

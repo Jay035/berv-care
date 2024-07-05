@@ -1,5 +1,4 @@
 import CustomInput from "@/components/CustomInput";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -50,7 +49,7 @@ export default function Form({
       <section className="col-span-1">
         <h1 className="text-lg font-medium mb-3">Preview</h1>
         <div className="border rounded-lg p-4 prose prose-slate prose-a:text-[#DD2D4A]">
-          <h1 className="mb-2 font-bold">{title && title}</h1>
+          <h1 className="mb-2 text-[40px] leading-[1] font-bold">{title && title}</h1>
           <div className="">
             {markdown && (
               <Markdown remarkPlugins={[remarkGfm]}>{markdown}</Markdown>

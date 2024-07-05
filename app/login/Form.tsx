@@ -1,22 +1,25 @@
-import CustomInput from "@/components/CustomInput";
-import { auth } from "@/config/Config";
-import { useGlobalProvider } from "@/context/GlobalProvider";
+// HOOKS
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// COMPONENTS
+import CustomInput from "@/components/CustomInput";
+import { auth } from "@/config/Config";
+import { useGlobalProvider } from "@/context/GlobalProvider";
+
 export default function Form() {
   const router = useRouter();
-  const { signInWithGoogle } = useGlobalProvider();
+  const { signInWithGoogle, setIsUserLoggedIn } = useGlobalProvider();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const login = async (e: any) => {
-    console.log(process.env.NEXT_PUBLIC_storageBucket);
     e.preventDefault();
     console.log("logging in....");
     setLoading(true);
@@ -25,8 +28,8 @@ export default function Form() {
       setLoading((prevState) => !prevState);
       console.log("successfully signed in");
       console.log(auth.currentUser);
-      // setIsUserLoggedIn(true);
-      // setUser(auth?.currentUser);
+      setIsUserLoggedIn?.(true);
+
       router.push("/");
     } catch (err: any) {
       setLoading((prevState) => !prevState);
@@ -54,7 +57,6 @@ export default function Form() {
       }
     }
   };
-  // console.log(email);
   return (
     <div className="">
       <form className="flex flex-col gap-5" id="login-form" onSubmit={login}>
@@ -75,7 +77,7 @@ export default function Form() {
           }}
         />
         <CustomInput
-          style="flex flex-col gap-2"
+          style="flex flex-col gap-2 relative"
           label="password"
           id="password"
           type="password"
@@ -87,6 +89,8 @@ export default function Form() {
             setPassword?.(e.target?.value);
             console.log(email);
           }}
+          showPassword={showPassword}
+          setShowPassword={setShowPassword}
         />
 
         <button

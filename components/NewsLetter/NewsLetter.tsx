@@ -1,14 +1,20 @@
 "use client";
+
+// HOOKS
 import { useState } from "react";
-import Form from "./Form";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "@/config/Config";
-import { toast } from "react-toastify";
 
-type Props = {};
+// COMPONENTS
+import Form from "./Form";
+import { Toast } from "../Toast";
 
-export default function NewsLetter({}: Props) {
+export default function NewsLetter() {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [subscriptionSuccessful, setSubscriptionSuccessful] =
+    useState<boolean>(false);
   const usersEmailRef = collection(db, "newsletter-subs");
 
   const handleEmailChange = (event: any) => {
@@ -19,19 +25,46 @@ export default function NewsLetter({}: Props) {
   const handleSubscribe = async (e: any) => {
     e.preventDefault();
     try {
-      console.log(`Subscribing ${email} to our newsletter...`);
       await addDoc(usersEmailRef, { email: email });
-      toast.success("Congratulations, you have subscribed to our newsletter");
+      setShowModal?.(true);
+      setSubscriptionSuccessful(true);
+      setTimeout(() => {
+        setShowModal?.(false);
+      }, 4000);
       setEmail("");
     } catch (err: any) {
-      console.log(err.message);
-      toast.error(err.message);
+      setSubscriptionSuccessful(false);
+      setError(err.message);
+      setTimeout(() => {
+        setShowModal?.(false);
+        setError("");
+      }, 4000);
     }
   };
 
   return (
-    <section className="md:px-[9.5vw]">
-      <div className="bg-[#DCFCE7] py-[78px] px-[9.5vw] md:px-[6vw]">
+    <section className="px-8 sm:px-[6vw]">
+      {/* MODAL  */}
+      <Toast showModal={showModal} setShowModal={setShowModal}>
+        <div className="flex items-center gap-2">
+          <i
+            className={`${
+              subscriptionSuccessful && !error
+                ? "ri-checkbox-circle-line text-green-500"
+                : "ri-error-warning-fill text-red-500"
+            } text-xl`}
+          ></i>
+          {subscriptionSuccessful && !error ? (
+            <span>Congratulations, you have subscribed to our newsletter</span>
+          ) : (
+            <span>{error}</span>
+          )}
+        </div>
+      </Toast>
+
+      {/* ---------------------------  */}
+
+      <div className="bg-[#DCFCE7] py-[78px] px-8 sm:px-[6vw] md:px-[6vw]">
         <h1 className="text-center font-bold text-4xl -tracking-[2%]">
           Beat the Queue, Stay Healthy!
         </h1>

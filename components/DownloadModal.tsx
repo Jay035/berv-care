@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 
 type Props = {
   downloadCSVLink: string;
@@ -17,7 +16,6 @@ export default function DownloadModal({
     navigator.clipboard.writeText(text).then(
       function () {
         console.log("Copying link was successful");
-        toast.success("Copying link was successful");
         setIsLinkCopied(!isLinkCopied);
         setTimeout(() => {
           setDownloadButtonClicked(false);
@@ -25,7 +23,6 @@ export default function DownloadModal({
       },
       function (err) {
         console.error("Could not copy text:", err);
-        toast.error("Could not copy text:", err);
       }
     );
   }
