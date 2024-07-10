@@ -80,7 +80,7 @@ export default function Form() {
           style="flex flex-col gap-2 relative"
           label="password"
           id="password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           className="border outline-none text-black bg-white/10 border-[#7a7c86] rounded-lg px-2 py-1"
           value={password}
           name="password"
