@@ -56,7 +56,7 @@ export default function CustomInput({
         <i
           className={`${
             showPassword ? "ri-eye-line" : "ri-eye-off-line"
-          }  absolute bottom-1.5 right-2 cursor-pointer`}
+          }  absolute bottom-1.5 z-10 right-2 cursor-pointer`}
           onClick={() => setShowPassword?.((prevState: boolean) => !prevState)}
         ></i>
       )}
