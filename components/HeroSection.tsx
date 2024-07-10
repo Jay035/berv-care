@@ -48,7 +48,7 @@ export default function HeroSection({}: Props) {
           <GetStartedBtn />
         </div>
       </div>
-      <div className="">
+      <div className="z-10">
         <Image
           id="hero_img"
           placeholder="blur"
