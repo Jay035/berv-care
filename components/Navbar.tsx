@@ -61,7 +61,7 @@ export const Navbar = () => {
     <header
       className={`${sora.className} ${
         scrolled ? "bg-white/90 backdrop-blur-[2px]" : "bg-white"
-      } fixed top-0 left-0 z-50 flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
+      } fixed top-0 left-0 z-30 flex justify-between items-center w-full py-7 px-8 sm:px-[6vw]`}
     >
       <Link href="/">
         <Image

@@ -52,6 +52,7 @@ export default function HeroSection({}: Props) {
         <Image
           id="hero_img"
           placeholder="blur"
+          priority
           src={img}
           className="w-full"
           alt="doctor treating patient"
