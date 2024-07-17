@@ -132,7 +132,7 @@ export const Navbar = () => {
                 router.push("/login");
                 setMenuShown((prevState: boolean) => !prevState);
               }}
-              className="cursor-pointer transition w-fit"
+              className="cursor-pointer transition w-fit after:bg-[#14532D] after:h-0.5 after:block after:w-0 after:hover:w-full ease-in after:transition-all "
             >
               Post a blog
             </span>
