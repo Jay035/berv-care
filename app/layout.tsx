@@ -40,7 +40,6 @@ const TomatoGrotesk = localFont({
   ],
 });
 
-
 export const metadata: Metadata = {
   title: "Berv-Care",
   description: "Your Pathway to Trusted Care Providers",
@@ -65,7 +64,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
         <link rel="preconnect" href="https://firestore.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        
       </head>
       <body
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
@@ -73,9 +71,9 @@ export default function RootLayout({
         <Transition />
         <ScrollToTop />
         <GlobalProvider>
-            <BlogContextProvider>
-              <BodyComponent>{children}</BodyComponent>
-            </BlogContextProvider>
+          <BlogContextProvider>
+            <BodyComponent>{children}</BodyComponent>
+          </BlogContextProvider>
         </GlobalProvider>
       </body>
     </html>

@@ -49,7 +49,6 @@ export default function BodyComponent({
   return (
     <QueryClientProvider client={queryClient}>
       {path !== "/login" && path !== "/signup" && <Navbar />}
-
       {children}
       {path !== "/login" && path !== "/signup" && <Footer />}
 
