@@ -1,12 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-// COMPONENTS
+import { useGlobalProvider } from "@/context/GlobalProvider";
+import { useReroute } from "@/utils/useReroute";
 import { auth, db } from "@/config/Config";
 import { addDoc, collection } from "@firebase/firestore";
+
+// COMPONENTS
 import Form from "./Form";
-import { useGlobalProvider } from "@/context/GlobalProvider";
 
 function generateRandomId() {
   return Math.random().toString(36).substr(2, 12);
@@ -14,7 +15,7 @@ function generateRandomId() {
 
 export default function PostBlog() {
   const router = useRouter();
-  const { user } = useGlobalProvider();
+  const { isUserLoggedIn } = useGlobalProvider();
   const [blogPublished, setBlogPublished] = useState(false);
   const [markdown, setMarkdown] = useState("");
   const [title, setTitle] = useState("");
@@ -47,14 +48,7 @@ export default function PostBlog() {
     }
   };
 
-  useEffect(() => {
-    window.addEventListener("DOMContentLoaded", () => {
-      if (!user) {
-        alert("You have to be signed in to post a blog");
-        router.push("/login");
-      }
-    });
-  }, []);
+  useReroute("/login", !isUserLoggedIn!);
 
   return (
     <main className="px-8 sm:px-[6vw] pt-40 h-full xl:min-h-[70vh]">

@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
+import { useGlobalProvider } from "@/context/GlobalProvider";
+import { useReroute } from "@/utils/useReroute";
 
 // COMPONENTS
 import Form from "./Form";
-import { useGlobalProvider } from "@/context/GlobalProvider";
-import { useReroute } from "@/utils/useReroute";
 
 export default function SignUp() {
   const { isUserLoggedIn } = useGlobalProvider();

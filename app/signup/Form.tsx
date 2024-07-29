@@ -3,12 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-
-// COMPONENTS
-import CustomInput from "@/components/CustomInput";
 import { auth } from "@/config/Config";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+// COMPONENTS
+import CustomInput from "@/components/CustomInput";
 
 export default function Form() {
   const router = useRouter();
