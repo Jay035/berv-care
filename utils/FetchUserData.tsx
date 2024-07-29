@@ -31,9 +31,10 @@ export async function FetchUserBlogs() {
       setError?.(error.message);
       // setLoading?.(false)
     }
-  } else {
-    console.log("No user is currently logged in.");
-  }
+  } 
+  // else {
+  //   console.log("No user is currently logged in.");
+  // }
 }
 
 

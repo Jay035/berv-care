@@ -46,10 +46,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.svg",
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "cyan" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "cyan" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
 };
 
 export default function RootLayout({
@@ -68,10 +68,10 @@ export default function RootLayout({
       <body
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
-        <Transition />
-        <ScrollToTop />
         <GlobalProvider>
           <BlogContextProvider>
+            {/* <Transition /> */}
+            <ScrollToTop />
             <BodyComponent>{children}</BodyComponent>
           </BlogContextProvider>
         </GlobalProvider>

@@ -1,29 +1,15 @@
 "use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-// COMPONENTS 
+// COMPONENTS
 import Form from "./Form";
-import { auth } from "@/config/Config";
+import { useGlobalProvider } from "@/context/GlobalProvider";
+import { useReroute } from "@/utils/useReroute";
 
 export default function SignUp() {
-  const router = useRouter();
+  const { isUserLoggedIn } = useGlobalProvider();
 
-  const reRoute = () => {
-    if (auth?.currentUser) {
-      router.push("/dashboard");
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("DOMContentLoaded", reRoute);
-
-    // Cleanup function to remove event listener
-    return () => {
-      window.removeEventListener("DOMContentLoaded", reRoute);
-    };
-  }, []);
+  useReroute("/dashboard", isUserLoggedIn!);
 
   return (
     <main className="container px-6 lg:px-14 max-w-lg mx-auto flex flex-col justify-center gap-3 w-full h-screen">
