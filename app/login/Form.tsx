@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { auth } from "@/config/Config";
+import { useGlobalProvider } from "@/context/GlobalProvider";
 
 // COMPONENTS
 import CustomInput from "@/components/CustomInput";
-import { auth } from "@/config/Config";
-import { useGlobalProvider } from "@/context/GlobalProvider";
 
 export default function Form() {
   const router = useRouter();

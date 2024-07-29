@@ -11,6 +11,7 @@ import { Navbar } from "@/components/Navbar";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import Distance from "./hospitals/components/Distance";
 import Footer from "@/components/Footer";
+import Loader from "./loading";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ export default function BodyComponent({
     downloadCSVLink,
     downloadButtonClicked,
     setDownloadButtonClicked,
+    loading,
   } = useGlobalProvider();
 
   const [isLinkCopied, setIsLinkCopied] = useState(false);
@@ -46,10 +48,9 @@ export default function BodyComponent({
     );
   }
 
-  return (
+  return !loading ? (
     <QueryClientProvider client={queryClient}>
       {path !== "/login" && path !== "/signup" && <Navbar />}
-
       {children}
       {path !== "/login" && path !== "/signup" && <Footer />}
 
@@ -124,5 +125,7 @@ export default function BodyComponent({
         </Modal>
       )}
     </QueryClientProvider>
+  ) : (
+    <Loader />
   );
 }

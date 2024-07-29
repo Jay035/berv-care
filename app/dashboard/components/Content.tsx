@@ -4,11 +4,13 @@ import { BlogPostLoader } from "@/components/PostLoader";
 import { useBlogContext } from "@/context/BlogContext";
 import { useGlobalProvider } from "@/context/GlobalProvider";
 import { FetchUserBlogs } from "@/utils/FetchUserData";
+import { useReroute } from "@/utils/useReroute";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function Content({ data }: any) {
-  const { user } = useGlobalProvider();
+  const { user, isUserLoggedIn } = useGlobalProvider();
+
   const { error } = useBlogContext();
 
   const parseDate = (dateString: string): Date => {
@@ -20,6 +22,8 @@ export default function Content({ data }: any) {
     const dateB = b.date && parseDate(b.date);
     return dateB.getTime() - dateA.getTime();
   });
+
+  useReroute("/login", !isUserLoggedIn!);
 
   return (
     <main className="py-40 px-8 sm:px-[6vw]">

@@ -40,17 +40,16 @@ const TomatoGrotesk = localFont({
   ],
 });
 
-
 export const metadata: Metadata = {
   title: "Berv-Care",
   description: "Your Pathway to Trusted Care Providers",
   icons: {
     icon: "/logo.svg",
   },
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "cyan" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // themeColor: [
+  //   { media: "(prefers-color-scheme: light)", color: "cyan" },
+  //   { media: "(prefers-color-scheme: dark)", color: "black" },
+  // ],
 };
 
 export default function RootLayout({
@@ -65,17 +64,16 @@ export default function RootLayout({
         <link rel="preconnect" href="https://berv-care-49a8d.firebaseapp.com" />
         <link rel="preconnect" href="https://firestore.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        
       </head>
       <body
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
-        <Transition />
-        <ScrollToTop />
         <GlobalProvider>
-            <BlogContextProvider>
-              <BodyComponent>{children}</BodyComponent>
-            </BlogContextProvider>
+          <BlogContextProvider>
+            {/* <Transition /> */}
+            <ScrollToTop />
+            <BodyComponent>{children}</BodyComponent>
+          </BlogContextProvider>
         </GlobalProvider>
       </body>
     </html>

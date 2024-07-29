@@ -60,7 +60,7 @@ export function GlobalProvider({ children }: Props) {
   // AUTHENTCATION
   const [isUserLoggedIn, setIsUserLoggedIn]: any = useState(false);
   const [user, setUser]: any = useState(auth?.currentUser);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const signInWithGoogle = async () => {
     console.log("signing in with google....");
@@ -90,9 +90,11 @@ export function GlobalProvider({ children }: Props) {
         // User is signed in.
         setUser(user);
         setIsUserLoggedIn(true);
+        setLoading(false);
       } else {
         // User is not signed in.
         setIsUserLoggedIn(false);
+        setLoading(false);
       }
     });
   }, []);
@@ -114,7 +116,8 @@ export function GlobalProvider({ children }: Props) {
     setDownloadCSVLink,
     downloadButtonClicked,
     setDownloadButtonClicked,
-    subscribeButtonClicked, setSubscribeButtonClicked,
+    subscribeButtonClicked,
+    setSubscribeButtonClicked,
 
     // MAP props
     selectedHospitalInfo,
