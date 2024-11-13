@@ -1,22 +1,18 @@
 "use client";
 import BlogPost from "@/components/Blog/BlogPost";
 import { BlogPostLoader } from "@/components/PostLoader";
-import { useBlogContext } from "@/context/BlogContext";
 import { useGlobalProvider } from "@/context/GlobalProvider";
-import { FetchUserBlogs } from "@/utils/FetchUserData";
 import { useReroute } from "@/utils/useReroute";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Content({ data }: any) {
   const { user, isUserLoggedIn } = useGlobalProvider();
-
-  const { error } = useBlogContext();
 
   const parseDate = (dateString: string): Date => {
     const [day, month, year] = dateString.split("/").map(Number);
     return new Date(year, month - 1, day); // Month is zero-based in JS Date
   };
+
   const sortedData = data?.sort((a: any, b: any) => {
     const dateA = a.date && parseDate(a.date);
     const dateB = b.date && parseDate(b.date);
@@ -45,7 +41,6 @@ export default function Content({ data }: any) {
             </section>
           ) : (
             <BlogPostLoader />
-            // <p className="text-2xl text-center mt-16">{error}</p>
           )
         ) : (
           <div className="flex flex-col gap-6 items-center text-center mx-auto max-w-3xl justify-center">

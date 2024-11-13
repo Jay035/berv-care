@@ -6,7 +6,6 @@ import { Metadata } from "next";
 // COMPONENTS
 import ScrollToTop from "@/components/ScrollToTop";
 import Transition from "@/components/Transition";
-import { BlogContextProvider } from "@/context/BlogContext";
 import { GlobalProvider } from "@/context/GlobalProvider";
 import BodyComponent from "./body";
 
@@ -46,10 +45,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.svg",
   },
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "cyan" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
 };
 
 export default function RootLayout({
@@ -69,11 +64,9 @@ export default function RootLayout({
         className={`${TomatoGrotesk.className} scroll-smooth relative max-w-[2000px] mx-auto overflow-x-hidden`}
       >
         <GlobalProvider>
-          <BlogContextProvider>
-            {/* <Transition /> */}
-            <ScrollToTop />
-            <BodyComponent>{children}</BodyComponent>
-          </BlogContextProvider>
+          {/* <Transition /> */}
+          <ScrollToTop />
+          <BodyComponent>{children}</BodyComponent>
         </GlobalProvider>
       </body>
     </html>
