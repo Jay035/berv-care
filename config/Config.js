@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, ref } from "firebase/storage";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { getFirestore } from "@firebase/firestore";
 import { useRouter } from "next/navigation";
@@ -20,9 +20,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// if (firebase.apps.length === 0) {
-//   FIREBASE_CLIENT.initializeApp(firebaseConfig);
-// }
 
 // Initialize Cloud Storage and get a reference to the service
 const storage = getStorage(app);
@@ -32,7 +29,6 @@ const storageRef = ref(storage);
 const auth = getAuth();
 
 const provider = new GoogleAuthProvider();
-// const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 

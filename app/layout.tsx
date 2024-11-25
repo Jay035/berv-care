@@ -2,6 +2,7 @@ import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import localFont from "next/font/local";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 
 // COMPONENTS
 import ScrollToTop from "@/components/ScrollToTop";
@@ -46,10 +47,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo.svg",
   },
-  // themeColor: [
-  //   { media: "(prefers-color-scheme: light)", color: "cyan" },
-  //   { media: "(prefers-color-scheme: dark)", color: "black" },
-  // ],
 };
 
 export default function RootLayout({
@@ -75,6 +72,8 @@ export default function RootLayout({
             <BodyComponent>{children}</BodyComponent>
           </BlogContextProvider>
         </GlobalProvider>
+
+        <Analytics />
       </body>
     </html>
   );

@@ -48,28 +48,6 @@ export function BlogContextProvider({ children }: Props) {
     }
   };
 
-  const getMedicalBlogs = () => {
-    fetch(
-      `https://newsapi.org/v2/top-headlines?country=ng&category=health&apiKey=${process.env.NEXT_PUBLIC_NewsAPI_Key}`
-    )
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
-    //   let myHeaders = new Headers();
-    //   myHeaders.append("Accept", "application/json");
-
-    //   let requestOptions = {
-    //     method: "GET",
-    //     headers: myHeaders,
-    //     redirect: "follow",
-    //   };
-
-    //   fetch("http://api.medical-blog.test/api/v1/posts", requestOptions)
-    //     .then((response) => response.text())
-    //     .then((result) => console.log(result))
-    //     .catch((error) => console.log("error", error));
-  };
-
   useEffect(() => {
     getBlogs();
   }, []);
