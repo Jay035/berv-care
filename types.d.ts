@@ -103,9 +103,9 @@ interface PositionError {
 type MarkerType = {
   id: string;
   place_id: string;
-  geometry?: {
-    location: google.maps.LatLngLiteral;
-  };
+  // geometry?: {
+  //   location: google.maps.LatLngLiteral;
+  // };
   location: google.maps.LatLngLiteral;
   name: string;
   // phone_number: string;
@@ -115,6 +115,8 @@ type MarkerType = {
   icon_mask_base_uri: string;
   rating: number;
   vicinity: string;
+  address: string;
+  phone_number: string,
   business_status: string;
   photos?: {
     height: number;
