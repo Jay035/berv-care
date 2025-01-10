@@ -107,10 +107,10 @@ export function Map() {
     isLoading: isLoadingMarkerWeather,
     isError: isErrorMarkerWeather,
   } = useQuery(
-    [selectedMarker?.geometry?.location?.lat],
+    [selectedMarker?.location?.lat],
     () => fetchWeather(selectedMarker?.location),
     {
-      enabled: !!selectedMarker?.geometry?.location?.lat,
+      enabled: !!selectedMarker?.location?.lat,
       refetchOnWindowFocus: false,
       staleTime: 60 * 1000 * 5, // 5 minutes
     }
@@ -147,6 +147,7 @@ export function Map() {
     if (!hospital) return;
     setSelectedMarker((prevValue) => ({
       ...prevValue,
+      location: hospital,
       geometry: {
         location: hospital,
       },
@@ -315,9 +316,9 @@ export function Map() {
           </MarkerClusterer>
         )}
 
-        {selectedHospitalInfo && selectedMarker?.geometry?.location && (
+        {selectedHospitalInfo && selectedMarker?.location && (
           <InfoWindow
-            position={selectedMarker?.geometry?.location}
+            position={selectedMarker?.location}
             onCloseClick={() => setSelectedMarker({} as MarkerType)}
           >
             <div>

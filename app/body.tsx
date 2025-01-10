@@ -78,8 +78,14 @@ export default function BodyComponent({
             </div>
             <p className="my-2">
               <span className="font-medium text-lg">Address: </span>{" "}
-              <span>{selectedHospitalInfo?.vicinity}, Nigeria.</span>
+              <span>{selectedHospitalInfo?.address}</span>
             </p>
+            {selectedHospitalInfo?.phone_number && (
+              <p className="my-2">
+                <span className="font-medium text-lg">Phone: </span>{" "}
+                <span>{selectedHospitalInfo?.phone_number}</span>
+              </p>
+            )}
             {selectedHospitalInfo?.rating && (
               <p>Rating: {selectedHospitalInfo?.rating}</p>
             )}
