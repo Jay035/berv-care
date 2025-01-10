@@ -108,7 +108,7 @@ export function Map() {
     isError: isErrorMarkerWeather,
   } = useQuery(
     [selectedMarker?.geometry?.location?.lat],
-    () => fetchWeather(selectedMarker?.geometry?.location),
+    () => fetchWeather(selectedMarker?.location),
     {
       enabled: !!selectedMarker?.geometry?.location?.lat,
       refetchOnWindowFocus: false,
@@ -291,14 +291,14 @@ export function Map() {
                 {nearbyHospitalsData?.map((marker) => {
                   return (
                     <Marker
-                      key={marker.place_id}
+                      key={marker.id}
                       clusterer={clusterer}
-                      position={marker?.geometry?.location}
+                      position={marker?.location}
                       onClick={() => {
                         setSelectedMarker(marker);
                         setSelectedHospitalInfo?.(marker);
                         // console.log(selectedHospitalInfo);
-                        fetchDirections(marker?.geometry?.location);
+                        fetchDirections(marker?.location);
                       }}
                       icon={{
                         // url: marker.icon,

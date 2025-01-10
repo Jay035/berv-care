@@ -49,7 +49,7 @@ export default function NearbyHospitals({ hospitals, moveTo }: Props) {
             <button
             className="w-fit text-sm sm:text-base whitespace-nowrap font-semibold text-center bg-[#14532D]/90 text-white p-2 px-4 rounded-2xl "
               onClick={() => {
-                moveTo(hospital?.geometry?.location);
+                moveTo(hospital?.location);
                 window.scrollTo(0, 250);
               }}
             >

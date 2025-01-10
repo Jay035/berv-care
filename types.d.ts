@@ -96,15 +96,17 @@ type Location = {
 };
 
 interface PositionError {
-  code: number;
+  code: number | string;
   message: string;
 }
 
 type MarkerType = {
+  id: string;
   place_id: string;
-  geometry: {
+  geometry?: {
     location: google.maps.LatLngLiteral;
   };
+  location: google.maps.LatLngLiteral;
   name: string;
   // phone_number: string;
   // website: string;
