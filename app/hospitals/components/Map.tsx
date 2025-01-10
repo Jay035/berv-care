@@ -6,7 +6,7 @@ import {
   Marker,
   useJsApiLoader,
   InfoWindow,
-  LoadScript,
+  // LoadScript,
   useLoadScript,
   Circle,
   MarkerClusterer,
@@ -171,16 +171,16 @@ export function Map() {
   const handleExportData = async () => {
     try {
       const csvData = convertDataToCSV(nearbyHospitalsData!);
-      console.log(csvData);
       await UploadCSVToFirebaseStorage(csvData, setDownloadCSVLink);
-      // console.log("Data exported successfully");
     } catch (err: any) {
       setError(err.message);
     }
   };
 
   if (loadError) {
-    return <div>Error loading maps</div>;
+    return (
+      <div className="h-[90vh] w-full bg-gray-300">Error loading maps</div>
+    );
   }
 
   if (!isLoaded || isLoading) {
