@@ -9,6 +9,10 @@ export const fetchNearbyPlaces = async (
     `https://trueway-places.p.rapidapi.com/FindPlacesNearby?location=${lat}%2C${lng}&language=en&radius=${PLACE_RADIUS}&type=${TYPE}`,
     {
       method: "GET",
+      // headers: {
+      //   "x-rapidapi-key": process.env.NEXT_PUBLIC_X_RapidAPI_Key!,
+      //  'x-rapidapi-host': 'google-map-places.p.rapidapi.com'
+      // },
       headers: {
         "x-rapidapi-key": process.env.NEXT_PUBLIC_X_RapidAPI_Key!,
         "x-rapidapi-host": "trueway-places.p.rapidapi.com",
@@ -52,4 +56,3 @@ export const fetchWeather = async ({
     text: data.current_observation.condition.text,
   };
 };
-

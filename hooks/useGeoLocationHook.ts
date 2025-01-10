@@ -52,34 +52,48 @@ const useGeoLocation = () => {
   );
   const [error, setError] = useState<PositionError | null>(null);
 
-  useEffect(() => {
-    if (!navigator.geolocation) {
-      setError({
-        code: 0,
-        message: "Geolocation is not supported by your browser",
-      });
-      return;
-    }
-
-    const onSuccess = (position: GeolocationPosition) => {
+  const fetchFallbackLocation = async () => {
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+      console.log("Fallback location:", data);
       setUserLocation({
-        lat: position?.coords?.latitude,
-        lng: position.coords.longitude,
+        lat: data.latitude,
+        lng: data.longitude,
       });
-    };
-
-    const onError = (error: GeolocationPositionError) => {
-      setError({ code: error.code, message: error.message });
-      console.log({ code: error.code, message: error.message });
-    };
-
-    if (!navigator.geolocation) {
-      setError({
-        code: 0,
-        message: "Geolocation is not supported by your browser",
-      });
-      return;
+    } catch (err) {
+      console.error("Failed to fetch fallback location:", err);
     }
+  };
+
+  useEffect(() => {
+    // if (!navigator.geolocation) {
+    //   setError({
+    //     code: 0,
+    //     message: "Geolocation is not supported by your browser",
+    //   });
+    //   return;
+    // }
+
+    // const onSuccess = (position: GeolocationPosition) => {
+    //   setUserLocation({
+    //     lat: position?.coords?.latitude,
+    //     lng: position.coords.longitude,
+    //   });
+    // };
+
+    // const onError = (error: GeolocationPositionError) => {
+    //   setError({ code: error.code, message: error.message });
+    //   console.log({ code: error.code, message: error.message });
+    // };
+
+    // if (!navigator.geolocation) {
+    //   setError({
+    //     code: 0,
+    //     message: "Geolocation is not supported by your browser",
+    //   });
+    //   return;
+    // }
 
     const handleSuccess = (position: GeolocationPosition) => {
       setUserLocation({
@@ -120,11 +134,11 @@ const useGeoLocation = () => {
       }
     };
 
-    navigator.geolocation.getCurrentPosition(handleSuccess, handleError, {
-      enableHighAccuracy: false, // Switch to false for better availability
-      timeout: 20000,           // Increase timeout to allow more time
-      maximumAge: 0,            // Always request the latest position
-    });
+    // navigator.geolocation.getCurrentPosition(handleSuccess, handleError, {
+    //   enableHighAccuracy: false, // Switch to false for better availability
+    //   timeout: 20000,           // Increase timeout to allow more time
+    //   maximumAge: 0,            // Always request the latest position
+    // });
 
     // navigator.geolocation.getCurrentPosition(onSuccess, onError);
     // navigator.geolocation.getCurrentPosition(
@@ -144,6 +158,28 @@ const useGeoLocation = () => {
     //   },
     //   { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
     // );
+    const getLocationWithRetry = (retries = 3) => {
+      if (retries === 0) {
+        setError({ code: "LOCATION_ERROR", message: "Failed to get location" });
+        console.error("Max retries reached. Location unavailable.");
+        fetchFallbackLocation();
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          handleSuccess(position)
+        },
+        (error) => {
+          handleError(error)
+          console.error("Retrying... Remaining attempts:", retries - 1);
+          setTimeout(() => getLocationWithRetry(retries - 1), 2000);
+        },
+        { enableHighAccuracy: false, timeout: 20000, maximumAge: 0 }
+      );
+    };
+
+    getLocationWithRetry();
   }, []);
 
   return { userLocation, error };
