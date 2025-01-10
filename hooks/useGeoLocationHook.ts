@@ -42,14 +42,10 @@ import { useState, useEffect } from "react";
 // };
 
 const useGeoLocation = () => {
-  // const { userAddress, setUserAddress } = useGlobalProvider();
-  const [userLocation, setUserLocation] = useState(
-    // <google.maps.LatLngLiteral>
-    {
-      lat: 0,
-      lng: 0,
-    }
-  );
+  const [userLocation, setUserLocation] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [error, setError] = useState<PositionError | null>(null);
 
   const fetchFallbackLocation = async () => {
@@ -67,33 +63,13 @@ const useGeoLocation = () => {
   };
 
   useEffect(() => {
-    // if (!navigator.geolocation) {
-    //   setError({
-    //     code: 0,
-    //     message: "Geolocation is not supported by your browser",
-    //   });
-    //   return;
-    // }
-
-    // const onSuccess = (position: GeolocationPosition) => {
-    //   setUserLocation({
-    //     lat: position?.coords?.latitude,
-    //     lng: position.coords.longitude,
-    //   });
-    // };
-
-    // const onError = (error: GeolocationPositionError) => {
-    //   setError({ code: error.code, message: error.message });
-    //   console.log({ code: error.code, message: error.message });
-    // };
-
-    // if (!navigator.geolocation) {
-    //   setError({
-    //     code: 0,
-    //     message: "Geolocation is not supported by your browser",
-    //   });
-    //   return;
-    // }
+    if (!navigator.geolocation) {
+      setError({
+        code: 0,
+        message: "Geolocation is not supported by your browser",
+      });
+      return;
+    }
 
     const handleSuccess = (position: GeolocationPosition) => {
       setUserLocation({
@@ -134,30 +110,6 @@ const useGeoLocation = () => {
       }
     };
 
-    // navigator.geolocation.getCurrentPosition(handleSuccess, handleError, {
-    //   enableHighAccuracy: false, // Switch to false for better availability
-    //   timeout: 20000,           // Increase timeout to allow more time
-    //   maximumAge: 0,            // Always request the latest position
-    // });
-
-    // navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     console.log("Location:", position);
-    //   },
-    //   (error) => {
-    //     if (error.code === error.POSITION_UNAVAILABLE) {
-    //       console.error("Location unavailable. Please try again.");
-    //     } else if (error.code === error.PERMISSION_DENIED) {
-    //       console.error("Permission denied. Enable location services.");
-    //     } else if (error.code === error.TIMEOUT) {
-    //       console.error("Location request timed out. Retry?");
-    //     } else {
-    //       console.error("An unknown error occurred:", error);
-    //     }
-    //   },
-    //   { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
-    // );
     const getLocationWithRetry = (retries = 3) => {
       if (retries === 0) {
         setError({ code: "LOCATION_ERROR", message: "Failed to get location" });
@@ -168,12 +120,12 @@ const useGeoLocation = () => {
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          handleSuccess(position)
+          handleSuccess(position);
         },
         (error) => {
-          handleError(error)
+          handleError(error);
           console.error("Retrying... Remaining attempts:", retries - 1);
-          setTimeout(() => getLocationWithRetry(retries - 1), 2000);
+          setTimeout(() => getLocationWithRetry(retries - 1), 1000);
         },
         { enableHighAccuracy: false, timeout: 20000, maximumAge: 0 }
       );
