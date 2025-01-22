@@ -39,7 +39,7 @@ export default function NearbyHospitals({ hospitals, moveTo }: Props) {
               <h2 className="capitalize font-extrabold tracking-tight">
                 {hospital?.name}
               </h2>
-              <p className="truncate max-w-[240px] sm:max-w-sm lg:max-w-[240px] xl:max-w-sm">{hospital?.vicinity}, Nigeria.</p>
+              <p className="truncate max-w-[240px] sm:max-w-sm lg:max-w-[240px] xl:max-w-sm">{hospital?.address || hospital?.vicinity}, Nigeria.</p>
             {hospital?.business_status && (
               <span className="text-xs border border-black rounded-2xl font-semibold py-[2px] px-2">
                 {hospital?.business_status}
