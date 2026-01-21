@@ -2,21 +2,20 @@
 
 ![Preview](/public/screenshot-1.png)
 
-## Welcome! 👋
 
-### Table of Contents 
+
+<!-- ### Table of Contents 
 ## ---COMING SOON
-<!-- [Headers](#headers)   -->
-Thanks for checking out my repository
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-**Berv-Care** is a simple tool that aims to help any user find, export, and share hospitals within their region. 
+Thanks for checking out my repository -->
+
+Berv‑Care is a care finder web application aimed at helping users discover and share nearby hospitals and care providers. The project is created using Next.js, TypeScript, and Tailwind CSS, and deployed with Vercel
 
 ## Live link
  https://berv-care.vercel.app/
 
-## The Challenge
+<!--## The Challenge
 
 ## Building this project
-
+-->
 
